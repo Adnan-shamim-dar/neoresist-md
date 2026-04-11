@@ -1,0 +1,34 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,CASQ2,p.I287=,ENST00000261448,TCGA-DX-A3M2-01A-21D-A228-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,BCL9,p.A1366=,ENST00000234739,TCGA-DX-A3M2-01A-21D-A228-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,CACNA1E,p.G1533=,ENST00000367573,TCGA-DX-A3M2-01A-21D-A228-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,GLB1,p.N490=,ENST00000307363,TCGA-DX-A3M2-01A-21D-A228-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,QTRT2,p.Y387=,ENST00000281273,TCGA-DX-A3M2-01A-21D-A228-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,HTT,p.P2270=,ENST00000355072,TCGA-DX-A3M2-01A-21D-A228-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,JAKMIP1,p.A375=,ENST00000282924,TCGA-DX-A3M2-01A-21D-A228-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,FLT4,p.P1137=,ENST00000261937,TCGA-DX-A3M2-01A-21D-A228-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,ABT1,p.A173=,ENST00000274849,TCGA-DX-A3M2-01A-21D-A228-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,RP1,p.Y199=,ENST00000220676,TCGA-DX-A3M2-01A-21D-A228-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,SOHLH1,p.A288=,ENST00000298466,TCGA-DX-A3M2-01A-21D-A228-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,MIR202,,ENST00000362219,TCGA-DX-A3M2-01A-21D-A228-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,OR8H1,p.I249=,ENST00000313022,TCGA-DX-A3M2-01A-21D-A228-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,TECTA,p.A374=,ENST00000264037,TCGA-DX-A3M2-01A-21D-A228-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,AQP6,p.P123=,ENST00000315520,TCGA-DX-A3M2-01A-21D-A228-09
+49,Unsupported mutation class (only Missense_Mutation allowed).,CCDC63,p.T341=,ENST00000308208,TCGA-DX-A3M2-01A-21D-A228-09
+52,Unsupported mutation class (only Missense_Mutation allowed).,LPCAT4,p.F472Pfs*3,ENST00000314891,TCGA-DX-A3M2-01A-21D-A228-09
+54,Unsupported mutation class (only Missense_Mutation allowed).,EIF2AK4,p.S1408=,ENST00000263791,TCGA-DX-A3M2-01A-21D-A228-09
+56,Unsupported mutation class (only Missense_Mutation allowed).,TLN2,p.D2165=,ENST00000561311,TCGA-DX-A3M2-01A-21D-A228-09
+61,Unsupported mutation class (only Missense_Mutation allowed).,KRT18P55,,ENST00000577198,TCGA-DX-A3M2-01A-21D-A228-09
+62,Unsupported mutation class (only Missense_Mutation allowed).,KRT35,p.L195=,ENST00000393989,TCGA-DX-A3M2-01A-21D-A228-09
+65,Unsupported mutation class (only Missense_Mutation allowed).,ALPK2,p.P1345Lfs*2,ENST00000361673,TCGA-DX-A3M2-01A-21D-A228-09
+66,Unsupported mutation class (only Missense_Mutation allowed).,CD209,p.C356=,ENST00000315599,TCGA-DX-A3M2-01A-21D-A228-09
+67,Unsupported mutation class (only Missense_Mutation allowed).,OR7G2,p.T114=,ENST00000305456,TCGA-DX-A3M2-01A-21D-A228-09
+73,Unsupported mutation class (only Missense_Mutation allowed).,SPHK2,p.R61*,ENST00000245222,TCGA-DX-A3M2-01A-21D-A228-09
+75,Unsupported mutation class (only Missense_Mutation allowed).,PRKCG,p.Y460=,ENST00000263431,TCGA-DX-A3M2-01A-21D-A228-09
+81,Unsupported mutation class (only Missense_Mutation allowed).,RBBP8NL,p.D571=,ENST00000252998,TCGA-DX-A3M2-01A-21D-A228-09
+84,Unsupported mutation class (only Missense_Mutation allowed).,FTCD,p.R208=,ENST00000291670,TCGA-DX-A3M2-01A-21D-A228-09
+86,Unsupported mutation class (only Missense_Mutation allowed).,CACNA1F,p.R969*,ENST00000376265,TCGA-DX-A3M2-01A-21D-A228-09
+88,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.R1739*,ENST00000373344,TCGA-DX-A3M2-01A-21D-A228-09
+1,"Reference amino acid mismatch at position 431: expected V, found G.",FPGT,p.V431I,ENST00000370898,TCGA-DX-A3M2-01A-21D-A228-09
+60,Protein sequence fetch failed.,MYO15A,p.L358I,ENST00000615845,TCGA-DX-A3M2-01A-21D-A228-09
+68,Protein sequence fetch failed.,FCHO1,p.R152W,ENST00000252771,TCGA-DX-A3M2-01A-21D-A228-09

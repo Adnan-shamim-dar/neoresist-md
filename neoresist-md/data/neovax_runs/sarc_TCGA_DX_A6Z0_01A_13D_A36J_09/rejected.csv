@@ -1,0 +1,18 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,CCDC27,p.S406=,ENST00000294600,TCGA-DX-A6Z0-01A-13D-A36J-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,TBC1D5,p.G275=,ENST00000253692,TCGA-DX-A6Z0-01A-13D-A36J-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,COL7A1,p.R1298=,ENST00000328333,TCGA-DX-A6Z0-01A-13D-A36J-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,ARAP2,p.S416=,ENST00000303965,TCGA-DX-A6Z0-01A-13D-A36J-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,COL9A1,p.V348=,ENST00000357250,TCGA-DX-A6Z0-01A-13D-A36J-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,ZNF12,p.Q93=,ENST00000405858,TCGA-DX-A6Z0-01A-13D-A36J-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,RELN,p.R2216*,ENST00000428762,TCGA-DX-A6Z0-01A-13D-A36J-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,KMT2C,p.S783=,ENST00000262189,TCGA-DX-A6Z0-01A-13D-A36J-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,PIP5K1B,p.T20Nfs*3,ENST00000265382,TCGA-DX-A6Z0-01A-13D-A36J-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,NELL1,p.I203=,ENST00000357134,TCGA-DX-A6Z0-01A-13D-A36J-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,ADGRG5,p.Y495=,ENST00000340339,TCGA-DX-A6Z0-01A-13D-A36J-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,TP53,p.N288Kfs*59,ENST00000269305,TCGA-DX-A6Z0-01A-13D-A36J-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,EVI5L,p.S273=,ENST00000270530,TCGA-DX-A6Z0-01A-13D-A36J-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,FBN3,p.T537=,ENST00000270509,TCGA-DX-A6Z0-01A-13D-A36J-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,EPOR,p.T298=,ENST00000222139,TCGA-DX-A6Z0-01A-13D-A36J-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,PRPF31,p.I93=,ENST00000321030,TCGA-DX-A6Z0-01A-13D-A36J-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,SLC12A5,p.X308_splice,ENST00000454036,TCGA-DX-A6Z0-01A-13D-A36J-09

@@ -1,0 +1,5 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,FYB1,p.P427=,ENST00000351578,TCGA-DX-A6B9-01A-12D-A32I-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,PCDH12,p.Q901*,ENST00000231484,TCGA-DX-A6B9-01A-12D-A32I-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,COL4A1,p.I772=,ENST00000375820,TCGA-DX-A6B9-01A-12D-A32I-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,MAGEA1,p.P255=,ENST00000356661,TCGA-DX-A6B9-01A-12D-A32I-09

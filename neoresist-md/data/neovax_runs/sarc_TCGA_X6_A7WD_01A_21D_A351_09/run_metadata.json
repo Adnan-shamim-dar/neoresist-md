@@ -1,0 +1,26 @@
+{
+  "hla_alleles_used": [
+    "HLA-A*02:01"
+  ],
+  "input_file_path": "data\\sarc_TCGA_X6_A7WD_01A_21D_A351_09.tsv",
+  "input_file_sha256": "ad89426d52e2f07dc63381b9c31f08a1868acc8b6f0ffb8d0fadc2a0e503fd60",
+  "input_mode": "maf",
+  "missense_rows": 29,
+  "number_of_input_rows": 44,
+  "number_of_output_candidates": 1038,
+  "output_csv_path": "neo_candidates.csv",
+  "parseable_rows": 29,
+  "peptide_lengths_used": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "predictor_name": "Class1PresentationPredictor",
+  "ranking_formula_version": "v1_auditable_0.6_0.4",
+  "rejected_rows": 16,
+  "run_id": "20260411_023238_1d62336d",
+  "sequence_matched_rows": 28,
+  "timestamp": "2026-04-11T02:32:38Z",
+  "total_maf_rows": 44
+}

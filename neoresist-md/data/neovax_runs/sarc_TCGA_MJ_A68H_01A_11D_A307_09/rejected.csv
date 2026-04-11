@@ -1,0 +1,22 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,CFAP45,p.P76=,ENST00000368099,TCGA-MJ-A68H-01A-11D-A307-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,USH2A,p.L2570Ifs*8,ENST00000307340,TCGA-MJ-A68H-01A-11D-A307-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,ROBO2,p.L873=,ENST00000461745,TCGA-MJ-A68H-01A-11D-A307-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,ITGB5,p.H296=,ENST00000296181,TCGA-MJ-A68H-01A-11D-A307-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,SYNJ2,,ENST00000355585,TCGA-MJ-A68H-01A-11D-A307-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,SOX7,p.P167=,ENST00000304501,TCGA-MJ-A68H-01A-11D-A307-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,LRRC8A,p.L428=,ENST00000259324,TCGA-MJ-A68H-01A-11D-A307-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,PNPLA7,p.K128*,ENST00000277531,TCGA-MJ-A68H-01A-11D-A307-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,AC132217.2,,ENST00000643349,TCGA-MJ-A68H-01A-11D-A307-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,SAA2-SAA4,p.F103=,ENST00000524555,TCGA-MJ-A68H-01A-11D-A307-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,ZFC3H1,p.N660=,ENST00000378743,TCGA-MJ-A68H-01A-11D-A307-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,HAUS4,p.K221=,ENST00000206474,TCGA-MJ-A68H-01A-11D-A307-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,GSTZ1,p.A131=,ENST00000216465,TCGA-MJ-A68H-01A-11D-A307-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,CFAP161,p.T300=,ENST00000286732,TCGA-MJ-A68H-01A-11D-A307-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,RAB40C,p.N232=,ENST00000248139,TCGA-MJ-A68H-01A-11D-A307-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,COG8,p.P426=,ENST00000306875,TCGA-MJ-A68H-01A-11D-A307-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,DNAH9,p.S1131=,ENST00000262442,TCGA-MJ-A68H-01A-11D-A307-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,TNFSF14,p.S32=,ENST00000599359,TCGA-MJ-A68H-01A-11D-A307-09
+48,Unsupported mutation class (only Missense_Mutation allowed).,DSCAM,p.T39=,ENST00000400454,TCGA-MJ-A68H-01A-11D-A307-09
+50,Unsupported mutation class (only Missense_Mutation allowed).,MAPK1,p.D88del,ENST00000215832,TCGA-MJ-A68H-01A-11D-A307-09
+14,Protein sequence fetch failed.,KCNN2,p.I193L,ENST00000264773,TCGA-MJ-A68H-01A-11D-A307-09

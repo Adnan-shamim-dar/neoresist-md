@@ -1,0 +1,7 @@
+case_id,status,input_mutations,output_candidates,fanout
+tcga_sarc_case1,SUCCESS,51,1262,24.7
+tcga_sarc_case2,SUCCESS,51,1102,21.6
+tcga_sarc_case3,SUCCESS,29,826,28.5
+tcga_sarc_case4,SUCCESS,36,912,25.3
+tcga_sarc_case5,SUCCESS,36,1198,33.3
+tcga_sarc_case6,SUCCESS,476,9740,20.5

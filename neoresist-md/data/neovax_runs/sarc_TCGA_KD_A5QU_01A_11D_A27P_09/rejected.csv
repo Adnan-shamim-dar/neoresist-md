@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+5,Unsupported mutation class (only Missense_Mutation allowed).,C2orf16,p.L842=,ENST00000408964,TCGA-KD-A5QU-01A-11D-A27P-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,SLC9A4,p.S694=,ENST00000295269,TCGA-KD-A5QU-01A-11D-A27P-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,CACNB4,p.P212=,ENST00000539935,TCGA-KD-A5QU-01A-11D-A27P-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,ERBB4,p.T443=,ENST00000342788,TCGA-KD-A5QU-01A-11D-A27P-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,UMPS,p.L262=,ENST00000232607,TCGA-KD-A5QU-01A-11D-A27P-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,DNAH5,p.C3325=,ENST00000265104,TCGA-KD-A5QU-01A-11D-A27P-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PLPP1,p.S255_K257delins*,ENST00000307259,TCGA-KD-A5QU-01A-11D-A27P-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,KLF4,p.P358=,ENST00000374672,TCGA-KD-A5QU-01A-11D-A27P-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,DERA,p.P231=,ENST00000428559,TCGA-KD-A5QU-01A-11D-A27P-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,UBE3B,p.R618*,ENST00000342494,TCGA-KD-A5QU-01A-11D-A27P-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,MTUS2,p.Y753*,ENST00000612955,TCGA-KD-A5QU-01A-11D-A27P-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,MIR1297,,ENST00000637311,TCGA-KD-A5QU-01A-11D-A27P-09
+58,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.S1387*,ENST00000373344,TCGA-KD-A5QU-01A-11D-A27P-09
+59,Unsupported mutation class (only Missense_Mutation allowed).,MPP1,p.S37=,ENST00000369534,TCGA-KD-A5QU-01A-11D-A27P-09
+33,Protein sequence fetch failed.,OR2AG2,p.M228V,ENST00000338569,TCGA-KD-A5QU-01A-11D-A27P-09
+38,Protein sequence fetch failed.,OR8S1,p.Y132C,ENST00000310194,TCGA-KD-A5QU-01A-11D-A27P-09
