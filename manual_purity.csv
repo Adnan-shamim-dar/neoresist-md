@@ -1,0 +1,2 @@
+patient_id,purity,purity_source,purity_method,purity_confidence
+TCGA-DX-A8BT-01A-11D-A37C-09,0.61,user_file,manual_override,0.99

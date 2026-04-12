@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,UGT2A1,p.P265=,ENST00000503640,TCGA-DX-A6YX-01A-11D-A417-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,KIF4B,p.Q393=,ENST00000435029,TCGA-DX-A6YX-01A-11D-A417-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,DOCK2,p.S1650=,ENST00000520908,TCGA-DX-A6YX-01A-11D-A417-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,FLNC,p.T1302Mfs*2,ENST00000325888,TCGA-DX-A6YX-01A-11D-A417-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,USP17L2,p.L415=,ENST00000333796,TCGA-DX-A6YX-01A-11D-A417-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,USP17L2,p.L258=,ENST00000333796,TCGA-DX-A6YX-01A-11D-A417-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,KIF13B,p.S1226=,ENST00000524189,TCGA-DX-A6YX-01A-11D-A417-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,CTNNA3,p.A465Vfs*33,ENST00000433211,TCGA-DX-A6YX-01A-11D-A417-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,RGS6,p.A81=,ENST00000553530,TCGA-DX-A6YX-01A-11D-A417-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,SNORD115-25,,ENST00000362619,TCGA-DX-A6YX-01A-11D-A417-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,VPS4A,p.L266=,ENST00000254950,TCGA-DX-A6YX-01A-11D-A417-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,MYO15A,p.D350=,ENST00000615845,TCGA-DX-A6YX-01A-11D-A417-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,ZNRF4,p.L313=,ENST00000222033,TCGA-DX-A6YX-01A-11D-A417-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,MAP3K10,p.P919=,ENST00000253055,TCGA-DX-A6YX-01A-11D-A417-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,SOGA1,p.V663=,ENST00000237536,TCGA-DX-A6YX-01A-11D-A417-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,LHFPL1,p.V103=,ENST00000371968,TCGA-DX-A6YX-01A-11D-A417-09

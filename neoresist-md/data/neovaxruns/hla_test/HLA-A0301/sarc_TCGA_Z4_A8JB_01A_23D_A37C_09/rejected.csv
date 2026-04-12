@@ -1,0 +1,4 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+3,Unsupported mutation class (only Missense_Mutation allowed).,VPS50,p.Q549*,ENST00000305866,TCGA-Z4-A8JB-01A-23D-A37C-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,ZDHHC6,p.Q274*,ENST00000369405,TCGA-Z4-A8JB-01A-23D-A37C-09
+1,Protein sequence fetch failed.,TNR,p.Q562H,ENST00000263525,TCGA-Z4-A8JB-01A-23D-A37C-09

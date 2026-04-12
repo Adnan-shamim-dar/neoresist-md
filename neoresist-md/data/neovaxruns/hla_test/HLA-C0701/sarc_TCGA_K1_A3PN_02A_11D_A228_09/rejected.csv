@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+7,Unsupported mutation class (only Missense_Mutation allowed).,DCHS2,,ENST00000623607,TCGA-K1-A3PN-02A-11D-A228-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,KIF6,p.Q382*,ENST00000287152,TCGA-K1-A3PN-02A-11D-A228-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,FILIP1,p.G337=,ENST00000237172,TCGA-K1-A3PN-02A-11D-A228-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,MFSD4B,,ENST00000368847,TCGA-K1-A3PN-02A-11D-A228-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,CBWD5,p.S346=,ENST00000382405,TCGA-K1-A3PN-02A-11D-A228-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,SPATA31D1,p.Y446*,ENST00000344803,TCGA-K1-A3PN-02A-11D-A228-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PBX3,p.I205=,ENST00000373489,TCGA-K1-A3PN-02A-11D-A228-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,TRDMT1,p.C222=,ENST00000377799,TCGA-K1-A3PN-02A-11D-A228-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,OR52W1,p.R306=,ENST00000311352,TCGA-K1-A3PN-02A-11D-A228-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,NPAP1,p.C1099=,ENST00000329468,TCGA-K1-A3PN-02A-11D-A228-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,PTX4,p.R92=,ENST00000447419,TCGA-K1-A3PN-02A-11D-A228-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,KRT32,p.R388=,ENST00000225899,TCGA-K1-A3PN-02A-11D-A228-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,SMCHD1,p.G6=,ENST00000320876,TCGA-K1-A3PN-02A-11D-A228-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,AP3D1,p.P616=,ENST00000345016,TCGA-K1-A3PN-02A-11D-A228-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,PLCG1,p.X337_splice,ENST00000373271,TCGA-K1-A3PN-02A-11D-A228-09
+22,Protein sequence fetch failed.,WASHC2C,p.A613P,ENST00000336378,TCGA-K1-A3PN-02A-11D-A228-09

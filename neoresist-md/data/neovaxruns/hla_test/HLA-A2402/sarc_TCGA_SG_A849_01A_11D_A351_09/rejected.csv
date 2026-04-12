@@ -1,0 +1,20 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,DDI2,p.X47_splice,ENST00000480945,TCGA-SG-A849-01A-11D-A351-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,DYSF,p.V1883=,ENST00000258104,TCGA-SG-A849-01A-11D-A351-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,CDKL2,p.R149*,ENST00000429927,TCGA-SG-A849-01A-11D-A351-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,FGFR4,p.L698=,ENST00000292408,TCGA-SG-A849-01A-11D-A351-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,SLC35D3,p.Y297*,ENST00000331858,TCGA-SG-A849-01A-11D-A351-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,GRM3,p.S182=,ENST00000361669,TCGA-SG-A849-01A-11D-A351-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PUM3,p.G168=,ENST00000397885,TCGA-SG-A849-01A-11D-A351-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,TRPM6,p.E1235=,ENST00000360774,TCGA-SG-A849-01A-11D-A351-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,PIK3AP1,p.P533=,ENST00000339364,TCGA-SG-A849-01A-11D-A351-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,FOLH1,p.P388=,ENST00000256999,TCGA-SG-A849-01A-11D-A351-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,FAT3,p.G4397=,ENST00000409404,TCGA-SG-A849-01A-11D-A351-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,ZNF280D,p.D3=,ENST00000267807,TCGA-SG-A849-01A-11D-A351-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,LMAN1L,p.W131*,ENST00000309664,TCGA-SG-A849-01A-11D-A351-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,LPO,p.V504=,ENST00000262290,TCGA-SG-A849-01A-11D-A351-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,MC3R,p.S183=,ENST00000243911,TCGA-SG-A849-01A-11D-A351-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,BID,p.K203_A206del,ENST00000317361,TCGA-SG-A849-01A-11D-A351-09
+50,Unsupported mutation class (only Missense_Mutation allowed).,F9,p.P12=,ENST00000218099,TCGA-SG-A849-01A-11D-A351-09
+28,"Reference amino acid mismatch at position 37: expected S, found K.",PTPRB,p.S37C,ENST00000261266,TCGA-SG-A849-01A-11D-A351-09
+47,Protein sequence fetch failed.,KLHDC7B,p.G503S,ENST00000395676,TCGA-SG-A849-01A-11D-A351-09

@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,KCNA3,p.S540=,ENST00000369769,TCGA-SG-A6Z7-01A-12D-A32I-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,LCE2B,p.C91=,ENST00000368780,TCGA-SG-A6Z7-01A-12D-A32I-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,PASK,p.W1014*,ENST00000234040,TCGA-SG-A6Z7-01A-12D-A32I-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,EMC3-AS1,,ENST00000326237,TCGA-SG-A6Z7-01A-12D-A32I-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,TIPARP,p.H288=,ENST00000295924,TCGA-SG-A6Z7-01A-12D-A32I-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,OR2F1,p.*318Wext*6,ENST00000641412,TCGA-SG-A6Z7-01A-12D-A32I-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,ABCA2,,ENST00000614293,TCGA-SG-A6Z7-01A-12D-A32I-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,FANK1,p.V327=,ENST00000368693,TCGA-SG-A6Z7-01A-12D-A32I-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,PIDD1,p.L264=,ENST00000347755,TCGA-SG-A6Z7-01A-12D-A32I-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,SYNE2,p.X1118_splice,ENST00000344113,TCGA-SG-A6Z7-01A-12D-A32I-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,GPHN,p.Y719=,ENST00000315266,TCGA-SG-A6Z7-01A-12D-A32I-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,CTCF,p.M1?,ENST00000264010,TCGA-SG-A6Z7-01A-12D-A32I-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,MYH3,p.T1852=,ENST00000583535,TCGA-SG-A6Z7-01A-12D-A32I-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,SLC4A1,p.E897*,ENST00000262418,TCGA-SG-A6Z7-01A-12D-A32I-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,ZSWIM4,p.L192Sfs*4,ENST00000254323,TCGA-SG-A6Z7-01A-12D-A32I-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,MBOAT7,p.L122=,ENST00000245615,TCGA-SG-A6Z7-01A-12D-A32I-09

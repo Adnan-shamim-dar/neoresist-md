@@ -1,0 +1,19 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,CAMTA1,p.A443=,ENST00000303635,TCGA-DX-A3LY-01B-11D-A27P-09
+1,Unsupported mutation class (only Missense_Mutation allowed).,AGO4,p.S765*,ENST00000373210,TCGA-DX-A3LY-01B-11D-A27P-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,ADD2,p.R420*,ENST00000264436,TCGA-DX-A3LY-01B-11D-A27P-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,KRCC1,p.E172*,ENST00000347055,TCGA-DX-A3LY-01B-11D-A27P-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,LRRFIP1,,ENST00000392000,TCGA-DX-A3LY-01B-11D-A27P-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,TKTL2,p.G557=,ENST00000280605,TCGA-DX-A3LY-01B-11D-A27P-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,PCDHGA8,,ENST00000398604,TCGA-DX-A3LY-01B-11D-A27P-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,ARID1B,p.V1935=,ENST00000350026,TCGA-DX-A3LY-01B-11D-A27P-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,MAN1B1,p.V205=,ENST00000371589,TCGA-DX-A3LY-01B-11D-A27P-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,USP28,p.Q915=,ENST00000003302,TCGA-DX-A3LY-01B-11D-A27P-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,LRTM2,p.R305=,ENST00000299194,TCGA-DX-A3LY-01B-11D-A27P-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,NABP2,p.E25=,ENST00000267023,TCGA-DX-A3LY-01B-11D-A27P-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,KIF26A,p.I699=,ENST00000423312,TCGA-DX-A3LY-01B-11D-A27P-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,TMC6,p.A638=,ENST00000322914,TCGA-DX-A3LY-01B-11D-A27P-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,OPRL1,p.G20=,ENST00000336866,TCGA-DX-A3LY-01B-11D-A27P-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,PNPLA3,p.F187Sfs*76,ENST00000216180,TCGA-DX-A3LY-01B-11D-A27P-09
+10,"Reference amino acid mismatch at position 107: expected I, found N.",XIRP2,p.I107T,ENST00000409195,TCGA-DX-A3LY-01B-11D-A27P-09
+35,"Reference amino acid mismatch at position 1328: expected A, found D.",IL16,p.A1328S,ENST00000302987,TCGA-DX-A3LY-01B-11D-A27P-09

@@ -1,0 +1,13 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+6,Unsupported mutation class (only Missense_Mutation allowed).,S100A7,p.P95=,ENST00000368722,TCGA-3B-A9I3-01A-11D-A38Z-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,MRPS5,p.G416=,ENST00000272418,TCGA-3B-A9I3-01A-11D-A38Z-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,ANKRD17,p.P1882=,ENST00000358602,TCGA-3B-A9I3-01A-11D-A38Z-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,PPIP5K2,p.R312=,ENST00000358359,TCGA-3B-A9I3-01A-11D-A38Z-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,TNXB,p.T3750=,ENST00000647633,TCGA-3B-A9I3-01A-11D-A38Z-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,CSMD1,p.T1885=,ENST00000520002,TCGA-3B-A9I3-01A-11D-A38Z-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,ZC3H3,p.Q40=,ENST00000262577,TCGA-3B-A9I3-01A-11D-A38Z-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,C9orf78,,ENST00000372447,TCGA-3B-A9I3-01A-11D-A38Z-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,RB1,p.X888_splice,ENST00000267163,TCGA-3B-A9I3-01A-11D-A38Z-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,MYO5B,p.C681=,ENST00000285039,TCGA-3B-A9I3-01A-11D-A38Z-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,MATN4,p.R534=,ENST00000372754,TCGA-3B-A9I3-01A-11D-A38Z-09
+8,"Reference amino acid mismatch at position 53: expected H, found F.",DUSP11,p.H53R,ENST00000272444,TCGA-3B-A9I3-01A-11D-A38Z-09

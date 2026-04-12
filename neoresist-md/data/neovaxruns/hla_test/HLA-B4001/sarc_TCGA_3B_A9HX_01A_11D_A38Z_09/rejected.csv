@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,DNMT3A,p.T12Hfs*53,ENST00000264709,TCGA-3B-A9HX-01A-11D-A38Z-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,DNMT3A,p.D11Hfs*53,ENST00000264709,TCGA-3B-A9HX-01A-11D-A38Z-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,OBSL1,p.L957=,ENST00000404537,TCGA-3B-A9HX-01A-11D-A38Z-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,TMEM139,p.G133=,ENST00000359333,TCGA-3B-A9HX-01A-11D-A38Z-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,SULF1,p.R38*,ENST00000260128,TCGA-3B-A9HX-01A-11D-A38Z-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,ZNF658,p.T821=,ENST00000612867,TCGA-3B-A9HX-01A-11D-A38Z-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,OR13C4,p.R313=,ENST00000277216,TCGA-3B-A9HX-01A-11D-A38Z-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,SVIL,p.S472Lfs*11,ENST00000355867,TCGA-3B-A9HX-01A-11D-A38Z-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,PRKG1,p.E6*,ENST00000401604,TCGA-3B-A9HX-01A-11D-A38Z-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,CFAP43,p.Y1164=,ENST00000357060,TCGA-3B-A9HX-01A-11D-A38Z-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,NPAP1,p.A230=,ENST00000329468,TCGA-3B-A9HX-01A-11D-A38Z-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,RSL24D1,p.N76=,ENST00000260443,TCGA-3B-A9HX-01A-11D-A38Z-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,GUCY2D,p.L979=,ENST00000254854,TCGA-3B-A9HX-01A-11D-A38Z-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,MUC16,p.G14200=,ENST00000397910,TCGA-3B-A9HX-01A-11D-A38Z-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,NLGN4X,p.P94=,ENST00000275857,TCGA-3B-A9HX-01A-11D-A38Z-09
+23,Protein sequence fetch failed.,CEL,p.H510Q,ENST00000673714,TCGA-3B-A9HX-01A-11D-A38Z-09

@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+5,Unsupported mutation class (only Missense_Mutation allowed).,GALNTL6,p.I292=,ENST00000506823,TCGA-DX-A23Y-01A-11D-A27P-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,MAST4,,ENST00000403625,TCGA-DX-A23Y-01A-11D-A27P-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,HMMR,p.Y713=,ENST00000358715,TCGA-DX-A23Y-01A-11D-A27P-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,TMEM63B,p.V781=,ENST00000259746,TCGA-DX-A23Y-01A-11D-A27P-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,AMZ1,p.P50=,ENST00000312371,TCGA-DX-A23Y-01A-11D-A27P-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,AEBP1,p.P1013=,ENST00000223357,TCGA-DX-A23Y-01A-11D-A27P-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,MUC17,p.S1139=,ENST00000306151,TCGA-DX-A23Y-01A-11D-A27P-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,BMP1,p.D765=,ENST00000306385,TCGA-DX-A23Y-01A-11D-A27P-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,UTP20,p.V989=,ENST00000261637,TCGA-DX-A23Y-01A-11D-A27P-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,UTP20,p.L1205=,ENST00000261637,TCGA-DX-A23Y-01A-11D-A27P-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,HCAR3,p.S181=,ENST00000528880,TCGA-DX-A23Y-01A-11D-A27P-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,ADGRG1,p.A423=,ENST00000567835,TCGA-DX-A23Y-01A-11D-A27P-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,AKAP1,p.X811_splice,ENST00000337714,TCGA-DX-A23Y-01A-11D-A27P-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,ZBTB46,p.S426=,ENST00000245663,TCGA-DX-A23Y-01A-11D-A27P-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,TMPRSS3,p.R16*,ENST00000433957,TCGA-DX-A23Y-01A-11D-A27P-09
+3,Protein sequence fetch failed.,OR2T12,p.N314K,ENST00000317996,TCGA-DX-A23Y-01A-11D-A27P-09

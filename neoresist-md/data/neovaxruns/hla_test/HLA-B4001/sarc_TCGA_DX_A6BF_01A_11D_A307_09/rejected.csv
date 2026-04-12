@@ -1,0 +1,27 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,MEGF6,p.S741=,ENST00000356575,TCGA-DX-A6BF-01A-11D-A307-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,ALK,p.X786_splice,ENST00000389048,TCGA-DX-A6BF-01A-11D-A307-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,TRIP12,p.L473=,ENST00000283943,TCGA-DX-A6BF-01A-11D-A307-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,UGT1A10,p.V190Afs*6,ENST00000344644,TCGA-DX-A6BF-01A-11D-A307-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,GBE1,p.E656=,ENST00000429644,TCGA-DX-A6BF-01A-11D-A307-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,ACTRT3,,ENST00000330368,TCGA-DX-A6BF-01A-11D-A307-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,GAK,p.D787=,ENST00000314167,TCGA-DX-A6BF-01A-11D-A307-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,CDH9,p.Y4*,ENST00000231021,TCGA-DX-A6BF-01A-11D-A307-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,GRIA1,p.L422=,ENST00000285900,TCGA-DX-A6BF-01A-11D-A307-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,DEFB134,p.F10=,ENST00000382205,TCGA-DX-A6BF-01A-11D-A307-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,OR13C5,p.L273=,ENST00000374779,TCGA-DX-A6BF-01A-11D-A307-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,TUBB8,p.R2=,ENST00000568584,TCGA-DX-A6BF-01A-11D-A307-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,MCM10,p.E153Rfs*9,ENST00000484800,TCGA-DX-A6BF-01A-11D-A307-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,ING4,p.K247*,ENST00000396807,TCGA-DX-A6BF-01A-11D-A307-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,ITPR2,p.M1?,ENST00000381340,TCGA-DX-A6BF-01A-11D-A307-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,FMNL3,p.V269=,ENST00000335154,TCGA-DX-A6BF-01A-11D-A307-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,KRT83,p.P461=,ENST00000293670,TCGA-DX-A6BF-01A-11D-A307-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,AVIL,p.V207=,ENST00000257861,TCGA-DX-A6BF-01A-11D-A307-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,ATP23,p.G11Efs*44,ENST00000300145,TCGA-DX-A6BF-01A-11D-A307-09
+48,Unsupported mutation class (only Missense_Mutation allowed).,HELB,p.P966=,ENST00000247815,TCGA-DX-A6BF-01A-11D-A307-09
+50,Unsupported mutation class (only Missense_Mutation allowed).,PTPRR,p.T465=,ENST00000283228,TCGA-DX-A6BF-01A-11D-A307-09
+51,Unsupported mutation class (only Missense_Mutation allowed).,CAPS2,p.L493=,ENST00000409445,TCGA-DX-A6BF-01A-11D-A307-09
+56,Unsupported mutation class (only Missense_Mutation allowed).,NR1H4,p.R186*,ENST00000551379,TCGA-DX-A6BF-01A-11D-A307-09
+68,Unsupported mutation class (only Missense_Mutation allowed).,ADGRE5,p.X160_splice,ENST00000242786,TCGA-DX-A6BF-01A-11D-A307-09
+72,Unsupported mutation class (only Missense_Mutation allowed).,KIAA1210,p.Q1343=,ENST00000402510,TCGA-DX-A6BF-01A-11D-A307-09
+36,Mutation position out of range for fetched protein sequence.,PANK1,p.Y581C,ENST00000307534,TCGA-DX-A6BF-01A-11D-A307-09

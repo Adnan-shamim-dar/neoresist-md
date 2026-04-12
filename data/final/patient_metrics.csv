@@ -1,0 +1,2 @@
+patient_id,best_priority_score,best_presentation_score,best_affinity_nm,best_percentile_rank,peptides_with_high_tier,peptides_with_medium_tier,peptides_with_low_tier
+TCGA-DX-A8BT-01A-11D-A37C-09,0.9998008959681434,0.7471130807494263,31.91585771902557,0.0141576086956831,0,0,0

@@ -1,0 +1,6 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,ELOA,p.S591=,ENST00000418390,TCGA-FX-A76Y-01A-11D-A351-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,HERC6,p.I535=,ENST00000264346,TCGA-FX-A76Y-01A-11D-A351-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,PHACTR1,p.P201Qfs*27,ENST00000332995,TCGA-FX-A76Y-01A-11D-A351-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,HTR5A,p.Y140=,ENST00000287907,TCGA-FX-A76Y-01A-11D-A351-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,LAMA1,p.T173=,ENST00000389658,TCGA-FX-A76Y-01A-11D-A351-09

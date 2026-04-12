@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,CD244,p.L10=,ENST00000368033,TCGA-K1-A42X-02A-11D-A24N-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,KCNT2,p.D934=,ENST00000294725,TCGA-K1-A42X-02A-11D-A24N-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,PSME4,p.L586=,ENST00000404125,TCGA-K1-A42X-02A-11D-A24N-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,PIP,p.C20=,ENST00000291009,TCGA-K1-A42X-02A-11D-A24N-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,CYP11B2,p.T319=,ENST00000323110,TCGA-K1-A42X-02A-11D-A24N-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,PSAT1,p.X336_splice,ENST00000376588,TCGA-K1-A42X-02A-11D-A24N-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,NAV2,p.L1385=,ENST00000396087,TCGA-K1-A42X-02A-11D-A24N-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,AP000769.3,,ENST00000611300,TCGA-K1-A42X-02A-11D-A24N-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,ARL4D,p.A142=,ENST00000320033,TCGA-K1-A42X-02A-11D-A24N-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,KANSL1,p.R789*,ENST00000574590,TCGA-K1-A42X-02A-11D-A24N-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,PSG7,p.H388=,ENST00000406070,TCGA-K1-A42X-02A-11D-A24N-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,ATRN,p.Q674*,ENST00000262919,TCGA-K1-A42X-02A-11D-A24N-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,KRTAP19-5,p.N6=,ENST00000334151,TCGA-K1-A42X-02A-11D-A24N-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,COL18A1,p.V1061=,ENST00000359759,TCGA-K1-A42X-02A-11D-A24N-09
+3,Protein sequence fetch failed.,CSMD2,p.E257Q,ENST00000241312,TCGA-K1-A42X-02A-11D-A24N-09
+37,Protein sequence fetch failed.,TSPAN10,p.D76E,ENST00000574882,TCGA-K1-A42X-02A-11D-A24N-09

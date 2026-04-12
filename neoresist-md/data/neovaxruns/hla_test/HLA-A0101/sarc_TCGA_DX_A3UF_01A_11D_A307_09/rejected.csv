@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,GLIS1,p.K218=,ENST00000312233,TCGA-DX-A3UF-01A-11D-A307-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,CHTOP,p.L139=,ENST00000368694,TCGA-DX-A3UF-01A-11D-A307-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,OR10Z1,p.K312=,ENST00000361284,TCGA-DX-A3UF-01A-11D-A307-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,EMX1,p.K263=,ENST00000258106,TCGA-DX-A3UF-01A-11D-A307-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,TRIM42,p.R231=,ENST00000286349,TCGA-DX-A3UF-01A-11D-A307-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,MYOM2,p.P741=,ENST00000262113,TCGA-DX-A3UF-01A-11D-A307-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,GLIS3,p.Y683=,ENST00000324333,TCGA-DX-A3UF-01A-11D-A307-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,SLC2A6,p.A202=,ENST00000371899,TCGA-DX-A3UF-01A-11D-A307-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,GTPBP4,p.G604=,ENST00000360803,TCGA-DX-A3UF-01A-11D-A307-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,BMS1,p.H360=,ENST00000374518,TCGA-DX-A3UF-01A-11D-A307-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,OR52A4P,,ENST00000498233,TCGA-DX-A3UF-01A-11D-A307-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,FBN1,p.D1070=,ENST00000316623,TCGA-DX-A3UF-01A-11D-A307-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,OR7A5,p.E2*,ENST00000322301,TCGA-DX-A3UF-01A-11D-A307-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,PRR12,p.A282=,ENST00000615927,TCGA-DX-A3UF-01A-11D-A307-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,PPP6R1,p.E259Gfs*16,ENST00000412770,TCGA-DX-A3UF-01A-11D-A307-09
+7,Protein sequence fetch failed.,OR2T4,p.P319T,ENST00000366475,TCGA-DX-A3UF-01A-11D-A307-09

@@ -1,0 +1,3 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,FAM163A,p.G89=,ENST00000341785,TCGA-DX-A6BH-01A-12D-A307-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,NEURL4,p.L1201=,ENST00000399464,TCGA-DX-A6BH-01A-12D-A307-09

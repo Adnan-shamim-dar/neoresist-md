@@ -1,0 +1,7 @@
+{
+  "input_rows": 50,
+  "unique_patients": 1,
+  "output_rows": 1,
+  "proof_table": "C:/Users/rambe/Documents/neovax/data/final/proof_table.csv",
+  "patient_metrics": "C:/Users/rambe/Documents/neovax/data/final/patient_metrics.csv"
+}

@@ -1,0 +1,19 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,CDA,p.L43=,ENST00000375071,TCGA-PC-A5DN-01A-12D-A27P-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,PRG4,p.D917=,ENST00000445192,TCGA-PC-A5DN-01A-12D-A27P-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,LRRTM4,p.G412=,ENST00000409093,TCGA-PC-A5DN-01A-12D-A27P-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,PTH2R,p.K137=,ENST00000272847,TCGA-PC-A5DN-01A-12D-A27P-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,SMARCC1,p.T73=,ENST00000254480,TCGA-PC-A5DN-01A-12D-A27P-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,AGTR1,p.I201Tfs*26,ENST00000349243,TCGA-PC-A5DN-01A-12D-A27P-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,ZFAND1,p.R130*,ENST00000220669,TCGA-PC-A5DN-01A-12D-A27P-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,PLGRKT,p.W49dup,ENST00000223864,TCGA-PC-A5DN-01A-12D-A27P-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,CTSL,p.Q150=,ENST00000340342,TCGA-PC-A5DN-01A-12D-A27P-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,SUSD1,p.R68Lfs*7,ENST00000374270,TCGA-PC-A5DN-01A-12D-A27P-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,MUC2,p.T912=,ENST00000675028,TCGA-PC-A5DN-01A-12D-A27P-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,SNORD116-2,,ENST00000384274,TCGA-PC-A5DN-01A-12D-A27P-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,UNC13C,p.L935*,ENST00000260323,TCGA-PC-A5DN-01A-12D-A27P-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,GATAD2A,p.D23dup,ENST00000358713,TCGA-PC-A5DN-01A-12D-A27P-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,RYR1,p.T891=,ENST00000359596,TCGA-PC-A5DN-01A-12D-A27P-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,CCNP,,ENST00000430325,TCGA-PC-A5DN-01A-12D-A27P-09
+47,Unsupported mutation class (only Missense_Mutation allowed).,SUPT20HL1,p.P584=,ENST00000436466,TCGA-PC-A5DN-01A-12D-A27P-09
+29,Protein sequence fetch failed.,OR5M10,p.L161V,ENST00000526812,TCGA-PC-A5DN-01A-12D-A27P-09

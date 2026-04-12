@@ -1,0 +1,8 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,RAVER2,p.L204Ifs*3,ENST00000294428,TCGA-DX-A2J4-01A-32D-A21Q-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,HTT,p.L901*,ENST00000355072,TCGA-DX-A2J4-01A-32D-A21Q-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,AP3B1,p.F675Rfs*53,ENST00000255194,TCGA-DX-A2J4-01A-32D-A21Q-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,KRT83,p.K112=,ENST00000293670,TCGA-DX-A2J4-01A-32D-A21Q-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,KRT84,p.L150=,ENST00000257951,TCGA-DX-A2J4-01A-32D-A21Q-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,TSPAN19,p.I244=,ENST00000532498,TCGA-DX-A2J4-01A-32D-A21Q-09
+1,Protein sequence fetch failed.,SIPA1L2,p.E713K,ENST00000262861,TCGA-DX-A2J4-01A-32D-A21Q-09

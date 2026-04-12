@@ -1,0 +1,6 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,FCRL3,p.T295=,ENST00000368184,TCGA-DX-A6BE-01A-41D-A32I-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,CSMD1,p.F3295=,ENST00000520002,TCGA-DX-A6BE-01A-41D-A32I-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,HEATR5A,p.S962=,ENST00000543095,TCGA-DX-A6BE-01A-41D-A32I-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,HOXB6,p.F80=,ENST00000225648,TCGA-DX-A6BE-01A-41D-A32I-09
+14,"Reference amino acid mismatch at position 799: expected F, found W.",TRHDE,p.F799L,ENST00000261180,TCGA-DX-A6BE-01A-41D-A32I-09

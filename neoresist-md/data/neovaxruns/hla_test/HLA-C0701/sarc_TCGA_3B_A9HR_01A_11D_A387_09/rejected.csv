@@ -1,0 +1,5 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+5,Unsupported mutation class (only Missense_Mutation allowed).,CRACD,p.D338=,ENST00000264229,TCGA-3B-A9HR-01A-11D-A387-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,ZNF607,p.S462=,ENST00000355202,TCGA-3B-A9HR-01A-11D-A387-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,TSHZ2,p.K574Nfs*2,ENST00000371497,TCGA-3B-A9HR-01A-11D-A387-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,DIP2A,p.V232=,ENST00000417564,TCGA-3B-A9HR-01A-11D-A387-09

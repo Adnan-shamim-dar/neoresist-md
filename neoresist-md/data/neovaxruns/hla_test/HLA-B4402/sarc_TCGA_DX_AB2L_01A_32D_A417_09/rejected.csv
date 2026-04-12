@@ -1,0 +1,2 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,LY6G6D,p.V62=,ENST00000375825,TCGA-DX-AB2L-01A-32D-A417-09

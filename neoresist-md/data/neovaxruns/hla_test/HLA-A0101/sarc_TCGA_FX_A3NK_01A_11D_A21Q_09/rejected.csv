@@ -1,0 +1,11 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+3,Unsupported mutation class (only Missense_Mutation allowed).,CLASP1,p.A87=,ENST00000263710,TCGA-FX-A3NK-01A-11D-A21Q-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,CORIN,p.P823=,ENST00000273857,TCGA-FX-A3NK-01A-11D-A21Q-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,SCGN,p.S238=,ENST00000377961,TCGA-FX-A3NK-01A-11D-A21Q-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,OR4C15,p.T216=,ENST00000314644,TCGA-FX-A3NK-01A-11D-A21Q-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,CACNA1C,,ENST00000399634,TCGA-FX-A3NK-01A-11D-A21Q-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,L3MBTL4,p.D21=,ENST00000400105,TCGA-FX-A3NK-01A-11D-A21Q-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,ZNF492,p.T213Lfs*5,ENST00000456783,TCGA-FX-A3NK-01A-11D-A21Q-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,MED25,,ENST00000312865,TCGA-FX-A3NK-01A-11D-A21Q-09
+17,"Reference amino acid mismatch at position 423: expected P, found E.",TRHDE,p.P423H,ENST00000261180,TCGA-FX-A3NK-01A-11D-A21Q-09
+23,Protein sequence fetch failed.,CACNA1A,p.R37Q,ENST00000614285,TCGA-FX-A3NK-01A-11D-A21Q-09

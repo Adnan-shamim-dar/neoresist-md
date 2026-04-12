@@ -1,0 +1,20 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,TLR5,p.K173Sfs*3,ENST00000642603,TCGA-IE-A3OV-01A-11D-A228-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,ARHGEF26,p.K626=,ENST00000356448,TCGA-IE-A3OV-01A-11D-A228-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,NAAA,p.E319=,ENST00000286733,TCGA-IE-A3OV-01A-11D-A228-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,ACOT12,p.G550=,ENST00000307624,TCGA-IE-A3OV-01A-11D-A228-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,MDN1,p.Q85=,ENST00000369393,TCGA-IE-A3OV-01A-11D-A228-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,RFX6,p.N79=,ENST00000332958,TCGA-IE-A3OV-01A-11D-A228-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,HR,p.L488=,ENST00000381418,TCGA-IE-A3OV-01A-11D-A228-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,PHF24,p.G87=,ENST00000242315,TCGA-IE-A3OV-01A-11D-A228-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,NR6A1,p.S191*,ENST00000487099,TCGA-IE-A3OV-01A-11D-A228-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,TRIM44,p.L237=,ENST00000299413,TCGA-IE-A3OV-01A-11D-A228-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,C1R,p.N528=,ENST00000536053,TCGA-IE-A3OV-01A-11D-A228-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,LATS2,p.M1?,ENST00000382592,TCGA-IE-A3OV-01A-11D-A228-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,DACT1,p.A398=,ENST00000335867,TCGA-IE-A3OV-01A-11D-A228-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,BAIAP3,p.X294_splice,ENST00000324385,TCGA-IE-A3OV-01A-11D-A228-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,CNEP1R1,p.T71=,ENST00000427478,TCGA-IE-A3OV-01A-11D-A228-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,ZNF790,p.F632=,ENST00000356725,TCGA-IE-A3OV-01A-11D-A228-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,MYO18B,p.A52=,ENST00000536101,TCGA-IE-A3OV-01A-11D-A228-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,MYO18B,p.D94Tfs*27,ENST00000536101,TCGA-IE-A3OV-01A-11D-A228-09
+39,Protein sequence fetch failed.,KLHDC7B,p.A432V,ENST00000395676,TCGA-IE-A3OV-01A-11D-A228-09

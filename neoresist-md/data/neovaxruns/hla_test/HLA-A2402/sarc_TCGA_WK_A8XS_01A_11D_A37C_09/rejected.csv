@@ -1,0 +1,20 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,IGKV2-30,p.S52=,ENST00000468494,TCGA-WK-A8XS-01A-11D-A37C-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,SH3PXD2B,p.P418=,ENST00000311601,TCGA-WK-A8XS-01A-11D-A37C-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,ITPRID1,p.E736_T738del,ENST00000407970,TCGA-WK-A8XS-01A-11D-A37C-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,BAZ1B,p.A1472=,ENST00000339594,TCGA-WK-A8XS-01A-11D-A37C-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,HEPACAM2,,ENST00000394468,TCGA-WK-A8XS-01A-11D-A37C-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,AGK,p.L154=,ENST00000649286,TCGA-WK-A8XS-01A-11D-A37C-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,PLPPR1,p.A319=,ENST00000374874,TCGA-WK-A8XS-01A-11D-A37C-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PLPP7,p.A191=,ENST00000372264,TCGA-WK-A8XS-01A-11D-A37C-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,NEBL,,ENST00000417816,TCGA-WK-A8XS-01A-11D-A37C-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,PTEN,p.Y336Ffs*5,ENST00000371953,TCGA-WK-A8XS-01A-11D-A37C-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,DCT,p.V28=,ENST00000377028,TCGA-WK-A8XS-01A-11D-A37C-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,AGBL1,p.G703=,ENST00000441037,TCGA-WK-A8XS-01A-11D-A37C-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,GSPT1,,ENST00000420576,TCGA-WK-A8XS-01A-11D-A37C-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,KANK2,p.A343Gfs*30,ENST00000586659,TCGA-WK-A8XS-01A-11D-A37C-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,KCNA7,p.R281=,ENST00000221444,TCGA-WK-A8XS-01A-11D-A37C-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,CDH4,p.D114=,ENST00000614565,TCGA-WK-A8XS-01A-11D-A37C-09
+1,"Reference amino acid mismatch at position 152: expected L, found N.",RASAL2,p.L152R,ENST00000367649,TCGA-WK-A8XS-01A-11D-A37C-09
+2,Protein sequence fetch failed.,OR13G1,p.C124R,ENST00000359688,TCGA-WK-A8XS-01A-11D-A37C-09
+9,Protein sequence fetch failed.,MYO6,p.E941A,ENST00000369981,TCGA-WK-A8XS-01A-11D-A37C-09

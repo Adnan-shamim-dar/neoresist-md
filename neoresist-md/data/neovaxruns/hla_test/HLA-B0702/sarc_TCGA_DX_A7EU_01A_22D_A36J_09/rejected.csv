@@ -1,0 +1,20 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+10,Unsupported mutation class (only Missense_Mutation allowed).,UVSSA,,ENST00000511216,TCGA-DX-A7EU-01A-22D-A36J-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,SLIT2,p.L400=,ENST00000504154,TCGA-DX-A7EU-01A-22D-A36J-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,CCSER1,,ENST00000509176,TCGA-DX-A7EU-01A-22D-A36J-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,DCHS2,,ENST00000623607,TCGA-DX-A7EU-01A-22D-A36J-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,WRN,p.G1298=,ENST00000298139,TCGA-DX-A7EU-01A-22D-A36J-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PKHD1L1,p.T1748=,ENST00000378402,TCGA-DX-A7EU-01A-22D-A36J-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,PAEP,p.D147=,ENST00000277508,TCGA-DX-A7EU-01A-22D-A36J-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,INCENP,p.P276=,ENST00000394818,TCGA-DX-A7EU-01A-22D-A36J-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,PELI3,p.K316=,ENST00000320740,TCGA-DX-A7EU-01A-22D-A36J-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,C2CD3,p.L765=,ENST00000334126,TCGA-DX-A7EU-01A-22D-A36J-09
+49,Unsupported mutation class (only Missense_Mutation allowed).,FBN3,p.S2704=,ENST00000270509,TCGA-DX-A7EU-01A-22D-A36J-09
+51,Unsupported mutation class (only Missense_Mutation allowed).,HOOK2,p.R653=,ENST00000397668,TCGA-DX-A7EU-01A-22D-A36J-09
+53,Unsupported mutation class (only Missense_Mutation allowed).,CCDC105,p.A340=,ENST00000292574,TCGA-DX-A7EU-01A-22D-A36J-09
+55,Unsupported mutation class (only Missense_Mutation allowed).,NLRP4,p.W408*,ENST00000301295,TCGA-DX-A7EU-01A-22D-A36J-09
+62,Unsupported mutation class (only Missense_Mutation allowed).,SLC5A1,,ENST00000266088,TCGA-DX-A7EU-01A-22D-A36J-09
+63,Unsupported mutation class (only Missense_Mutation allowed).,ARSL,p.H316=,ENST00000381134,TCGA-DX-A7EU-01A-22D-A36J-09
+65,Unsupported mutation class (only Missense_Mutation allowed).,AL353804.4,,ENST00000619444,TCGA-DX-A7EU-01A-22D-A36J-09
+66,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.L1854Ffs*7,ENST00000373344,TCGA-DX-A7EU-01A-22D-A36J-09
+28,Protein sequence fetch failed.,OR1S1,p.R236I,ENST00000624470,TCGA-DX-A7EU-01A-22D-A36J-09

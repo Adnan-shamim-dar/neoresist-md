@@ -1,0 +1,35 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+5,Unsupported mutation class (only Missense_Mutation allowed).,SCYL3,p.L240=,ENST00000367770,TCGA-X6-A7WA-01A-12D-A351-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,NT5C1B-RDH14,,ENST00000532967,TCGA-X6-A7WA-01A-12D-A351-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,TRIM54,p.F3=,ENST00000380075,TCGA-X6-A7WA-01A-12D-A351-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,THADA,p.Q719*,ENST00000405006,TCGA-X6-A7WA-01A-12D-A351-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,RAMP1,p.F93=,ENST00000254661,TCGA-X6-A7WA-01A-12D-A351-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,PCBP4,p.G293=,ENST00000322099,TCGA-X6-A7WA-01A-12D-A351-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,CASR,p.R340=,ENST00000490131,TCGA-X6-A7WA-01A-12D-A351-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,KIF13A,p.G955=,ENST00000259711,TCGA-X6-A7WA-01A-12D-A351-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,SNX13,p.L94=,ENST00000428135,TCGA-X6-A7WA-01A-12D-A351-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,RELN,p.R1291*,ENST00000428762,TCGA-X6-A7WA-01A-12D-A351-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,ZNF783,,ENST00000378052,TCGA-X6-A7WA-01A-12D-A351-09
+48,Unsupported mutation class (only Missense_Mutation allowed).,KIF27,p.N1118del,ENST00000297814,TCGA-X6-A7WA-01A-12D-A351-09
+51,Unsupported mutation class (only Missense_Mutation allowed).,RGS3,,ENST00000350696,TCGA-X6-A7WA-01A-12D-A351-09
+54,Unsupported mutation class (only Missense_Mutation allowed).,MMP21,p.Q302*,ENST00000368808,TCGA-X6-A7WA-01A-12D-A351-09
+59,Unsupported mutation class (only Missense_Mutation allowed).,SIPA1,p.V185=,ENST00000394224,TCGA-X6-A7WA-01A-12D-A351-09
+61,Unsupported mutation class (only Missense_Mutation allowed).,CACNA1C,,ENST00000399634,TCGA-X6-A7WA-01A-12D-A351-09
+62,Unsupported mutation class (only Missense_Mutation allowed).,OTOGL,p.H1311=,ENST00000547103,TCGA-X6-A7WA-01A-12D-A351-09
+64,Unsupported mutation class (only Missense_Mutation allowed).,POLR3B,p.X905_splice,ENST00000228347,TCGA-X6-A7WA-01A-12D-A351-09
+67,Unsupported mutation class (only Missense_Mutation allowed).,RB1,p.E119Vfs*9,ENST00000267163,TCGA-X6-A7WA-01A-12D-A351-09
+68,Unsupported mutation class (only Missense_Mutation allowed).,TEP1,p.G2556=,ENST00000262715,TCGA-X6-A7WA-01A-12D-A351-09
+71,Unsupported mutation class (only Missense_Mutation allowed).,TECPR2,p.I1258=,ENST00000359520,TCGA-X6-A7WA-01A-12D-A351-09
+74,Unsupported mutation class (only Missense_Mutation allowed).,VPS18,p.G128=,ENST00000220509,TCGA-X6-A7WA-01A-12D-A351-09
+81,Unsupported mutation class (only Missense_Mutation allowed).,PALB2,p.G112=,ENST00000261584,TCGA-X6-A7WA-01A-12D-A351-09
+83,Unsupported mutation class (only Missense_Mutation allowed).,TGFB1I1,p.R295*,ENST00000394863,TCGA-X6-A7WA-01A-12D-A351-09
+87,Unsupported mutation class (only Missense_Mutation allowed).,B4GALNT2,p.R482*,ENST00000300404,TCGA-X6-A7WA-01A-12D-A351-09
+91,Unsupported mutation class (only Missense_Mutation allowed).,CIRBP,,ENST00000320936,TCGA-X6-A7WA-01A-12D-A351-09
+92,Unsupported mutation class (only Missense_Mutation allowed).,MUC16,p.S11605*,ENST00000397910,TCGA-X6-A7WA-01A-12D-A351-09
+93,Unsupported mutation class (only Missense_Mutation allowed).,ILF3,p.X517_splice,ENST00000590261,TCGA-X6-A7WA-01A-12D-A351-09
+95,Unsupported mutation class (only Missense_Mutation allowed).,UNC13A,p.E745*,ENST00000519716,TCGA-X6-A7WA-01A-12D-A351-09
+98,Unsupported mutation class (only Missense_Mutation allowed).,JOSD2,p.G66=,ENST00000598418,TCGA-X6-A7WA-01A-12D-A351-09
+108,Unsupported mutation class (only Missense_Mutation allowed).,PATZ1,p.P244=,ENST00000266269,TCGA-X6-A7WA-01A-12D-A351-09
+14,"Reference amino acid mismatch at position 2080: expected E, found I.",MYO7B,p.E2080D,ENST00000409816,TCGA-X6-A7WA-01A-12D-A351-09
+76,"Reference amino acid mismatch at position 107: expected L, found R.",CALML4,p.L107M,ENST00000467889,TCGA-X6-A7WA-01A-12D-A351-09
+112,"Reference amino acid mismatch at position 224: expected V, found Q.",CUL4B,p.V224E,ENST00000404115,TCGA-X6-A7WA-01A-12D-A351-09

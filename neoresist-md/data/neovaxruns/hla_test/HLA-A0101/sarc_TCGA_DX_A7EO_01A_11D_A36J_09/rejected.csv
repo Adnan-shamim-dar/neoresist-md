@@ -1,0 +1,10 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,TM4SF1,p.C84Wfs*39,ENST00000305366,TCGA-DX-A7EO-01A-11D-A36J-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,CA8,p.S100=,ENST00000317995,TCGA-DX-A7EO-01A-11D-A36J-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,DPP3,p.S53_S64del,ENST00000541961,TCGA-DX-A7EO-01A-11D-A36J-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,OAS2,p.N147=,ENST00000342315,TCGA-DX-A7EO-01A-11D-A36J-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,FAN1,p.P736=,ENST00000362065,TCGA-DX-A7EO-01A-11D-A36J-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,ETFB,,ENST00000309244,TCGA-DX-A7EO-01A-11D-A36J-09
+0,Protein sequence fetch failed.,CSMD2,p.V821I,ENST00000241312,TCGA-DX-A7EO-01A-11D-A36J-09
+7,Protein sequence fetch failed.,SORCS3,p.F613Y,ENST00000369699,TCGA-DX-A7EO-01A-11D-A36J-09
+8,Protein sequence fetch failed.,PNLIPRP2,p.G393E,ENST00000611850,TCGA-DX-A7EO-01A-11D-A36J-09

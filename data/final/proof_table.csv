@@ -1,0 +1,2 @@
+patient_id,candidate_rows,unique_peptides,unique_genes,mean_purity,median_purity,mean_real_expression,mean_real_ccf,max_priority_score,tcga_purity_rows,user_purity_rows,stub_purity_rows,unresolved_purity_rows,resolution_status,expression_source,ccf_source,purity_source,purity_source_breakdown
+TCGA-DX-A8BT-01A-11D-A37C-09,50,50,19,0.61,0.61,109.24681634000001,,0.9998008959681434,0,50,0,0,partial,blended_real,stub,user_file,"{""stub_fallback"": 0, ""tcga_metadata"": 0, ""unresolved"": 0, ""user_file"": 50}"

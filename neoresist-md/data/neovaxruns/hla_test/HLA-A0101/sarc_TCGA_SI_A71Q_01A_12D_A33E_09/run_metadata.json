@@ -1,0 +1,26 @@
+{
+  "hla_alleles_used": [
+    "HLA-A0101"
+  ],
+  "input_file_path": "C:\\Users\\rambe\\Documents\\neovax\\neoresist-md\\data\\sarc_TCGA_SI_A71Q_01A_12D_A33E_09.tsv",
+  "input_file_sha256": "47e2f85a49ae92ccca08b571a02ed710aeb31263f608d5b68dae7e80f7cfbcb2",
+  "input_mode": "maf",
+  "missense_rows": 18,
+  "number_of_input_rows": 31,
+  "number_of_output_candidates": 602,
+  "output_csv_path": "neo_candidates.csv",
+  "parseable_rows": 18,
+  "peptide_lengths_used": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "predictor_name": "Class1PresentationPredictor",
+  "ranking_formula_version": "v1_auditable_0.6_0.4",
+  "rejected_rows": 15,
+  "run_id": "20260411_221329_ac34c021",
+  "sequence_matched_rows": 16,
+  "timestamp": "2026-04-11T22:13:29Z",
+  "total_maf_rows": 31
+}

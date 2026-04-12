@@ -1,0 +1,26 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+3,Unsupported mutation class (only Missense_Mutation allowed).,ITGA10,p.G89=,ENST00000369304,TCGA-VT-A80G-01A-11D-A36J-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,RGS18,p.S28=,ENST00000367460,TCGA-VT-A80G-01A-11D-A36J-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,WDR64,p.E495*,ENST00000366552,TCGA-VT-A80G-01A-11D-A36J-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,KIAA1841,p.K670=,ENST00000402291,TCGA-VT-A80G-01A-11D-A36J-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,LRP2,p.G2602=,ENST00000649046,TCGA-VT-A80G-01A-11D-A36J-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,UBA6,p.A392=,ENST00000322244,TCGA-VT-A80G-01A-11D-A36J-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,AC098582.1,p.L205=,ENST00000512194,TCGA-VT-A80G-01A-11D-A36J-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,PDE6A,p.Q773=,ENST00000255266,TCGA-VT-A80G-01A-11D-A36J-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,OR2U1P,,ENST00000377164,TCGA-VT-A80G-01A-11D-A36J-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,ANXA1,p.X159_splice,ENST00000257497,TCGA-VT-A80G-01A-11D-A36J-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,SPATA31D1,p.N828=,ENST00000344803,TCGA-VT-A80G-01A-11D-A36J-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,C9orf16,,ENST00000372994,TCGA-VT-A80G-01A-11D-A36J-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,GBGT1,p.I291=,ENST00000372040,TCGA-VT-A80G-01A-11D-A36J-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,ZNF488,p.R295*,ENST00000585316,TCGA-VT-A80G-01A-11D-A36J-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,SEC14L5,p.L309=,ENST00000251170,TCGA-VT-A80G-01A-11D-A36J-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,CCDC144A,p.E580=,ENST00000360524,TCGA-VT-A80G-01A-11D-A36J-09
+47,Unsupported mutation class (only Missense_Mutation allowed).,ABCA5,p.R479=,ENST00000392676,TCGA-VT-A80G-01A-11D-A36J-09
+54,Unsupported mutation class (only Missense_Mutation allowed).,IGLON5,p.G105=,ENST00000270642,TCGA-VT-A80G-01A-11D-A36J-09
+56,Unsupported mutation class (only Missense_Mutation allowed).,MIR520A,,ENST00000384862,TCGA-VT-A80G-01A-11D-A36J-09
+57,Unsupported mutation class (only Missense_Mutation allowed).,ZSCAN5B,p.S462=,ENST00000586855,TCGA-VT-A80G-01A-11D-A36J-09
+58,Unsupported mutation class (only Missense_Mutation allowed).,ZSCAN4,p.I127=,ENST00000318203,TCGA-VT-A80G-01A-11D-A36J-09
+59,Unsupported mutation class (only Missense_Mutation allowed).,KIF16B,p.V882=,ENST00000354981,TCGA-VT-A80G-01A-11D-A36J-09
+66,Unsupported mutation class (only Missense_Mutation allowed).,ENTHD1,p.T172=,ENST00000325157,TCGA-VT-A80G-01A-11D-A36J-09
+67,Unsupported mutation class (only Missense_Mutation allowed).,ADSL,p.S474=,ENST00000623063,TCGA-VT-A80G-01A-11D-A36J-09
+68,Unsupported mutation class (only Missense_Mutation allowed).,MPPED1,p.I318=,ENST00000417669,TCGA-VT-A80G-01A-11D-A36J-09

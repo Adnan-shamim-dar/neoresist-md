@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,ALDH9A1,p.E218*,ENST00000354775,TCGA-DX-A8BR-01A-11D-A417-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,AC006059.2,p.K390=,ENST00000648550,TCGA-DX-A8BR-01A-11D-A417-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,TKTL2,p.G429=,ENST00000280605,TCGA-DX-A8BR-01A-11D-A417-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,PCDHA7,p.L52=,ENST00000525929,TCGA-DX-A8BR-01A-11D-A417-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,MIR146A,,ENST00000385201,TCGA-DX-A8BR-01A-11D-A417-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,MUC21,p.T292=,ENST00000376296,TCGA-DX-A8BR-01A-11D-A417-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PRSS35,p.S343=,ENST00000369700,TCGA-DX-A8BR-01A-11D-A417-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,PDE1C,p.I454=,ENST00000321453,TCGA-DX-A8BR-01A-11D-A417-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,KRT1,p.G573=,ENST00000252244,TCGA-DX-A8BR-01A-11D-A417-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,USP44,p.L302*,ENST00000258499,TCGA-DX-A8BR-01A-11D-A417-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,ASIC2,p.D130=,ENST00000359872,TCGA-DX-A8BR-01A-11D-A417-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,ABI3,p.N129=,ENST00000225941,TCGA-DX-A8BR-01A-11D-A417-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,TSPOAP1,p.E1846*,ENST00000343736,TCGA-DX-A8BR-01A-11D-A417-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,RUVBL2,p.X294_splice,ENST00000595090,TCGA-DX-A8BR-01A-11D-A417-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,LAIR1,p.P269=,ENST00000391742,TCGA-DX-A8BR-01A-11D-A417-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,HIRA,p.S896=,ENST00000263208,TCGA-DX-A8BR-01A-11D-A417-09

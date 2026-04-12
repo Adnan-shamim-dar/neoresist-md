@@ -1,0 +1,20 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,RAB42,p.Q29=,ENST00000373826,TCGA-VT-AB3D-01A-12D-A417-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,OBSCN,p.A1540=,ENST00000422127,TCGA-VT-AB3D-01A-12D-A417-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,FAT1,p.E1430*,ENST00000441802,TCGA-VT-AB3D-01A-12D-A417-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,MAST4,p.Y727=,ENST00000403625,TCGA-VT-AB3D-01A-12D-A417-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,TCP1,p.L403=,ENST00000321394,TCGA-VT-AB3D-01A-12D-A417-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,SHARPIN,p.A235=,ENST00000398712,TCGA-VT-AB3D-01A-12D-A417-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,TCF7L2,p.X263_splice,ENST00000355995,TCGA-VT-AB3D-01A-12D-A417-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,OR5P2,p.T250=,ENST00000329434,TCGA-VT-AB3D-01A-12D-A417-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,PGR,p.V589=,ENST00000325455,TCGA-VT-AB3D-01A-12D-A417-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,GRIN2B,p.T1013=,ENST00000609686,TCGA-VT-AB3D-01A-12D-A417-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,METTL25,p.P319=,ENST00000248306,TCGA-VT-AB3D-01A-12D-A417-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,BUB1B,p.X893_splice,ENST00000287598,TCGA-VT-AB3D-01A-12D-A417-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,SARM1,p.E197*,ENST00000585482,TCGA-VT-AB3D-01A-12D-A417-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,SYT4,p.R280=,ENST00000255224,TCGA-VT-AB3D-01A-12D-A417-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,SHD,p.V264=,ENST00000543264,TCGA-VT-AB3D-01A-12D-A417-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,KLK13,,ENST00000595793,TCGA-VT-AB3D-01A-12D-A417-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,KCNJ15,p.E260*,ENST00000328656,TCGA-VT-AB3D-01A-12D-A417-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,BX119917.1,,ENST00000432517,TCGA-VT-AB3D-01A-12D-A417-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.E351*,ENST00000373344,TCGA-VT-AB3D-01A-12D-A417-09

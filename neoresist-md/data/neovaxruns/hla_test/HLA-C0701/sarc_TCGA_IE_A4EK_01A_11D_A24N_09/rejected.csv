@@ -1,0 +1,11 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,CRB1,p.V554Cfs*19,ENST00000367400,TCGA-IE-A4EK-01A-11D-A24N-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,OPTC,p.L200=,ENST00000367222,TCGA-IE-A4EK-01A-11D-A24N-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,SLC6A11,p.S294=,ENST00000254488,TCGA-IE-A4EK-01A-11D-A24N-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,TMPRSS11F,,ENST00000356291,TCGA-IE-A4EK-01A-11D-A24N-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,RIMS1,p.R826*,ENST00000521978,TCGA-IE-A4EK-01A-11D-A24N-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,FAM184A,p.E249*,ENST00000338891,TCGA-IE-A4EK-01A-11D-A24N-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,GDF3,p.T159=,ENST00000329913,TCGA-IE-A4EK-01A-11D-A24N-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,KIF18B,p.G274=,ENST00000593135,TCGA-IE-A4EK-01A-11D-A24N-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,PRR5-ARHGAP8,p.I471=,ENST00000352766,TCGA-IE-A4EK-01A-11D-A24N-09
+4,"Reference amino acid mismatch at position 91: expected V, found F.",SNAP47,p.V91F,ENST00000315781,TCGA-IE-A4EK-01A-11D-A24N-09

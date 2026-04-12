@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,PLPPR5,p.R118*,ENST00000263177,TCGA-HB-A5W3-01A-11D-A29N-09
+1,Unsupported mutation class (only Missense_Mutation allowed).,HRNR,p.H831=,ENST00000368801,TCGA-HB-A5W3-01A-11D-A29N-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,INPP4A,p.G443=,ENST00000074304,TCGA-HB-A5W3-01A-11D-A29N-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,SAG,p.D402=,ENST00000409110,TCGA-HB-A5W3-01A-11D-A29N-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,ZBBX,p.N470=,ENST00000392766,TCGA-HB-A5W3-01A-11D-A29N-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,HTR4,,ENST00000377888,TCGA-HB-A5W3-01A-11D-A29N-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,PHYHIP,p.R251=,ENST00000321613,TCGA-HB-A5W3-01A-11D-A29N-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,ZHX1,p.T668Nfs*3,ENST00000297857,TCGA-HB-A5W3-01A-11D-A29N-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,RUSC2,p.I1282=,ENST00000361226,TCGA-HB-A5W3-01A-11D-A29N-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,LRRC20,p.A121=,ENST00000355790,TCGA-HB-A5W3-01A-11D-A29N-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,SLC27A2,p.G379=,ENST00000267842,TCGA-HB-A5W3-01A-11D-A29N-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,TP53,p.W91*,ENST00000269305,TCGA-HB-A5W3-01A-11D-A29N-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,ABCC3,p.X1269_splice,ENST00000285238,TCGA-HB-A5W3-01A-11D-A29N-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,TYK2,p.L1095=,ENST00000264818,TCGA-HB-A5W3-01A-11D-A29N-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,ARL13A,p.V38=,ENST00000450457,TCGA-HB-A5W3-01A-11D-A29N-09
+21,Protein sequence fetch failed.,ARHGAP27,p.A646T,ENST00000428638,TCGA-HB-A5W3-01A-11D-A29N-09

@@ -1,0 +1,26 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,H3-4,p.S29=,ENST00000366696,TCGA-QQ-A5VA-01A-12D-A32I-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,OR2M3,p.S264=,ENST00000456743,TCGA-QQ-A5VA-01A-12D-A32I-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,UBA3,p.T390=,ENST00000361055,TCGA-QQ-A5VA-01A-12D-A32I-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,EPHA6,p.E940=,ENST00000389672,TCGA-QQ-A5VA-01A-12D-A32I-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,ZFYVE28,p.D252=,ENST00000290974,TCGA-QQ-A5VA-01A-12D-A32I-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,HTN3,p.X24_splice,ENST00000530128,TCGA-QQ-A5VA-01A-12D-A32I-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,SCOC,p.E131_Q137del,ENST00000608372,TCGA-QQ-A5VA-01A-12D-A32I-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,CCDC110,p.R769*,ENST00000307588,TCGA-QQ-A5VA-01A-12D-A32I-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,MEF2C,p.S287*,ENST00000437473,TCGA-QQ-A5VA-01A-12D-A32I-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,PCDHB13,p.G583=,ENST00000341948,TCGA-QQ-A5VA-01A-12D-A32I-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,TAAR2,p.K20*,ENST00000367931,TCGA-QQ-A5VA-01A-12D-A32I-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,PNPLA7,p.A358=,ENST00000277531,TCGA-QQ-A5VA-01A-12D-A32I-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,MTPAP,p.E552*,ENST00000263063,TCGA-QQ-A5VA-01A-12D-A32I-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,SLCO1B3,,ENST00000261196,TCGA-QQ-A5VA-01A-12D-A32I-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,NEUROD4,p.R88*,ENST00000242994,TCGA-QQ-A5VA-01A-12D-A32I-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,MTHFD1,p.L185Afs*20,ENST00000545908,TCGA-QQ-A5VA-01A-12D-A32I-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,IGHG4,p.L245=,ENST00000390543,TCGA-QQ-A5VA-01A-12D-A32I-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,DMXL2,p.R650=,ENST00000251076,TCGA-QQ-A5VA-01A-12D-A32I-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,COG4,p.L501=,ENST00000323786,TCGA-QQ-A5VA-01A-12D-A32I-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,CIBAR2,p.L131=,ENST00000539556,TCGA-QQ-A5VA-01A-12D-A32I-09
+51,Unsupported mutation class (only Missense_Mutation allowed).,KIR3DL2,p.S107=,ENST00000326321,TCGA-QQ-A5VA-01A-12D-A32I-09
+52,Unsupported mutation class (only Missense_Mutation allowed).,COL6A2,p.S206=,ENST00000300527,TCGA-QQ-A5VA-01A-12D-A32I-09
+54,Unsupported mutation class (only Missense_Mutation allowed).,FAM47B,p.P155=,ENST00000329357,TCGA-QQ-A5VA-01A-12D-A32I-09
+56,Unsupported mutation class (only Missense_Mutation allowed).,AR,p.S203=,ENST00000374690,TCGA-QQ-A5VA-01A-12D-A32I-09
+58,Unsupported mutation class (only Missense_Mutation allowed).,MAGEC1,p.Y453*,ENST00000285879,TCGA-QQ-A5VA-01A-12D-A32I-09

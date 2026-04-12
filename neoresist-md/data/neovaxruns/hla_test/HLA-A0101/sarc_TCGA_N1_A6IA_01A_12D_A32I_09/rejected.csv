@@ -1,0 +1,19 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,MACF1,p.E5386*,ENST00000372915,TCGA-N1-A6IA-01A-12D-A32I-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,BCL9,p.R101*,ENST00000234739,TCGA-N1-A6IA-01A-12D-A32I-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,IRF6,p.K66*,ENST00000367021,TCGA-N1-A6IA-01A-12D-A32I-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,FAM98A,p.L191*,ENST00000238823,TCGA-N1-A6IA-01A-12D-A32I-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,PNPT1,p.C489Lfs*5,ENST00000415374,TCGA-N1-A6IA-01A-12D-A32I-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,PTK7,p.S1059=,ENST00000230419,TCGA-N1-A6IA-01A-12D-A32I-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,HTR1E,p.Y121=,ENST00000305344,TCGA-N1-A6IA-01A-12D-A32I-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,RFC2,p.R230=,ENST00000055077,TCGA-N1-A6IA-01A-12D-A32I-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,SPTBN5,p.L2604del,ENST00000320955,TCGA-N1-A6IA-01A-12D-A32I-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,FLYWCH1,p.T466=,ENST00000253928,TCGA-N1-A6IA-01A-12D-A32I-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,MEFV,p.L433=,ENST00000219596,TCGA-N1-A6IA-01A-12D-A32I-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,TP53,p.A189Pfs*58,ENST00000269305,TCGA-N1-A6IA-01A-12D-A32I-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,FAM20A,,ENST00000592554,TCGA-N1-A6IA-01A-12D-A32I-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,CHERP,p.F208=,ENST00000546361,TCGA-N1-A6IA-01A-12D-A32I-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,B3GNT3,p.R8=,ENST00000318683,TCGA-N1-A6IA-01A-12D-A32I-09
+19,"Reference amino acid mismatch at position 22: expected C, found V.",PRDM11,p.C22S,ENST00000530656,TCGA-N1-A6IA-01A-12D-A32I-09
+27,Protein sequence fetch failed.,MYO15A,p.H3508Y,ENST00000615845,TCGA-N1-A6IA-01A-12D-A32I-09
+31,Protein sequence fetch failed.,OR7A17,p.L23F,ENST00000327462,TCGA-N1-A6IA-01A-12D-A32I-09

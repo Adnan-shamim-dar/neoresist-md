@@ -1,0 +1,11 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,TRIML2,p.T351=,ENST00000512729,TCGA-JV-A75J-01A-11D-A32I-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,ELMO1,p.R683Afs*3,ENST00000310758,TCGA-JV-A75J-01A-11D-A32I-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,MS4A8,p.A150=,ENST00000300226,TCGA-JV-A75J-01A-11D-A32I-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,ATG2B,p.G985=,ENST00000359933,TCGA-JV-A75J-01A-11D-A32I-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,GABRG3,p.S394=,ENST00000615808,TCGA-JV-A75J-01A-11D-A32I-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,TSHZ1,p.S280=,ENST00000580243,TCGA-JV-A75J-01A-11D-A32I-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,DNMT1,p.K173=,ENST00000340748,TCGA-JV-A75J-01A-11D-A32I-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,LENG8,p.R515=,ENST00000610347,TCGA-JV-A75J-01A-11D-A32I-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,ISM1,p.D350=,ENST00000262487,TCGA-JV-A75J-01A-11D-A32I-09
+22,"Reference amino acid mismatch at position 29: expected I, found S.",BCL2L12,p.I29N,ENST00000246785,TCGA-JV-A75J-01A-11D-A32I-09

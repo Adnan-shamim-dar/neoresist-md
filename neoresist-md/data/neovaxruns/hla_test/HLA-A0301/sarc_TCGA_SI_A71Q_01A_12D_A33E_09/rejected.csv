@@ -1,0 +1,16 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,VWA3B,p.G1086=,ENST00000477737,TCGA-SI-A71Q-01A-12D-A33E-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,OR11A1,p.A78=,ENST00000377147,TCGA-SI-A71Q-01A-12D-A33E-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,CD2AP,p.F505=,ENST00000359314,TCGA-SI-A71Q-01A-12D-A33E-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,DGKI,p.V1010=,ENST00000288490,TCGA-SI-A71Q-01A-12D-A33E-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,CBWD1,p.V331=,ENST00000356521,TCGA-SI-A71Q-01A-12D-A33E-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,ABCC2,p.T1155=,ENST00000647814,TCGA-SI-A71Q-01A-12D-A33E-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,BTBD10,p.P110Qfs*54,ENST00000278174,TCGA-SI-A71Q-01A-12D-A33E-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,LCP1,p.L450=,ENST00000323076,TCGA-SI-A71Q-01A-12D-A33E-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,CASC3,p.Q575*,ENST00000264645,TCGA-SI-A71Q-01A-12D-A33E-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,ARRDC5,p.I315=,ENST00000381781,TCGA-SI-A71Q-01A-12D-A33E-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,TYK2,p.P1064=,ENST00000264818,TCGA-SI-A71Q-01A-12D-A33E-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,CEACAM5,p.Q574*,ENST00000221992,TCGA-SI-A71Q-01A-12D-A33E-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,ADGRG4,p.V2916=,ENST00000370652,TCGA-SI-A71Q-01A-12D-A33E-09
+16,"Reference amino acid mismatch at position 938: expected S, found L.",SIK3,p.S938L,ENST00000445177,TCGA-SI-A71Q-01A-12D-A33E-09
+22,Protein sequence fetch failed.,ARRDC5,p.P338R,ENST00000381781,TCGA-SI-A71Q-01A-12D-A33E-09

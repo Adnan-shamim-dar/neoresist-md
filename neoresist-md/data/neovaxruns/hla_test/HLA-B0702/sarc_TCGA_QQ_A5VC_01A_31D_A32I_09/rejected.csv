@@ -1,0 +1,19 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,AKR7L,p.L286=,ENST00000420396,TCGA-QQ-A5VC-01A-31D-A32I-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,HOOK1,p.A706=,ENST00000371208,TCGA-QQ-A5VC-01A-31D-A32I-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,AMPD2,p.I776=,ENST00000256578,TCGA-QQ-A5VC-01A-31D-A32I-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,RPTN,p.H510=,ENST00000316073,TCGA-QQ-A5VC-01A-31D-A32I-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,PASK,p.L1189=,ENST00000234040,TCGA-QQ-A5VC-01A-31D-A32I-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,EOGT,p.A508=,ENST00000383701,TCGA-QQ-A5VC-01A-31D-A32I-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,ACKR4,p.T223=,ENST00000249887,TCGA-QQ-A5VC-01A-31D-A32I-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,MYO6,p.G1081=,ENST00000369981,TCGA-QQ-A5VC-01A-31D-A32I-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,SHANK2,p.S1450=,ENST00000601538,TCGA-QQ-A5VC-01A-31D-A32I-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,PCF11,p.V1000=,ENST00000298281,TCGA-QQ-A5VC-01A-31D-A32I-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,OR9K2,p.L311=,ENST00000305377,TCGA-QQ-A5VC-01A-31D-A32I-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,RBM19,p.D487=,ENST00000261741,TCGA-QQ-A5VC-01A-31D-A32I-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,CYFIP1,p.L315=,ENST00000610365,TCGA-QQ-A5VC-01A-31D-A32I-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,RN7SL484P,,ENST00000462651,TCGA-QQ-A5VC-01A-31D-A32I-09
+47,Unsupported mutation class (only Missense_Mutation allowed).,NF1,p.E2339_L2345del,ENST00000358273,TCGA-QQ-A5VC-01A-31D-A32I-09
+50,Unsupported mutation class (only Missense_Mutation allowed).,SS18,p.G396=,ENST00000415083,TCGA-QQ-A5VC-01A-31D-A32I-09
+53,Unsupported mutation class (only Missense_Mutation allowed).,ZNF671,p.P27=,ENST00000317398,TCGA-QQ-A5VC-01A-31D-A32I-09
+54,Unsupported mutation class (only Missense_Mutation allowed).,BPIFB3,p.M1?,ENST00000375494,TCGA-QQ-A5VC-01A-31D-A32I-09

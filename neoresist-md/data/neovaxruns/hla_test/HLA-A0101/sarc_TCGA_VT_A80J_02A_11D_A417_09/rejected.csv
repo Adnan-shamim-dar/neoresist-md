@@ -1,0 +1,18 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,ECM1,p.E272*,ENST00000369047,TCGA-VT-A80J-02A-11D-A417-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,FLG2,p.G632=,ENST00000388718,TCGA-VT-A80J-02A-11D-A417-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,FILIP1,p.D739=,ENST00000237172,TCGA-VT-A80J-02A-11D-A417-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,MUC17,p.T1270=,ENST00000306151,TCGA-VT-A80J-02A-11D-A417-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,DOCK4,,ENST00000437633,TCGA-VT-A80J-02A-11D-A417-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,DLGAP2,p.G100=,ENST00000637795,TCGA-VT-A80J-02A-11D-A417-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,ADCY8,p.C227=,ENST00000286355,TCGA-VT-A80J-02A-11D-A417-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,MYH2,p.S1602=,ENST00000245503,TCGA-VT-A80J-02A-11D-A417-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,BTBD2,p.T302=,ENST00000255608,TCGA-VT-A80J-02A-11D-A417-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,HIPK4,p.D256=,ENST00000291823,TCGA-VT-A80J-02A-11D-A417-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,GINS1,p.X150_splice,ENST00000262460,TCGA-VT-A80J-02A-11D-A417-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,EPB41L1,p.K12=,ENST00000338074,TCGA-VT-A80J-02A-11D-A417-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,IGLV3-1,p.S20=,ENST00000390319,TCGA-VT-A80J-02A-11D-A417-09
+46,Unsupported mutation class (only Missense_Mutation allowed).,NLGN3,p.W518*,ENST00000358741,TCGA-VT-A80J-02A-11D-A417-09
+47,Unsupported mutation class (only Missense_Mutation allowed).,ZCCHC12,p.D271=,ENST00000310164,TCGA-VT-A80J-02A-11D-A417-09
+3,Protein sequence fetch failed.,TM2D1,p.S176L,ENST00000294613,TCGA-VT-A80J-02A-11D-A417-09
+12,"Reference amino acid mismatch at position 349: expected F, found Q.",NPFFR2,p.F349L,ENST00000308744,TCGA-VT-A80J-02A-11D-A417-09

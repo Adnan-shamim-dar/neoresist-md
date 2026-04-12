@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+4,Unsupported mutation class (only Missense_Mutation allowed).,TCF7L1,p.F102=,ENST00000282111,TCGA-DX-A3M1-01A-11D-A228-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,UGT1A6,,ENST00000305139,TCGA-DX-A3M1-01A-11D-A228-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,IL17RC,p.C529*,ENST00000295981,TCGA-DX-A3M1-01A-11D-A228-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,COL7A1,p.G2792Afs*7,ENST00000328333,TCGA-DX-A3M1-01A-11D-A228-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,UTP23,p.L137=,ENST00000309822,TCGA-DX-A3M1-01A-11D-A228-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,ADAMTS15,p.Q319*,ENST00000299164,TCGA-DX-A3M1-01A-11D-A228-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,KIF21A,p.R504=,ENST00000361418,TCGA-DX-A3M1-01A-11D-A228-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,DNAH2,p.L364=,ENST00000389173,TCGA-DX-A3M1-01A-11D-A228-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,MYH3,p.K1810=,ENST00000583535,TCGA-DX-A3M1-01A-11D-A228-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,KRT18P55,,ENST00000577198,TCGA-DX-A3M1-01A-11D-A228-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,FKBP10,p.K228=,ENST00000321562,TCGA-DX-A3M1-01A-11D-A228-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,GHDC,p.S426=,ENST00000301671,TCGA-DX-A3M1-01A-11D-A228-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,FZD2,p.Q153=,ENST00000315323,TCGA-DX-A3M1-01A-11D-A228-09
+51,Unsupported mutation class (only Missense_Mutation allowed).,PCK1,p.P484=,ENST00000319441,TCGA-DX-A3M1-01A-11D-A228-09
+52,Unsupported mutation class (only Missense_Mutation allowed).,PRMT2,p.V428Kfs*10,ENST00000355680,TCGA-DX-A3M1-01A-11D-A228-09
+53,Protein sequence fetch failed.,PPARA,p.D70G,ENST00000262735,TCGA-DX-A3M1-01A-11D-A228-09

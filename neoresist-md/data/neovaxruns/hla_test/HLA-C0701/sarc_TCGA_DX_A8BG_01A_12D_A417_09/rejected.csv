@@ -1,0 +1,24 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,PLA2G2F,p.G175=,ENST00000375102,TCGA-DX-A8BG-01A-12D-A417-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,DNAJB11,p.D79=,ENST00000265028,TCGA-DX-A8BG-01A-12D-A417-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,OTOP1,p.I458=,ENST00000296358,TCGA-DX-A8BG-01A-12D-A417-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,FGG,p.Y389*,ENST00000336098,TCGA-DX-A8BG-01A-12D-A417-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,GCNT2,,ENST00000379597,TCGA-DX-A8BG-01A-12D-A417-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,PRRC2A,p.R2139=,ENST00000376007,TCGA-DX-A8BG-01A-12D-A417-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,SPATS1,p.S223=,ENST00000288390,TCGA-DX-A8BG-01A-12D-A417-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,AASS,p.E587*,ENST00000393376,TCGA-DX-A8BG-01A-12D-A417-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,SSPOP,,ENST00000378016,TCGA-DX-A8BG-01A-12D-A417-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,DENND1A,p.P716=,ENST00000373624,TCGA-DX-A8BG-01A-12D-A417-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,NUP188,p.L937=,ENST00000372577,TCGA-DX-A8BG-01A-12D-A417-09
+37,Unsupported mutation class (only Missense_Mutation allowed).,PDX1,p.I192=,ENST00000381033,TCGA-DX-A8BG-01A-12D-A417-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,RB1,p.X463_splice,ENST00000267163,TCGA-DX-A8BG-01A-12D-A417-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,CHRNA7,p.L78=,ENST00000306901,TCGA-DX-A8BG-01A-12D-A417-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,ARID3B,p.L315=,ENST00000622429,TCGA-DX-A8BG-01A-12D-A417-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,GRIN2A,p.A60=,ENST00000330684,TCGA-DX-A8BG-01A-12D-A417-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,ADGRG5,p.L235=,ENST00000340339,TCGA-DX-A8BG-01A-12D-A417-09
+44,Unsupported mutation class (only Missense_Mutation allowed).,CARMIL2,p.E742=,ENST00000334583,TCGA-DX-A8BG-01A-12D-A417-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,ATP2C2,p.A703=,ENST00000262429,TCGA-DX-A8BG-01A-12D-A417-09
+47,Unsupported mutation class (only Missense_Mutation allowed).,MYH8,p.N565=,ENST00000403437,TCGA-DX-A8BG-01A-12D-A417-09
+48,Unsupported mutation class (only Missense_Mutation allowed).,KRTAP4-4,p.C146=,ENST00000390661,TCGA-DX-A8BG-01A-12D-A417-09
+52,Unsupported mutation class (only Missense_Mutation allowed).,ASXL3,p.S956=,ENST00000269197,TCGA-DX-A8BG-01A-12D-A417-09
+53,Unsupported mutation class (only Missense_Mutation allowed).,CEACAM8,p.D209=,ENST00000244336,TCGA-DX-A8BG-01A-12D-A417-09

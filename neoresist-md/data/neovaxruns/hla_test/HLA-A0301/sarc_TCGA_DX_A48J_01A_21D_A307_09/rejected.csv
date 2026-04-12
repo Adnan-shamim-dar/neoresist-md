@@ -1,0 +1,5 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,MIR200A,,ENST00000384875,TCGA-DX-A48J-01A-21D-A307-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,GSTA4,p.X138_splice,ENST00000370959,TCGA-DX-A48J-01A-21D-A307-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,MCF2L,p.A385=,ENST00000375608,TCGA-DX-A48J-01A-21D-A307-09
+2,"Reference amino acid mismatch at position 65: expected R, found S.",RASAL2,p.R65W,ENST00000367649,TCGA-DX-A48J-01A-21D-A307-09

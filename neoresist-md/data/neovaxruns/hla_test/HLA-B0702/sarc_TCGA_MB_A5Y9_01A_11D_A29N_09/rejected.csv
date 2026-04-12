@@ -1,0 +1,9 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+2,Unsupported mutation class (only Missense_Mutation allowed).,CELSR2,p.L2537=,ENST00000271332,TCGA-MB-A5Y9-01A-11D-A29N-09
+5,Unsupported mutation class (only Missense_Mutation allowed).,PCDHA5,p.F454=,ENST00000529859,TCGA-MB-A5Y9-01A-11D-A29N-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,PCDHA6,p.S608=,ENST00000529310,TCGA-MB-A5Y9-01A-11D-A29N-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,PCLO,,ENST00000333891,TCGA-MB-A5Y9-01A-11D-A29N-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,TP53,p.X307_splice,ENST00000269305,TCGA-MB-A5Y9-01A-11D-A29N-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,PKN1,p.N829=,ENST00000242783,TCGA-MB-A5Y9-01A-11D-A29N-09
+3,Protein sequence fetch failed.,OR2T2,p.S231F,ENST00000342927,TCGA-MB-A5Y9-01A-11D-A29N-09
+7,Protein sequence fetch failed.,TSBP1,p.K282E,ENST00000617061,TCGA-MB-A5Y9-01A-11D-A29N-09

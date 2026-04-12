@@ -1,0 +1,17 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,PLEKHO1,p.T355=,ENST00000369124,TCGA-X6-A7WD-01A-21D-A351-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,NEB,p.L1444=,ENST00000172853,TCGA-X6-A7WD-01A-21D-A351-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,LPCAT1,p.P493=,ENST00000283415,TCGA-X6-A7WD-01A-21D-A351-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,SYNPO,p.K594=,ENST00000394243,TCGA-X6-A7WD-01A-21D-A351-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,TG,p.D1545=,ENST00000220616,TCGA-X6-A7WD-01A-21D-A351-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,NEBL,p.L416=,ENST00000377122,TCGA-X6-A7WD-01A-21D-A351-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,SYT8,p.R78=,ENST00000381968,TCGA-X6-A7WD-01A-21D-A351-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,OR9G4,p.L130=,ENST00000641668,TCGA-X6-A7WD-01A-21D-A351-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,GNPTAB,p.C456_N457delinsY,ENST00000299314,TCGA-X6-A7WD-01A-21D-A351-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,COQ5,p.L236=,ENST00000288532,TCGA-X6-A7WD-01A-21D-A351-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,RB1,p.R552*,ENST00000267163,TCGA-X6-A7WD-01A-21D-A351-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,CARMIL3,p.L304=,ENST00000342740,TCGA-X6-A7WD-01A-21D-A351-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,KCNJ12,p.L322=,ENST00000331718,TCGA-X6-A7WD-01A-21D-A351-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,ZNF570,p.R308=,ENST00000330173,TCGA-X6-A7WD-01A-21D-A351-09
+42,Unsupported mutation class (only Missense_Mutation allowed).,CHEK2,p.G446=,ENST00000382580,TCGA-X6-A7WD-01A-21D-A351-09
+15,Protein sequence fetch failed.,PRAG1,p.G144A,ENST00000622241,TCGA-X6-A7WD-01A-21D-A351-09

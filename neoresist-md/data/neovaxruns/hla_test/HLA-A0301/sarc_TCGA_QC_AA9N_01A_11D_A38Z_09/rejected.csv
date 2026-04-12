@@ -1,0 +1,18 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+3,Unsupported mutation class (only Missense_Mutation allowed).,GALNT14,p.X248_splice,ENST00000349752,TCGA-QC-AA9N-01A-11D-A38Z-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,CCDC141,p.T587=,ENST00000443758,TCGA-QC-AA9N-01A-11D-A38Z-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,SLC17A3,,ENST00000360657,TCGA-QC-AA9N-01A-11D-A38Z-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,HDAC9,p.Q111=,ENST00000432645,TCGA-QC-AA9N-01A-11D-A38Z-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,ELN,p.A7=,ENST00000320399,TCGA-QC-AA9N-01A-11D-A38Z-09
+17,Unsupported mutation class (only Missense_Mutation allowed).,CABCOCO1,p.K50*,ENST00000330194,TCGA-QC-AA9N-01A-11D-A38Z-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,OR5J2,p.K140=,ENST00000312298,TCGA-QC-AA9N-01A-11D-A38Z-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,DNAH10,p.Q3889=,ENST00000409039,TCGA-QC-AA9N-01A-11D-A38Z-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,NBEA,p.K2592=,ENST00000400445,TCGA-QC-AA9N-01A-11D-A38Z-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,MSLNL,p.A408=,ENST00000442466,TCGA-QC-AA9N-01A-11D-A38Z-09
+26,Unsupported mutation class (only Missense_Mutation allowed).,TSC2,p.A551*,ENST00000219476,TCGA-QC-AA9N-01A-11D-A38Z-09
+28,Unsupported mutation class (only Missense_Mutation allowed).,ACLY,p.T1015=,ENST00000352035,TCGA-QC-AA9N-01A-11D-A38Z-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,CCDC43,p.V138=,ENST00000315286,TCGA-QC-AA9N-01A-11D-A38Z-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,MX1,p.G98=,ENST00000398598,TCGA-QC-AA9N-01A-11D-A38Z-09
+39,Unsupported mutation class (only Missense_Mutation allowed).,EIF1AX,p.G15=,ENST00000379607,TCGA-QC-AA9N-01A-11D-A38Z-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.K806Rfs*16,ENST00000373344,TCGA-QC-AA9N-01A-11D-A38Z-09
+2,Protein sequence fetch failed.,OR2G6,p.L66F,ENST00000343414,TCGA-QC-AA9N-01A-11D-A38Z-09

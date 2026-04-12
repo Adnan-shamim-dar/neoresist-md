@@ -1,0 +1,12 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,DPM3,p.W39Cfs*41,ENST00000341298,TCGA-JV-A5VF-01A-11D-A29N-09
+2,Unsupported mutation class (only Missense_Mutation allowed).,HSPA6,p.R173=,ENST00000309758,TCGA-JV-A5VF-01A-11D-A29N-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,BAG6,p.R347*,ENST00000676571,TCGA-JV-A5VF-01A-11D-A29N-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,PTCRA,p.P144=,ENST00000304672,TCGA-JV-A5VF-01A-11D-A29N-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,PRIM2,p.E157Gfs*13,ENST00000615550,TCGA-JV-A5VF-01A-11D-A29N-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,IFNE,p.T106=,ENST00000448696,TCGA-JV-A5VF-01A-11D-A29N-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,OR1S2,p.S324=,ENST00000302592,TCGA-JV-A5VF-01A-11D-A29N-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,PRSS53,p.Q251*,ENST00000280606,TCGA-JV-A5VF-01A-11D-A29N-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,ZNF337,p.W177*,ENST00000252979,TCGA-JV-A5VF-01A-11D-A29N-09
+3,Protein sequence fetch failed.,TNR,p.C245Y,ENST00000263525,TCGA-JV-A5VF-01A-11D-A29N-09
+15,Protein sequence fetch failed.,OR1S2,p.S324Y,ENST00000302592,TCGA-JV-A5VF-01A-11D-A29N-09

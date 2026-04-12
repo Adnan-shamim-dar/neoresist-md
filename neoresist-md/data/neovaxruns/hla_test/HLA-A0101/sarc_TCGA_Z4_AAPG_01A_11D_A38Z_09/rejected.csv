@@ -1,0 +1,13 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+7,Unsupported mutation class (only Missense_Mutation allowed).,GMPPA,p.R412*,ENST00000313597,TCGA-Z4-AAPG-01A-11D-A38Z-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,PPP2R2B,p.E56=,ENST00000394409,TCGA-Z4-AAPG-01A-11D-A38Z-09
+16,Unsupported mutation class (only Missense_Mutation allowed).,DNAH11,p.L364=,ENST00000409508,TCGA-Z4-AAPG-01A-11D-A38Z-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,ZNF704,p.S319=,ENST00000327835,TCGA-Z4-AAPG-01A-11D-A38Z-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,ANO5,p.F73=,ENST00000324559,TCGA-Z4-AAPG-01A-11D-A38Z-09
+23,Unsupported mutation class (only Missense_Mutation allowed).,VWF,p.G2560=,ENST00000261405,TCGA-Z4-AAPG-01A-11D-A38Z-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,EVL,,ENST00000402714,TCGA-Z4-AAPG-01A-11D-A38Z-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,HERC2P3,,ENST00000426501,TCGA-Z4-AAPG-01A-11D-A38Z-09
+31,Unsupported mutation class (only Missense_Mutation allowed).,CCNDBP1,p.A158=,ENST00000300213,TCGA-Z4-AAPG-01A-11D-A38Z-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,BFAR,p.M1?,ENST00000261658,TCGA-Z4-AAPG-01A-11D-A38Z-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,XYLT1,p.P127=,ENST00000261381,TCGA-Z4-AAPG-01A-11D-A38Z-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,PITPNM3,p.P339=,ENST00000262483,TCGA-Z4-AAPG-01A-11D-A38Z-09

@@ -1,0 +1,18 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,ASAP3,p.H468=,ENST00000336689,TCGA-DX-AB3A-01A-11D-A417-09
+1,Unsupported mutation class (only Missense_Mutation allowed).,RUNX3,p.S14*,ENST00000399916,TCGA-DX-AB3A-01A-11D-A417-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,TACR1,p.S122Dfs*6,ENST00000305249,TCGA-DX-AB3A-01A-11D-A417-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,EDAR,p.P104=,ENST00000258443,TCGA-DX-AB3A-01A-11D-A417-09
+11,Unsupported mutation class (only Missense_Mutation allowed).,NUDT16,p.A86=,ENST00000521288,TCGA-DX-AB3A-01A-11D-A417-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,DDX41,p.I212=,ENST00000507955,TCGA-DX-AB3A-01A-11D-A417-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,PLEC,p.G3831Dfs*44,ENST00000322810,TCGA-DX-AB3A-01A-11D-A417-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,APBA1,p.L557=,ENST00000265381,TCGA-DX-AB3A-01A-11D-A417-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,ISCA1,p.D74_Q79delinsSS,ENST00000375991,TCGA-DX-AB3A-01A-11D-A417-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,ERBB3,p.T417=,ENST00000267101,TCGA-DX-AB3A-01A-11D-A417-09
+24,Unsupported mutation class (only Missense_Mutation allowed).,LRRIQ1,p.L1503=,ENST00000393217,TCGA-DX-AB3A-01A-11D-A417-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,KIF26A,p.A1843=,ENST00000423312,TCGA-DX-AB3A-01A-11D-A417-09
+30,Unsupported mutation class (only Missense_Mutation allowed).,MUC16,p.R5402*,ENST00000397910,TCGA-DX-AB3A-01A-11D-A417-09
+34,Unsupported mutation class (only Missense_Mutation allowed).,MEI1,p.L766=,ENST00000401548,TCGA-DX-AB3A-01A-11D-A417-09
+35,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.E1024*,ENST00000373344,TCGA-DX-AB3A-01A-11D-A417-09
+7,Protein sequence fetch failed.,OR2T8,p.F279L,ENST00000319968,TCGA-DX-AB3A-01A-11D-A417-09
+23,"Reference amino acid mismatch at position 958: expected N, found V.",TRHDE,p.N958D,ENST00000261180,TCGA-DX-AB3A-01A-11D-A417-09

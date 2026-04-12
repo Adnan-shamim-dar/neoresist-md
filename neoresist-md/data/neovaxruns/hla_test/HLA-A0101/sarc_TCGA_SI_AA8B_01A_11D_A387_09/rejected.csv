@@ -1,0 +1,19 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+0,Unsupported mutation class (only Missense_Mutation allowed).,INAVA,p.P444=,ENST00000367342,TCGA-SI-AA8B-01A-11D-A387-09
+3,Unsupported mutation class (only Missense_Mutation allowed).,BAP1,p.D376=,ENST00000460680,TCGA-SI-AA8B-01A-11D-A387-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,CACNA2D3,p.L1018=,ENST00000288197,TCGA-SI-AA8B-01A-11D-A387-09
+6,Unsupported mutation class (only Missense_Mutation allowed).,NSD2,p.Q265=,ENST00000382891,TCGA-SI-AA8B-01A-11D-A387-09
+7,Unsupported mutation class (only Missense_Mutation allowed).,SLAIN2,p.R221*,ENST00000264313,TCGA-SI-AA8B-01A-11D-A387-09
+8,Unsupported mutation class (only Missense_Mutation allowed).,SYNPO2,p.V1201=,ENST00000307142,TCGA-SI-AA8B-01A-11D-A387-09
+9,Unsupported mutation class (only Missense_Mutation allowed).,ZBED9,p.L1186*,ENST00000452236,TCGA-SI-AA8B-01A-11D-A387-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,PIWIL2,p.K111=,ENST00000356766,TCGA-SI-AA8B-01A-11D-A387-09
+14,Unsupported mutation class (only Missense_Mutation allowed).,OPRK1,p.S3=,ENST00000265572,TCGA-SI-AA8B-01A-11D-A387-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,MYMK,p.G120=,ENST00000339996,TCGA-SI-AA8B-01A-11D-A387-09
+19,Unsupported mutation class (only Missense_Mutation allowed).,OR52M1,p.Y62*,ENST00000360213,TCGA-SI-AA8B-01A-11D-A387-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,OR8K1,p.K14Rfs*2,ENST00000279783,TCGA-SI-AA8B-01A-11D-A387-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,RASSF8,p.K250*,ENST00000282884,TCGA-SI-AA8B-01A-11D-A387-09
+27,Unsupported mutation class (only Missense_Mutation allowed).,CDAN1,p.C366Vfs*24,ENST00000356231,TCGA-SI-AA8B-01A-11D-A387-09
+32,Unsupported mutation class (only Missense_Mutation allowed).,CACNA1A,p.N799=,ENST00000614285,TCGA-SI-AA8B-01A-11D-A387-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,ATRX,p.K688*,ENST00000373344,TCGA-SI-AA8B-01A-11D-A387-09
+41,Unsupported mutation class (only Missense_Mutation allowed).,GPR119,p.A310=,ENST00000276218,TCGA-SI-AA8B-01A-11D-A387-09
+26,Protein sequence fetch failed.,CCDC9B,p.R200Q,ENST00000559313,TCGA-SI-AA8B-01A-11D-A387-09

@@ -1,0 +1,20 @@
+original_row_index,rejection_reason,source_gene,source_hgvsp_short,source_transcript_id,source_sample_id
+1,Unsupported mutation class (only Missense_Mutation allowed).,MYOM3,p.X953_splice,ENST00000374434,TCGA-QQ-A5VB-01A-11D-A36J-09
+4,Unsupported mutation class (only Missense_Mutation allowed).,PLXNA2,p.G58Wfs*15,ENST00000367033,TCGA-QQ-A5VB-01A-11D-A36J-09
+10,Unsupported mutation class (only Missense_Mutation allowed).,ROBO2,p.D1223=,ENST00000461745,TCGA-QQ-A5VB-01A-11D-A36J-09
+12,Unsupported mutation class (only Missense_Mutation allowed).,WDFY3,p.S732=,ENST00000295888,TCGA-QQ-A5VB-01A-11D-A36J-09
+13,Unsupported mutation class (only Missense_Mutation allowed).,PCDHA2,p.S245Ffs*4,ENST00000526136,TCGA-QQ-A5VB-01A-11D-A36J-09
+15,Unsupported mutation class (only Missense_Mutation allowed).,DOK3,,ENST00000357198,TCGA-QQ-A5VB-01A-11D-A36J-09
+18,Unsupported mutation class (only Missense_Mutation allowed).,FBXO5,p.T315Pfs*55,ENST00000229758,TCGA-QQ-A5VB-01A-11D-A36J-09
+20,Unsupported mutation class (only Missense_Mutation allowed).,FAM183BP,,ENST00000409072,TCGA-QQ-A5VB-01A-11D-A36J-09
+21,Unsupported mutation class (only Missense_Mutation allowed).,DOCK4,p.V1914=,ENST00000437633,TCGA-QQ-A5VB-01A-11D-A36J-09
+22,Unsupported mutation class (only Missense_Mutation allowed).,KMT2C,p.G4692Afs*24,ENST00000262189,TCGA-QQ-A5VB-01A-11D-A36J-09
+25,Unsupported mutation class (only Missense_Mutation allowed).,PRKDC,p.P3600Lfs*2,ENST00000314191,TCGA-QQ-A5VB-01A-11D-A36J-09
+29,Unsupported mutation class (only Missense_Mutation allowed).,PSPC1,p.A276=,ENST00000338910,TCGA-QQ-A5VB-01A-11D-A36J-09
+33,Unsupported mutation class (only Missense_Mutation allowed).,TC2N,p.V391=,ENST00000340892,TCGA-QQ-A5VB-01A-11D-A36J-09
+36,Unsupported mutation class (only Missense_Mutation allowed).,PAQR5,p.A154=,ENST00000340965,TCGA-QQ-A5VB-01A-11D-A36J-09
+38,Unsupported mutation class (only Missense_Mutation allowed).,TP53,p.C275Lfs*70,ENST00000269305,TCGA-QQ-A5VB-01A-11D-A36J-09
+40,Unsupported mutation class (only Missense_Mutation allowed).,KIF19,p.N129=,ENST00000389916,TCGA-QQ-A5VB-01A-11D-A36J-09
+43,Unsupported mutation class (only Missense_Mutation allowed).,C19orf53,p.Q46=,ENST00000588234,TCGA-QQ-A5VB-01A-11D-A36J-09
+45,Unsupported mutation class (only Missense_Mutation allowed).,IGLV3-16,p.F80=,ENST00000390311,TCGA-QQ-A5VB-01A-11D-A36J-09
+3,Protein sequence fetch failed.,TNR,p.V561M,ENST00000263525,TCGA-QQ-A5VB-01A-11D-A36J-09
