@@ -1,0 +1,6 @@
+dataset_id: tcga_sarc
+display_name: TCGA-SARC (sarcoma)
+description: >
+  Example dataset descriptor for cohort Parquet produced by qualify/enrich.
+  Search paths are merged from configs/app_config.yaml cohort.search_paths.
+version: "1.0"

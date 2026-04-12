@@ -1,0 +1,83 @@
+# NeoResist-MD architecture
+
+## Overview
+
+```mermaid
+flowchart LR
+  subgraph config [configs]
+    app_yaml[app_config.yaml]
+    score_yaml[scoring_profiles]
+    rule_yaml[rule_profiles]
+  end
+  subgraph core [neoresist]
+    loaders[loaders.py]
+    schema[schema.py]
+    scoring[scoring.py]
+    rules[rules.py]
+    profiles[profiles.py]
+  end
+  subgraph backend [backend]
+    enrich[cli/enrich_cohort]
+    rlwrap[resistance_loop.py]
+  end
+  subgraph ui [Dash]
+    dashapp[dash_app]
+  end
+  app_yaml --> loaders
+  app_yaml --> profiles
+  score_yaml --> profiles
+  rule_yaml --> profiles
+  loaders --> schema
+  loaders --> dashapp
+  profiles --> scoring
+  profiles --> rules
+  scoring --> rlwrap
+  rules --> scoring
+  rlwrap --> enrich
+  enrich --> scoring
+```
+
+## Core modules (`neoresist/`)
+
+| Module | Responsibility |
+|--------|----------------|
+| `paths.py` | Repo root, `configs/` path |
+| `config.py` | Load `configs/app_config.yaml` (branding, defaults, cohort search paths) |
+| `profiles.py` | Load scoring / rule YAML into dataclasses |
+| `scoring.py` | `apply_resistance_loop_engine` — weighted RL score, blend toward real TPM/CCF, **no eval** |
+| `rules.py` | Tier thresholds from rule profile |
+| `schema.py` | Explicit column synonyms + `validate_dash_columns` |
+| `loaders.py` | `load_cohort_for_dash` — env path, config search list, CSV/Parquet/XLSX, rich errors |
+| `metadata.py` | Stamp `dataset_name`, `app_version` on enriched outputs |
+| `dash_app/` | Dash layout, callbacks, data cache helpers |
+
+## Data flow
+
+1. **Enrich:** `join_tcga_metadata` → purity → expression → clonality → `apply_resistance_loop` (wraps engine) → provenance → `stamp_enrichment_metadata` → Parquet.
+2. **Dash:** Callbacks call `load_cohort_for_dash` (or cache-aligned `seed_cache`), filter/aggregate, Plotly/AgGrid.
+
+## Adding a scoring profile
+
+1. Add `configs/scoring_profiles/<id>.yaml` (see `rl_v1.yaml` for fields).
+2. Optionally set `defaults.scoring_profile_id` in `app_config.yaml` or pass `--scoring-profile <id>` to `enrich_cohort`.
+3. Run `python -m unittest backend.tests.test_rl_v1_parity` after changing `rl_v1`; add a new parity test if you fork RL math.
+
+## Adding a rule profile
+
+1. Add `configs/rule_profiles/<id>.yaml` with `tier_thresholds.tier1_above` / `tier2_above`.
+2. Reference it via `defaults.rule_profile_id` or `--rule-profile`.
+
+## Adding a dataset descriptor
+
+1. Add `configs/datasets/<name>.yaml` (documentation; search paths live in `app_config.yaml` `cohort.search_paths`).
+2. Use `--dataset-name` on enrich or rely on `defaults.dataset_id`.
+
+## Provenance / versioning
+
+- Rows: `scoring_profile`, `scoring_version`, `rule_profile`, `dataset_name`, `app_version`.
+- UI: footer shows app version; methodology expander summarizes active profile (when config loads).
+
+## Tests
+
+- `backend/tests/test_rl_v1_parity.py` — engine vs frozen `rl_v1_reference` implementation.
+- `backend/tests/test_neoresist_loaders.py` — loader error messages list searched paths.

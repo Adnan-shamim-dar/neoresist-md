@@ -145,6 +145,9 @@ class TestTcgaIntegration(unittest.TestCase):
             self.assertIn("real_ccf", edf.columns)
             self.assertIn("purity_value_used", edf.columns)
             self.assertIn("expression_source", edf.columns)
+            self.assertIn("dataset_name", edf.columns)
+            self.assertIn("app_version", edf.columns)
+            self.assertIn("scoring_profile", edf.columns)
 
     def test_enrich_with_purity_file_override(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

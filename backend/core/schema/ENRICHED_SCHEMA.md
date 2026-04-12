@@ -60,3 +60,17 @@ Stub and R stub rows may include:
 - `purity_confidence` — scalar hint for arbitration (default ~0.55 in stubs).
 
 Real R pulls may leave `purity` / `purity_method` / `purity_confidence` as `NA` when not available.
+
+## Platform metadata (config-driven scoring)
+
+Written during `enrich_cohort` after ResistanceLoop / provenance:
+
+| Column | Description |
+|--------|-------------|
+| `scoring_profile` | Id from `configs/scoring_profiles/<id>.yaml` (default `rl_v1`). |
+| `scoring_version` | Profile `version` string from YAML. |
+| `rule_profile` | Id from `configs/rule_profiles/<id>.yaml` (default `default_rules`). |
+| `dataset_name` | From `--dataset-name` or `defaults.dataset_id` in `configs/app_config.yaml`. |
+| `app_version` | `neoresist.version.__version__`. |
+
+**CLI:** `--scoring-profile`, `--rule-profile`, `--dataset-name`.

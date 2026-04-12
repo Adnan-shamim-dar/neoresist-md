@@ -1,0 +1,20 @@
+profile_id: rl_v1
+display_name: ResistanceLoop v1
+version: "1.0"
+description: >
+  Weighted blend of expression norm (log TPM), presentation, CCF, self-dissimilarity,
+  minus escape penalty. Optional blend toward real_expression_tpm and real_ccf when present.
+higher_is_better: true
+primary_score_column: rl_priority
+
+expression_tpm_cap: 1000.0
+blend:
+  real_expression_weight: 0.85
+  real_ccf_weight: 0.85
+
+weights:
+  expression_norm: 0.2
+  presentation: 0.3
+  ccf: 0.3
+  self_dissimilarity: 0.1
+escape_penalty_weight: -0.2

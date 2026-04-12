@@ -42,6 +42,8 @@ from backend.core.qualification.purity_resolution import (
 )
 from backend.core.qualification.real_clonality import apply_layer as apply_real_clonality_layer
 from backend.core.qualification.real_expression import apply_layer as apply_real_expression_layer
+from neoresist.config import get_app_config
+from neoresist.metadata import stamp_enrichment_metadata
 
 
 def _repo_root() -> Path:
@@ -119,6 +121,24 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="When no purity can be resolved, use the built-in stub value (0.82). "
         "Default: leave unresolved (NaN) to preserve Phase 4 behavior when TCGA purity is absent.",
+    )
+    p.add_argument(
+        "--scoring-profile",
+        type=str,
+        default=None,
+        help="Scoring profile id (configs/scoring_profiles/<id>.yaml). Default: app_config.yaml.",
+    )
+    p.add_argument(
+        "--rule-profile",
+        type=str,
+        default=None,
+        help="Rule profile id (configs/rule_profiles/<id>.yaml). Default: app_config.yaml.",
+    )
+    p.add_argument(
+        "--dataset-name",
+        type=str,
+        default=None,
+        help="Dataset label stored in output metadata (default: from app_config defaults.dataset_id).",
     )
     return p
 
@@ -207,11 +227,20 @@ def main(argv: list[str] | None = None) -> int:
     pbar.update(1)
 
     if not args.skip_resistance_loop:
-        merged = apply_resistance_loop(merged, prefer_real_evidence=True)
+        merged = apply_resistance_loop(
+            merged,
+            prefer_real_evidence=True,
+            scoring_profile_id=args.scoring_profile,
+            rule_profile_id=args.rule_profile,
+        )
         pbar.update(1)
 
     merged = apply_evidence_provenance_columns(merged)
     pbar.update(1)
+
+    cfg = get_app_config()
+    ds_name = args.dataset_name or cfg.defaults.dataset_id
+    merged = stamp_enrichment_metadata(merged, dataset_name=ds_name)
 
     out: Path = args.output
     out.parent.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,6 @@
+profile_id: default_rules
+display_name: Default tier rules
+version: "1.0"
+tier_thresholds:
+  tier1_above: 0.7
+  tier2_above: 0.4

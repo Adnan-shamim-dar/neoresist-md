@@ -1,11 +1,10 @@
-streamlit
+PyYAML>=6
 pandas
 tqdm
 pydantic>=2
 pyarrow
 plotly
 openpyxl
-streamlit-plotly-events
 dash
 dash-bootstrap-components
 dash-ag-grid

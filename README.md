@@ -11,7 +11,22 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Then open `http://127.0.0.1:8050`.
+Then open `http://127.0.0.1:8050` (or set `PORT` / see `.env.example`).
+
+### Modular layout
+
+- **`neoresist/`** — config loading, cohort loaders, schema synonyms, YAML-driven **scoring** (`configs/scoring_profiles/`) and **rules** (`configs/rule_profiles/`), enrichment metadata stamps.
+- **`neoresist/dash_app/`** — Dash layout and callbacks (imported by thin root `app.py`).
+- **`configs/app_config.yaml`** — branding subtitle, default dataset/scoring/rule profile ids, **ordered cohort search paths** (Parquet, CSV, XLSX).
+- **`docs/architecture.md`** — data flow, how to add profiles. **`docs/column_contract.md`** — required Dash columns.
+
+### Scoring CLI overrides
+
+```bash
+python -m backend.cli.enrich_cohort --stub --scoring-profile rl_v1 --rule-profile default_rules --dataset-name tcga_sarc
+```
+
+Enriched Parquet includes `scoring_profile`, `scoring_version`, `rule_profile`, `dataset_name`, `app_version`.
 
 ### Upgraded for ResistanceLoop v1
 
