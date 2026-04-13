@@ -4,10 +4,11 @@ import io
 import math
 from collections import Counter
 from pathlib import Path
+from typing import Any
 
 import dash_bootstrap_components as dbc
 import pandas as pd
-from dash import Input, Output, State, callback_context, html, no_update
+from dash import Input, Output, State, callback_context, dcc, html, no_update
 from dash.exceptions import PreventUpdate
 
 from neoresist.dash_app.data import (
@@ -30,8 +31,68 @@ from neoresist.dash_app.panels import (
     kpi_card,
     make_scatter_fig,
 )
+from neoresist.case_store import (
+    attach_case_input,
+    create_case_from_upload,
+    list_cases,
+    read_case_manifest,
+    reset_module_for_rerun,
+    set_module_enabled,
+)
+from neoresist.case_ui import render_case_detail, render_case_list
 from neoresist.dash_app.constants import TIER_COLORS
 from neoresist.loaders import load_cohort_for_dash
+from neoresist.module_runner import ModuleRunner
+from neoresist.module_schema import load_module_schema
+from neoresist.ops_status import collect_batch_status
+from neoresist.strategy_registry import (
+    clone_strategy,
+    deserialize_strategy,
+    get_strategy,
+    list_strategies,
+    log_audit_event,
+    read_audit_events,
+    save_strategy,
+    score_candidates_for_strategy,
+    serialize_strategy,
+    summarize_strategy_run,
+    build_consensus_table,
+)
+from neoresist.version import __version__
+
+
+def _render_records_table(records: list[dict[str, Any]], columns: list[tuple[str, str]], empty_text: str) -> Any:
+    if not records:
+        return html.Div(empty_text, className="text-muted small")
+    return dbc.Table(
+        [
+            html.Thead(html.Tr([html.Th(label) for _, label in columns])),
+            html.Tbody(
+                [
+                    html.Tr(
+                        [
+                            html.Td(
+                                ", ".join(map(str, row.get(key, [])))
+                                if isinstance(row.get(key), list)
+                                else str(row.get(key, "—"))
+                            )
+                            for key, _ in columns
+                        ]
+                    )
+                    for row in records
+                ]
+            ),
+        ],
+        bordered=False,
+        hover=True,
+        responsive=True,
+        size="sm",
+        class_name="strategy-table",
+    )
+
+
+def _section_style(visible: bool) -> dict[str, str]:
+    return {"display": "block"} if visible else {"display": "none"}
 
 
 def register_callbacks(app) -> None:
@@ -79,6 +140,494 @@ def register_callbacks(app) -> None:
             )
 
     @app.callback(
+        Output("strategy-panel", "children"),
+        Input("nav", "value"),
+        Input("active-strategy-select", "value"),
+        Input("strategy-refresh-store", "data"),
+    )
+    def strategy_panel(_nav, active_strategy_id, _refresh):
+        try:
+            from neoresist.config import get_app_config
+            from neoresist.paths import config_dir
+
+            cfg = get_app_config()
+            strategy = get_strategy(active_strategy_id or cfg.defaults.scoring_profile_id)
+
+            prof_dir = config_dir() / "scoring_profiles"
+            prof_names = sorted(p.stem for p in prof_dir.glob("*.yaml"))
+
+            weights_table = dbc.Table(
+                    [
+                        html.Thead(html.Tr([html.Th("Component"), html.Th("Weight")])),
+                        html.Tbody(
+                            [
+                                html.Tr([html.Td("expression_norm"), html.Td(f"{strategy.weights.get('expression_norm', 0.0):.3f}")]),
+                                html.Tr([html.Td("presentation"), html.Td(f"{strategy.weights.get('presentation', 0.0):.3f}")]),
+                                html.Tr([html.Td("ccf"), html.Td(f"{strategy.weights.get('ccf', 0.0):.3f}")]),
+                                html.Tr([html.Td("self_dissimilarity"), html.Td(f"{strategy.weights.get('self_dissimilarity', 0.0):.3f}")]),
+                                html.Tr([html.Td("escape_penalty"), html.Td(f"{strategy.escape_penalty_weight:.3f}")]),
+                            ]
+                        ),
+                    ],
+                bordered=False,
+                size="sm",
+                class_name="mb-2",
+            )
+
+            return html.Div(
+                [
+                    html.Div(
+                        [
+                            dbc.Badge(f"Dataset: {cfg.defaults.dataset_id}", color="secondary", className="me-1"),
+                            dbc.Badge(
+                                f"Active strategy: {strategy.strategy_id} v{strategy.strategy_version}",
+                                color="info",
+                                className="me-1",
+                            ),
+                            dbc.Badge(
+                                f"Rule profile: {strategy.rule_profile_id} v{strategy.rule_version}",
+                                color="warning",
+                                className="me-1",
+                            ),
+                        ],
+                        className="mb-2",
+                    ),
+                    html.Div(strategy.description or "", className="mb-2"),
+                    html.Div(
+                        "The ranking engine is modular: saved strategies can reweight evidence without changing the underlying app.",
+                        className="mb-2",
+                    ),
+                    html.Div(
+                        [
+                            html.Strong("Current structure: "),
+                            f"expression {strategy.weights.get('expression_norm', 0.0):.2f}, "
+                            f"presentation {strategy.weights.get('presentation', 0.0):.2f}, "
+                            f"CCF {strategy.weights.get('ccf', 0.0):.2f}, "
+                            f"self-dissimilarity {strategy.weights.get('self_dissimilarity', 0.0):.2f}, "
+                            f"escape {strategy.escape_penalty_weight:.2f}",
+                        ],
+                        className="mb-2",
+                    ),
+                    dbc.Button("Inspect or edit strategies", id="jump-to-advanced-inline-btn", color="info", outline=True, class_name="mt-1"),
+                    html.Div(
+                        f"Saved/default profiles available: {', '.join(prof_names) if prof_names else 'none found'}.",
+                        className="text-muted",
+                    ),
+                ]
+            )
+        except Exception:
+            return html.Div(
+                [
+                    html.Div("Modular profile metadata unavailable in current environment.", className="mb-1"),
+                    html.Div("Fallback structure: expression_norm, presentation, ccf, self_dissimilarity, escape_penalty.", className="text-muted"),
+                ]
+            )
+
+    @app.callback(
+        Output("active-strategy-select", "options"),
+        Output("compare-strategies-select", "options"),
+        Output("active-strategy-select", "value"),
+        Output("compare-strategies-select", "value"),
+        Input("strategy-refresh-store", "data"),
+        State("active-strategy-select", "value"),
+        State("compare-strategies-select", "value"),
+    )
+    def refresh_strategy_selectors(_refresh, active_value, compare_value):
+        strategies = list_strategies()
+        options = [
+            {
+                "label": f"{s.display_name} ({'built-in' if s.origin == 'builtin' else 'local'})",
+                "value": s.strategy_id,
+            }
+            for s in strategies
+        ]
+        valid_ids = {s.strategy_id for s in strategies}
+        active = active_value if active_value in valid_ids else (strategies[0].strategy_id if strategies else None)
+        compare = [str(x) for x in (compare_value or []) if str(x) in valid_ids]
+        if active and active not in compare:
+            compare = [active, *compare][:6]
+        return options, options, active, compare
+
+    @app.callback(
+        Output("strategy-edit-store", "data"),
+        Output("strategy-save-status", "children", allow_duplicate=True),
+        Input("active-strategy-select", "value"),
+        Input("clone-strategy-btn", "n_clicks"),
+        Input("reset-strategy-editor-btn", "n_clicks"),
+        Input("load-active-strategy-btn", "n_clicks"),
+        State("strategy-edit-store", "data"),
+        prevent_initial_call=True,
+    )
+    def load_strategy_editor(active_strategy_id, clone_clicks, reset_clicks, load_clicks, existing_store):
+        tid = callback_context.triggered_id
+        if not active_strategy_id:
+            raise PreventUpdate
+        if tid in {"active-strategy-select", "reset-strategy-editor-btn", "load-active-strategy-btn"}:
+            strategy = get_strategy(active_strategy_id)
+            return serialize_strategy(strategy), html.Span("Editor synced to active strategy.", className="text-info")
+        if tid == "clone-strategy-btn":
+            clone = clone_strategy(active_strategy_id)
+            log_audit_event(
+                event_type="clone_strategy",
+                strategy=clone,
+                app_version=__version__,
+                metadata={"source_strategy_id": active_strategy_id},
+            )
+            return serialize_strategy(clone), html.Span(
+                f"Cloned {active_strategy_id} into local editor. Save to persist.", className="text-warning"
+            )
+        if existing_store:
+            return existing_store, no_update
+        raise PreventUpdate
+
+    @app.callback(
+        Output("strategy-name-input", "value"),
+        Output("strategy-description-input", "value"),
+        Output("weight-expression-input", "value"),
+        Output("weight-presentation-input", "value"),
+        Output("weight-ccf-input", "value"),
+        Output("weight-self-input", "value"),
+        Output("escape-penalty-input", "value"),
+        Output("blend-expression-input", "value"),
+        Output("blend-ccf-input", "value"),
+        Output("expression-cap-input", "value"),
+        Output("tier1-threshold-input", "value"),
+        Output("tier2-threshold-input", "value"),
+        Output("strategy-metadata-panel", "children"),
+        Input("strategy-edit-store", "data"),
+    )
+    def hydrate_strategy_editor(strategy_payload):
+        if not strategy_payload:
+            blank = ""
+            return blank, blank, 0.2, 0.3, 0.3, 0.1, -0.2, 0.85, 0.85, 1000, 0.7, 0.4, html.Div(
+                "Select a strategy to inspect or clone.", className="text-muted small"
+            )
+        strategy = deserialize_strategy(strategy_payload)
+        meta = html.Div(
+            [
+                dbc.Badge(f"Strategy id: {strategy.strategy_id}", color="secondary", className="me-1 mb-1"),
+                dbc.Badge(f"Origin: {strategy.origin}", color="info", className="me-1 mb-1"),
+                dbc.Badge(f"Parent: {strategy.parent_strategy_id or '—'}", color="dark", className="me-1 mb-1"),
+                dbc.Badge(f"Scoring profile: {strategy.scoring_profile_id}", color="primary", className="me-1 mb-1"),
+                dbc.Badge(f"Rule profile: {strategy.rule_profile_id}", color="warning", className="me-1 mb-1"),
+                html.Div(
+                    f"Version {strategy.strategy_version} · last modified {strategy.last_modified or 'built-in'}",
+                    className="text-muted small mt-2",
+                ),
+            ]
+        )
+        return (
+            strategy.display_name,
+            strategy.description,
+            strategy.weights.get("expression_norm", 0.0),
+            strategy.weights.get("presentation", 0.0),
+            strategy.weights.get("ccf", 0.0),
+            strategy.weights.get("self_dissimilarity", 0.0),
+            strategy.escape_penalty_weight,
+            strategy.blend_expression,
+            strategy.blend_ccf,
+            strategy.expression_tpm_cap,
+            strategy.tier1_above,
+            strategy.tier2_above,
+            meta,
+        )
+
+    @app.callback(
+        Output("strategy-refresh-store", "data"),
+        Output("strategy-edit-store", "data", allow_duplicate=True),
+        Output("strategy-save-status", "children", allow_duplicate=True),
+        Input("save-strategy-btn", "n_clicks"),
+        State("strategy-edit-store", "data"),
+        State("strategy-name-input", "value"),
+        State("strategy-description-input", "value"),
+        State("weight-expression-input", "value"),
+        State("weight-presentation-input", "value"),
+        State("weight-ccf-input", "value"),
+        State("weight-self-input", "value"),
+        State("escape-penalty-input", "value"),
+        State("blend-expression-input", "value"),
+        State("blend-ccf-input", "value"),
+        State("expression-cap-input", "value"),
+        State("tier1-threshold-input", "value"),
+        State("tier2-threshold-input", "value"),
+        State("strategy-refresh-store", "data"),
+        prevent_initial_call=True,
+    )
+    def persist_strategy(
+        n_clicks,
+        strategy_payload,
+        display_name,
+        description,
+        w_expr,
+        w_pres,
+        w_ccf,
+        w_self,
+        escape_penalty,
+        blend_expr,
+        blend_ccf,
+        expr_cap,
+        tier1,
+        tier2,
+        refresh_state,
+    ):
+        if not n_clicks or not strategy_payload:
+            raise PreventUpdate
+        base = deserialize_strategy(strategy_payload)
+        try:
+            tier1_f = float(tier1 if tier1 is not None else base.tier1_above)
+            tier2_f = float(tier2 if tier2 is not None else base.tier2_above)
+        except (TypeError, ValueError):
+            return no_update, no_update, dbc.Alert(
+                "Strategy thresholds must be numeric.",
+                color="danger",
+                className="py-2 mb-0",
+            )
+        if tier1_f <= tier2_f:
+            return no_update, no_update, dbc.Alert(
+                "Tier 1 threshold must be greater than Tier 2 threshold.",
+                color="danger",
+                className="py-2 mb-0",
+            )
+        changes: dict[str, Any] = {}
+        strategy_id = base.strategy_id
+        origin = base.origin
+        parent_id = base.parent_strategy_id
+        if base.origin == "builtin":
+            origin = "user_variant"
+            parent_id = base.strategy_id
+            from neoresist.strategy_registry import _slugify  # type: ignore
+
+            strategy_id = f"user-{_slugify(display_name or base.display_name)}"
+        updated = base.__class__(
+            strategy_id=strategy_id,
+            display_name=str(display_name or base.display_name).strip() or base.display_name,
+            description=str(description or "").strip(),
+            origin=origin,
+            parent_strategy_id=parent_id,
+            scoring_profile_id=base.scoring_profile_id,
+            scoring_version=base.scoring_version,
+            rule_profile_id=base.rule_profile_id,
+            rule_version=base.rule_version,
+            strategy_version=base.strategy_version,
+            created_at=base.created_at,
+            last_modified=base.last_modified,
+            expression_tpm_cap=float(expr_cap or base.expression_tpm_cap),
+            blend_expression=float(blend_expr if blend_expr is not None else base.blend_expression),
+            blend_ccf=float(blend_ccf if blend_ccf is not None else base.blend_ccf),
+            weights={
+                "expression_norm": float(w_expr if w_expr is not None else base.weights["expression_norm"]),
+                "presentation": float(w_pres if w_pres is not None else base.weights["presentation"]),
+                "ccf": float(w_ccf if w_ccf is not None else base.weights["ccf"]),
+                "self_dissimilarity": float(w_self if w_self is not None else base.weights["self_dissimilarity"]),
+            },
+            escape_penalty_weight=float(escape_penalty if escape_penalty is not None else base.escape_penalty_weight),
+            tier1_above=tier1_f,
+            tier2_above=tier2_f,
+        )
+        for key, new_val in serialize_strategy(updated).items():
+            if serialize_strategy(base).get(key) != new_val:
+                changes[key] = {"before": serialize_strategy(base).get(key), "after": new_val}
+        saved = save_strategy(updated)
+        log_audit_event(
+            event_type="save_strategy",
+            strategy=saved,
+            app_version=__version__,
+            changes=changes,
+        )
+        revision = int((refresh_state or {}).get("revision", 0)) + 1
+        return {"revision": revision}, serialize_strategy(saved), dbc.Alert(
+            f"Saved local strategy: {saved.display_name} ({saved.strategy_id}). Select it in Active strategy to use it.",
+            color="success",
+            className="py-2 mb-0",
+        )
+
+    @app.callback(
+        Output("strategy-comparison-table", "children"),
+        Output("strategy-consensus-table", "children"),
+        Output("strategy-coherence-summary", "children"),
+        Output("strategy-audit-table", "children"),
+        Input("active-strategy-select", "value"),
+        Input("compare-strategies-select", "value"),
+        Input("strategy-refresh-store", "data"),
+        Input("tier-filter", "value"),
+        Input("hla-filter", "value"),
+        Input("exclusion-filter", "value"),
+        Input("rl-range", "value"),
+        Input("expr-range", "value"),
+        Input("ccf-range", "value"),
+        Input("search", "value"),
+        Input("selected-key-store", "data"),
+        State("cohort-parquet-path", "data"),
+    )
+    def render_strategy_lab(
+        active_strategy_id,
+        compare_ids,
+        _refresh,
+        tiers,
+        hlas,
+        exclusions,
+        rl_range,
+        expr_range,
+        ccf_range,
+        search,
+        selected_key,
+        cohort_path_override,
+    ):
+        if not active_strategy_id:
+            empty = html.Div("No strategy selected.", className="text-muted small")
+            return empty, empty, empty, empty
+        try:
+            df, _path, _searched = load_cohort_for_dash(alt_path=cohort_path_override)
+        except Exception:
+            empty = html.Div("Advanced Strategies is waiting for a valid cohort file.", className="text-muted small")
+            return empty, empty, empty, empty
+        fc = filter_candidates(
+            df,
+            tiers=[int(x) for x in (tiers or [])] or [1, 2, 3],
+            hlas=[str(x) for x in (hlas or [])] if hlas else [],
+            exclusion_any=[str(x) for x in (exclusions or [])] if exclusions else [],
+            rl_range=list(rl_range or [0, 1]),
+            expr_range=list(expr_range or [0, 1000]),
+            ccf_range=list(ccf_range or [0, 1]),
+            search=search or "",
+        )
+        strategy_ids = []
+        for sid in [active_strategy_id, *list(compare_ids or [])]:
+            if sid and sid not in strategy_ids:
+                strategy_ids.append(str(sid))
+        strategy_frames: dict[str, pd.DataFrame] = {}
+        strategy_objs = {sid: get_strategy(sid) for sid in strategy_ids}
+        for sid, strategy in strategy_objs.items():
+            strategy_frames[sid] = score_candidates_for_strategy(fc, strategy)
+        active_top_keys = set(
+            strategy_frames[active_strategy_id]
+            .sort_values("rl_priority", ascending=False)
+            .head(25)["candidate_key"]
+            .astype(str)
+            .tolist()
+        )
+        comparison_rows = []
+        for sid in strategy_ids:
+            summary = summarize_strategy_run(
+                strategy_frames[sid],
+                strategy_objs[sid],
+                reference_keys=active_top_keys,
+            )
+            comparison_rows.append(summary)
+        comparison_table = _render_records_table(
+            comparison_rows,
+            [
+                ("display_name", "Strategy"),
+                ("origin", "Origin"),
+                ("tier1_candidates", "Tier 1"),
+                ("tier2_candidates", "Tier 2"),
+                ("tier3_candidates", "Tier 3"),
+                ("mean_rl_priority", "Mean RL"),
+                ("top_rl_priority", "Top RL"),
+                ("mean_coherence", "Mean coherence"),
+                ("overlap_with_active", "Overlap vs active"),
+                ("divergence_pct", "Divergence %"),
+            ],
+            "No strategy comparison data yet.",
+        )
+
+        consensus = build_consensus_table(strategy_frames).head(12)
+        consensus_table = _render_records_table(
+            consensus.to_dict("records"),
+            [
+                ("patient_id", "Patient"),
+                ("hla_allele", "HLA"),
+                ("gene", "Gene"),
+                ("mutant_peptide", "Peptide"),
+                ("consensus_score", "Consensus"),
+                ("consensus_agreement_count", "Agreement"),
+                ("rank_dispersion", "Rank dispersion"),
+                ("mean_coherence", "Mean coherence"),
+            ],
+            "Consensus rows will appear after selecting at least one strategy.",
+        )
+
+        active_frame = strategy_frames[active_strategy_id]
+        coherence_bits: list[Any] = []
+        coherence_bits.append(
+            dbc.Badge(
+                f"Active mean coherence: {float(active_frame['coherence_score'].mean()):.3f}" if not active_frame.empty else "Active mean coherence: —",
+                color="success",
+                className="me-1 mb-1",
+            )
+        )
+        if not consensus.empty:
+            coherence_bits.append(
+                dbc.Badge(
+                    f"Consensus top mean: {float(consensus['consensus_score'].head(5).mean()):.3f}",
+                    color="primary",
+                    className="me-1 mb-1",
+                )
+            )
+        if isinstance(selected_key, dict) and selected_key.get("patient_id") and selected_key.get("hla_allele"):
+            pid = str(selected_key["patient_id"])
+            hla = str(selected_key["hla_allele"])
+            sub = active_frame[
+                (active_frame["patient_id"].astype(str) == pid)
+                & (active_frame["hla_allele"].astype(str) == hla)
+            ].sort_values("rl_priority", ascending=False)
+            if not sub.empty:
+                top = sub.iloc[0]
+                reasons = top.get("coherence_reasons") or []
+                coherence_bits.append(
+                    html.Div(
+                        [
+                            html.Div(
+                                f"Selected {pid} · {hla}: top candidate coherence {float(top.get('coherence_score', 0.0)):.3f}",
+                                className="mt-2",
+                            ),
+                            html.Ul([html.Li(str(r)) for r in reasons[:4]] or [html.Li("No coherence penalties triggered.")], className="small mb-0"),
+                        ]
+                    )
+                )
+        audit_rows = read_audit_events(limit=20)
+        audit_table = _render_records_table(
+            audit_rows,
+            [
+                ("timestamp", "Timestamp"),
+                ("event_type", "Event"),
+                ("strategy_id", "Strategy"),
+                ("strategy_origin", "Origin"),
+                ("parent_strategy_id", "Parent"),
+            ],
+            "Audit events will appear after you clone, save, or activate strategies.",
+        )
+        return comparison_table, consensus_table, html.Div(coherence_bits), audit_table
+
+    @app.callback(
+        Output("strategy-save-status", "children", allow_duplicate=True),
+        Input("active-strategy-select", "value"),
+        Input("compare-strategies-select", "value"),
+        prevent_initial_call=True,
+    )
+    def audit_strategy_selection(active_strategy_id, compare_ids):
+        tid = callback_context.triggered_id
+        if not active_strategy_id:
+            raise PreventUpdate
+        strategy = get_strategy(active_strategy_id)
+        if tid == "active-strategy-select":
+            log_audit_event(
+                event_type="select_active_strategy",
+                strategy=strategy,
+                app_version=__version__,
+            )
+            return html.Span(f"Active strategy set to {strategy.display_name}.", className="text-info")
+        if tid == "compare-strategies-select":
+            log_audit_event(
+                event_type="compare_strategy_set",
+                strategy=strategy,
+                app_version=__version__,
+                metadata={"compare_ids": [str(x) for x in (compare_ids or [])]},
+            )
+            return html.Span("Comparison set updated.", className="text-info")
+        raise PreventUpdate
+
+    @app.callback(
         Output("header-subtitle", "children"),
         Input("nav", "value"),
     )
@@ -89,6 +638,296 @@ def register_callbacks(app) -> None:
             return get_app_config().branding.subtitle
         except Exception:
             return "TCGA-SARC — ResistanceLoop v1 evidence-aware neoantigen qualification"
+
+    @app.callback(
+        Output("cohort-sidebar-controls", "style"),
+        Output("sidebar-context-note", "children"),
+        Output("advanced-strategies-simple-note", "style"),
+        Output("advanced-strategies-section", "style"),
+        Output("overview-section", "style"),
+        Output("patients-section", "style"),
+        Output("upload-section", "style"),
+        Output("cases-section", "style"),
+        Output("about-section", "style"),
+        Output("pipeline-status-section", "style"),
+        Output("scatter-card", "style"),
+        Input("nav", "value"),
+        Input("ui-mode", "value"),
+    )
+    def toggle_sections(nav, ui_mode):
+        current = nav or "Overview"
+        is_expert = str(ui_mode or "Simple") == "Expert"
+        show_filters = current in {"Overview", "Patients"}
+        if current in {"Upload", "Cases"}:
+            note = "Case workflow mode: keep the left rail simple, use the case panel for module toggles and reruns, and open Advanced Strategies only when you want to tune scoring."
+        elif current == "Advanced Strategies":
+            note = "Modularity workspace: compare strategies, inspect consensus, and edit safe weights in Expert mode."
+        else:
+            note = "Cohort mode: use the left filters to explore the 245-patient scatterplot, then open Cases or Advanced Strategies when you need deeper workflow controls."
+        return (
+            _section_style(show_filters),
+            note,
+            _section_style(current == "Advanced Strategies" and not is_expert),
+            _section_style(current == "Advanced Strategies" and is_expert),
+            _section_style(current == "Overview"),
+            _section_style(current == "Patients"),
+            _section_style(current == "Upload"),
+            _section_style(current == "Cases"),
+            _section_style(current == "About"),
+            _section_style(current == "Pipeline Status"),
+            _section_style(not is_expert),
+        )
+
+    @app.callback(
+        Output("nav", "value", allow_duplicate=True),
+        Input("jump-to-advanced-btn", "n_clicks"),
+        Input("jump-to-advanced-inline-btn", "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def jump_to_advanced(_n1, _n2):
+        return "Advanced Strategies"
+
+    @app.callback(
+        Output("overview-modularity-summary", "children"),
+        Output("advanced-strategy-summary", "children"),
+        Output("strategy-library-panel", "children"),
+        Output("overview-case-summary", "children"),
+        Input("active-strategy-select", "value"),
+        Input("strategy-refresh-store", "data"),
+        Input("case-status-interval", "n_intervals"),
+    )
+    def modularity_summaries(active_strategy_id, _refresh, _n):
+        strategies = list_strategies()
+        active = get_strategy(active_strategy_id or strategies[0].strategy_id)
+        saved_names = [s.display_name for s in strategies[:8]]
+        recent_cases = list_cases(limit=3)
+        compact = html.Div(
+            [
+                dbc.Badge(f"Active strategy: {active.display_name}", color="info", className="me-1 mb-1"),
+                dbc.Badge(f"Rule thresholds: {active.tier1_above:.2f}/{active.tier2_above:.2f}", color="secondary", className="me-1 mb-1"),
+                html.P(
+                    "The product moat is modular scoring: the same cohort can be re-ranked through saved strategies, compared, audited, and upgraded over time.",
+                    className="mb-0 mt-2",
+                ),
+            ]
+        )
+        advanced = html.Div(
+            [
+                dbc.Badge(f"Active: {active.display_name}", color="info", className="me-1 mb-1"),
+                dbc.Badge(f"Origin: {active.origin}", color="secondary", className="me-1 mb-1"),
+                dbc.Badge(f"Parent: {active.parent_strategy_id or 'built-in'}", color="dark", className="me-1 mb-1"),
+                html.P(
+                    "This workspace is where you make the proprietary engine visible: compare profiles, inspect consensus, preserve audited variants, and tune evidence weighting deliberately.",
+                    className="mt-2 mb-0",
+                ),
+            ]
+        )
+        library = html.Div(
+            [
+                html.Ul([html.Li(name) for name in saved_names], className="mb-0"),
+            ]
+        )
+        case_summary = html.Div(
+            [
+                html.H6("Recent uploaded cases", className="mb-2"),
+                html.Div(
+                    [html.Div(f"{item.get('sample_id', 'sample')} — {item.get('case_id', 'case')}", className="small mb-1") for item in recent_cases]
+                    if recent_cases
+                    else [html.Div("No uploaded cases yet. Use Upload to create a persistent case workflow.", className="small text-muted")]
+                ),
+            ]
+        )
+        return compact, advanced, library, case_summary
+
+    @app.callback(
+        Output("about-panel", "children"),
+        Input("nav", "value"),
+        Input("active-strategy-select", "value"),
+    )
+    def about_panel(_nav, active_strategy_id):
+        strategy = get_strategy(active_strategy_id or "rl_v1")
+        return html.Div(
+            [
+                html.P(
+                    "NeoResist-MD helps a clinician or translational researcher review tumor-derived neoantigen candidates "
+                    "with resistance-aware ranking rather than presentation alone.",
+                    className="lead text-light",
+                ),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H5("Problem", className="mb-2"),
+                                        html.P(
+                                            "Tumors can generate neoantigens that look immunogenic on paper but may disappear under treatment pressure through LOH, low expression, or subclonal instability.",
+                                            className="mb-0",
+                                        ),
+                                    ]
+                                ),
+                                class_name="surface h-100",
+                            ),
+                            md=6,
+                        ),
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H5("What this app does", className="mb-2"),
+                                        html.P(
+                                            "It aggregates cohort candidates, enriches them with evidence, computes ResistanceLoop scores, and lets you compare modular strategies side by side.",
+                                            className="mb-0",
+                                        ),
+                                    ]
+                                ),
+                                class_name="surface h-100",
+                            ),
+                            md=6,
+                        ),
+                    ],
+                    class_name="g-3 mb-3",
+                ),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H5("Pipeline", className="mb-2"),
+                                        html.Ol(
+                                            [
+                                                html.Li("Generate or aggregate neoantigen candidates."),
+                                                html.Li("Join expression, purity, clonality, and escape evidence."),
+                                                html.Li("Score with ResistanceLoop."),
+                                                html.Li("Review candidates, patient detail, and strategy comparisons."),
+                                            ],
+                                            className="mb-0",
+                                        ),
+                                    ]
+                                ),
+                                class_name="surface h-100",
+                            ),
+                            md=6,
+                        ),
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H5("ResistanceLoop", className="mb-2"),
+                                        html.P(
+                                            "ResistanceLoop scores whether a candidate is both promising and durable. "
+                                            "Higher scores mean stronger presentation/expression/clonality support with fewer obvious escape routes.",
+                                            className="mb-2",
+                                        ),
+                                        html.Ul(
+                                            [
+                                                html.Li("What it scores: expression, presentation, clonality, self-dissimilarity, and escape penalties."),
+                                                html.Li("Why it matters: it penalizes candidates that may vanish biologically even if they look recognizable."),
+                                                html.Li(f"Active strategy now: {strategy.display_name} ({strategy.strategy_id})."),
+                                            ],
+                                            className="mb-0",
+                                        ),
+                                    ]
+                                ),
+                                class_name="surface h-100",
+                            ),
+                            md=6,
+                        ),
+                    ],
+                    class_name="g-3 mb-3",
+                ),
+                dbc.Alert(
+                    "Modular scoring matters because the field moves. NeoResist-MD keeps the scoring profile visible and editable so weights can evolve without rewriting the app.",
+                    color="info",
+                    className="mb-0",
+                ),
+            ]
+        )
+
+    @app.callback(
+        Output("pipeline-status-panel", "children"),
+        Input("nav", "value"),
+        Input("upload-result-store", "data"),
+    )
+    def pipeline_status_panel(_nav, upload_result):
+        status = collect_batch_status()
+        recent_upload = upload_result or {}
+        cases = list_cases()
+        top = dbc.Row(
+            [
+                dbc.Col(kpi_card(str(status["discovered_run_dirs"]), "Discovered run dirs"), md=3, sm=6),
+                dbc.Col(kpi_card(str(status["runs_with_candidates"]), "Runs with candidates"), md=3, sm=6),
+                dbc.Col(kpi_card(str(status["runs_with_case_report"]), "Runs with reports"), md=3, sm=6),
+                dbc.Col(kpi_card(str(len(cases)), "Persisted cases"), md=3, sm=6),
+            ],
+            class_name="g-2 mb-3",
+        )
+        bundle = status.get("cohort_bundle") or {}
+        bundle_bits = [
+            dbc.Badge(f"Reference upload HLA: {status['reference_hla']}", color="info", className="me-1 mb-1"),
+            dbc.Badge(f"Bundle patients: {bundle.get('unique_patients', 0)}", color="secondary", className="me-1 mb-1"),
+            dbc.Badge(f"Bundle rows: {bundle.get('output_rows', 0)}", color="secondary", className="me-1 mb-1"),
+            dbc.Badge(f"Patient metric rows: {status['patient_metric_rows']}", color="secondary", className="me-1 mb-1"),
+        ]
+        upload_block = html.Div("No local upload run yet in this session.", className="text-muted")
+        if recent_upload:
+            upload_block = dbc.Alert(
+                [
+                    html.Div(f"Last upload status: {'validated' if recent_upload.get('ok') else 'failed'}"),
+                    html.Div(f"Case id: {recent_upload.get('case_id', '—')}"),
+                    html.Div(f"Input mode: {recent_upload.get('input_mode', '—')}", className="small"),
+                ],
+                color="success" if recent_upload.get("ok") else "warning",
+                className="mb-0",
+            )
+        return html.Div(
+            [
+                top,
+                html.Div(bundle_bits, className="mb-3"),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H5("Batch interpretation", className="mb-2"),
+                                        html.P(
+                                            "No active long-running batch worker is attached to the Dash UI right now. "
+                                            "This panel shows the latest visible cohort/build evidence so the app does not appear frozen or ambiguous.",
+                                            className="mb-2",
+                                        ),
+                                        html.Ul(
+                                            [
+                                                html.Li(f"Latest run directories: {', '.join(status['latest_runs']) if status['latest_runs'] else 'none found'}"),
+                                                html.Li(f"Recent upload runs: {', '.join(status['recent_upload_runs']) if status['recent_upload_runs'] else 'none yet'}"),
+                                                html.Li(f"Persisted case ids: {', '.join(str(item.get('case_id')) for item in cases[:4]) if cases else 'none yet'}"),
+                                            ],
+                                            className="mb-0",
+                                        ),
+                                    ]
+                                ),
+                                class_name="surface h-100",
+                            ),
+                            md=7,
+                        ),
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H5("Latest upload / runtime", className="mb-2"),
+                                        upload_block,
+                                    ]
+                                ),
+                                class_name="surface h-100",
+                            ),
+                            md=5,
+                        ),
+                    ],
+                    class_name="g-3",
+                ),
+            ]
+        )
 
     @app.callback(
         Output("tmb-range", "value"),
@@ -157,9 +996,10 @@ def register_callbacks(app) -> None:
         Output("selected-key-store", "data"),
         Input("scatter", "clickData"),
         Input("patient-grid", "selectedRows"),
+        Input("patient-grid-standalone", "selectedRows"),
         prevent_initial_call=True,
     )
-    def select_from_chart_or_grid(click, rows):
+    def select_from_chart_or_grid(click, rows, rows_standalone):
         tid = callback_context.triggered_id
         if tid == "scatter":
             if not click or not click.get("points"):
@@ -176,38 +1016,236 @@ def register_callbacks(app) -> None:
             if not r0.get("patient_id") or not r0.get("hla_allele"):
                 raise PreventUpdate
             return {"patient_id": str(r0["patient_id"]), "hla_allele": str(r0["hla_allele"])}
+        if tid == "patient-grid-standalone":
+            if not rows_standalone:
+                raise PreventUpdate
+            r0 = rows_standalone[0]
+            if not r0.get("patient_id") or not r0.get("hla_allele"):
+                raise PreventUpdate
+            return {"patient_id": str(r0["patient_id"]), "hla_allele": str(r0["hla_allele"])}
         raise PreventUpdate
 
     @app.callback(
-        Output("upload-arm-store", "data"),
-        Output("upload-interval", "disabled"),
-        Output("upload-interval", "n_intervals"),
         Output("upload-status", "children"),
-        Output("selected-key-store", "data", allow_duplicate=True),
+        Output("case-create-summary", "children"),
+        Output("upload-module-checklist", "options"),
+        Output("upload-module-checklist", "value"),
+        Output("run-case-btn", "disabled"),
+        Output("upload-result-store", "data"),
         Input("upload-maf", "contents"),
-        Input("upload-interval", "n_intervals"),
-        State("upload-arm-store", "data"),
         State("upload-maf", "filename"),
+        State("ui-mode", "value"),
         prevent_initial_call=True,
     )
-    def upload_stub_orchestrator(contents, n_int, arm, filename):
-        tid = callback_context.triggered_id
-        if tid == "upload-maf":
-            if not contents:
-                raise PreventUpdate
-            _fn = filename or "upload.maf"
-            return {"armed": True, "filename": _fn}, False, 0, "Armed: single-patient pipeline not enabled; timer demo only.", no_update
-        if tid == "upload-interval":
-            if not arm or not arm.get("armed"):
-                raise PreventUpdate
-            if n_int is None or n_int < 3:
-                return arm, False, no_update, f"Waiting… ({int(n_int or 0)}/3)", no_update
-            df, _ = load_qualified_candidates()
-            if df.empty:
-                return {"armed": False}, True, "No cohort loaded; cannot select demo row.", no_update
-            row = df.iloc[0]
-            demo = {"patient_id": str(row["patient_id"]), "hla_allele": str(row["hla_allele"])}
-            return {"armed": False}, True, "Demo: first cohort row selected (upload pipeline pending).", demo
+    def create_case_from_upload_callback(contents, filename, ui_mode):
+        if not contents:
+            raise PreventUpdate
+        fname = filename or "upload.tsv"
+        try:
+            runner = ModuleRunner()
+            module_specs = load_module_schema()
+            case_info = create_case_from_upload(
+                contents,
+                fname,
+                install_checks=runner.installation_checks(),
+                mode_context=str(ui_mode or "Simple"),
+            )
+        except Exception as exc:
+            return (
+                dbc.Alert(f"Upload validation or runtime setup failed: {exc}", color="danger", className="py-2 mb-0"),
+                html.Div("No case created.", className="text-muted small"),
+                [],
+                [],
+                True,
+                {"ok": False, "error": str(exc), "filename": fname},
+            )
+        validation = case_info["validation"]
+        module_specs = load_module_schema()
+        options = [
+            {
+                "label": f"{spec.display_name}{' (heavy)' if spec.heavy else ''}",
+                "value": module_id,
+            }
+            for module_id, spec in module_specs.items()
+        ]
+        enabled = [module_id for module_id in module_specs]
+        panel = html.Div(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(kpi_card(case_info["case_id"], "Case id"), md=4, sm=12),
+                        dbc.Col(kpi_card(str(validation.row_count), "Input rows"), md=4, sm=6),
+                        dbc.Col(kpi_card(validation.input_mode.upper(), "Input mode"), md=4, sm=6),
+                    ],
+                    class_name="g-2 mb-3",
+                ),
+                dbc.Alert(
+                    "The file has been validated and persisted as a local case. Review the enabled modules, then click Run to start background jobs and open the case progress view.",
+                    color="info",
+                    className="mb-2",
+                ),
+                html.Div(
+                    [
+                        dbc.Badge(f"Sample: {validation.sample_id}", color="secondary", className="me-1 mb-1"),
+                        dbc.Badge(f"Columns detected: {len(validation.columns)}", color="secondary", className="me-1 mb-1"),
+                        dbc.Badge(str(ui_mode or "Simple"), color="dark", className="me-1 mb-1"),
+                    ]
+                ),
+            ]
+        )
+        return (
+            dbc.Alert(f"Validated {fname} and created case {case_info['case_id']}.", color="success", className="py-2 mb-0"),
+            panel,
+            options,
+            enabled,
+            False,
+            {
+                "ok": True,
+                "case_id": case_info["case_id"],
+                "filename": fname,
+                "input_mode": validation.input_mode,
+                "row_count": validation.row_count,
+                "sample_id": validation.sample_id,
+            },
+        )
+
+    @app.callback(
+        Output("active-case-store", "data"),
+        Output("nav", "value", allow_duplicate=True),
+        Output("upload-result-panel", "children"),
+        Input("run-case-btn", "n_clicks"),
+        State("upload-result-store", "data"),
+        State("upload-module-checklist", "value"),
+        prevent_initial_call=True,
+    )
+    def run_case_modules(n_clicks, case_payload, enabled_modules):
+        if not n_clicks or not case_payload or not case_payload.get("case_id"):
+            raise PreventUpdate
+        case_id = str(case_payload["case_id"])
+        module_specs = load_module_schema()
+        enabled_set = set(str(x) for x in (enabled_modules or []))
+        for module_id in module_specs:
+            set_module_enabled(case_id, module_id, module_id in enabled_set)
+        runner = ModuleRunner()
+        decisions = runner.start_case(case_id)
+        return (
+            {"case_id": case_id},
+            "Cases",
+            dbc.Alert(
+                f"Started case {case_id}. Modules now running or queued: {', '.join(f'{k}={v}' for k, v in decisions.items())}",
+                color="success",
+                className="mb-0",
+            ),
+        )
+
+    @app.callback(
+        Output("case-select", "options"),
+        Output("case-select", "value"),
+        Output("case-list-panel", "children"),
+        Input("case-status-interval", "n_intervals"),
+        Input("active-case-store", "data"),
+        Input("upload-result-store", "data"),
+    )
+    def refresh_cases(_n, active_case, upload_case):
+        manifests = list_cases()
+        options = [
+            {
+                "label": f"{item.get('sample_id', 'sample')} ({item.get('case_id', 'case')})",
+                "value": str(item.get("case_id")),
+            }
+            for item in manifests
+            if item.get("case_id")
+        ]
+        desired = None
+        if isinstance(active_case, dict):
+            desired = active_case.get("case_id")
+        if desired is None and isinstance(upload_case, dict):
+            desired = upload_case.get("case_id")
+        valid_ids = {item["value"] for item in options}
+        value = str(desired) if desired in valid_ids else (options[0]["value"] if options else None)
+        return options, value, render_case_list(manifests, value)
+
+    @app.callback(
+        Output("active-case-store", "data", allow_duplicate=True),
+        Input("case-select", "value"),
+        prevent_initial_call=True,
+    )
+    def sync_active_case(case_id):
+        if not case_id:
+            raise PreventUpdate
+        return {"case_id": str(case_id)}
+
+    @app.callback(
+        Output("case-detail-panel", "children"),
+        Input("case-status-interval", "n_intervals"),
+        Input("active-case-store", "data"),
+        Input("case-select", "value"),
+        Input("ui-mode", "value"),
+    )
+    def render_case_progress(_n, active_case, selected_case, ui_mode):
+        case_id = selected_case
+        if isinstance(active_case, dict) and active_case.get("case_id"):
+            case_id = selected_case or active_case.get("case_id")
+        if case_id:
+            try:
+                ModuleRunner().resume_case(str(case_id))
+            except Exception:
+                pass
+        return render_case_detail(str(case_id) if case_id else None, str(ui_mode or "Simple"))
+
+    @app.callback(
+        Output("case-action-status", "children"),
+        Input("case-rna-upload", "contents"),
+        Input("case-purity-upload", "contents"),
+        Input("case-cnv-upload", "contents"),
+        State("case-rna-upload", "filename"),
+        State("case-purity-upload", "filename"),
+        State("case-cnv-upload", "filename"),
+        State("active-case-store", "data"),
+        prevent_initial_call=True,
+    )
+    def attach_sidecar(rna_contents, purity_contents, cnv_contents, rna_name, purity_name, cnv_name, active_case):
+        case_id = str((active_case or {}).get("case_id") or "")
+        if not case_id:
+            raise PreventUpdate
+        trigger = callback_context.triggered_id
+        if trigger == "case-rna-upload" and rna_contents:
+            attach_case_input(case_id, "rna_sidecar", rna_contents, rna_name or "rna.tsv")
+            reset_module_for_rerun(case_id, "expression_join")
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Attached RNA sidecar and queued expression join.", color="info", className="mb-0 py-2")
+        if trigger == "case-purity-upload" and purity_contents:
+            attach_case_input(case_id, "purity_sidecar", purity_contents, purity_name or "purity.tsv")
+            reset_module_for_rerun(case_id, "clonality_pyclone_vi")
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Attached purity sidecar and refreshed clonality.", color="info", className="mb-0 py-2")
+        if trigger == "case-cnv-upload" and cnv_contents:
+            attach_case_input(case_id, "cnv_sidecar", cnv_contents, cnv_name or "cnv.tsv")
+            reset_module_for_rerun(case_id, "clonality_pyclone_vi")
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Attached CNV sidecar and refreshed clonality.", color="info", className="mb-0 py-2")
+        raise PreventUpdate
+
+    @app.callback(
+        Output("case-action-status", "children", allow_duplicate=True),
+        Input("rerun-expression-btn", "n_clicks"),
+        Input("rerun-clonality-btn", "n_clicks"),
+        State("active-case-store", "data"),
+        prevent_initial_call=True,
+    )
+    def rerun_case_module(expr_clicks, clon_clicks, active_case):
+        case_id = str((active_case or {}).get("case_id") or "")
+        if not case_id:
+            raise PreventUpdate
+        trigger = callback_context.triggered_id
+        if trigger == "rerun-expression-btn" and expr_clicks:
+            reset_module_for_rerun(case_id, "expression_join")
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Expression join queued for rerun.", color="info", className="mb-0 py-2")
+        if trigger == "rerun-clonality-btn" and clon_clicks:
+            reset_module_for_rerun(case_id, "clonality_pyclone_vi")
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Clonality module queued for rerun.", color="info", className="mb-0 py-2")
         raise PreventUpdate
 
     @app.callback(
@@ -237,6 +1275,8 @@ def register_callbacks(app) -> None:
         Output("evidence-panel", "children"),
         Output("patient-detail", "children"),
         Output("patient-grid", "rowData"),
+        Output("patient-detail-standalone", "children"),
+        Output("patient-grid-standalone", "rowData"),
         Output("footer", "children"),
         Input("nav", "value"),
         Input("tier-filter", "value"),
@@ -300,6 +1340,8 @@ def register_callbacks(app) -> None:
                 html.Div(),
                 empty,
                 detail,
+                detail,
+                [],
                 detail,
                 [],
                 "NeoResist-MD",
@@ -387,7 +1429,7 @@ def register_callbacks(app) -> None:
 
         cov = hla_coverage_badge_row(fc)
 
-        if nav not in {"Overview", "Patient Explorer"}:
+        if nav not in {"Overview", "Patients", "Advanced Strategies"}:
             empty = make_scatter_fig(pd.DataFrame())
             detail = [html.Div("Switch to Overview for cohort tools.", className="text-muted")]
             return (
@@ -396,6 +1438,8 @@ def register_callbacks(app) -> None:
                 cov,
                 empty,
                 detail,
+                detail,
+                [],
                 detail,
                 [],
                 "ResistanceLoop v1 · NeoResist-MD",
@@ -408,6 +1452,7 @@ def register_callbacks(app) -> None:
 
         evidence = build_evidence_panel(fc, pid, hla)
         detail = build_patient_detail_card(fc, pid, hla)
+        standalone_detail = build_patient_detail_card(fc, pid, hla)
 
         grid_rows = agg_s.to_dict("records")
         n_pat = int(df["patient_id"].nunique()) if not df.empty else 0
@@ -429,4 +1474,4 @@ def register_callbacks(app) -> None:
             f"Data: {src} · app v{ver} · ResistanceLoop v1"
         )
 
-        return banner, kpis, cov, fig, evidence, detail, grid_rows, footer
+        return banner, kpis, cov, fig, evidence, detail, grid_rows, standalone_detail, grid_rows, footer
