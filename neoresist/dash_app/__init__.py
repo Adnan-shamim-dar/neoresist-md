@@ -4,6 +4,7 @@ from dash import Dash
 
 from neoresist.dash_app.constants import APP_TITLE, EXTERNAL_STYLESHEETS
 from neoresist.paths import repo_root
+from neoresist_md.config_validation import validate_config_contract
 
 
 def create_app() -> Dash:
@@ -11,6 +12,7 @@ def create_app() -> Dash:
     from neoresist.dash_app.callbacks import register_callbacks
     from neoresist.dash_app.layout import build_layout
 
+    validate_config_contract(repo_root() / "neoresist_md" / "config")
     assets = str(repo_root() / "assets")
     app = Dash(
         __name__,

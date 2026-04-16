@@ -6,3 +6,7 @@ __pycache__/
 env/
 outputs/*
 !outputs/.gitkeep
+local_state/*
+!local_state/.gitkeep
+local_state/strategies/*
+!local_state/strategies/.gitkeep

@@ -1,0 +1,54 @@
+# Tool availability registry
+# Platform checks these at startup and marks tools as available/unavailable
+
+binding:
+  mhcflurry:
+    name: "MHCflurry 2.0"
+    check_command: "mhcflurry-predict --help"
+    install: "pip install mhcflurry"
+    license: "Apache 2.0"
+    default: true
+  netmhcpan:
+    name: "NetMHCpan 4.2"
+    check_command: "netMHCpan -h"
+    install: "Download from DTU (academic license)"
+    license: "Academic only - commercial license required"
+    default: false
+
+presentation:
+  netctlpan:
+    name: "NetCTLpan 1.1"
+    check_command: "netCTLpan -h"
+    install: "Download from DTU"
+    license: "Academic only"
+    default: true
+
+clonality:
+  vaf_proxy:
+    name: "VAF Proxy (v0 fallback)"
+    check_command: null
+    install: "built-in"
+    license: "MIT"
+    default: true
+  pyclone_vi:
+    name: "PyClone-VI"
+    check_command: "pyclone-vi --help"
+    install: "pip install pyclone-vi"
+    license: "MIT"
+    default: false
+
+escape:
+  lohhla:
+    name: "LOHHLA"
+    check_command: "Rscript LOHHLA.R --help"
+    install: "Download from GitHub"
+    license: "Academic"
+    default: true
+
+recognition:
+  blosum62:
+    name: "BLOSUM62 + Foreignness"
+    check_command: null
+    install: "pip install biopython"
+    license: "MIT"
+    default: true

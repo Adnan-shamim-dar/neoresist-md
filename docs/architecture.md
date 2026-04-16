@@ -49,12 +49,41 @@ flowchart LR
 | `schema.py` | Explicit column synonyms + `validate_dash_columns` |
 | `loaders.py` | `load_cohort_for_dash` — env path, config search list, CSV/Parquet/XLSX, rich errors |
 | `metadata.py` | Stamp `dataset_name`, `app_version` on enriched outputs |
+| `canonical_schema.py` | Load the canonical long-format table contract and materialize append-only module outputs |
+| `module_schema.py` | Load the prompt-aligned module registry from YAML |
+| `case_store.py` | Persist cases, manifests, artifacts, audit events, and module checkpoint metadata |
+| `module_runner.py` | Resume-safe orchestration of background module workers |
+| `case_worker.py` | Per-module execution entrypoint writing persisted artifacts to disk |
+| `case_ui.py` | Expert/Simple case rendering for persisted module workflows |
+| `ops_status.py` | Summarize persisted runtime state for the pipeline status panel |
 | `dash_app/` | Dash layout, callbacks, data cache helpers |
 
 ## Data flow
 
 1. **Enrich:** `join_tcga_metadata` → purity → expression → clonality → `apply_resistance_loop` (wraps engine) → provenance → `stamp_enrichment_metadata` → Parquet.
 2. **Dash:** Callbacks call `load_cohort_for_dash` (or cache-aligned `seed_cache`), filter/aggregate, Plotly/AgGrid.
+3. **Case workflow:** upload → persisted case manifest → background module workers → canonical/module artifacts on disk → Expert/Simple case view reads saved state without recomputation.
+
+## Hybrid module runtime
+
+- Supported local modules:
+  - `neoantigen_generation`
+  - `expression_join`
+  - `resistance_loop`
+  - `strategy_engine`
+  - `prioritization_tiering`
+- Conditional local/external module:
+  - `clonality_pyclone_vi`
+- Explicit unavailable placeholders:
+  - `presentation_netctlpan`
+  - `escape_lohhla`
+  - `recognition_foreignness`
+
+Each module persists:
+- `status.json`
+- checkpoint metadata (`checkpoint_label`, `resume_ready`, `attempt_count`)
+- artifacts under the case module directory
+- audit events in the case audit log
 
 ## Adding a scoring profile
 

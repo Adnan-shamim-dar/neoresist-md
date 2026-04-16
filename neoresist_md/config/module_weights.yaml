@@ -1,0 +1,19 @@
+# NeoResist-MD Module Weights v1.0
+# ALL weights live here. NEVER hardcode weights in Python files.
+# Changing this file changes scoring without code changes.
+
+immunogenicity:
+  binding: 0.30
+  presentation: 0.25
+  expression: 0.20
+  recognition: 0.25
+
+resistance:
+  resistance_loh: 0.35
+  resistance_volatility: 0.25
+  resistance_expression: 0.25
+  resistance_processing: 0.15
+
+final:
+  immunogenicity_weight: 0.50
+  resistance_weight: 0.50

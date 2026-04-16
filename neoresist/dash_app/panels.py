@@ -223,6 +223,14 @@ def build_evidence_panel(
         html.H5("Evidence (ResistanceLoop v1)", className="mb-2"),
         html.Div(
             [
+                dbc.Alert(
+                    [
+                        html.Strong("What ResistanceLoop means: "),
+                        "higher scores indicate candidates with stronger presentation/expression/clonality support and fewer obvious escape routes such as LOH or unstable subclonality.",
+                    ],
+                    color="info",
+                    className="mb-3",
+                ),
                 html.Div(
                     [html.Strong("Selection: "), f"{patient_id} · {hla_allele}"],
                     className="mb-2 font-monospace",
@@ -232,8 +240,16 @@ def build_evidence_panel(
                 html.Div(
                     [
                         html.Div("Representative row (max RL in selection)", className="text-muted small"),
+                        html.Div(
+                            f"ResistanceLoop score: {float(rep.get('rl_priority', 0.0)):.3f} · tier {int(rep.get('tier', 3))}",
+                            className="mt-1",
+                        ),
                         html.Div(f"Clonality class: {_ccf_clonality_class(ccf)}", className="mt-1"),
                         html.Div(f"RL components: {rl_calc}", className="mt-1 small text-break"),
+                        html.Div(
+                            "Biology: the score rises when the peptide looks visible and durable, and falls when escape routes look plausible.",
+                            className="mt-1 text-muted small",
+                        ),
                     ],
                     className="mb-2",
                 ),
@@ -338,6 +354,27 @@ def build_patient_detail_card(
         xaxis_title="Count",
     )
 
+    candidate_preview = sub.nlargest(8, "rl_priority")[
+        ["gene", "mutant_peptide", "rl_priority", "tier"]
+    ].copy()
+    if "coherence_score" in sub.columns:
+        candidate_preview["coherence_score"] = sub.nlargest(8, "rl_priority")["coherence_score"].tolist()
+    preview_rows = []
+    for _, row in candidate_preview.iterrows():
+        preview_rows.append(
+            html.Tr(
+                [
+                    html.Td(str(row.get("gene", ""))),
+                    html.Td(str(row.get("mutant_peptide", "")), className="font-monospace"),
+                    html.Td(f"{float(row.get('rl_priority', 0.0)):.3f}"),
+                    html.Td(str(int(row.get("tier", 3)))),
+                    html.Td(
+                        f"{float(row.get('coherence_score', 0.0)):.3f}" if "coherence_score" in row.index else "—"
+                    ),
+                ]
+            )
+        )
+
     return [
         html.Div(
             [
@@ -361,5 +398,16 @@ def build_patient_detail_card(
             outline=True,
             size="sm",
             className="mb-1",
+        ),
+        html.Hr(className="border-secondary my-3"),
+        html.H5("Top candidate rows", className="mb-2"),
+        dbc.Table(
+            [
+                html.Thead(html.Tr([html.Th("Gene"), html.Th("Peptide"), html.Th("RL score"), html.Th("Tier"), html.Th("Coherence")])),
+                html.Tbody(preview_rows),
+            ],
+            bordered=False,
+            size="sm",
+            className="mb-0 text-light",
         ),
     ]

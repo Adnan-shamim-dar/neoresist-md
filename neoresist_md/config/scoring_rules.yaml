@@ -1,0 +1,5 @@
+schema_version: "1.0.0"
+tier_rules:
+  tier1_above: 0.70
+  tier2_above: 0.40
+

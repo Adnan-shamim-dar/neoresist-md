@@ -22,4 +22,5 @@ server = app.server
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "8050"))
-    app.run(debug=False, host="0.0.0.0", port=port)
+    debug = os.environ.get("DASH_DEBUG", "").strip().lower() in {"1", "true", "yes", "on"}
+    app.run(debug=debug, host="0.0.0.0", port=port)

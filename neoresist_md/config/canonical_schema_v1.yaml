@@ -1,0 +1,293 @@
+schema_version: "1.0.0"
+
+column_groups:
+  provenance:
+    - patient_id
+    - sample_barcode
+    - run_id
+    - timestamp
+    - schema_version
+  mutation:
+    - gene
+    - protein_change
+    - genomic_locus
+    - chrom
+    - pos
+    - ref
+    - alt
+    - ref_count
+    - alt_count
+    - vaf
+  peptide:
+    - mutant_peptide
+    - wildtype_peptide
+    - peptide_length
+    - peptide_position
+    - peptide_source
+  binding:
+    - binding_affinity
+    - binding_rank
+    - binding_tool
+    - binding_tool_version
+    - hla_allele
+    - binding_confidence
+  presentation:
+    - cleavage_score
+    - tap_score
+    - presentation_composite
+    - presentation_tool
+    - presentation_confidence
+  expression:
+    - expression_tpm
+    - expression_flag
+    - expression_confidence
+    - expression_tool
+  clonality:
+    - tumour_purity
+    - local_copy_number
+    - ccf
+    - ccf_cluster
+    - clonality_class
+    - clonality_confidence
+    - clonality_tool
+  escape:
+    - hla_loh_status
+    - hla_loh_probability
+    - allele_integrity_flag
+    - processing_disruption_flag
+    - escape_tool
+    - escape_confidence
+  recognition:
+    - self_dissimilarity
+    - mutant_wt_distance
+    - recognition_score
+    - recognition_tool
+    - recognition_confidence
+  resistance:
+    - resistance_loh_penalty
+    - resistance_volatility_flag
+    - resistance_expression_instability
+    - resistance_processing_disruption
+    - resistance_composite
+    - resistance_confidence
+  strategy:
+    - strategy_id
+    - strategy_source
+    - weight_vector_json
+  action:
+    - exclusion_flags
+    - exclusion_reasons
+    - tier
+    - composite_priority
+    - report_summary
+
+all_columns:
+  - patient_id
+  - sample_barcode
+  - run_id
+  - timestamp
+  - schema_version
+  - gene
+  - protein_change
+  - genomic_locus
+  - chrom
+  - pos
+  - ref
+  - alt
+  - ref_count
+  - alt_count
+  - vaf
+  - mutant_peptide
+  - wildtype_peptide
+  - peptide_length
+  - peptide_position
+  - peptide_source
+  - binding_affinity
+  - binding_rank
+  - binding_tool
+  - binding_tool_version
+  - hla_allele
+  - binding_confidence
+  - cleavage_score
+  - tap_score
+  - presentation_composite
+  - presentation_tool
+  - presentation_confidence
+  - expression_tpm
+  - expression_flag
+  - expression_confidence
+  - expression_tool
+  - tumour_purity
+  - local_copy_number
+  - ccf
+  - ccf_cluster
+  - clonality_class
+  - clonality_confidence
+  - clonality_tool
+  - hla_loh_status
+  - hla_loh_probability
+  - allele_integrity_flag
+  - processing_disruption_flag
+  - escape_tool
+  - escape_confidence
+  - self_dissimilarity
+  - mutant_wt_distance
+  - recognition_score
+  - recognition_tool
+  - recognition_confidence
+  - resistance_loh_penalty
+  - resistance_volatility_flag
+  - resistance_expression_instability
+  - resistance_processing_disruption
+  - resistance_composite
+  - resistance_confidence
+  - strategy_id
+  - strategy_source
+  - weight_vector_json
+  - exclusion_flags
+  - exclusion_reasons
+  - tier
+  - composite_priority
+  - report_summary
+
+required_columns:
+  - patient_id
+  - sample_barcode
+  - run_id
+  - timestamp
+  - schema_version
+  - gene
+  - protein_change
+  - genomic_locus
+  - chrom
+  - pos
+  - ref
+  - alt
+  - ref_count
+  - alt_count
+  - vaf
+  - mutant_peptide
+  - wildtype_peptide
+  - peptide_length
+  - peptide_position
+  - peptide_source
+  - binding_affinity
+  - binding_rank
+  - binding_tool
+  - binding_tool_version
+  - hla_allele
+  - binding_confidence
+  - cleavage_score
+  - tap_score
+  - presentation_composite
+  - presentation_tool
+  - presentation_confidence
+  - expression_tpm
+  - expression_flag
+  - expression_confidence
+  - expression_tool
+  - tumour_purity
+  - local_copy_number
+  - ccf
+  - ccf_cluster
+  - clonality_class
+  - clonality_confidence
+  - clonality_tool
+  - hla_loh_status
+  - hla_loh_probability
+  - allele_integrity_flag
+  - processing_disruption_flag
+  - escape_tool
+  - escape_confidence
+  - self_dissimilarity
+  - mutant_wt_distance
+  - recognition_score
+  - recognition_tool
+  - recognition_confidence
+  - resistance_loh_penalty
+  - resistance_volatility_flag
+  - resistance_expression_instability
+  - resistance_processing_disruption
+  - resistance_composite
+  - resistance_confidence
+  - strategy_id
+  - strategy_source
+  - weight_vector_json
+  - exclusion_flags
+  - exclusion_reasons
+  - tier
+  - composite_priority
+  - report_summary
+
+enum_values:
+  expression_flag: [EXPRESSED, LOW, ABSENT, UNKNOWN]
+  clonality_class: [CLONAL, SUBCLONAL, UNKNOWN]
+  hla_loh_status: [LOH_DETECTED, LOH_SUSPECTED, INTACT, UNKNOWN]
+  tier: [TIER_1, TIER_2, TIER_3, EXCLUDED]
+
+module_column_ownership:
+  generation:
+    - binding_affinity
+    - binding_rank
+    - binding_tool
+    - binding_tool_version
+    - hla_allele
+    - binding_confidence
+  presentation:
+    - cleavage_score
+    - tap_score
+    - presentation_composite
+    - presentation_tool
+    - presentation_confidence
+  expression:
+    - expression_tpm
+    - expression_flag
+    - expression_confidence
+    - expression_tool
+  clonality:
+    - tumour_purity
+    - local_copy_number
+    - ccf
+    - ccf_cluster
+    - clonality_class
+    - clonality_confidence
+    - clonality_tool
+  escape:
+    - hla_loh_status
+    - hla_loh_probability
+    - allele_integrity_flag
+    - processing_disruption_flag
+    - escape_tool
+    - escape_confidence
+  recognition:
+    - self_dissimilarity
+    - mutant_wt_distance
+    - recognition_score
+    - recognition_tool
+    - recognition_confidence
+  resistance_loop:
+    - resistance_loh_penalty
+    - resistance_volatility_flag
+    - resistance_expression_instability
+    - resistance_processing_disruption
+    - resistance_composite
+    - resistance_confidence
+  strategy_engine:
+    - strategy_id
+    - strategy_source
+    - weight_vector_json
+  prioritization:
+    - exclusion_flags
+    - exclusion_reasons
+    - tier
+    - composite_priority
+    - report_summary
+
+defaults:
+  binding_confidence: UNKNOWN
+  presentation_confidence: UNKNOWN
+  expression_confidence: UNKNOWN
+  clonality_confidence: UNKNOWN
+  escape_confidence: UNKNOWN
+  recognition_confidence: UNKNOWN
+  resistance_confidence: UNKNOWN

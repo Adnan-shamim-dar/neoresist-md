@@ -44,8 +44,9 @@ def build_layout() -> dbc.Container:
             dcc.Store(id="strategy-refresh-store", data={"revision": 0}),
             dcc.Store(id="upload-result-store", data=None),
             dcc.Store(id="active-case-store", data=None),
-            dcc.Interval(id="case-status-interval", interval=3000, n_intervals=0),
+            dcc.Interval(id="case-status-interval", interval=3000, n_intervals=0, disabled=True),
             dcc.Download(id="download-patient-csv"),
+            dcc.Download(id="download-canonical-csv"),
             dbc.Row(
                 [
                     dbc.Col(
@@ -212,41 +213,79 @@ def build_layout() -> dbc.Container:
                                 children="TCGA-SARC — ResistanceLoop v1 evidence-aware neoantigen qualification",
                                 className="subtitle",
                             ),
-                            dbc.Collapse(
+                            html.Div(
                                 dbc.Card(
                                     dbc.CardBody(
-                                        html.Div(
-                                            id="methodology-panel",
-                                            children="Loading profile metadata…",
-                                            className="small text-muted",
-                                        )
+                                        [
+                                            html.H4("Answer-first workspace", className="mb-2"),
+                                            html.P(
+                                                "Simple mode hides machinery and focuses on the best candidates, evidence cards, and export-ready outputs.",
+                                                className="mb-0",
+                                            ),
+                                        ]
                                     ),
                                     class_name="surface panel mb-2",
                                 ),
-                                id="methodology-collapse",
-                                is_open=False,
+                                id="simple-hero-shell",
                             ),
-                            dbc.Button(
-                                "Methodology / active profile",
-                                id="methodology-toggle",
-                                color="link",
-                                className="px-0 mb-2 text-info",
-                            ),
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [
-                                        html.H5("Active modular engine", className="mb-2"),
-                                        html.Div(id="strategy-panel", className="small text-muted"),
-                                        dbc.Button(
-                                            "Open Advanced Strategies",
-                                            id="jump-to-advanced-btn",
-                                            color="info",
-                                            outline=True,
-                                            class_name="mt-3",
-                                        ),
-                                    ]
+                            html.Div(
+                                dbc.Card(
+                                    dbc.CardBody(
+                                        [
+                                            html.H4("Full pipeline workspace", className="mb-2"),
+                                            html.P(
+                                                "Expert mode exposes modules, strategy controls, diagnostics, raw artifacts, and the deeper execution workflow.",
+                                                className="mb-0",
+                                            ),
+                                        ]
+                                    ),
+                                    class_name="surface panel mb-2",
                                 ),
-                                class_name="surface panel mb-2",
+                                id="expert-hero-shell",
+                            ),
+                            html.Div(
+                                [
+                                    dbc.Collapse(
+                                        dbc.Card(
+                                            dbc.CardBody(
+                                                html.Div(
+                                                    id="methodology-panel",
+                                                    children="Loading profile metadata…",
+                                                    className="small text-muted",
+                                                )
+                                            ),
+                                            class_name="surface panel mb-2",
+                                        ),
+                                        id="methodology-collapse",
+                                        is_open=False,
+                                    ),
+                                    dbc.Button(
+                                        "Methodology / active profile",
+                                        id="methodology-toggle",
+                                        color="link",
+                                        className="px-0 mb-2 text-info",
+                                    ),
+                                ],
+                                id="expert-methodology-shell",
+                            ),
+                            html.Div(
+                                dbc.Card(
+                                    dbc.CardBody(
+                                        [
+                                            html.H5("Active modular engine", className="mb-2"),
+                                            html.Div(id="strategy-panel", className="small text-muted"),
+                                            dbc.Button(
+                                                "Open Advanced Strategies",
+                                                id="jump-to-advanced-btn",
+                                                color="info",
+                                                outline=True,
+                                                class_name="mt-3",
+                                            ),
+                                        ]
+                                    ),
+                                    class_name="surface panel mb-2",
+                                ),
+                                id="expert-strategy-shell",
                             ),
                             html.Div(
                                 dbc.Card(
@@ -488,8 +527,123 @@ def build_layout() -> dbc.Container:
                                         ],
                                         class_name="g-3",
                                     ),
+                                    html.Div(
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Module stack panel", className="mb-2"),
+                                                                html.P(
+                                                                    "Pipeline cards with tool selectors and per-module influence sliders. Save creates a versioned strategy.",
+                                                                    className="small text-muted mb-3",
+                                                                ),
+                                                                html.Div(id="expert-module-stack-panel"),
+                                                                html.Label("New strategy name", className="text-muted mt-2"),
+                                                                dbc.Input(
+                                                                    id="expert-strategy-name-input",
+                                                                    type="text",
+                                                                    placeholder="e.g. Immuno-heavy v2",
+                                                                    class_name="mb-2",
+                                                                ),
+                                                                dbc.Button(
+                                                                    "Save versioned strategy",
+                                                                    id="expert-save-strategy-version-btn",
+                                                                    color="success",
+                                                                    class_name="me-2",
+                                                                ),
+                                                                html.Div(id="expert-strategy-save-status", className="small mt-2"),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    lg=6,
+                                                    md=12,
+                                                ),
+                                                dbc.Col(
+                                                    [
+                                                        dbc.Card(
+                                                            dbc.CardBody(
+                                                                [
+                                                                    html.H5("Strategy library browser", className="mb-2"),
+                                                                    html.Div(id="expert-strategy-library-browser"),
+                                                                    html.Hr(className="border-secondary my-3"),
+                                                                    dbc.Button(
+                                                                        "Download raw canonical table",
+                                                                        id="download-canonical-btn",
+                                                                        color="info",
+                                                                        outline=True,
+                                                                        class_name="mb-2",
+                                                                    ),
+                                                                    html.Div(
+                                                                        "Exports the current canonical long table (post-filter) as CSV.",
+                                                                        className="small text-muted",
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                            class_name="surface panel mb-3",
+                                                        ),
+                                                        dbc.Card(
+                                                            dbc.CardBody(
+                                                                [
+                                                                    html.H6("AutoResearch digest", className="mb-2"),
+                                                                    html.Div(
+                                                                        "Placeholder: external retrieval/ranking digest will appear here when configured.",
+                                                                        className="small text-muted",
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                            class_name="surface panel mb-3",
+                                                        ),
+                                                        dbc.Card(
+                                                            dbc.CardBody(
+                                                                [
+                                                                    html.H6("External tool upload wizard", className="mb-2"),
+                                                                    html.Div(
+                                                                        "Placeholder: guided adapter/runtime upload and validation flow.",
+                                                                        className="small text-muted",
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                            class_name="surface panel mb-3",
+                                                        ),
+                                                        dbc.Card(
+                                                            dbc.CardBody(
+                                                                [
+                                                                    html.H6("Module confidence cards", className="mb-2"),
+                                                                    html.Div(id="expert-confidence-cards"),
+                                                                ]
+                                                            ),
+                                                            class_name="surface panel",
+                                                        ),
+                                                    ],
+                                                    lg=6,
+                                                    md=12,
+                                                ),
+                                            ],
+                                            class_name="g-3",
+                                        ),
+                                        id="expert-two-panel-shell",
+                                    ),
                                     dbc.Row(id="kpi-cards", class_name="kpi-row"),
                                     html.Div(id="hla-coverage-row", className="mb-2"),
+                                    html.Div(
+                                        dbc.Card(
+                                            dbc.CardBody(
+                                                [
+                                                    html.H5("Recommended candidates", className="mb-2"),
+                                                    html.P(
+                                                        "Simple mode shows the answer first: the highest-priority candidates under the active filters.",
+                                                        className="text-muted small mb-3",
+                                                    ),
+                                                    html.Div(id="simple-answer-panel"),
+                                                ]
+                                            ),
+                                            class_name="surface panel",
+                                        ),
+                                        id="simple-answer-shell",
+                                    ),
                                     dbc.Card(
                                         dbc.CardBody(
                                             [
@@ -502,6 +656,70 @@ def build_layout() -> dbc.Container:
                                     ),
                                     dbc.Card(dbc.CardBody(id="evidence-panel"), class_name="surface panel"),
                                     dbc.Card(dbc.CardBody(id="patient-detail"), class_name="surface panel"),
+                                    html.Div(
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Tier mix", className="mb-2"),
+                                                                dcc.Graph(id="expert-tier-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Evidence blend", className="mb-2"),
+                                                                dcc.Graph(id="expert-evidence-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                            ],
+                                            class_name="g-3",
+                                        ),
+                                        id="expert-diagnostics-shell",
+                                    ),
+                                    html.Div(
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Module status distribution", className="mb-2"),
+                                                                dcc.Graph(id="expert-module-health-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Strategy weight profile", className="mb-2"),
+                                                                dcc.Graph(id="expert-strategy-delta-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                            ],
+                                            class_name="g-3",
+                                        ),
+                                        id="expert-extra-diagnostics-shell",
+                                    ),
                                     dbc.Card(
                                         dbc.CardBody(
                                             [
@@ -630,6 +848,12 @@ def build_layout() -> dbc.Container:
                                         ),
                                         dbc.Button("Use this cohort file", id="cohort-path-apply", color="info", outline=True, className="w-100"),
                                         html.Div(id="cohort-path-status", className="mt-2 text-muted small"),
+                                        html.Hr(className="border-secondary my-3"),
+                                        html.H5("Ranked list", className="mb-2"),
+                                        html.Div(id="simple-tier-badges", className="mb-2"),
+                                        html.Div(id="simple-ranked-list", className="mb-3"),
+                                        html.H5("Evidence cards", className="mb-2"),
+                                        html.Div(id="simple-evidence-cards"),
                                     ]
                                 ),
                                 class_name="surface panel",
@@ -695,8 +919,16 @@ def build_layout() -> dbc.Container:
                                                                     ),
                                                                     dbc.Row(
                                                                         [
-                                                                            dbc.Col(dbc.Button("Rerun expression", id="rerun-expression-btn", color="info", outline=True, class_name="w-100"), md=6),
-                                                                            dbc.Col(dbc.Button("Rerun clonality", id="rerun-clonality-btn", color="info", outline=True, class_name="w-100"), md=6),
+                                                                            dbc.Col(dbc.Button("Rerun expression", id="rerun-expression-btn", color="info", outline=True, class_name="w-100"), md=4),
+                                                                            dbc.Col(dbc.Button("Rerun clonality", id="rerun-clonality-btn", color="info", outline=True, class_name="w-100"), md=4),
+                                                                            dbc.Col(dbc.Button("Rerun ResistanceLoop", id="rerun-resistance-btn", color="info", outline=True, class_name="w-100"), md=4),
+                                                                        ],
+                                                                        class_name="g-2 mb-2",
+                                                                    ),
+                                                                    dbc.Row(
+                                                                        [
+                                                                            dbc.Col(dbc.Button("Rerun strategies", id="rerun-strategy-btn", color="info", outline=True, class_name="w-100"), md=6),
+                                                                            dbc.Col(dbc.Button("Rerun prioritization", id="rerun-prioritization-btn", color="info", outline=True, class_name="w-100"), md=6),
                                                                         ],
                                                                         class_name="g-2",
                                                                     ),

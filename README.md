@@ -13,6 +13,13 @@ python app.py
 
 Then open `http://127.0.0.1:8050` (or set `PORT` / see `.env.example`).
 
+For local hot reload while editing the Dash UI:
+
+```bash
+set DASH_DEBUG=1
+python app.py
+```
+
 ### Modular layout
 
 - **`neoresist/`** — config loading, cohort loaders, schema synonyms, YAML-driven **scoring** (`configs/scoring_profiles/`) and **rules** (`configs/rule_profiles/`), enrichment metadata stamps.

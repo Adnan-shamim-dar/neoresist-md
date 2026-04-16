@@ -1,0 +1,202 @@
+schema_version: "1.0.0"
+modules:
+  neoantigen_generation:
+    display_name: "Neoantigen generation"
+    version: "1.0.0"
+    heavy: true
+    dependencies: []
+    required_inputs:
+      - primary_upload
+    optional_inputs: []
+    outputs:
+      - artifact_key: candidates_csv
+        filename: candidates.csv
+        label: "Candidate table"
+        display_columns: ["gene_name", "peptide", "best_allele", "presentation_score", "priority_score", "triage_label"]
+      - artifact_key: neo_candidates_json
+        filename: neo_candidates.json
+        label: "Canonical neoantigen JSON"
+      - artifact_key: run_metadata_json
+        filename: run_metadata.json
+        label: "Run metadata"
+      - artifact_key: case_report_md
+        filename: case_report.md
+        label: "Case report"
+      - artifact_key: supported_csv
+        filename: supported.csv
+        label: "Supported rows"
+      - artifact_key: rejected_csv
+        filename: rejected.csv
+        label: "Rejected rows"
+      - artifact_key: canonical_candidates_csv
+        filename: canonical_candidates.csv
+        label: "Canonical candidate table"
+    missing_policy: "required"
+    tooltip:
+      short: "Generates peptide candidates and binding/presentation evidence from the uploaded tumor file."
+      long: "This module runs the local NeoVax generation and presentation pipeline. It is the first heavy module and produces the earliest browseable outputs for a new case."
+  expression_join:
+    display_name: "Expression join"
+    version: "1.0.0"
+    heavy: false
+    dependencies:
+      - neoantigen_generation
+    required_inputs: []
+    optional_inputs:
+      - rna_sidecar
+    outputs:
+      - artifact_key: expression_candidates_csv
+        filename: expression_candidates.csv
+        label: "Expression-annotated candidates"
+        display_columns: ["gene_name", "peptide", "real_expression_tpm", "expression_bin", "RNA_data_missing"]
+      - artifact_key: expression_summary_json
+        filename: expression_summary.json
+        label: "Expression summary"
+      - artifact_key: expression_canonical_csv
+        filename: expression_canonical.csv
+        label: "Expression canonical table"
+    missing_policy: "mark_unavailable"
+    tooltip:
+      short: "Adds measured RNA evidence when a gene-expression sidecar is available."
+      long: "This module reads a case-specific RNA sidecar and annotates neoantigen candidates with real TPM values, expression bins, and missing-data flags. Without RNA input it stays honest and marks itself unavailable."
+  clonality_pyclone_vi:
+    display_name: "PyClone-VI clonality"
+    version: "1.0.0"
+    heavy: true
+    dependencies:
+      - neoantigen_generation
+    required_inputs: []
+    optional_inputs:
+      - purity_sidecar
+      - cnv_sidecar
+    outputs:
+      - artifact_key: pyclone_input_tsv
+        filename: mutations.tsv
+        label: "Prepared PyClone-VI input"
+      - artifact_key: adapter_status_json
+        filename: adapter_status.json
+        label: "Adapter status"
+      - artifact_key: clones_json
+        filename: clones.json
+        label: "Clone output"
+    missing_policy: "mark_unavailable"
+    tooltip:
+      short: "Runs clonality inference through a PyClone-VI adapter when the runtime exists."
+      long: "This module prepares clonality inputs and attempts to run a WSL-capable PyClone-VI adapter. If the adapter or environment is missing, the module reports that explicitly instead of pretending to be complete."
+  resistance_loop:
+    display_name: "ResistanceLoop scoring"
+    version: "1.0.0"
+    heavy: false
+    dependencies:
+      - neoantigen_generation
+    required_inputs: []
+    optional_inputs:
+      - rna_sidecar
+      - purity_sidecar
+      - cnv_sidecar
+    outputs:
+      - artifact_key: resistance_scored_csv
+        filename: resistance_scored.csv
+        label: "Resistance-scored candidates"
+        display_columns: ["gene", "mutant_peptide", "rl_priority", "tier", "evidence_expression_source", "evidence_ccf_source"]
+      - artifact_key: resistance_summary_json
+        filename: resistance_summary.json
+        label: "Resistance summary"
+      - artifact_key: resistance_canonical_csv
+        filename: resistance_canonical.csv
+        label: "Resistance canonical table"
+    missing_policy: "required"
+    tooltip:
+      short: "Computes ResistanceLoop priority and tiering from the best available local evidence."
+      long: "This local module re-scores candidate rows with ResistanceLoop, blending in expression and clonality evidence when present while leaving explicit gaps and confidence flags where evidence is missing."
+  strategy_engine:
+    display_name: "Strategy engine"
+    version: "1.0.0"
+    heavy: false
+    dependencies:
+      - resistance_loop
+    required_inputs: []
+    optional_inputs: []
+    outputs:
+      - artifact_key: strategy_scores_csv
+        filename: strategy_scores.csv
+        label: "Per-strategy scored candidates"
+      - artifact_key: strategy_consensus_csv
+        filename: strategy_consensus.csv
+        label: "Consensus ranking"
+      - artifact_key: strategy_summary_json
+        filename: strategy_summary.json
+        label: "Strategy summary"
+    missing_policy: "required"
+    tooltip:
+      short: "Applies saved strategies to the current case and produces consensus outputs."
+      long: "This module makes the modular scoring layer concrete by scoring the same case through multiple saved strategies, emitting a consensus ranking and a summary of how much strategies agree."
+  prioritization_tiering:
+    display_name: "Prioritization and tiering"
+    version: "1.0.0"
+    heavy: false
+    dependencies:
+      - strategy_engine
+    required_inputs: []
+    optional_inputs: []
+    outputs:
+      - artifact_key: prioritized_candidates_csv
+        filename: prioritized_candidates.csv
+        label: "Final prioritized candidates"
+        display_columns: ["patient_id", "hla_allele", "gene", "mutant_peptide", "tier", "composite_priority"]
+      - artifact_key: patient_report_json
+        filename: patient_report.json
+        label: "Patient report summary"
+    missing_policy: "required"
+    tooltip:
+      short: "Builds the final case-level prioritized export from scored strategy outputs."
+      long: "This module creates the final ranked case output for the current uploaded case, preserving tier and consensus information in a simple exportable table."
+  presentation_netctlpan:
+    display_name: "NetCTLpan presentation"
+    version: "1.0.0"
+    heavy: true
+    dependencies:
+      - neoantigen_generation
+    required_inputs: []
+    optional_inputs: []
+    outputs:
+      - artifact_key: adapter_status_json
+        filename: adapter_status.json
+        label: "Adapter status"
+    missing_policy: "mark_unavailable"
+    tooltip:
+      short: "Optional external presentation module for deeper processing evidence."
+      long: "This slot is reserved for a NetCTLpan-style adapter. Until the runtime is installed, the app keeps the module visible and marks it unavailable rather than implying it ran."
+  escape_lohhla:
+    display_name: "LOHHLA escape"
+    version: "1.0.0"
+    heavy: true
+    dependencies:
+      - neoantigen_generation
+    required_inputs: []
+    optional_inputs:
+      - cnv_sidecar
+    outputs:
+      - artifact_key: adapter_status_json
+        filename: adapter_status.json
+        label: "Adapter status"
+    missing_policy: "mark_unavailable"
+    tooltip:
+      short: "Optional HLA LOH escape module."
+      long: "This slot is reserved for a LOHHLA-style escape adapter. Until the runtime and required genomic context are available, the module remains explicit and unavailable."
+  recognition_foreignness:
+    display_name: "Foreignness recognition"
+    version: "1.0.0"
+    heavy: true
+    dependencies:
+      - neoantigen_generation
+    required_inputs: []
+    optional_inputs: []
+    outputs:
+      - artifact_key: adapter_status_json
+        filename: adapter_status.json
+        label: "Adapter status"
+    missing_policy: "mark_unavailable"
+    tooltip:
+      short: "Optional recognition model for peptide foreignness."
+      long: "This slot is reserved for a foreignness or mutant-vs-self recognition model. Until the supporting model/runtime is installed, it remains visible as an unavailable module."

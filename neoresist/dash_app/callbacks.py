@@ -3,12 +3,14 @@ from __future__ import annotations
 import io
 import math
 from collections import Counter
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 import dash_bootstrap_components as dbc
 import pandas as pd
-from dash import Input, Output, State, callback_context, dcc, html, no_update
+import plotly.express as px
+from dash import ALL, Input, Output, State, callback_context, dcc, html, no_update
 from dash.exceptions import PreventUpdate
 
 from neoresist.dash_app.data import (
@@ -35,8 +37,10 @@ from neoresist.case_store import (
     attach_case_input,
     create_case_from_upload,
     list_cases,
+    read_module_status,
     read_case_manifest,
     reset_module_for_rerun,
+    reset_modules_for_rerun,
     set_module_enabled,
 )
 from neoresist.case_ui import render_case_detail, render_case_list
@@ -58,6 +62,7 @@ from neoresist.strategy_registry import (
     summarize_strategy_run,
     build_consensus_table,
 )
+from neoresist.ui_state import resolve_view_state, section_style
 from neoresist.version import __version__
 
 
@@ -91,8 +96,30 @@ def _render_records_table(records: list[dict[str, Any]], columns: list[tuple[str
     )
 
 
-def _section_style(visible: bool) -> dict[str, str]:
-    return {"display": "block"} if visible else {"display": "none"}
+MODULE_TOOL_OPTIONS: dict[str, list[dict[str, str]]] = {
+    "neoantigen_generation": [{"label": "Local NeoVax generator", "value": "local_neovax"}],
+    "expression_join": [
+        {"label": "RNA sidecar join", "value": "rna_sidecar_join"},
+        {"label": "Stub expression fallback", "value": "stub_expression"},
+    ],
+    "clonality_pyclone_vi": [
+        {"label": "PyClone-VI adapter", "value": "pyclone_vi_adapter"},
+        {"label": "Stub clonality fallback", "value": "stub_ccf"},
+    ],
+    "resistance_loop": [{"label": "ResistanceLoop v1", "value": "rl_v1"}],
+    "strategy_engine": [{"label": "Consensus ranker", "value": "strategy_consensus"}],
+    "prioritization_tiering": [{"label": "Tier mapper", "value": "tier_mapper"}],
+    "presentation_netctlpan": [{"label": "NetCTLpan adapter (unavailable)", "value": "netctlpan_adapter"}],
+    "escape_lohhla": [{"label": "LOHHLA adapter (unavailable)", "value": "lohhla_adapter"}],
+    "recognition_foreignness": [{"label": "Foreignness adapter (unavailable)", "value": "foreignness_adapter"}],
+}
+
+MODULE_WEIGHT_TO_STRATEGY_KEY: dict[str, str] = {
+    "expression_join": "expression_norm",
+    "presentation_netctlpan": "presentation",
+    "clonality_pyclone_vi": "ccf",
+    "recognition_foreignness": "self_dissimilarity",
+}
 
 
 def register_callbacks(app) -> None:
@@ -651,31 +678,39 @@ def register_callbacks(app) -> None:
         Output("about-section", "style"),
         Output("pipeline-status-section", "style"),
         Output("scatter-card", "style"),
+        Output("simple-hero-shell", "style"),
+        Output("expert-hero-shell", "style"),
+        Output("expert-methodology-shell", "style"),
+        Output("expert-strategy-shell", "style"),
+        Output("simple-answer-shell", "style"),
+        Output("expert-diagnostics-shell", "style"),
+        Output("expert-two-panel-shell", "style"),
+        Output("expert-extra-diagnostics-shell", "style"),
         Input("nav", "value"),
         Input("ui-mode", "value"),
     )
     def toggle_sections(nav, ui_mode):
-        current = nav or "Overview"
-        is_expert = str(ui_mode or "Simple") == "Expert"
-        show_filters = current in {"Overview", "Patients"}
-        if current in {"Upload", "Cases"}:
-            note = "Case workflow mode: keep the left rail simple, use the case panel for module toggles and reruns, and open Advanced Strategies only when you want to tune scoring."
-        elif current == "Advanced Strategies":
-            note = "Modularity workspace: compare strategies, inspect consensus, and edit safe weights in Expert mode."
-        else:
-            note = "Cohort mode: use the left filters to explore the 245-patient scatterplot, then open Cases or Advanced Strategies when you need deeper workflow controls."
+        state = resolve_view_state(nav, ui_mode)
         return (
-            _section_style(show_filters),
-            note,
-            _section_style(current == "Advanced Strategies" and not is_expert),
-            _section_style(current == "Advanced Strategies" and is_expert),
-            _section_style(current == "Overview"),
-            _section_style(current == "Patients"),
-            _section_style(current == "Upload"),
-            _section_style(current == "Cases"),
-            _section_style(current == "About"),
-            _section_style(current == "Pipeline Status"),
-            _section_style(not is_expert),
+            section_style(bool(state["show_filters"])),
+            str(state["note"]),
+            section_style(bool(state["advanced_simple_note"])),
+            section_style(bool(state["advanced_section"])),
+            section_style(bool(state["overview_section"])),
+            section_style(bool(state["patients_section"])),
+            section_style(bool(state["upload_section"])),
+            section_style(bool(state["cases_section"])),
+            section_style(bool(state["about_section"])),
+            section_style(bool(state["pipeline_status_section"])),
+            section_style(bool(state["scatter_card"])),
+            section_style(bool(state["simple_hero_shell"])),
+            section_style(bool(state["expert_hero_shell"])),
+            section_style(bool(state["expert_methodology_shell"])),
+            section_style(bool(state["expert_strategy_shell"])),
+            section_style(bool(state["simple_answer_shell"])),
+            section_style(bool(state["expert_diagnostics_shell"])),
+            section_style(bool(state["expert_two_panel_shell"])),
+            section_style(bool(state["expert_extra_diagnostics_shell"])),
         )
 
     @app.callback(
@@ -684,8 +719,34 @@ def register_callbacks(app) -> None:
         Input("jump-to-advanced-inline-btn", "n_clicks"),
         prevent_initial_call=True,
     )
-    def jump_to_advanced(_n1, _n2):
+    def jump_to_advanced(n1, n2):
+        tid = callback_context.triggered_id
+        if tid == "jump-to-advanced-btn" and (n1 or 0) < 1:
+            raise PreventUpdate
+        if tid == "jump-to-advanced-inline-btn" and (n2 or 0) < 1:
+            raise PreventUpdate
         return "Advanced Strategies"
+
+    @app.callback(
+        Output("nav", "value", allow_duplicate=True),
+        Input("nav", "value"),
+        Input("ui-mode", "value"),
+        prevent_initial_call=True,
+    )
+    def enforce_simple_mode_lands_on_overview(nav_value, ui_mode):
+        # Prevent a confusing state where Simple mode stays on the Expert-only
+        # Advanced Strategies page and hides the main cohort plots.
+        if str(ui_mode or "Simple") == "Simple" and str(nav_value or "") == "Advanced Strategies":
+            return "Overview"
+        raise PreventUpdate
+
+    @app.callback(
+        Output("case-status-interval", "disabled"),
+        Input("nav", "value"),
+    )
+    def control_case_polling(nav):
+        # Avoid constant global UI "Updating..." churn when case polling is not needed.
+        return str(nav or "Overview") not in {"Cases", "Advanced Strategies"}
 
     @app.callback(
         Output("overview-modularity-summary", "children"),
@@ -738,6 +799,265 @@ def register_callbacks(app) -> None:
             ]
         )
         return compact, advanced, library, case_summary
+
+    @app.callback(
+        Output("expert-module-stack-panel", "children"),
+        Output("expert-strategy-library-browser", "children"),
+        Output("expert-confidence-cards", "children"),
+        Output("expert-module-health-fig", "figure"),
+        Output("expert-strategy-delta-fig", "figure"),
+        Input("active-strategy-select", "value"),
+        Input("strategy-refresh-store", "data"),
+        Input("case-status-interval", "n_intervals"),
+    )
+    def render_expert_workspace(active_strategy_id, _refresh, _n):
+        strategies = list_strategies()
+        active = get_strategy(active_strategy_id or strategies[0].strategy_id)
+        specs = load_module_schema()
+        recent_cases = list_cases(limit=1)
+        case_id = str(recent_cases[0].get("case_id")) if recent_cases and recent_cases[0].get("case_id") else None
+        statuses = {module_id: read_module_status(case_id, module_id) for module_id in specs} if case_id else {}
+
+        module_cards: list[Any] = []
+        for module_id, spec in specs.items():
+            status = statuses.get(module_id, {})
+            state = str(status.get("status", "pending"))
+            installed = bool(status.get("installed", True))
+            options = MODULE_TOOL_OPTIONS.get(module_id, [{"label": "Default", "value": "default"}])
+            if module_id in MODULE_WEIGHT_TO_STRATEGY_KEY:
+                default_weight = float(active.weights.get(MODULE_WEIGHT_TO_STRATEGY_KEY[module_id], 0.5))
+            elif module_id == "escape_lohhla":
+                default_weight = abs(float(active.escape_penalty_weight))
+            else:
+                default_weight = 0.5
+            module_cards.append(
+                dbc.Card(
+                    dbc.CardBody(
+                        [
+                            html.Div(
+                                [
+                                    html.H6(spec.display_name, className="mb-1"),
+                                    dbc.Badge(state.upper(), color="success" if state == "complete" else ("warning" if state == "unavailable" else "secondary")),
+                                ],
+                                className="d-flex justify-content-between align-items-start mb-2",
+                            ),
+                            dcc.Dropdown(
+                                id={"type": "module-tool-select", "module_id": module_id},
+                                options=options,
+                                value=options[0]["value"],
+                                clearable=False,
+                                className="dash-dropdown mb-2",
+                            ),
+                            html.Label("Influence", className="text-muted small"),
+                            dcc.Slider(
+                                id={"type": "module-weight-slider", "module_id": module_id},
+                                min=0,
+                                max=1,
+                                step=0.01,
+                                value=max(0.0, min(1.0, default_weight)),
+                            ),
+                            html.Div(
+                                "Runtime unavailable"
+                                if not installed
+                                else (str(status.get("message") or "Configured for expert strategy composition.")),
+                                className="small text-muted mt-2",
+                            ),
+                        ]
+                    ),
+                    class_name="surface panel mb-2",
+                )
+            )
+        module_stack = html.Div(module_cards)
+
+        strategy_browser = dbc.Table(
+            [
+                html.Thead(html.Tr([html.Th("Strategy"), html.Th("Origin"), html.Th("Version")])),
+                html.Tbody(
+                    [
+                        html.Tr(
+                            [
+                                html.Td(s.display_name),
+                                html.Td(s.origin),
+                                html.Td(s.strategy_version),
+                            ]
+                        )
+                        for s in strategies[:12]
+                    ]
+                ),
+            ],
+            bordered=False,
+            hover=True,
+            size="sm",
+            class_name="strategy-table",
+        )
+
+        confidence_cards = html.Div(
+            [
+                dbc.Badge(
+                    f"{module_id.replace('_', ' ')}: {str(statuses.get(module_id, {}).get('status', 'pending'))}",
+                    color="success" if str(statuses.get(module_id, {}).get("status")) == "complete" else ("warning" if str(statuses.get(module_id, {}).get("status")) == "unavailable" else "secondary"),
+                    className="me-1 mb-1",
+                )
+                for module_id in specs
+            ]
+            if statuses
+            else [html.Div("No persisted case yet; confidence cards appear after upload/run.", className="small text-muted")]
+        )
+
+        status_counts = Counter(str(status.get("status", "pending")) for status in statuses.values()) if statuses else Counter({"pending": len(specs)})
+        status_df = pd.DataFrame({"status": list(status_counts.keys()), "count": list(status_counts.values())})
+        module_health_fig = px.bar(status_df, x="status", y="count", color="status", title="")
+        module_health_fig.update_layout(
+            template="plotly_dark",
+            paper_bgcolor="#0d1117",
+            plot_bgcolor="#0d1117",
+            font=dict(color="#e6edf3"),
+            margin=dict(l=30, r=20, t=10, b=30),
+            height=260,
+            showlegend=False,
+        )
+
+        weight_df = pd.DataFrame(
+            {
+                "component": ["expression", "presentation", "ccf", "self-dissimilarity", "escape(|w|)"],
+                "weight": [
+                    float(active.weights.get("expression_norm", 0.0)),
+                    float(active.weights.get("presentation", 0.0)),
+                    float(active.weights.get("ccf", 0.0)),
+                    float(active.weights.get("self_dissimilarity", 0.0)),
+                    abs(float(active.escape_penalty_weight)),
+                ],
+            }
+        )
+        strategy_delta_fig = px.bar(weight_df, x="component", y="weight", title="")
+        strategy_delta_fig.update_layout(
+            template="plotly_dark",
+            paper_bgcolor="#0d1117",
+            plot_bgcolor="#0d1117",
+            font=dict(color="#e6edf3"),
+            margin=dict(l=30, r=20, t=10, b=30),
+            height=260,
+            showlegend=False,
+        )
+        strategy_delta_fig.update_yaxes(range=[0, 1])
+
+        return module_stack, strategy_browser, confidence_cards, module_health_fig, strategy_delta_fig
+
+    @app.callback(
+        Output("expert-strategy-save-status", "children"),
+        Output("strategy-refresh-store", "data", allow_duplicate=True),
+        Output("active-strategy-select", "value", allow_duplicate=True),
+        Input("expert-save-strategy-version-btn", "n_clicks"),
+        State("expert-strategy-name-input", "value"),
+        State("active-strategy-select", "value"),
+        State({"type": "module-weight-slider", "module_id": ALL}, "value"),
+        State({"type": "module-weight-slider", "module_id": ALL}, "id"),
+        State({"type": "module-tool-select", "module_id": ALL}, "value"),
+        State({"type": "module-tool-select", "module_id": ALL}, "id"),
+        State("strategy-refresh-store", "data"),
+        prevent_initial_call=True,
+    )
+    def save_strategy_from_module_stack(
+        n_clicks,
+        proposed_name,
+        active_strategy_id,
+        slider_values,
+        slider_ids,
+        tool_values,
+        tool_ids,
+        refresh_state,
+    ):
+        if not n_clicks or not active_strategy_id:
+            raise PreventUpdate
+        base = get_strategy(active_strategy_id)
+        display_name = str(proposed_name or f"{base.display_name} Expert Variant").strip() or f"{base.display_name} Expert Variant"
+        clone = clone_strategy(base.strategy_id, display_name=display_name)
+
+        module_weights = {
+            str(item.get("module_id")): float(val if val is not None else 0.5)
+            for item, val in zip((slider_ids or []), (slider_values or []))
+            if isinstance(item, dict)
+        }
+        module_tools = {
+            str(item.get("module_id")): str(val or "default")
+            for item, val in zip((tool_ids or []), (tool_values or []))
+            if isinstance(item, dict)
+        }
+
+        new_weights = dict(clone.weights)
+        for module_id, strategy_key in MODULE_WEIGHT_TO_STRATEGY_KEY.items():
+            if module_id in module_weights:
+                new_weights[strategy_key] = max(0.0, min(1.0, float(module_weights[module_id])))
+        escape_weight = -abs(float(module_weights.get("escape_lohhla", abs(clone.escape_penalty_weight))))
+        total = sum(float(new_weights.get(k, 0.0)) for k in ("expression_norm", "presentation", "ccf", "self_dissimilarity"))
+        if total > 0:
+            for key in ("expression_norm", "presentation", "ccf", "self_dissimilarity"):
+                new_weights[key] = float(new_weights[key]) / total
+
+        desc = (clone.description or "").strip()
+        tool_note = ", ".join(f"{k}:{v}" for k, v in sorted(module_tools.items()))
+        updated = replace(
+            clone,
+            weights=new_weights,
+            escape_penalty_weight=max(-1.0, min(1.0, escape_weight)),
+            description=(desc + ("\n\n" if desc else "") + f"Expert module tools: {tool_note}")[:1800],
+        )
+        saved = save_strategy(updated)
+        log_audit_event(
+            event_type="save_strategy_from_module_stack",
+            strategy=saved,
+            app_version=__version__,
+            metadata={"module_weights": module_weights, "module_tools": module_tools},
+        )
+        revision = int((refresh_state or {}).get("revision", 0)) + 1
+        return (
+            dbc.Alert(f"Saved strategy version: {saved.display_name} ({saved.strategy_id})", color="success", className="py-2 mb-0"),
+            {"revision": revision},
+            saved.strategy_id,
+        )
+
+    @app.callback(
+        Output("download-canonical-csv", "data"),
+        Input("download-canonical-btn", "n_clicks"),
+        State("tier-filter", "value"),
+        State("hla-filter", "value"),
+        State("exclusion-filter", "value"),
+        State("rl-range", "value"),
+        State("expr-range", "value"),
+        State("ccf-range", "value"),
+        State("search", "value"),
+        State("cohort-parquet-path", "data"),
+        prevent_initial_call=True,
+    )
+    def download_canonical_csv(
+        n_clicks,
+        tiers,
+        hlas,
+        exclusions,
+        rl_range,
+        expr_range,
+        ccf_range,
+        search,
+        cohort_path_override,
+    ):
+        if not n_clicks:
+            raise PreventUpdate
+        df, _path, _searched = load_cohort_for_dash(alt_path=cohort_path_override)
+        fc = filter_candidates(
+            df,
+            tiers=[int(x) for x in (tiers or [])] or [1, 2, 3],
+            hlas=[str(x) for x in (hlas or [])] if hlas else [],
+            exclusion_any=[str(x) for x in (exclusions or [])] if exclusions else [],
+            rl_range=list(rl_range or [0, 1]),
+            expr_range=list(expr_range or [0, 1000]),
+            ccf_range=list(ccf_range or [0, 1]),
+            search=search or "",
+        )
+        if fc.empty:
+            raise PreventUpdate
+        buf = io.StringIO()
+        fc.to_csv(buf, index=False)
+        return dict(content=buf.getvalue(), filename="canonical_candidates_filtered.csv")
 
     @app.callback(
         Output("about-panel", "children"),
@@ -854,12 +1174,13 @@ def register_callbacks(app) -> None:
         status = collect_batch_status()
         recent_upload = upload_result or {}
         cases = list_cases()
+        module_counts = status.get("module_state_counts") or {}
         top = dbc.Row(
             [
                 dbc.Col(kpi_card(str(status["discovered_run_dirs"]), "Discovered run dirs"), md=3, sm=6),
                 dbc.Col(kpi_card(str(status["runs_with_candidates"]), "Runs with candidates"), md=3, sm=6),
                 dbc.Col(kpi_card(str(status["runs_with_case_report"]), "Runs with reports"), md=3, sm=6),
-                dbc.Col(kpi_card(str(len(cases)), "Persisted cases"), md=3, sm=6),
+                dbc.Col(kpi_card(str(status.get("persisted_cases", len(cases))), "Persisted cases"), md=3, sm=6),
             ],
             class_name="g-2 mb-3",
         )
@@ -901,7 +1222,11 @@ def register_callbacks(app) -> None:
                                             [
                                                 html.Li(f"Latest run directories: {', '.join(status['latest_runs']) if status['latest_runs'] else 'none found'}"),
                                                 html.Li(f"Recent upload runs: {', '.join(status['recent_upload_runs']) if status['recent_upload_runs'] else 'none yet'}"),
-                                                html.Li(f"Persisted case ids: {', '.join(str(item.get('case_id')) for item in cases[:4]) if cases else 'none yet'}"),
+                                                html.Li(f"Persisted case ids: {', '.join(status.get('recent_case_ids')[:4]) if status.get('recent_case_ids') else 'none yet'}"),
+                                                html.Li(
+                                                    "Module states: "
+                                                    + (", ".join(f"{k}={v}" for k, v in sorted(module_counts.items())) if module_counts else "none yet")
+                                                ),
                                             ],
                                             className="mb-0",
                                         ),
@@ -1063,12 +1388,13 @@ def register_callbacks(app) -> None:
         module_specs = load_module_schema()
         options = [
             {
-                "label": f"{spec.display_name}{' (heavy)' if spec.heavy else ''}",
+                "label": f"{spec.display_name}{' (heavy)' if spec.heavy else ''}{'' if runner.installation_checks().get(module_id, (True, ''))[0] else ' (runtime unavailable)'}",
                 "value": module_id,
             }
             for module_id, spec in module_specs.items()
         ]
-        enabled = [module_id for module_id in module_specs]
+        install_checks = runner.installation_checks()
+        enabled = [module_id for module_id in module_specs if install_checks.get(module_id, (True, ""))[0] or module_id in {"expression_join", "clonality_pyclone_vi"}]
         panel = html.Div(
             [
                 dbc.Row(
@@ -1211,41 +1537,56 @@ def register_callbacks(app) -> None:
         trigger = callback_context.triggered_id
         if trigger == "case-rna-upload" and rna_contents:
             attach_case_input(case_id, "rna_sidecar", rna_contents, rna_name or "rna.tsv")
-            reset_module_for_rerun(case_id, "expression_join")
+            reset_modules_for_rerun(case_id, ["expression_join", "resistance_loop", "strategy_engine", "prioritization_tiering"])
             ModuleRunner().resume_case(case_id)
-            return dbc.Alert("Attached RNA sidecar and queued expression join.", color="info", className="mb-0 py-2")
+            return dbc.Alert("Attached RNA sidecar and queued expression plus downstream scoring modules.", color="info", className="mb-0 py-2")
         if trigger == "case-purity-upload" and purity_contents:
             attach_case_input(case_id, "purity_sidecar", purity_contents, purity_name or "purity.tsv")
-            reset_module_for_rerun(case_id, "clonality_pyclone_vi")
+            reset_modules_for_rerun(case_id, ["clonality_pyclone_vi", "resistance_loop", "strategy_engine", "prioritization_tiering"])
             ModuleRunner().resume_case(case_id)
-            return dbc.Alert("Attached purity sidecar and refreshed clonality.", color="info", className="mb-0 py-2")
+            return dbc.Alert("Attached purity sidecar and queued clonality plus downstream scoring modules.", color="info", className="mb-0 py-2")
         if trigger == "case-cnv-upload" and cnv_contents:
             attach_case_input(case_id, "cnv_sidecar", cnv_contents, cnv_name or "cnv.tsv")
-            reset_module_for_rerun(case_id, "clonality_pyclone_vi")
+            reset_modules_for_rerun(case_id, ["clonality_pyclone_vi", "resistance_loop", "strategy_engine", "prioritization_tiering"])
             ModuleRunner().resume_case(case_id)
-            return dbc.Alert("Attached CNV sidecar and refreshed clonality.", color="info", className="mb-0 py-2")
+            return dbc.Alert("Attached CNV sidecar and queued clonality plus downstream scoring modules.", color="info", className="mb-0 py-2")
         raise PreventUpdate
 
     @app.callback(
         Output("case-action-status", "children", allow_duplicate=True),
         Input("rerun-expression-btn", "n_clicks"),
         Input("rerun-clonality-btn", "n_clicks"),
+        Input("rerun-resistance-btn", "n_clicks"),
+        Input("rerun-strategy-btn", "n_clicks"),
+        Input("rerun-prioritization-btn", "n_clicks"),
         State("active-case-store", "data"),
         prevent_initial_call=True,
     )
-    def rerun_case_module(expr_clicks, clon_clicks, active_case):
+    def rerun_case_module(expr_clicks, clon_clicks, resistance_clicks, strategy_clicks, prioritization_clicks, active_case):
         case_id = str((active_case or {}).get("case_id") or "")
         if not case_id:
             raise PreventUpdate
         trigger = callback_context.triggered_id
         if trigger == "rerun-expression-btn" and expr_clicks:
-            reset_module_for_rerun(case_id, "expression_join")
+            reset_modules_for_rerun(case_id, ["expression_join", "resistance_loop", "strategy_engine", "prioritization_tiering"])
             ModuleRunner().resume_case(case_id)
-            return dbc.Alert("Expression join queued for rerun.", color="info", className="mb-0 py-2")
+            return dbc.Alert("Expression join and downstream modules queued for rerun.", color="info", className="mb-0 py-2")
         if trigger == "rerun-clonality-btn" and clon_clicks:
-            reset_module_for_rerun(case_id, "clonality_pyclone_vi")
+            reset_modules_for_rerun(case_id, ["clonality_pyclone_vi", "resistance_loop", "strategy_engine", "prioritization_tiering"])
             ModuleRunner().resume_case(case_id)
-            return dbc.Alert("Clonality module queued for rerun.", color="info", className="mb-0 py-2")
+            return dbc.Alert("Clonality and downstream modules queued for rerun.", color="info", className="mb-0 py-2")
+        if trigger == "rerun-resistance-btn" and resistance_clicks:
+            reset_modules_for_rerun(case_id, ["resistance_loop", "strategy_engine", "prioritization_tiering"])
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("ResistanceLoop and downstream modules queued for rerun.", color="info", className="mb-0 py-2")
+        if trigger == "rerun-strategy-btn" and strategy_clicks:
+            reset_modules_for_rerun(case_id, ["strategy_engine", "prioritization_tiering"])
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Strategy engine and prioritization queued for rerun.", color="info", className="mb-0 py-2")
+        if trigger == "rerun-prioritization-btn" and prioritization_clicks:
+            reset_module_for_rerun(case_id, "prioritization_tiering")
+            ModuleRunner().resume_case(case_id)
+            return dbc.Alert("Prioritization queued for rerun.", color="info", className="mb-0 py-2")
         raise PreventUpdate
 
     @app.callback(
@@ -1274,6 +1615,9 @@ def register_callbacks(app) -> None:
         Output("scatter", "figure"),
         Output("evidence-panel", "children"),
         Output("patient-detail", "children"),
+        Output("simple-answer-panel", "children"),
+        Output("expert-tier-fig", "figure"),
+        Output("expert-evidence-fig", "figure"),
         Output("patient-grid", "rowData"),
         Output("patient-detail-standalone", "children"),
         Output("patient-grid-standalone", "rowData"),
@@ -1334,6 +1678,7 @@ def register_callbacks(app) -> None:
             )
             empty = make_scatter_fig(pd.DataFrame())
             detail = [html.Div("Fix columns or use enriched Parquet.", className="text-muted")]
+            empty_fig = px.bar(title="No data")
             return (
                 banner_err,
                 [],
@@ -1341,6 +1686,9 @@ def register_callbacks(app) -> None:
                 empty,
                 detail,
                 detail,
+                detail,
+                empty_fig,
+                empty_fig,
                 [],
                 detail,
                 [],
@@ -1432,6 +1780,7 @@ def register_callbacks(app) -> None:
         if nav not in {"Overview", "Patients", "Advanced Strategies"}:
             empty = make_scatter_fig(pd.DataFrame())
             detail = [html.Div("Switch to Overview for cohort tools.", className="text-muted")]
+            empty_fig = px.bar(title="Switch to Overview for cohort tools.")
             return (
                 banner,
                 kpis,
@@ -1439,6 +1788,9 @@ def register_callbacks(app) -> None:
                 empty,
                 detail,
                 detail,
+                detail,
+                empty_fig,
+                empty_fig,
                 [],
                 detail,
                 [],
@@ -1453,6 +1805,30 @@ def register_callbacks(app) -> None:
         evidence = build_evidence_panel(fc, pid, hla)
         detail = build_patient_detail_card(fc, pid, hla)
         standalone_detail = build_patient_detail_card(fc, pid, hla)
+        shortlist_cols = [col for col in ["gene", "mutant_peptide", "rl_priority", "tier"] if col in fc.columns]
+        shortlist = fc.sort_values(["tier", "rl_priority"], ascending=[True, False]).head(8) if not fc.empty else pd.DataFrame()
+        simple_answer = (
+            dbc.Table(
+                [
+                    html.Thead(html.Tr([html.Th(col.replace("_", " ").title()) for col in shortlist_cols])),
+                    html.Tbody([html.Tr([html.Td(str(row.get(col, "—"))) for col in shortlist_cols]) for row in shortlist.to_dict("records")]),
+                ],
+                bordered=False,
+                hover=True,
+                responsive=True,
+                size="sm",
+                class_name="strategy-table",
+            )
+            if not shortlist.empty
+            else html.Div("No ranked candidates under the current filters.", className="text-muted")
+        )
+        tier_counts = fc["tier"].value_counts().sort_index() if not fc.empty and "tier" in fc.columns else pd.Series(dtype=float)
+        tier_fig = px.bar(x=[f"Tier {idx}" for idx in tier_counts.index], y=tier_counts.values, labels={"x": "", "y": "Candidates"}, title="")
+        tier_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=30, r=20, t=10, b=30), height=260)
+        expr_stub = int((fc.get("evidence_expression_source", pd.Series(dtype=str)).astype(str) == "stub").sum()) if not fc.empty and "evidence_expression_source" in fc.columns else int(len(fc))
+        expr_real = max(int(len(fc) - expr_stub), 0)
+        ev_fig = px.pie(names=["Real/blended evidence", "Stub evidence"], values=[expr_real, expr_stub], hole=0.45)
+        ev_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=20, r=20, t=10, b=20), height=260, showlegend=True)
 
         grid_rows = agg_s.to_dict("records")
         n_pat = int(df["patient_id"].nunique()) if not df.empty else 0
@@ -1474,4 +1850,4 @@ def register_callbacks(app) -> None:
             f"Data: {src} · app v{ver} · ResistanceLoop v1"
         )
 
-        return banner, kpis, cov, fig, evidence, detail, grid_rows, standalone_detail, grid_rows, footer
+        return banner, kpis, cov, fig, evidence, detail, simple_answer, tier_fig, ev_fig, grid_rows, standalone_detail, grid_rows, footer
