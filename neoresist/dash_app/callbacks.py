@@ -753,6 +753,7 @@ def register_callbacks(app) -> None:
         Output("advanced-strategy-summary", "children"),
         Output("strategy-library-panel", "children"),
         Output("overview-case-summary", "children"),
+        Output("demo-mode-banner", "children"),
         Input("active-strategy-select", "value"),
         Input("strategy-refresh-store", "data"),
         Input("case-status-interval", "n_intervals"),
@@ -798,7 +799,21 @@ def register_callbacks(app) -> None:
                 ),
             ]
         )
-        return compact, advanced, library, case_summary
+        banner = html.Div()
+        if recent_cases and recent_cases[0].get("case_id"):
+            cid = str(recent_cases[0]["case_id"])
+            stubbed: list[str] = []
+            for module_id in load_module_schema():
+                st = read_module_status(cid, module_id)
+                if str(st.get("status") or "").lower() == "unavailable":
+                    stubbed.append(module_id)
+            if stubbed:
+                banner = dbc.Alert(
+                    f"Demo mode: estimated/fallback values active for {', '.join(stubbed)} because required runtimes are unavailable.",
+                    color="warning",
+                    className="py-2 mb-2",
+                )
+        return compact, advanced, library, case_summary, banner
 
     @app.callback(
         Output("expert-module-stack-panel", "children"),
@@ -823,6 +838,7 @@ def register_callbacks(app) -> None:
             status = statuses.get(module_id, {})
             state = str(status.get("status", "pending"))
             installed = bool(status.get("installed", True))
+            enabled = bool(status.get("enabled", True))
             options = MODULE_TOOL_OPTIONS.get(module_id, [{"label": "Default", "value": "default"}])
             if module_id in MODULE_WEIGHT_TO_STRATEGY_KEY:
                 default_weight = float(active.weights.get(MODULE_WEIGHT_TO_STRATEGY_KEY[module_id], 0.5))
@@ -847,6 +863,12 @@ def register_callbacks(app) -> None:
                                 value=options[0]["value"],
                                 clearable=False,
                                 className="dash-dropdown mb-2",
+                            ),
+                            dbc.Switch(
+                                id={"type": "module-enable-toggle", "module_id": module_id},
+                                label="Enabled",
+                                value=enabled,
+                                class_name="mb-2",
                             ),
                             html.Label("Influence", className="text-muted small"),
                             dcc.Slider(
@@ -942,6 +964,37 @@ def register_callbacks(app) -> None:
         strategy_delta_fig.update_yaxes(range=[0, 1])
 
         return module_stack, strategy_browser, confidence_cards, module_health_fig, strategy_delta_fig
+
+    @app.callback(
+        Output("expert-strategy-save-status", "children", allow_duplicate=True),
+        Input({"type": "module-enable-toggle", "module_id": ALL}, "value"),
+        State({"type": "module-enable-toggle", "module_id": ALL}, "id"),
+        State("active-case-store", "data"),
+        prevent_initial_call=True,
+    )
+    def sync_module_enable_toggles(values, ids, active_case):
+        if not values or not ids:
+            raise PreventUpdate
+        case_id = None
+        if isinstance(active_case, dict) and active_case.get("case_id"):
+            case_id = str(active_case["case_id"])
+        if case_id is None:
+            recent = list_cases(limit=1)
+            if recent and recent[0].get("case_id"):
+                case_id = str(recent[0]["case_id"])
+        if not case_id:
+            raise PreventUpdate
+        for id_obj, val in zip(ids, values):
+            if not isinstance(id_obj, dict):
+                continue
+            module_id = str(id_obj.get("module_id") or "")
+            if module_id:
+                set_module_enabled(case_id, module_id, bool(val))
+        try:
+            ModuleRunner().resume_case(case_id)
+        except Exception:
+            pass
+        return dbc.Alert(f"Updated enabled modules for case {case_id}.", color="info", className="py-2 mb-0")
 
     @app.callback(
         Output("expert-strategy-save-status", "children"),
@@ -1616,8 +1669,16 @@ def register_callbacks(app) -> None:
         Output("evidence-panel", "children"),
         Output("patient-detail", "children"),
         Output("simple-answer-panel", "children"),
+        Output("simple-tier-badges", "children"),
+        Output("simple-ranked-list", "children"),
+        Output("simple-evidence-cards", "children"),
         Output("expert-tier-fig", "figure"),
+        Output("expert-tier-pie-fig", "figure"),
         Output("expert-evidence-fig", "figure"),
+        Output("expert-waterfall-fig", "figure"),
+        Output("expert-heatmap-fig", "figure"),
+        Output("expert-confidence-overview-fig", "figure"),
+        Output("expert-resistance-breakdown-fig", "figure"),
         Output("patient-grid", "rowData"),
         Output("patient-detail-standalone", "children"),
         Output("patient-grid-standalone", "rowData"),
@@ -1687,6 +1748,14 @@ def register_callbacks(app) -> None:
                 detail,
                 detail,
                 detail,
+                detail,
+                detail,
+                detail,
+                empty_fig,
+                empty_fig,
+                empty_fig,
+                empty_fig,
+                empty_fig,
                 empty_fig,
                 empty_fig,
                 [],
@@ -1789,6 +1858,14 @@ def register_callbacks(app) -> None:
                 detail,
                 detail,
                 detail,
+                detail,
+                detail,
+                detail,
+                empty_fig,
+                empty_fig,
+                empty_fig,
+                empty_fig,
+                empty_fig,
                 empty_fig,
                 empty_fig,
                 [],
@@ -1806,7 +1883,7 @@ def register_callbacks(app) -> None:
         detail = build_patient_detail_card(fc, pid, hla)
         standalone_detail = build_patient_detail_card(fc, pid, hla)
         shortlist_cols = [col for col in ["gene", "mutant_peptide", "rl_priority", "tier"] if col in fc.columns]
-        shortlist = fc.sort_values(["tier", "rl_priority"], ascending=[True, False]).head(8) if not fc.empty else pd.DataFrame()
+        shortlist = fc.sort_values(["tier", "rl_priority"], ascending=[True, False]).head(12) if not fc.empty else pd.DataFrame()
         simple_answer = (
             dbc.Table(
                 [
@@ -1822,13 +1899,135 @@ def register_callbacks(app) -> None:
             if not shortlist.empty
             else html.Div("No ranked candidates under the current filters.", className="text-muted")
         )
+        tier_badges = html.Div(
+            [
+                dbc.Badge(f"TIER 1: {int((fc['tier'] == 1).sum()) if 'tier' in fc.columns else 0}", color="success", className="me-1"),
+                dbc.Badge(f"TIER 2: {int((fc['tier'] == 2).sum()) if 'tier' in fc.columns else 0}", color="warning", className="me-1"),
+                dbc.Badge(f"TIER 3: {int((fc['tier'] == 3).sum()) if 'tier' in fc.columns else 0}", color="secondary", className="me-1"),
+                dbc.Badge(
+                    f"EXCLUDED: {int((fc['tier'].astype(str).str.contains('EXCLUDED', case=False, na=False)).sum()) if 'tier' in fc.columns else 0}",
+                    color="danger",
+                ),
+            ]
+        )
+        simple_ranked = simple_answer
+        evidence_cards: list[Any] = []
+        for row in shortlist.head(6).to_dict("records"):
+            risk = "LOW"
+            score = float(row.get("rl_priority", 0.0) or 0.0)
+            if score < 0.35:
+                risk = "HIGH"
+            elif score < 0.6:
+                risk = "MEDIUM"
+            evidence_cards.append(
+                dbc.Card(
+                    dbc.CardBody(
+                        [
+                            html.Div(
+                                [
+                                    html.Strong(f"{row.get('gene', 'Candidate')} {row.get('mutant_peptide', '')}"),
+                                    dbc.Badge(f"Tier {row.get('tier', '—')}", color="secondary", className="ms-2"),
+                                ],
+                                className="mb-2",
+                            ),
+                            html.Div(f"Composite priority: {100.0 * score:.1f}/100", className="small"),
+                            html.Div(f"Escape risk: {risk}", className="small"),
+                            html.Div(f"HLA: {row.get('hla_allele', '—')}", className="small text-muted"),
+                        ]
+                    ),
+                    class_name="surface panel mb-2",
+                )
+            )
+        simple_evidence_cards = evidence_cards if evidence_cards else [html.Div("Evidence cards appear after ranking data loads.", className="text-muted small")]
+
         tier_counts = fc["tier"].value_counts().sort_index() if not fc.empty and "tier" in fc.columns else pd.Series(dtype=float)
         tier_fig = px.bar(x=[f"Tier {idx}" for idx in tier_counts.index], y=tier_counts.values, labels={"x": "", "y": "Candidates"}, title="")
         tier_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=30, r=20, t=10, b=30), height=260)
+        tier_pie_fig = px.pie(
+            names=[f"Tier {idx}" for idx in tier_counts.index],
+            values=tier_counts.values if len(tier_counts) else [1],
+            hole=0.45,
+        )
+        tier_pie_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=20, r=20, t=10, b=20), height=260)
         expr_stub = int((fc.get("evidence_expression_source", pd.Series(dtype=str)).astype(str) == "stub").sum()) if not fc.empty and "evidence_expression_source" in fc.columns else int(len(fc))
         expr_real = max(int(len(fc) - expr_stub), 0)
         ev_fig = px.pie(names=["Real/blended evidence", "Stub evidence"], values=[expr_real, expr_stub], hole=0.45)
         ev_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=20, r=20, t=10, b=20), height=260, showlegend=True)
+
+        # Waterfall story through major module gates.
+        total_n = int(len(df))
+        binding_n = int(df.get("binding_rank", pd.Series([None] * len(df))).notna().sum()) if not df.empty else 0
+        expr_n = int(df.get("expression_tpm", pd.Series([0] * len(df))).fillna(0).gt(0.1).sum()) if not df.empty else 0
+        clon_n = int(df.get("ccf", pd.Series([0] * len(df))).fillna(0).gt(0).sum()) if not df.empty else 0
+        escape_series = df.get("hla_loh_status", pd.Series(["UNKNOWN"] * len(df)))
+        escape_n = int((escape_series.astype(str) != "LOH_DETECTED").sum()) if not df.empty else 0
+        final_n = int(len(fc))
+        wf_df = pd.DataFrame(
+            {
+                "stage": ["Start", "After binding", "After expression", "After clonality", "After escape", "Final ranked"],
+                "count": [total_n, binding_n, expr_n, clon_n, escape_n, final_n],
+            }
+        )
+        waterfall_fig = px.bar(wf_df, x="stage", y="count")
+        waterfall_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=30, r=20, t=10, b=50), height=280, showlegend=False)
+
+        # Cohort module heatmap.
+        module_cols = {
+            "binding": pd.to_numeric(df.get("binding_rank"), errors="coerce"),
+            "presentation": pd.to_numeric(df.get("presentation_score"), errors="coerce"),
+            "expression": pd.to_numeric(df.get("expression_tpm"), errors="coerce"),
+            "clonality": pd.to_numeric(df.get("ccf"), errors="coerce"),
+            "recognition": pd.to_numeric(df.get("self_dissimilarity"), errors="coerce"),
+            "resistance": pd.to_numeric(df.get("rl_priority"), errors="coerce"),
+        }
+        hdf = pd.DataFrame(module_cols)
+        if "patient_id" in df.columns and not df.empty:
+            hdf["patient_id"] = df["patient_id"].astype(str)
+            grp = hdf.groupby("patient_id", dropna=False).mean(numeric_only=True).fillna(0.0)
+            grp = grp.sort_values(by="resistance", ascending=False).head(40)
+            heatmap_fig = px.imshow(grp.T, aspect="auto", color_continuous_scale="Viridis")
+        else:
+            heatmap_fig = px.imshow(pd.DataFrame([[0.0]], index=["module"], columns=["patient"]), aspect="auto")
+        heatmap_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=30, r=20, t=10, b=30), height=320)
+
+        # Module confidence stacked overview.
+        conf_states = ["HIGH", "MEDIUM", "LOW", "UNAVAILABLE"]
+        conf_map = {
+            "binding": "binding_confidence",
+            "presentation": "presentation_confidence",
+            "expression": "expression_confidence",
+            "clonality": "clonality_confidence",
+            "escape": "escape_confidence",
+            "recognition": "recognition_confidence",
+            "resistance": "resistance_confidence",
+        }
+        conf_rows: list[dict[str, Any]] = []
+        for module_name, col in conf_map.items():
+            if col in df.columns:
+                vals = df[col].astype(str).str.upper()
+            else:
+                vals = pd.Series(["UNAVAILABLE"] * len(df))
+            for st in conf_states:
+                conf_rows.append({"module": module_name, "confidence": st, "count": int((vals == st).sum())})
+        conf_df = pd.DataFrame(conf_rows)
+        confidence_overview_fig = px.bar(conf_df, x="module", y="count", color="confidence", barmode="stack")
+        confidence_overview_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=30, r=20, t=10, b=30), height=300)
+
+        # Resistance breakdown for selected or top candidate.
+        target = shortlist.head(1).to_dict("records")[0] if not shortlist.empty else {}
+        if pid is not None and hla is not None and not fc.empty:
+            sel = fc[(fc["patient_id"].astype(str) == str(pid)) & (fc["hla_allele"].astype(str) == str(hla))]
+            if not sel.empty:
+                target = sel.sort_values(["tier", "rl_priority"], ascending=[True, False]).head(1).to_dict("records")[0]
+        rb_vals = {
+            "LOH penalty": float(target.get("resistance_loh_penalty", target.get("escape_penalty", 0.3)) or 0.0),
+            "Volatility": float(target.get("resistance_volatility_flag", 0.4) or 0.0),
+            "Expression instability": float(target.get("resistance_expression_instability", max(0.0, 1.0 - float(target.get("expression_norm", 0.5) or 0.5))) or 0.0),
+            "Processing disruption": float(target.get("resistance_processing_disruption", 0.2) or 0.0),
+        }
+        rb_df = pd.DataFrame({"component": list(rb_vals.keys()), "value": list(rb_vals.values())})
+        resistance_breakdown_fig = px.bar(rb_df, x="component", y="value", color="component")
+        resistance_breakdown_fig.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", font=dict(color="#e6edf3"), margin=dict(l=30, r=20, t=10, b=30), height=280, showlegend=False)
 
         grid_rows = agg_s.to_dict("records")
         n_pat = int(df["patient_id"].nunique()) if not df.empty else 0
@@ -1850,4 +2049,26 @@ def register_callbacks(app) -> None:
             f"Data: {src} · app v{ver} · ResistanceLoop v1"
         )
 
-        return banner, kpis, cov, fig, evidence, detail, simple_answer, tier_fig, ev_fig, grid_rows, standalone_detail, grid_rows, footer
+        return (
+            banner,
+            kpis,
+            cov,
+            fig,
+            evidence,
+            detail,
+            simple_answer,
+            tier_badges,
+            simple_ranked,
+            simple_evidence_cards,
+            tier_fig,
+            tier_pie_fig,
+            ev_fig,
+            waterfall_fig,
+            heatmap_fig,
+            confidence_overview_fig,
+            resistance_breakdown_fig,
+            grid_rows,
+            standalone_detail,
+            grid_rows,
+            footer,
+        )

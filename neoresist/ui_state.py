@@ -17,7 +17,7 @@ def resolve_view_state(nav: str | None, ui_mode: str | None) -> dict[str, object
             "advanced_section": False,
             "overview_section": simple_overview,
             "patients_section": False,
-            "upload_section": current == "Upload",
+            "upload_section": current in {"Overview", "Upload"},
             "cases_section": False,
             "about_section": False,
             "pipeline_status_section": False,

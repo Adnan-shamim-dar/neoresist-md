@@ -243,6 +243,7 @@ def build_layout() -> dbc.Container:
                                 ),
                                 id="expert-hero-shell",
                             ),
+                            html.Div(id="demo-mode-banner"),
                             html.Div(
                                 [
                                     dbc.Collapse(
@@ -683,6 +684,18 @@ def build_layout() -> dbc.Container:
                                                     ),
                                                     md=6,
                                                 ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Tier distribution", className="mb-2"),
+                                                                dcc.Graph(id="expert-tier-pie-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
                                             ],
                                             class_name="g-3",
                                         ),
@@ -714,6 +727,54 @@ def build_layout() -> dbc.Container:
                                                         class_name="surface panel h-100",
                                                     ),
                                                     md=6,
+                                                ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Pipeline waterfall", className="mb-2"),
+                                                                dcc.Graph(id="expert-waterfall-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Cohort module heatmap", className="mb-2"),
+                                                                dcc.Graph(id="expert-heatmap-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Confidence overview", className="mb-2"),
+                                                                dcc.Graph(id="expert-confidence-overview-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=6,
+                                                ),
+                                                dbc.Col(
+                                                    dbc.Card(
+                                                        dbc.CardBody(
+                                                            [
+                                                                html.H5("Resistance breakdown", className="mb-2"),
+                                                                dcc.Graph(id="expert-resistance-breakdown-fig", config={"displayModeBar": False}),
+                                                            ]
+                                                        ),
+                                                        class_name="surface panel h-100",
+                                                    ),
+                                                    md=12,
                                                 ),
                                             ],
                                             class_name="g-3",
