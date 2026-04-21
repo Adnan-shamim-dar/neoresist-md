@@ -369,7 +369,7 @@ This motivates the configurable platform and the paper's argument.
     PHASE 4/5 complete: rl_tcr_v1 LOPO=0.660, binding_only LOPO=0.477
 [x] Download Müller 2023 NCI data — DONE. muller_nci.tsv (23MB) ingested.
     LOPO results: Score_EL=0.984, binding_only=0.966, rl_tcr_v1=0.492 (fails w/o WT)
-[x] Two-stage model pipeline (Phase 1–3) — DONE 2026-04-21
+[x] Two-stage model pipeline (Phase 1–4) — DONE 2026-04-21
     Phase 1: feature_factory.py → 7 feature CSVs (all cohorts + NCI)
     Phase 2: filter_nci.py → nci_full_mutanome.csv (292K), nci_prescreened_equivalent.csv
     Phase 3: two_stage_model.py
@@ -383,6 +383,14 @@ This motivates the configurable platform and the paper's argument.
             NCI model detects extreme high binders; clinical cohorts already pre-screened
       Artifacts: stage1_results.json, stage1_presentation_model.pkl,
                  stage2_{cancer_type}_results.json, stage2_all_results.json
+    Phase 4: cross_evaluate.py
+      Cross-cancer transfer: all cancer-specific models fail (AUC 0.35–0.57) — no transfer
+      Within-melanoma LODO: Ott→Sahin=0.492, Sahin→Ott=0.387 (ML fails; rl_tcr_v1=0.66/0.76)
+      Universal LODO (leave-one-dataset-out): 0.49–0.60, below binding_only on most datasets
+      KEY PAPER FINDING: hand-crafted rl_tcr_v1 outperforms fitted ML for cross-dataset transfer
+        → motivates interpretable configurable platform over single trained model
+      Artifacts: cross_cancer_transfer.json, within_melanoma_lodo.json,
+                 paper_comparison_table.csv, universal_lodo_per_dataset.json
 [ ] Müller 2023 Data S3 full feature set — may contain additional datasets (HiTIDE/TESLA)
     URL: https://www.cell.com/immunity/fulltext/S1074-7613(23)00406-5
     Save as: validation_papers/muller2023/Data_S3.xlsx
@@ -395,6 +403,17 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-21 | Claude claude-sonnet-4-6 | Session 9: Phase 4 cross-cancer transfer evaluation
+  Changed: backend/strategy_engine/cross_evaluate.py (new),
+           artifacts/cross_cancer_transfer.json, within_melanoma_lodo.json,
+           paper_comparison_table.csv, universal_lodo_per_dataset.json, AGENTS.md
+  Results: Cancer-specific models fail cross-cancer (0.35–0.57). Within-melanoma LODO
+           fails (0.39–0.49) while rl_tcr_v1 achieves 0.660–0.758 cross-dataset.
+           Universal LODO (0.49–0.60) below binding_only on most datasets.
+  Interpretation: hand-crafted strategies outperform fitted ML for transfer;
+                  Stage2 LOPO within cancer type is the valid ML result.
+  Tests: 40/40 passing
+  Next: paper methods/results draft; commit working tree; ITSNdb
 2026-04-21 | Claude claude-sonnet-4-6 | Session 8: Two-stage model Phase 3 execution
   Changed: backend/strategy_engine/two_stage_model.py (XGBoost eval_metric fix),
            artifacts/stage1_results.json, stage1_presentation_model.pkl,
