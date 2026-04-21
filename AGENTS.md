@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 2) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -127,7 +127,10 @@ All weights are config-driven (scoring_profiles/*.yaml). No `eval()` anywhere.
   — do not treat as numeric zero
 - Three similarly-named dirs: neoresist/ (stable code), neoresist-md/ (docs only),
   neoresist_md/ (new modular code) — don't confuse them
-- dash_bootstrap_components may be missing in some envs — `pip install dash-bootstrap-components`
+- dash_bootstrap_components INSTALLED (2026-04-21) — `pip install dash-bootstrap-components`
+- Sahin 2017 Supp Table 1 URL (provided) only contains P04 vaccine design, NOT full
+  per-patient HLA table. Full HLA for all 13 patients is in a different extended data
+  table in the paper. data/sahin2017_supp.xlsx saved but only useful for P04.
 
 ## VALIDATION RESULTS (Science side)
 
@@ -137,7 +140,11 @@ Ott 2017:    97 mutations, 15 immuno, 6 patients (melanoma)
 TESLA 2020:  918 candidates, 41 immuno, 9 patients (mixed)
 Hilf 2019:   152 rows, 15 patients (GBM) — binding 127/152
 Rojas 2023:  230 rows, 16 patients (pancreatic) — binding complete
-Sahin 2017:  125 rows, 13 patients (melanoma) — NO binding (HLA missing)
+Sahin 2017:  125 rows, 13 patients (melanoma) — NO binding
+             hla_allele col is EMPTY in training_matrix.csv for all 13 patients
+             P04 HLA-I confirmed from supp: A*02:01, B*07:02, B*44:02 | HLA-II: DRB1*15:01
+             Remaining 12 patients (P01-P03, P05-P13): HLA still missing
+             Need: Extended Data Table from Nature 23003 (NOT Supp Table 1)
 Keskin 2019: 27 rows (GBM) — no LOPO (too few patients)
 ```
 
@@ -157,18 +164,27 @@ features. This motivates the configurable platform and the paper's argument.
 
 ## ACTIVE TASKS (update this every session)
 
-[ ] Source Sahin HLA alleles from Nature 2017 supplementary (Table 1)
-[ ] Download Müller 2023 Data S1-S4 from Cell Immunity paper (manual)
+[x] Fix dash_bootstrap_components — installed 2026-04-21, 40/40 tests still passing
+[~] Source Sahin HLA from Nature 2017 — PARTIAL: P04 done (A*02:01, B*07:02, B*44:02, DRB1*15:01)
+    Supp Table 1 only covers P04. Need Extended Data Table for P01-P03, P05-P13.
+    data/sahin2017_supp.xlsx saved to repo.
+[ ] Download Müller 2023 Data S1-S4 from Cell Immunity paper (manual download needed)
 [ ] Install ITSNdb R package and export to CSV
-[ ] Draft paper methods section
-[ ] Fix dash_bootstrap_components missing: `pip install dash-bootstrap-components`
+[ ] Draft paper methods section (user has template from prior Claude conversation)
 [ ] Commit the ~40 modified files currently in working tree
 [ ] Investigate/add .gitignore entry for data/final/*.parquet
 
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
-2026-04-21 | Claude claude-sonnet-4-6 | Created AGENTS.md and .cursor/rules from full codebase analysis. 40/40 tests confirmed passing. No code changed.
+2026-04-21 | Claude claude-sonnet-4-6 | Session 2: installed dash-bootstrap-components, attempted
+  Sahin HLA sourcing, discovered Supp Table 1 is P04-only not full cohort.
+  Changed: data/sahin2017_supp.xlsx (added), AGENTS.md (updated)
+  Validation: no scripts run
+  Tests: 40/40 passing
+  Next: find full Sahin per-patient HLA table (Extended Data in Nature 23003)
+2026-04-21 | Claude claude-sonnet-4-6 | Session 1: Created AGENTS.md and .cursor/rules
+  from full codebase analysis. 40/40 tests confirmed passing. No code changed.
 2026-04-16 | Codex (OpenAI) | Snapshot commit (1399a45) — see git log for prior work
 
 ---
