@@ -1,13 +1,89 @@
----
-At the start of EVERY session, before doing anything else:
-1. Read AGENTS.md in full
-2. Confirm you understand current state in one paragraph
-3. Ask what the user wants to do
+# NeoResist-MD — Cursor Agent Rules
+# These rules apply to every session, every task, no exceptions.
 
-At the END of every session, after completing work:
-1. Update AGENTS.md — append to CHANGELOG section
-2. Update any sections that changed (architecture,
-   known issues, active tasks)
-3. Commit AGENTS.md with message: "docs: update AGENTS.md"
-4. Never leave a session without updating AGENTS.md
----
+## SESSION START PROTOCOL (do this before anything else)
+
+1. Read AGENTS.md in full
+2. Run: python -m unittest discover backend/tests -v
+   Report pass/fail count. If new failures exist, stop and flag.
+3. Run: git status
+   Report: how many modified files, any untracked important files
+4. State in one paragraph: current project state and what
+   you understand the user wants to do
+5. Wait for confirmation before writing any code
+
+## SESSION END PROTOCOL (do this after every task)
+
+1. Run tests again: python -m unittest discover backend/tests -v
+   If any new failures introduced: fix them before updating AGENTS.md
+2. Run: git add -A && git status
+   Show the user what will be committed
+3. Update AGENTS.md:
+   a. ACTIVE TASKS: check off completed items, add new ones
+   b. KNOWN LANDMINES: add anything newly discovered
+   c. CHANGELOG: append one entry in format below
+   d. VALIDATION RESULTS: update if any scripts were run
+4. Commit everything:
+   git add AGENTS.md
+   git commit -m "docs: update AGENTS.md — [one line summary]"
+5. Report: what was done, what changed, what's next
+
+## CHANGELOG FORMAT
+<!-- Always append, never delete old entries -->
+YYYY-MM-DD | AGENT | SUMMARY
+  Changed: [files touched]
+  Validation: [any AUC results if scripts were run]
+  Tests: [X/40 passing]
+  Next: [what should happen next session]
+
+## VALIDATION RESULT AUTO-LOGGING
+If you run ANY script in backend/validation/, you MUST:
+1. Capture stdout/stderr
+2. Extract any AUC values reported
+3. Append to AGENTS.md under VALIDATION RESULTS in format:
+   [DATE] [script_name]: dataset=X AUC=X.XXX delta=+X.XXX
+4. If a new strategy beats a previous best, mark it ★
+5. Never overwrite old results — append only
+
+## ABSOLUTE RULES (never break these)
+
+NEVER:
+- Modify backend/scoring.py (frozen)
+- Modify backend/neoresist/scoring.py (frozen)
+- Add .parquet files to git
+- Run validation scripts with python (use py -3.11)
+- Optimize/tune features by looking at test labels
+- Leave a session without updating AGENTS.md
+- Break passing tests
+
+ALWAYS:
+- Run tests before AND after every change
+- Use py -3.11 for all backend/validation/ scripts
+- Ask before refactoring anything in neoresist/ (stable)
+- Treat neoresist_md/ as in-progress (can modify carefully)
+- Keep neoresist/ and neoresist_md/ as separate systems
+  until migration is explicitly completed
+
+## SWITCHING BETWEEN AGENTS (Claude ↔ Codex)
+This file and AGENTS.md are the complete handoff protocol.
+Any agent (Claude, Codex, GPT-4) can resume from AGENTS.md.
+The git log is the backup. The file is the source of truth.
+If AGENTS.md conflicts with git log, trust git log.
+
+## SCIENCE SIDE RULES
+These apply when working on validation scripts:
+
+- LOPO is the only publishable metric (in-sample = reference only)
+- Feature directions must be locked from origin dataset
+- No re-optimization on test data
+- Report ALL results including failures
+- All amino acid properties from published constants only
+- If a script crashes: fix the crash, report what broke,
+  do not alter the scientific logic to avoid the error
+
+## WHEN UNSURE
+Ask. One sentence question. Don't guess on:
+- Anything touching scoring.py
+- Anything touching neoresist/ stable code
+- Anything that would alter git history
+- Any schema changes to JSON artifacts
