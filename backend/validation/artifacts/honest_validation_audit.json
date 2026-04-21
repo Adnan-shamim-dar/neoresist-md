@@ -1,0 +1,854 @@
+{
+  "audit_date": "2026-04-21",
+  "n_bootstrap": 1000,
+  "summary": {
+    "pass": [
+      "binding_only baseline reliable on ott_2017_mutation",
+      "binding_only baseline reliable on hilf_2019",
+      "binding_only baseline reliable on tesla_2020",
+      "Score_EL dominance on M\u00fcller NCI (high AUC not selection-bias)",
+      "Keskin excluded from AUC tables"
+    ],
+    "fail": [
+      "H14 rl_tcr_v1 improvement over binding_only on Ott (6 patients)",
+      "rl_expression_v1 transfer to Ott (discovered on TESLA)",
+      "rl_tcr_v1 transfer to hilf_2019",
+      "rl_tcr_v1 transfer to rojas_2023",
+      "rl_tcr_v1 transfer to sahin_2017",
+      "rl_tcr_v1 transfer to tesla_2020"
+    ]
+  },
+  "issue_1_strategy_origins": {
+    "binding_only": {
+      "origin": "pre-specified",
+      "origin_dataset": null,
+      "note": "Universal baseline. Direction (higher bind_log50k = better) set a priori, no data required."
+    },
+    "rl_tcr_v1_from_ott": {
+      "origin": "discovered",
+      "origin_dataset": "ott_2017",
+      "note": "H14 was the BEST of 21 pre-specified hypotheses evaluated on Ott 2017. Selected by performance ranking on Ott \u2014 Ott result is discovery (in-sample selection), NOT validation. Valid transfer targets: TESLA, Hilf, Rojas, Sahin.",
+      "valid_transfer_targets": [
+        "tesla_2020",
+        "hilf_2019",
+        "rojas_2023",
+        "sahin_2017"
+      ]
+    },
+    "rl_expression_v1_from_tesla": {
+      "origin": "discovered",
+      "origin_dataset": "tesla_2020",
+      "note": "Expression feature direction and weight selected on TESLA data. TESLA result is discovery, NOT validation. Valid transfer target: Ott 2017 only (expression available).",
+      "valid_transfer_targets": [
+        "ott_2017_mutation"
+      ]
+    },
+    "binding_plus_calis": {
+      "origin": "pre-specified",
+      "origin_dataset": null,
+      "note": "Calis et al. 2013 immunogenicity score (published). Weights set a priori. Valid on all datasets.",
+      "valid_transfer_targets": [
+        "ott_2017_mutation",
+        "tesla_2020",
+        "hilf_2019",
+        "rojas_2023",
+        "sahin_2017"
+      ]
+    },
+    "rl_v1_original": {
+      "origin": "pre-specified",
+      "origin_dataset": null,
+      "note": "Original RL v1 combining presentation, expression, dissimilarity.",
+      "valid_transfer_targets": [
+        "ott_2017_mutation",
+        "tesla_2020",
+        "hilf_2019",
+        "rojas_2023",
+        "sahin_2017"
+      ]
+    }
+  },
+  "issue_2_expression_v1_reframe": {
+    "incorrect_claim": "rl_expression_v1 validated on both Ott and TESLA",
+    "correct_claim": "rl_expression_v1 DISCOVERED on TESLA (expression direction selected on TESLA data). Transfers to Ott (+0.0667 over binding-only baseline), CI=0.6424 \u2013 0.7777.",
+    "tesla_result_status": "DISCOVERY \u2014 exclude from transfer claims",
+    "tesla_lopo_auc": 0.8134,
+    "ott_result_status": "valid transfer test",
+    "ott_lopo_auc": 0.7161,
+    "ott_baseline_lopo_auc": 0.6494,
+    "ott_delta_over_baseline": 0.0667,
+    "ott_ci": {
+      "n": 6,
+      "observed_mean": 0.7161,
+      "ci_lo": 0.6424,
+      "ci_hi": 0.7777,
+      "ci_includes_05": false
+    },
+    "ott_ci_includes_baseline": true
+  },
+  "issue_3_bootstrap_cross_matrix": {
+    "binding_only": {
+      "origin": "pre-specified",
+      "origin_dataset": null,
+      "origin_note": "Universal baseline. Direction (higher bind_log50k = better) set a priori, no data required.",
+      "results": {
+        "hilf_2019": {
+          "lopo_auc": 0.6126,
+          "bootstrap_ci": {
+            "n": 15,
+            "observed_mean": 0.6126,
+            "ci_lo": 0.5187,
+            "ci_hi": 0.7049,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "rojas_2023": {
+          "lopo_auc": null,
+          "bootstrap_ci": {
+            "n": 0,
+            "observed_mean": null,
+            "ci_lo": null,
+            "ci_hi": null,
+            "ci_includes_05": null,
+            "note": "insufficient patients for bootstrap"
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "sahin_2017": {
+          "lopo_auc": null,
+          "bootstrap_ci": {
+            "n": 0,
+            "observed_mean": null,
+            "ci_lo": null,
+            "ci_hi": null,
+            "ci_includes_05": null,
+            "note": "insufficient patients for bootstrap"
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "tesla_2020": {
+          "lopo_auc": 0.7708,
+          "bootstrap_ci": {
+            "n": 9,
+            "observed_mean": 0.7708,
+            "ci_lo": 0.6852,
+            "ci_hi": 0.8599,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "ott_2017_mutation": {
+          "lopo_auc": 0.6494,
+          "bootstrap_ci": {
+            "n": 6,
+            "observed_mean": 0.6494,
+            "ci_lo": 0.5376,
+            "ci_hi": 0.7528,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": true,
+          "is_discovery": false
+        }
+      }
+    },
+    "rl_tcr_v1_from_ott": {
+      "origin": "discovered",
+      "origin_dataset": "ott_2017",
+      "origin_note": "H14 was the BEST of 21 pre-specified hypotheses evaluated on Ott 2017. Selected by performance ranking on Ott \u2014 Ott result is discovery (in-sample selection), NOT validation. Valid transfer targets: TESLA, Hilf, Rojas, Sahin.",
+      "results": {
+        "hilf_2019": {
+          "lopo_auc": 0.5778,
+          "bootstrap_ci": {
+            "n": 15,
+            "observed_mean": 0.5778,
+            "ci_lo": 0.4824,
+            "ci_hi": 0.6774,
+            "ci_includes_05": true
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "rojas_2023": {
+          "lopo_auc": 0.6765,
+          "bootstrap_ci": {
+            "n": 8,
+            "observed_mean": 0.6765,
+            "ci_lo": 0.5006,
+            "ci_hi": 0.875,
+            "ci_includes_05": false
+          },
+          "features_missing": [
+            "bind_log50k"
+          ],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "sahin_2017": {
+          "lopo_auc": 0.657,
+          "bootstrap_ci": {
+            "n": 12,
+            "observed_mean": 0.657,
+            "ci_lo": 0.5486,
+            "ci_hi": 0.7664,
+            "ci_includes_05": false
+          },
+          "features_missing": [
+            "bind_log50k",
+            "tcr_charge_diff"
+          ],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "tesla_2020": {
+          "lopo_auc": 0.51,
+          "bootstrap_ci": {
+            "n": 9,
+            "observed_mean": 0.51,
+            "ci_lo": 0.4043,
+            "ci_hi": 0.6344,
+            "ci_includes_05": true
+          },
+          "features_missing": [
+            "tcr_charge_diff"
+          ],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "ott_2017_mutation": {
+          "lopo_auc": 0.6803,
+          "bootstrap_ci": {
+            "n": 6,
+            "observed_mean": 0.6803,
+            "ci_lo": 0.5461,
+            "ci_hi": 0.8389,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": false,
+          "is_discovery": false
+        }
+      }
+    },
+    "rl_expression_v1_from_tesla": {
+      "origin": "discovered",
+      "origin_dataset": "tesla_2020",
+      "origin_note": "Expression feature direction and weight selected on TESLA data. TESLA result is discovery, NOT validation. Valid transfer target: Ott 2017 only (expression available).",
+      "results": {
+        "hilf_2019": {
+          "lopo_auc": 0.6629,
+          "bootstrap_ci": {
+            "n": 15,
+            "observed_mean": 0.6629,
+            "ci_lo": 0.5491,
+            "ci_hi": 0.7687,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": false,
+          "is_discovery": false
+        },
+        "rojas_2023": {
+          "lopo_auc": null,
+          "bootstrap_ci": {
+            "n": 0,
+            "observed_mean": null,
+            "ci_lo": null,
+            "ci_hi": null,
+            "ci_includes_05": null,
+            "note": "insufficient patients for bootstrap"
+          },
+          "features_missing": [],
+          "evaluation_status": "pre-specified",
+          "is_publishable": false,
+          "is_discovery": false
+        },
+        "sahin_2017": {
+          "lopo_auc": 0.4618,
+          "bootstrap_ci": {
+            "n": 12,
+            "observed_mean": 0.4618,
+            "ci_lo": 0.3472,
+            "ci_hi": 0.5747,
+            "ci_includes_05": true
+          },
+          "features_missing": [
+            "bind_log50k",
+            "nm_raw"
+          ],
+          "evaluation_status": "pre-specified",
+          "is_publishable": false,
+          "is_discovery": false
+        },
+        "tesla_2020": {
+          "lopo_auc": 0.8134,
+          "bootstrap_ci": {
+            "n": 9,
+            "observed_mean": 0.8134,
+            "ci_lo": 0.7073,
+            "ci_hi": 0.9156,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "discovery",
+          "is_publishable": false,
+          "is_discovery": true
+        },
+        "ott_2017_mutation": {
+          "lopo_auc": 0.7161,
+          "bootstrap_ci": {
+            "n": 6,
+            "observed_mean": 0.7161,
+            "ci_lo": 0.6424,
+            "ci_hi": 0.7777,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        }
+      }
+    },
+    "binding_plus_calis": {
+      "origin": "pre-specified",
+      "origin_dataset": null,
+      "origin_note": "Calis et al. 2013 immunogenicity score (published). Weights set a priori. Valid on all datasets.",
+      "results": {
+        "hilf_2019": {
+          "lopo_auc": 0.6536,
+          "bootstrap_ci": {
+            "n": 15,
+            "observed_mean": 0.6536,
+            "ci_lo": 0.5435,
+            "ci_hi": 0.7536,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "rojas_2023": {
+          "lopo_auc": 0.4702,
+          "bootstrap_ci": {
+            "n": 8,
+            "observed_mean": 0.4702,
+            "ci_lo": 0.2141,
+            "ci_hi": 0.7244,
+            "ci_includes_05": true
+          },
+          "features_missing": [
+            "bind_log50k"
+          ],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "sahin_2017": {
+          "lopo_auc": 0.4437,
+          "bootstrap_ci": {
+            "n": 12,
+            "observed_mean": 0.4437,
+            "ci_lo": 0.3266,
+            "ci_hi": 0.5712,
+            "ci_includes_05": true
+          },
+          "features_missing": [
+            "bind_log50k"
+          ],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "tesla_2020": {
+          "lopo_auc": 0.762,
+          "bootstrap_ci": {
+            "n": 9,
+            "observed_mean": 0.762,
+            "ci_lo": 0.678,
+            "ci_hi": 0.8516,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "ott_2017_mutation": {
+          "lopo_auc": 0.6668,
+          "bootstrap_ci": {
+            "n": 6,
+            "observed_mean": 0.6668,
+            "ci_lo": 0.5611,
+            "ci_hi": 0.7741,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        }
+      }
+    },
+    "rl_v1_original": {
+      "origin": "pre-specified",
+      "origin_dataset": null,
+      "origin_note": "Original RL v1 combining presentation, expression, dissimilarity.",
+      "results": {
+        "hilf_2019": {
+          "lopo_auc": 0.6032,
+          "bootstrap_ci": {
+            "n": 15,
+            "observed_mean": 0.6032,
+            "ci_lo": 0.506,
+            "ci_hi": 0.6888,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "rojas_2023": {
+          "lopo_auc": 0.4112,
+          "bootstrap_ci": {
+            "n": 8,
+            "observed_mean": 0.4112,
+            "ci_lo": 0.225,
+            "ci_hi": 0.5668,
+            "ci_includes_05": true
+          },
+          "features_missing": [
+            "expr_existing"
+          ],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "sahin_2017": {
+          "lopo_auc": 0.4869,
+          "bootstrap_ci": {
+            "n": 12,
+            "observed_mean": 0.4869,
+            "ci_lo": 0.3658,
+            "ci_hi": 0.6114,
+            "ci_includes_05": true
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "tesla_2020": {
+          "lopo_auc": null,
+          "bootstrap_ci": {
+            "n": 0,
+            "observed_mean": null,
+            "ci_lo": null,
+            "ci_hi": null,
+            "ci_includes_05": null,
+            "note": "insufficient patients for bootstrap"
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        },
+        "ott_2017_mutation": {
+          "lopo_auc": 0.661,
+          "bootstrap_ci": {
+            "n": 6,
+            "observed_mean": 0.661,
+            "ci_lo": 0.5681,
+            "ci_hi": 0.7468,
+            "ci_includes_05": false
+          },
+          "features_missing": [],
+          "evaluation_status": "valid_transfer",
+          "is_publishable": true,
+          "is_discovery": false
+        }
+      }
+    }
+  },
+  "issue_3_ci_overlap_vs_baseline": {
+    "rl_tcr_v1_from_ott": {
+      "hilf_2019": {
+        "strategy_lopo": 0.5778,
+        "baseline_lopo": 0.6126,
+        "strategy_ci": [
+          0.4824,
+          0.6774
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      },
+      "rojas_2023": {
+        "status": "insufficient_data"
+      },
+      "sahin_2017": {
+        "status": "insufficient_data"
+      },
+      "tesla_2020": {
+        "strategy_lopo": 0.51,
+        "baseline_lopo": 0.7708,
+        "strategy_ci": [
+          0.4043,
+          0.6344
+        ],
+        "ci_includes_baseline": false,
+        "significantly_better_than_baseline": false
+      },
+      "ott_2017_mutation": {
+        "status": "skip_discovery"
+      }
+    },
+    "rl_expression_v1_from_tesla": {
+      "hilf_2019": {
+        "status": "skip_discovery"
+      },
+      "rojas_2023": {
+        "status": "skip_discovery"
+      },
+      "sahin_2017": {
+        "status": "skip_discovery"
+      },
+      "tesla_2020": {
+        "status": "skip_discovery"
+      },
+      "ott_2017_mutation": {
+        "strategy_lopo": 0.7161,
+        "baseline_lopo": 0.6494,
+        "strategy_ci": [
+          0.6424,
+          0.7777
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      }
+    },
+    "binding_plus_calis": {
+      "hilf_2019": {
+        "strategy_lopo": 0.6536,
+        "baseline_lopo": 0.6126,
+        "strategy_ci": [
+          0.5435,
+          0.7536
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      },
+      "rojas_2023": {
+        "status": "insufficient_data"
+      },
+      "sahin_2017": {
+        "status": "insufficient_data"
+      },
+      "tesla_2020": {
+        "strategy_lopo": 0.762,
+        "baseline_lopo": 0.7708,
+        "strategy_ci": [
+          0.678,
+          0.8516
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      },
+      "ott_2017_mutation": {
+        "strategy_lopo": 0.6668,
+        "baseline_lopo": 0.6494,
+        "strategy_ci": [
+          0.5611,
+          0.7741
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      }
+    },
+    "rl_v1_original": {
+      "hilf_2019": {
+        "strategy_lopo": 0.6032,
+        "baseline_lopo": 0.6126,
+        "strategy_ci": [
+          0.506,
+          0.6888
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      },
+      "rojas_2023": {
+        "status": "insufficient_data"
+      },
+      "sahin_2017": {
+        "status": "insufficient_data"
+      },
+      "tesla_2020": {
+        "status": "insufficient_data"
+      },
+      "ott_2017_mutation": {
+        "strategy_lopo": 0.661,
+        "baseline_lopo": 0.6494,
+        "strategy_ci": [
+          0.5681,
+          0.7468
+        ],
+        "ci_includes_baseline": true,
+        "significantly_better_than_baseline": false
+      }
+    }
+  },
+  "issue_4_h14_bonferroni": {
+    "hypothesis": "H14_bind_plus_3tcr",
+    "description": "Binding + TCR volume + charge_diff + hydrophobicity (Ott 2017)",
+    "note": "H14 was selected as BEST of 21 hypotheses after testing on Ott. This is a discovery finding, not a pre-specified test. Bonferroni correction applied for fairness.",
+    "n_hypotheses_tested": 21,
+    "bonferroni_threshold": 0.002381,
+    "n_patients": 6,
+    "h0_binding_mean_auc": 0.6494,
+    "h14_mean_auc": 0.7577,
+    "mean_diff_over_baseline": 0.1083,
+    "per_patient_diffs": {
+      "ott_1": 0.0,
+      "ott_2": 0.375,
+      "ott_3": 0.3333,
+      "ott_4": 0.1667,
+      "ott_5": -0.05,
+      "ott_6": -0.175
+    },
+    "ttest_p": 0.2819,
+    "wilcoxon_p": 0.4375,
+    "bootstrap_ci_diff_95": [
+      -0.0417,
+      0.2639
+    ],
+    "survives_uncorrected_p05": false,
+    "survives_bonferroni": false,
+    "verdict": "FAILS Bonferroni (p=0.2819 >> threshold=0.0024). Even uncorrected: p=0.2819 > 0.05. Bootstrap 95% CI for mean diff crosses zero. H14 improvement is NOT statistically significant. Treat as exploratory / hypothesis-generating only."
+  },
+  "issue_5_keskin_exclusion": {
+    "excluded_from_auc_tables": true,
+    "reason": "Only 2 non-immunogenic rows across 2 patients. LOPO AUC undefined.",
+    "shank2_case_study": "artifacts/shank2_verification.json"
+  },
+  "issue_6_feature_availability": {
+    "ott_2017": {
+      "n_mutations": 97,
+      "n_immunogenic": 15,
+      "n_patients": 6,
+      "unit": "mutation-level (min nM aggregated across HLA alleles)",
+      "candidate_selection": "All somatic mutations \u2014 NOT pre-screened for HLA binding",
+      "has_wildtype_peptide": true,
+      "has_binding_nm": true,
+      "binding_source": "NetMHCpan (reported in paper)",
+      "has_expression": true,
+      "features_complete": [
+        "binding_only",
+        "rl_tcr_v1_from_ott",
+        "rl_expression_v1_from_tesla",
+        "binding_plus_calis"
+      ],
+      "features_partial": [],
+      "features_unavailable": [],
+      "bias_note": "None. Unselected mutations. Gold standard."
+    },
+    "tesla_2020": {
+      "n_candidates": 918,
+      "n_immunogenic": 41,
+      "n_patients": 9,
+      "unit": "peptide-level (submitted by 8 teams)",
+      "candidate_selection": "Mixed \u2014 each team pre-selected their submissions for HLA binding",
+      "has_wildtype_peptide": false,
+      "has_binding_nm": true,
+      "binding_source": "NetMHCpan %rank (team-submitted)",
+      "has_expression": true,
+      "features_complete": [
+        "binding_only",
+        "rl_expression_v1_from_tesla",
+        "binding_plus_calis"
+      ],
+      "features_partial": [
+        "rl_tcr_v1_from_ott \u2014 tcr_charge_diff excluded (no WT), tcr_volume ~140 dominates"
+      ],
+      "features_unavailable": [],
+      "bias_note": "Binding pre-screened by teams. Binding AUC likely inflated vs unscreened cohorts."
+    },
+    "hilf_2019": {
+      "n_candidates": 152,
+      "n_immunogenic": 77,
+      "n_patients": 15,
+      "unit": "peptide-level",
+      "candidate_selection": "MHC class I binders \u2014 screened for HLA binding before inclusion",
+      "has_wildtype_peptide": false,
+      "has_binding_nm": true,
+      "binding_source": "Reported in paper",
+      "has_expression": false,
+      "features_complete": [
+        "binding_only",
+        "binding_plus_calis"
+      ],
+      "features_partial": [
+        "rl_tcr_v1_from_ott \u2014 tcr_charge_diff excluded (no WT)"
+      ],
+      "features_unavailable": [
+        "rl_expression_v1_from_tesla \u2014 no expression data"
+      ],
+      "bias_note": "Binding pre-screened. Binding AUC likely inflated."
+    },
+    "rojas_2023": {
+      "n_candidates": 230,
+      "n_immunogenic": 30,
+      "n_patients": 16,
+      "unit": "peptide-level",
+      "candidate_selection": "Predicted binders (binding-screened)",
+      "has_wildtype_peptide": false,
+      "has_binding_nm": true,
+      "binding_source": "MHCflurry predicted post-hoc (not reported in paper)",
+      "has_expression": false,
+      "features_complete": [
+        "binding_plus_calis"
+      ],
+      "features_partial": [
+        "rl_tcr_v1_from_ott \u2014 tcr_charge_diff excluded (no WT), binding_nm added post-hoc"
+      ],
+      "features_unavailable": [
+        "binding_only \u2014 bind_log50k missing from training_matrix (loaded separately)",
+        "rl_expression_v1_from_tesla \u2014 no expression data"
+      ],
+      "bias_note": "Binding added post-hoc via MHCflurry. Candidates pre-selected for binding."
+    },
+    "sahin_2017": {
+      "n_candidates": 165,
+      "n_immunogenic": 109,
+      "n_patients": 13,
+      "unit": "peptide-level (after HLA expansion: 125 mutations \u2192 165 rows)",
+      "candidate_selection": "All 10-mer mutations \u2014 NOT pre-screened for HLA binding",
+      "has_wildtype_peptide": true,
+      "has_binding_nm": true,
+      "binding_source": "MHCflurry sliding window (8-11mer scan, post-hoc, 80/125 mutations covered)",
+      "has_expression": false,
+      "features_complete": [],
+      "features_partial": [
+        "rl_tcr_v1_from_ott \u2014 WT available but binding post-hoc and 45/125 mutations uncovered",
+        "binding_only \u2014 45/125 mutations missing binding"
+      ],
+      "features_unavailable": [
+        "rl_expression_v1_from_tesla \u2014 no expression data"
+      ],
+      "bias_note": "Unselected candidates. Low binding coverage (80/125). HLA alleles sourced from Extended Data Table 3."
+    },
+    "keskin_2019": {
+      "excluded_from_auc_tables": true,
+      "reason": "Only 2 non-immunogenic rows \u2014 per-patient LOPO AUC not meaningful (2 patients, n=2 negatives total).",
+      "retained_as": "Qualitative case study: SHANK2 G486S (worst binder \u2192 rank 5/17 under rl_tcr_v1)."
+    }
+  },
+  "survivorship": [
+    {
+      "finding": "H14 rl_tcr_v1 improvement over binding_only on Ott (6 patients)",
+      "survives": false,
+      "tier": "exploratory",
+      "detail": "FAILS Bonferroni (p=0.2819 >> threshold=0.0024). Even uncorrected: p=0.2819 > 0.05. Bootstrap 95% CI for mean diff crosses zero. H14 improvement is NOT statistically significant. Treat as exploratory / hypothesis-generating only."
+    },
+    {
+      "finding": "rl_expression_v1 transfer to Ott (discovered on TESLA)",
+      "survives": false,
+      "tier": "valid_transfer",
+      "detail": "LOPO=0.7161, baseline=0.6494, CI=0.6424\u20130.7777, CI\u2283baseline=True"
+    },
+    {
+      "finding": "rl_tcr_v1 transfer to hilf_2019",
+      "survives": false,
+      "tier": "valid_transfer",
+      "detail": "LOPO=0.5778, baseline=0.6126, CI=0.4824\u20130.6774, missing=[]"
+    },
+    {
+      "finding": "rl_tcr_v1 transfer to rojas_2023",
+      "survives": false,
+      "tier": "valid_transfer",
+      "detail": "LOPO=0.6765, baseline=None, CI=0.5006\u20130.875, missing=['bind_log50k']"
+    },
+    {
+      "finding": "rl_tcr_v1 transfer to sahin_2017",
+      "survives": false,
+      "tier": "valid_transfer",
+      "detail": "LOPO=0.657, baseline=None, CI=0.5486\u20130.7664, missing=['bind_log50k', 'tcr_charge_diff']"
+    },
+    {
+      "finding": "rl_tcr_v1 transfer to tesla_2020",
+      "survives": false,
+      "tier": "valid_transfer",
+      "detail": "LOPO=0.51, baseline=0.7708, CI=0.4043\u20130.6344, missing=['tcr_charge_diff']"
+    },
+    {
+      "finding": "binding_only baseline reliable on ott_2017_mutation",
+      "survives": true,
+      "tier": "baseline",
+      "detail": "LOPO=0.6494, CI=[0.5376,0.7528], CI\u22830.5=False"
+    },
+    {
+      "finding": "binding_only baseline reliable on hilf_2019",
+      "survives": true,
+      "tier": "baseline",
+      "detail": "LOPO=0.6126, CI=[0.5187,0.7049], CI\u22830.5=False"
+    },
+    {
+      "finding": "binding_only baseline reliable on tesla_2020",
+      "survives": true,
+      "tier": "baseline",
+      "detail": "LOPO=0.7708, CI=[0.6852,0.8599], CI\u22830.5=False"
+    },
+    {
+      "finding": "Score_EL dominance on M\u00fcller NCI (high AUC not selection-bias)",
+      "survives": true,
+      "tier": "primary",
+      "detail": "Bias check: 3.7% negatives <500nM (not binding-screened). Score_EL LOPO=0.984 is real."
+    },
+    {
+      "finding": "Keskin excluded from AUC tables",
+      "survives": true,
+      "tier": "data_quality",
+      "detail": "n=2 non-immunogenic rows. SHANK2 G486S retained as qualitative case study."
+    }
+  ],
+  "for_paper": {
+    "main_table": [
+      "binding_only: pre-specified baseline, all datasets",
+      "rl_tcr_v1: DISCOVERY on Ott, transfer results on TESLA/Hilf/Rojas/Sahin",
+      "rl_expression_v1: DISCOVERY on TESLA, transfer result on Ott only",
+      "binding_plus_calis: pre-specified, all datasets"
+    ],
+    "supplementary_only": [
+      "rl_tcr_v1 result ON Ott 2017 \u2014 label as 'training dataset'",
+      "rl_expression_v1 result ON TESLA 2020 \u2014 label as 'training dataset'",
+      "H14 Bonferroni analysis table (all 21 hypotheses)",
+      "BEST_OF_* results \u2014 dataset-specific upper bound, no transfer claim"
+    ],
+    "remove_or_correct": [
+      "Claim 'rl_expression_v1 validated on TESLA' \u2192 'discovered on TESLA'",
+      "Keskin AUC from any summary table",
+      "Any claim that H14 is statistically significant"
+    ]
+  }
+}

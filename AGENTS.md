@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 6) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 7) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -240,6 +240,67 @@ Notes:
   - PRIME: not available in any dataset
   Files: artifacts/full_cross_matrix_with_baselines.csv
          artifacts/percentile_baseline_results.json
+```
+
+### HONEST VALIDATION AUDIT (2026-04-21) — pre-paper integrity checks
+```
+Script: backend/validation/honest_validation_audit.py
+Artifact: artifacts/honest_validation_audit.json
+Method: Bootstrap CIs from existing per-patient LOPO AUC values (1000 resamples).
+        All CIs are on the same numbers reported in the cross-matrix.
+
+ISSUE 1 — Strategy origins:
+  binding_only:               pre-specified (universal baseline, no data required)
+  rl_tcr_v1_from_ott:         DISCOVERED on Ott (H14 = best of 21 hypotheses)
+  rl_expression_v1_from_tesla: DISCOVERED on TESLA (expression direction selected on TESLA)
+  binding_plus_calis:         pre-specified (Calis 2013 published score)
+
+ISSUE 2 — rl_expression_v1 honest reframe:
+  WRONG:  "validated on Ott AND TESLA"
+  CORRECT: "discovered on TESLA, transfers to Ott (+0.067 over baseline)"
+  TESLA result must be labeled 'training dataset' in all tables.
+
+ISSUE 3 — Bootstrap CIs (1000 patient-level resamples):
+  Strategy                  Dataset        LOPO AUC  95% CI             Notes
+  binding_only              Ott (n=6)      0.649     [0.538, 0.753]     reliable ✓
+  binding_only              TESLA (n=9)    0.771     [0.685, 0.860]     reliable ✓
+  binding_only              Hilf (n=15)    0.613     [0.519, 0.705]     reliable ✓
+  rl_tcr_v1_from_ott        Ott            0.680     [0.546, 0.839]     CI⊃baseline (n.s.)
+  rl_tcr_v1_from_ott        TESLA          0.510     [0.404, 0.634]     CI⊃0.5 (fails on TESLA, no WT)
+  rl_tcr_v1_from_ott        Hilf           0.578     [0.482, 0.677]     CI⊃baseline (n.s., worse)
+  rl_tcr_v1_from_ott        Rojas          0.677     [0.501, 0.875]     wide CI (no binding baseline)
+  rl_tcr_v1_from_ott        Sahin          0.657     [0.549, 0.766]     vs baseline N/A (no binding)
+  rl_expression_v1_tesla    Ott            0.716     [0.642, 0.778]     CI⊃baseline (n.s.)
+  rl_expression_v1_tesla    Sahin          0.462     [0.347, 0.575]     CI⊃0.5 (fails)
+
+ISSUE 4 — H14 Bonferroni (21 hypotheses tested on Ott):
+  Bonferroni threshold: 0.0024
+  H14 t-test p = 0.2819, Wilcoxon p = 0.4375
+  Bootstrap CI for mean diff vs baseline: [-0.042, 0.264] — crosses zero
+  FAILS both Bonferroni AND uncorrected p<0.05.
+  VERDICT: Exploratory only. Cannot claim statistical significance.
+
+ISSUE 5 — Keskin removed from AUC tables:
+  n=2 non-immunogenic rows → LOPO AUC meaningless.
+  SHANK2 G486S retained as qualitative case study only.
+
+ISSUE 6 — Feature availability table: see artifacts/honest_validation_audit.json
+
+SURVIVORSHIP SUMMARY:
+  PASS:
+    - binding_only baseline reliable on Ott, Hilf, TESLA (CI does not include 0.5)
+    - Score_EL dominance on Müller NCI is real (not selection-bias artifact)
+    - Keskin properly excluded from AUC tables
+  FAIL (insufficient evidence):
+    - H14 rl_tcr_v1 improvement on Ott (p=0.28, n=6, not significant)
+    - rl_expression_v1 transfer to Ott (CI includes baseline 0.649)
+    - rl_tcr_v1 transfer to Hilf, Rojas, Sahin, TESLA (wide CIs or performs worse)
+
+FOR PAPER:
+  Main table: pre-specified strategies + transfer tests (labeled correctly)
+  Supplementary: H14 Bonferroni table, discovery-set results labeled as training
+  Remove: any claim of statistical significance for TCR features over binding baseline
+  SHANK2: qualitative figure only, not as AUC evidence
 ```
 
 ### Sahin 2017 PHASE 4/5 results (2026-04-21, MHCflurry binding)
