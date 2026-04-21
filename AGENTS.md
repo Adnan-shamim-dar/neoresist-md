@@ -403,6 +403,14 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-21 | Claude claude-sonnet-4-6 | Session 10: Phase 5+6 registry + haystack
+  Changed: build_registry.py, haystack.py (new), strategies/*.yaml (6 files),
+           artifacts/haystack_results.json
+  Phase 5: 5 cancer-type YAMLs + registry.yaml. melanoma_ml_v1 validated=true LOPO=0.760.
+  Phase 6: LOPO haystack — Ott: binding=0.636 rl_tcr_v1=0.679 melanoma_ml_v1=0.674 R@10=0.917
+           Sahin: binding=0.436 ml=0.581 (rl_tcr_v1=0.5 — no WT peptide in Sahin)
+  Tests: 40/40 passing
+  Next: paper methods/results draft; commit large working tree; ITSNdb
 2026-04-21 | Claude claude-sonnet-4-6 | Session 9: Phase 4 cross-cancer transfer evaluation
   Changed: backend/strategy_engine/cross_evaluate.py (new),
            artifacts/cross_cancer_transfer.json, within_melanoma_lodo.json,
