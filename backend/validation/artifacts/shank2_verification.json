@@ -1,0 +1,28 @@
+{
+  "found": true,
+  "dataset": "keskin_2019",
+  "note": "SHANK2 G486S is NOT in Ott 2017. It is in Keskin 2019 (GBM, patient keskin_8).",
+  "mutation_id": "keskin_8/SHANK2/p.G486S",
+  "mutant_peptide": "SDRVKVLSI",
+  "hla_allele": "HLA-B*08:01",
+  "binding_affinity_nm": 447.37,
+  "bind_log50k": 0.4359047078153543,
+  "score_rl_tcr_v1": 35.80795235390767,
+  "tcr_features": {
+    "tcr_volume": 140.85999999999999,
+    "tcr_charge_diff": 0.0,
+    "tcr_hydro": 1.5000000000000002,
+    "tcr_surface_change": 0.0
+  },
+  "total_mutations": 17,
+  "binding_only_rank": 17,
+  "binding_only_percentile": 0.0,
+  "rl_tcr_v1_rank": 5,
+  "rl_tcr_v1_percentile": 70.6,
+  "rank_improvement": 12,
+  "immunogenic": 1,
+  "top20pct_binding": false,
+  "top20pct_tcr": false,
+  "tcr_elevates_into_top20": false,
+  "conclusion": "surfaces higher under rl_tcr_v1"
+}

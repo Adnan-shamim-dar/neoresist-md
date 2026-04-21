@@ -1,0 +1,296 @@
+{
+  "notes": {
+    "ott_2017": "No mhcflurry_percentile_rank \u2014 bind_log50k used as proxy for %rank",
+    "tesla_2020": "No mhcflurry_percentile_rank \u2014 bind_log50k used as proxy for %rank",
+    "rojas_2023": "mhcflurry_percentile_rank available (230/230 rows)",
+    "hilf_2019": "mhcflurry_percentile_rank available (127/152 rows)",
+    "sahin_2017": "mhcflurry_percentile_rank added via add_sahin_percentile.py",
+    "prime": "PRIME not available in any dataset \u2014 future comparison needed"
+  },
+  "results": {
+    "ott_2017": {
+      "binding_only": {
+        "lopo_auc": 0.5443236005103509,
+        "insample_auc": 0.5598434004474273,
+        "status": "computed"
+      },
+      "rl_v1_original": {
+        "lopo_auc": 0.6025742915579247,
+        "insample_auc": 0.5604026845637584,
+        "status": "computed"
+      },
+      "rl_tcr_v1_from_ott": {
+        "lopo_auc": 0.6978895600600373,
+        "insample_auc": 0.6379567486950037,
+        "status": "computed"
+      },
+      "rl_expression_v1_from_tesla": {
+        "lopo_auc": 0.6466953681198121,
+        "insample_auc": 0.6001118568232662,
+        "status": "computed"
+      },
+      "binding_plus_calis": {
+        "lopo_auc": 0.5754384749965086,
+        "insample_auc": 0.5794183445190156,
+        "status": "computed"
+      },
+      "bind_exp500": {
+        "lopo_auc": 0.5551260696461534,
+        "insample_auc": 0.5613348247576435,
+        "status": "computed"
+      },
+      "bind_sigmoid500": {
+        "lopo_auc": 0.5551260696461534,
+        "insample_auc": 0.5613348247576435,
+        "status": "computed"
+      },
+      "mhcflurry_percentile_rank_only": {
+        "lopo_auc": null,
+        "insample_auc": null,
+        "status": "missing: ['mhcflurry_pr_score']"
+      }
+    },
+    "tesla_2020": {
+      "binding_only": {
+        "lopo_auc": 0.7708359550490846,
+        "insample_auc": 0.7915982979670162,
+        "status": "computed"
+      },
+      "rl_v1_original": {
+        "lopo_auc": null,
+        "insample_auc": null,
+        "status": "missing: ['pres_existing', 'expr_existing', 'dissim_existing']"
+      },
+      "rl_tcr_v1_from_ott": {
+        "lopo_auc": 0.5099915950589029,
+        "insample_auc": 0.48583029729955224,
+        "status": "computed"
+      },
+      "rl_expression_v1_from_tesla": {
+        "lopo_auc": 0.8134179059185117,
+        "insample_auc": 0.823066440470562,
+        "status": "computed"
+      },
+      "binding_plus_calis": {
+        "lopo_auc": 0.7620323282250328,
+        "insample_auc": 0.781822732708513,
+        "status": "computed"
+      },
+      "bind_exp500": {
+        "lopo_auc": 0.7708359550490846,
+        "insample_auc": 0.7915982979670162,
+        "status": "computed"
+      },
+      "bind_sigmoid500": {
+        "lopo_auc": 0.7708359550490846,
+        "insample_auc": 0.7915982979670162,
+        "status": "computed"
+      },
+      "mhcflurry_percentile_rank_only": {
+        "lopo_auc": null,
+        "insample_auc": null,
+        "status": "missing: ['mhcflurry_pr_score']"
+      }
+    },
+    "rojas_2023": {
+      "binding_only": {
+        "lopo_auc": 0.5472718253968254,
+        "insample_auc": 0.6418333333333333,
+        "status": "computed"
+      },
+      "rl_v1_original": {
+        "lopo_auc": 0.4112351190476191,
+        "insample_auc": 0.5644166666666667,
+        "status": "computed"
+      },
+      "rl_tcr_v1_from_ott": {
+        "lopo_auc": 0.674702380952381,
+        "insample_auc": 0.5295,
+        "status": "computed"
+      },
+      "rl_expression_v1_from_tesla": {
+        "lopo_auc": 0.5472718253968254,
+        "insample_auc": 0.6418333333333333,
+        "status": "computed"
+      },
+      "binding_plus_calis": {
+        "lopo_auc": 0.5233630952380952,
+        "insample_auc": 0.6258333333333334,
+        "status": "computed"
+      },
+      "bind_exp500": {
+        "lopo_auc": 0.5472718253968254,
+        "insample_auc": 0.6418333333333333,
+        "status": "computed"
+      },
+      "bind_sigmoid500": {
+        "lopo_auc": 0.5472718253968254,
+        "insample_auc": 0.6418333333333333,
+        "status": "computed"
+      },
+      "mhcflurry_percentile_rank_only": {
+        "lopo_auc": 0.6531001984126985,
+        "insample_auc": 0.6381666666666668,
+        "status": "computed"
+      }
+    },
+    "hilf_2019": {
+      "binding_only": {
+        "lopo_auc": 0.6236561864061865,
+        "insample_auc": 0.6042424242424242,
+        "status": "computed"
+      },
+      "rl_v1_original": {
+        "lopo_auc": 0.6031877289377289,
+        "insample_auc": 0.5823376623376623,
+        "status": "computed"
+      },
+      "rl_tcr_v1_from_ott": {
+        "lopo_auc": 0.49316463166463165,
+        "insample_auc": 0.5456277056277056,
+        "status": "computed"
+      },
+      "rl_expression_v1_from_tesla": {
+        "lopo_auc": 0.4968389295889296,
+        "insample_auc": 0.5344588744588744,
+        "status": "computed"
+      },
+      "binding_plus_calis": {
+        "lopo_auc": 0.6268411680911681,
+        "insample_auc": 0.6245887445887446,
+        "status": "computed"
+      },
+      "bind_exp500": {
+        "lopo_auc": 0.6236561864061865,
+        "insample_auc": 0.6042424242424242,
+        "status": "computed"
+      },
+      "bind_sigmoid500": {
+        "lopo_auc": 0.6236561864061865,
+        "insample_auc": 0.6042424242424242,
+        "status": "computed"
+      },
+      "mhcflurry_percentile_rank_only": {
+        "lopo_auc": 0.595785816035816,
+        "insample_auc": 0.5851948051948052,
+        "status": "computed"
+      }
+    },
+    "sahin_2017": {
+      "binding_only": {
+        "lopo_auc": 0.47712053571428575,
+        "insample_auc": 0.5288335517693317,
+        "status": "computed"
+      },
+      "rl_v1_original": {
+        "lopo_auc": 0.4868551587301588,
+        "insample_auc": 0.46215596330275227,
+        "status": "computed"
+      },
+      "rl_tcr_v1_from_ott": {
+        "lopo_auc": 0.6598875661375662,
+        "insample_auc": 0.5367791612057667,
+        "status": "computed"
+      },
+      "rl_expression_v1_from_tesla": {
+        "lopo_auc": 0.4371073082010582,
+        "insample_auc": 0.4404488859764089,
+        "status": "computed"
+      },
+      "binding_plus_calis": {
+        "lopo_auc": 0.40106233465608465,
+        "insample_auc": 0.511959370904325,
+        "status": "computed"
+      },
+      "bind_exp500": {
+        "lopo_auc": 0.47712053571428575,
+        "insample_auc": 0.5288335517693317,
+        "status": "computed"
+      },
+      "bind_sigmoid500": {
+        "lopo_auc": 0.47712053571428575,
+        "insample_auc": 0.5288335517693317,
+        "status": "computed"
+      },
+      "mhcflurry_percentile_rank_only": {
+        "lopo_auc": 0.5039475859788359,
+        "insample_auc": 0.5305537352555703,
+        "status": "computed"
+      }
+    }
+  },
+  "cross_matrix": [
+    {
+      "strategy": "binding_only",
+      "ott_2017_lopo": 0.5443236005103509,
+      "tesla_2020_lopo": 0.7708359550490846,
+      "sahin_2017_lopo": 0.47712053571428575,
+      "hilf_2019_lopo": 0.6236561864061865,
+      "rojas_2023_lopo": 0.5472718253968254,
+      "mean_lopo": 0.5926416206153466
+    },
+    {
+      "strategy": "rl_v1_original",
+      "ott_2017_lopo": 0.6025742915579247,
+      "tesla_2020_lopo": NaN,
+      "sahin_2017_lopo": 0.4868551587301588,
+      "hilf_2019_lopo": 0.6031877289377289,
+      "rojas_2023_lopo": 0.4112351190476191,
+      "mean_lopo": 0.5259630745683579
+    },
+    {
+      "strategy": "rl_tcr_v1_from_ott",
+      "ott_2017_lopo": 0.6978895600600373,
+      "tesla_2020_lopo": 0.5099915950589029,
+      "sahin_2017_lopo": 0.6598875661375662,
+      "hilf_2019_lopo": 0.49316463166463165,
+      "rojas_2023_lopo": 0.674702380952381,
+      "mean_lopo": 0.6071271467747038
+    },
+    {
+      "strategy": "rl_expression_v1_from_tesla",
+      "ott_2017_lopo": 0.6466953681198121,
+      "tesla_2020_lopo": 0.8134179059185117,
+      "sahin_2017_lopo": 0.4371073082010582,
+      "hilf_2019_lopo": 0.4968389295889296,
+      "rojas_2023_lopo": 0.5472718253968254,
+      "mean_lopo": 0.5882662674450274
+    },
+    {
+      "strategy": "binding_plus_calis",
+      "ott_2017_lopo": 0.5754384749965086,
+      "tesla_2020_lopo": 0.7620323282250328,
+      "sahin_2017_lopo": 0.40106233465608465,
+      "hilf_2019_lopo": 0.6268411680911681,
+      "rojas_2023_lopo": 0.5233630952380952,
+      "mean_lopo": 0.577747480241378
+    },
+    {
+      "strategy": "bind_exp500",
+      "ott_2017_lopo": 0.5551260696461534,
+      "tesla_2020_lopo": 0.7708359550490846,
+      "sahin_2017_lopo": 0.47712053571428575,
+      "hilf_2019_lopo": 0.6236561864061865,
+      "rojas_2023_lopo": 0.5472718253968254,
+      "mean_lopo": 0.5948021144425071
+    },
+    {
+      "strategy": "bind_sigmoid500",
+      "ott_2017_lopo": 0.5551260696461534,
+      "tesla_2020_lopo": 0.7708359550490846,
+      "sahin_2017_lopo": 0.47712053571428575,
+      "hilf_2019_lopo": 0.6236561864061865,
+      "rojas_2023_lopo": 0.5472718253968254,
+      "mean_lopo": 0.5948021144425071
+    },
+    {
+      "strategy": "mhcflurry_percentile_rank_only",
+      "ott_2017_lopo": NaN,
+      "tesla_2020_lopo": NaN,
+      "sahin_2017_lopo": 0.5039475859788359,
+      "hilf_2019_lopo": 0.595785816035816,
+      "rojas_2023_lopo": 0.6531001984126985,
+      "mean_lopo": 0.5842778668091168
+    }
+  ]
+}

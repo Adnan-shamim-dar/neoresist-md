@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 3) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 4) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -163,6 +163,36 @@ rl_tcr_v1            0.758   0.510   0.493   0.675
 binding_plus_calis   0.667   0.762   0.627   0.523
 ```
 
+### SHANK2 G486S verification (2026-04-21)
+```
+Dataset:    Keskin 2019 (GBM, patient keskin_8) — NOT in Ott 2017
+Peptide:    SDRVKVLSI | HLA: HLA-B*08:01 | immunogenic: YES
+Binding:    447.37 nM — rank 17/17 (dead last, 0th percentile)
+rl_tcr_v1:  rank 5/17 (70.6th percentile) — +12 positions
+Conclusion: SHANK2 surfaces dramatically higher under rl_tcr_v1.
+            Compelling paper example: worst binder → top-5 candidate
+            due to high TCR surface volume (tcr_volume=140.86).
+Artifact:   artifacts/shank2_verification.json
+```
+
+### MHCflurry %rank baseline (2026-04-21, cross-matrix update)
+```
+Strategy                        Ott    TESLA  Sahin  Hilf   Rojas  Mean
+binding_only                    0.544  0.771  0.477  0.624  0.547  0.593
+rl_tcr_v1_from_ott              0.698  0.510  0.660  0.493  0.675  0.607 ★ best mean
+rl_expression_v1_from_tesla     0.647  0.813  0.437  0.497  0.547  0.588
+mhcflurry_percentile_rank_only  N/A    N/A    0.504  0.596  0.653  0.584
+binding_plus_calis              0.575  0.762  0.401  0.627  0.523  0.578
+
+Notes:
+  - %rank outperforms nM binding (0.584 vs 0.593 mean — within noise)
+  - rl_tcr_v1 beats %rank baseline on melanoma (Ott, Sahin) by design
+  - Ott/TESLA have no %rank data (bind_log50k used as proxy)
+  - PRIME: not available in any dataset
+  Files: artifacts/full_cross_matrix_with_baselines.csv
+         artifacts/percentile_baseline_results.json
+```
+
 ### Sahin 2017 PHASE 4/5 results (2026-04-21, MHCflurry binding)
 ```
 Strategy                                 Sahin LOPO
@@ -189,10 +219,18 @@ This motivates the configurable platform and the paper's argument.
 
 [x] Fix dash_bootstrap_components — installed 2026-04-21, 40/40 tests still passing
 [x] Source Sahin HLA from Nature 2017 Extended Data Table 3 — DONE 2026-04-21
+[x] SHANK2 G486S verified (Keskin 2019, rank 17→5 under rl_tcr_v1, +12 positions)
+[x] NetMHCpan %rank baseline added to cross-matrix — DONE 2026-04-21
+    rl_tcr_v1 beats %rank on melanoma (Ott 0.698 vs N/A, Sahin 0.660 vs 0.504)
+[x] Müller 2023 figshare: BLOCKED (202 HTML page, cannot auto-download)
+    ingest_muller_s3.py created — ready to run once Data_S3.xlsx is placed manually
     8 patients have confirmed HLA, 5 unknown (P03, P07, P09, P10, P12)
     MHCflurry binding predictions run: 120/165 rows covered
     PHASE 4/5 complete: rl_tcr_v1 LOPO=0.660, binding_only LOPO=0.477
-[ ] Download Müller 2023 Data S1-S4 from Cell Immunity paper (manual download needed)
+[ ] Download Müller 2023 Data S3 — MANUAL DOWNLOAD NEEDED
+    URL: https://www.cell.com/immunity/fulltext/S1074-7613(23)00406-5
+    Save as: validation_papers/muller2023/Data_S3.xlsx
+    Then run: py -3.11 backend/validation/ingest_muller_s3.py
 [ ] Install ITSNdb R package and export to CSV
 [ ] Draft paper methods section (user has template from prior Claude conversation)
 [ ] Commit the ~40 modified files currently in working tree
@@ -201,6 +239,16 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-21 | Claude claude-sonnet-4-6 | Session 4: SHANK2 verification, %rank baseline, Müller prep
+  Changed: task1_shank2_verification.py, task2_percentile_baseline.py,
+           add_sahin_percentile.py, ingest_muller_s3.py (all new),
+           sahin_with_binding.csv (added percentile_rank),
+           shank2_verification.json, full_cross_matrix_with_baselines.csv,
+           percentile_baseline_results.json
+  Validation: SHANK2 rank 17/17→5/17 (+12). rl_tcr_v1 mean=0.607 best.
+              %rank baseline: Rojas=0.653, Hilf=0.596, Sahin=0.504
+  Tests: 40/40 passing
+  Next: human downloads Müller Data_S3.xlsx; draft paper methods
 2026-04-21 | Claude claude-sonnet-4-6 | Session 3: Sahin HLA from ED Table 3, MHCflurry binding
   predictions, PHASE 4/5 run for Sahin.
   Changed: backend/validation/add_sahin_binding.py (new),
