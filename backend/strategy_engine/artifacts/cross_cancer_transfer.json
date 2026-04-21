@@ -1,0 +1,182 @@
+[
+  {
+    "train_cancer": "melanoma",
+    "test_dataset": "tesla_2020",
+    "test_cancer": "mixed_tesla",
+    "n_rows": 918,
+    "n_positive": 41,
+    "transfer_auc": 0.4999,
+    "rl_binding_only": 0.771,
+    "rl_tcr_v1": 0.51
+  },
+  {
+    "train_cancer": "melanoma",
+    "test_dataset": "hilf_2019",
+    "test_cancer": "gbm",
+    "n_rows": 152,
+    "n_positive": 77,
+    "transfer_auc": 0.5027,
+    "rl_binding_only": 0.624,
+    "rl_tcr_v1": 0.493
+  },
+  {
+    "train_cancer": "melanoma",
+    "test_dataset": "rojas_2023",
+    "test_cancer": "pancreatic",
+    "n_rows": 230,
+    "n_positive": 30,
+    "transfer_auc": 0.5597,
+    "rl_binding_only": 0.547,
+    "rl_tcr_v1": 0.675
+  },
+  {
+    "train_cancer": "melanoma",
+    "test_dataset": "keskin_2019",
+    "test_cancer": "gbm",
+    "n_rows": 27,
+    "n_positive": 15,
+    "transfer_auc": 0.4111,
+    "rl_binding_only": null,
+    "rl_tcr_v1": null
+  },
+  {
+    "train_cancer": "gbm",
+    "test_dataset": "ott_2017",
+    "test_cancer": "melanoma",
+    "n_rows": 97,
+    "n_positive": 15,
+    "transfer_auc": 0.5634,
+    "rl_binding_only": 0.649,
+    "rl_tcr_v1": 0.758
+  },
+  {
+    "train_cancer": "gbm",
+    "test_dataset": "tesla_2020",
+    "test_cancer": "mixed_tesla",
+    "n_rows": 918,
+    "n_positive": 41,
+    "transfer_auc": 0.4408,
+    "rl_binding_only": 0.771,
+    "rl_tcr_v1": 0.51
+  },
+  {
+    "train_cancer": "gbm",
+    "test_dataset": "sahin_2017",
+    "test_cancer": "melanoma",
+    "n_rows": 165,
+    "n_positive": 109,
+    "transfer_auc": 0.4345,
+    "rl_binding_only": 0.477,
+    "rl_tcr_v1": 0.66
+  },
+  {
+    "train_cancer": "gbm",
+    "test_dataset": "rojas_2023",
+    "test_cancer": "pancreatic",
+    "n_rows": 230,
+    "n_positive": 30,
+    "transfer_auc": 0.365,
+    "rl_binding_only": 0.547,
+    "rl_tcr_v1": 0.675
+  },
+  {
+    "train_cancer": "pancreatic",
+    "test_dataset": "ott_2017",
+    "test_cancer": "melanoma",
+    "n_rows": 97,
+    "n_positive": 15,
+    "transfer_auc": 0.5459,
+    "rl_binding_only": 0.649,
+    "rl_tcr_v1": 0.758
+  },
+  {
+    "train_cancer": "pancreatic",
+    "test_dataset": "tesla_2020",
+    "test_cancer": "mixed_tesla",
+    "n_rows": 918,
+    "n_positive": 41,
+    "transfer_auc": 0.689,
+    "rl_binding_only": 0.771,
+    "rl_tcr_v1": 0.51
+  },
+  {
+    "train_cancer": "pancreatic",
+    "test_dataset": "sahin_2017",
+    "test_cancer": "melanoma",
+    "n_rows": 165,
+    "n_positive": 109,
+    "transfer_auc": 0.4904,
+    "rl_binding_only": 0.477,
+    "rl_tcr_v1": 0.66
+  },
+  {
+    "train_cancer": "pancreatic",
+    "test_dataset": "hilf_2019",
+    "test_cancer": "gbm",
+    "n_rows": 152,
+    "n_positive": 77,
+    "transfer_auc": 0.3532,
+    "rl_binding_only": 0.624,
+    "rl_tcr_v1": 0.493
+  },
+  {
+    "train_cancer": "pancreatic",
+    "test_dataset": "keskin_2019",
+    "test_cancer": "gbm",
+    "n_rows": 27,
+    "n_positive": 15,
+    "transfer_auc": 0.4,
+    "rl_binding_only": null,
+    "rl_tcr_v1": null
+  },
+  {
+    "train_cancer": "mixed_tesla",
+    "test_dataset": "ott_2017",
+    "test_cancer": "melanoma",
+    "n_rows": 97,
+    "n_positive": 15,
+    "transfer_auc": 0.5504,
+    "rl_binding_only": 0.649,
+    "rl_tcr_v1": 0.758
+  },
+  {
+    "train_cancer": "mixed_tesla",
+    "test_dataset": "sahin_2017",
+    "test_cancer": "melanoma",
+    "n_rows": 165,
+    "n_positive": 109,
+    "transfer_auc": 0.4753,
+    "rl_binding_only": 0.477,
+    "rl_tcr_v1": 0.66
+  },
+  {
+    "train_cancer": "mixed_tesla",
+    "test_dataset": "hilf_2019",
+    "test_cancer": "gbm",
+    "n_rows": 152,
+    "n_positive": 77,
+    "transfer_auc": 0.4479,
+    "rl_binding_only": 0.624,
+    "rl_tcr_v1": 0.493
+  },
+  {
+    "train_cancer": "mixed_tesla",
+    "test_dataset": "rojas_2023",
+    "test_cancer": "pancreatic",
+    "n_rows": 230,
+    "n_positive": 30,
+    "transfer_auc": 0.6707,
+    "rl_binding_only": 0.547,
+    "rl_tcr_v1": 0.675
+  },
+  {
+    "train_cancer": "mixed_tesla",
+    "test_dataset": "keskin_2019",
+    "test_cancer": "gbm",
+    "n_rows": 27,
+    "n_positive": 15,
+    "transfer_auc": 0.3778,
+    "rl_binding_only": null,
+    "rl_tcr_v1": null
+  }
+]

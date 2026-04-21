@@ -1,0 +1,50 @@
+[
+  {
+    "train_dataset": "ott_2017",
+    "test_dataset": "sahin_2017",
+    "n_train": 97,
+    "n_test": 165,
+    "n_test_positive": 109,
+    "lodo_auc": 0.492,
+    "rl_binding_only": 0.477,
+    "rl_tcr_v1": 0.66,
+    "features_used": [
+      "tcr_hydro_mean",
+      "tcr_volume_mean",
+      "tcr_charge_sum",
+      "tcr_aromatic_count",
+      "self_dissimilarity",
+      "hamming_distance",
+      "blosum62_score",
+      "blosum62_at_mutation",
+      "calis_simplified",
+      "pep_length",
+      "hydro_full_mean",
+      "aliphatic_index",
+      "expression_log2",
+      "expression_zscore",
+      "binding_log",
+      "binding_sigmoid"
+    ]
+  },
+  {
+    "train_dataset": "sahin_2017",
+    "test_dataset": "ott_2017",
+    "n_train": 165,
+    "n_test": 97,
+    "n_test_positive": 15,
+    "lodo_auc": 0.387,
+    "rl_binding_only": 0.649,
+    "rl_tcr_v1": 0.758,
+    "features_used": [
+      "self_dissimilarity",
+      "pep_length",
+      "hydro_full_mean",
+      "aliphatic_index",
+      "expression_log2",
+      "expression_zscore",
+      "binding_log",
+      "binding_sigmoid"
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+dataset,cancer_type,binding_only,rl_tcr_v1,rl_expression_v1,binding_plus_calis,stage2_cancer_lopo,universal_lodo_AUC
+ott_2017,melanoma,0.649,0.758,0.716,0.667,0.7597,0.4902
+tesla_2020,mixed_tesla,0.771,0.51,0.813,0.762,0.7444,0.5991
+sahin_2017,melanoma,0.477,0.66,0.437,0.401,0.7597,0.5303
+hilf_2019,gbm,0.624,0.493,0.497,0.627,0.5946,0.5719
+rojas_2023,pancreatic,0.547,0.675,0.547,0.523,0.5044,0.5777
