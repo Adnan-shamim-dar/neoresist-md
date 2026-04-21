@@ -1,0 +1,29 @@
+strategy_id: pancreatic_ml_v1
+cancer_type: pancreatic
+display_name: Pancreatic ML v1 (XGBoost, limited features)
+model_type: xgboost
+model_path: backend/strategy_engine/artifacts/stage2_pancreatic_model.pkl
+validated: true
+validation_method: leave-one-patient-out (LOPO)
+lopo_auc: 0.5044
+lopo_auc_ci:
+- 0.3852
+- 0.6227
+lopo_aupr: null
+training_datasets:
+- rojas_2023
+n_patients: 16
+n_rows: 230
+features:
+- self_dissimilarity
+- hamming_distance
+- blosum62_score
+- blosum62_at_mutation
+- pep_length
+- hydro_full_mean
+- aliphatic_index
+- binding_log
+- binding_sigmoid
+- presentation_probability
+notes: Near-chance performance. TCR features unavailable (no WT peptide). Rojas 2023
+  is expression-dominated — use rl_tcr_v1 or rl_expression_v1 as hand-crafted alternatives.

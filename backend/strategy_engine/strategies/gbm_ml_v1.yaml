@@ -1,0 +1,40 @@
+strategy_id: gbm_ml_v1
+cancer_type: gbm
+display_name: GBM ML v1 (XGBoost, expression+binding)
+model_type: xgboost
+model_path: backend/strategy_engine/artifacts/stage2_gbm_model.pkl
+validated: true
+validation_method: leave-one-patient-out (LOPO)
+lopo_auc: 0.5946
+lopo_auc_ci:
+- 0.5055
+- 0.6824
+lopo_aupr: null
+training_datasets:
+- hilf_2019
+- keskin_2019
+n_patients: 17
+n_rows: 179
+features:
+- tcr_hydro_mean
+- tcr_hydro_max
+- tcr_volume_mean
+- tcr_charge_sum
+- tcr_aromatic_count
+- self_dissimilarity
+- hamming_distance
+- blosum62_score
+- blosum62_at_mutation
+- calis_simplified
+- pep_length
+- mutation_position
+- hydro_full_mean
+- aliphatic_index
+- expression_log2
+- expression_zscore
+- binding_log
+- binding_sigmoid
+- presentation_probability
+notes: Binding_only baseline (0.645) outperforms this model on GBM. Expression features
+  (rl_expression_v1) may be preferable. Use with caution; AUC CI overlaps with binding
+  baseline.

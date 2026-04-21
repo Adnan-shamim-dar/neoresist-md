@@ -1,0 +1,28 @@
+strategy_id: presentation_model_v1
+cancer_type: all
+display_name: Stage 1 Presentation Model (NCI, XGBoost)
+model_type: xgboost
+model_path: backend/strategy_engine/artifacts/stage1_presentation_model.pkl
+validated: true
+validation_method: leave-one-patient-out (LOPO) on NCI full mutanome
+lopo_auc: 0.9767
+lopo_auc_ci:
+- 0.9658
+- 0.986
+lopo_aupr: 0.0539
+training_datasets:
+- muller_nci_full_mutanome
+n_patients: 56
+n_rows: 292495
+features:
+- binding_nm
+- binding_log
+- binding_sigmoid
+- binding_stability
+- presentation_score_el
+- expression_log2
+- pep_length
+notes: 'Predicts MHC presentation probability from binding + expression features.
+  Trained on NCI full mutanome (292K rows, 82 positives, 56 patients). Domain gap:
+  outputs ~0 for pre-screened clinical cohorts (expected). Use as a pre-filter, not
+  as a standalone ranking model.'

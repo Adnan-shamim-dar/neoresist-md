@@ -1,0 +1,38 @@
+strategy_id: melanoma_ml_v1
+cancer_type: melanoma
+display_name: Melanoma ML v1 (XGBoost, TCR+sequence+expression)
+model_type: xgboost
+model_path: backend/strategy_engine/artifacts/stage2_melanoma_model.pkl
+validated: true
+validation_method: leave-one-patient-out (LOPO)
+lopo_auc: 0.7597
+lopo_auc_ci:
+- 0.7011
+- 0.8221
+lopo_aupr: null
+training_datasets:
+- ott_2017
+- sahin_2017
+n_patients: 19
+n_rows: 262
+features:
+- tcr_hydro_mean
+- tcr_volume_mean
+- tcr_charge_sum
+- tcr_aromatic_count
+- self_dissimilarity
+- hamming_distance
+- blosum62_score
+- blosum62_at_mutation
+- calis_simplified
+- pep_length
+- hydro_full_mean
+- aliphatic_index
+- expression_log2
+- expression_zscore
+- binding_log
+- binding_sigmoid
+- presentation_probability
+notes: Strongest strategy for melanoma. TCR contact + sequence features provide +0.23
+  AUC lift over binding_only baseline (0.528). Does not transfer cross-cancer — use
+  within melanoma only.

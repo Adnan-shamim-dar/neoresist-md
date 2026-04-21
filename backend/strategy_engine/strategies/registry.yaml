@@ -1,0 +1,37 @@
+version: '1.0'
+updated: '2026-04-21'
+strategies:
+- strategy_id: melanoma_ml_v1
+  cancer_type: melanoma
+  validated: true
+  lopo_auc: 0.7597
+  recommended_for: melanoma
+- strategy_id: gbm_ml_v1
+  cancer_type: gbm
+  validated: true
+  lopo_auc: 0.5946
+  recommended_for: gbm
+- strategy_id: pancreatic_ml_v1
+  cancer_type: pancreatic
+  validated: true
+  lopo_auc: 0.5044
+  recommended_for: pancreatic
+- strategy_id: mixed_ml_v1
+  cancer_type: mixed
+  validated: true
+  lopo_auc: 0.7444
+  recommended_for: mixed
+- strategy_id: presentation_model_v1
+  cancer_type: all
+  validated: true
+  lopo_auc: 0.9767
+  recommended_for: all
+recommended_by_cancer_type:
+  melanoma: melanoma_ml_v1
+  gbm: gbm_ml_v1
+  pancreatic: pancreatic_ml_v1
+  mixed: mixed_ml_v1
+  unknown: melanoma_ml_v1
+notes: melanoma_ml_v1 is the only strategy with significant LOPO improvement over
+  binding baseline (CI does not include baseline). For cross-cancer use, prefer hand-crafted
+  rl_tcr_v1 (Phase 4 finding).

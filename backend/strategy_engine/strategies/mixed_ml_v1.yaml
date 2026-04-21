@@ -1,0 +1,33 @@
+strategy_id: mixed_ml_v1
+cancer_type: mixed
+display_name: Mixed/TESLA ML v1 (XGBoost, multi-feature)
+model_type: xgboost
+model_path: backend/strategy_engine/artifacts/stage2_mixed_tesla_model.pkl
+validated: true
+validation_method: leave-one-patient-out (LOPO)
+lopo_auc: 0.7444
+lopo_auc_ci:
+- 0.6603
+- 0.8235
+lopo_aupr: null
+training_datasets:
+- tesla_2020
+n_patients: 9
+n_rows: 918
+features:
+- tcr_hydro_mean
+- tcr_hydro_max
+- tcr_volume_mean
+- tcr_charge_sum
+- tcr_aromatic_count
+- calis_simplified
+- pep_length
+- hydro_full_mean
+- aliphatic_index
+- expression_log2
+- expression_zscore
+- binding_log
+- binding_sigmoid
+- presentation_probability
+notes: Good performance on mixed cancer TESLA cohort. Marginal improvement (+0.014)
+  over rl_expression_v1 baseline (0.730). Use rl_expression_v1 as simpler equivalent.
