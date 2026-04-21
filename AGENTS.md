@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 4) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 5) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -163,6 +163,28 @@ rl_tcr_v1            0.758   0.510   0.493   0.675
 binding_plus_calis   0.667   0.762   0.627   0.523
 ```
 
+### Müller 2023 NCI results (2026-04-21)
+```
+Dataset: muller_nci.tsv | 292,495 rows | 82 positives | 56 patients | 43 LOPO folds
+Columns: MT_BindAff(nM), Score_EL(NetMHCpan EL 0-1), Quantification(expression),
+         MT_pep_x(peptide 8-12mer), VALIDATED(0/1). NO wildtype peptide.
+
+Strategy                    LOPO AUC    Note
+binding_only                0.9661      bind_log50k from MT_BindAff
+score_el_only               0.9839 ★    NetMHCpan EL score — best single feature
+rl_expression_v1_from_tesla 0.9656      near-identical to binding_only
+rl_tcr_v1_from_ott          0.4917      FAILS — tcr_charge_diff unavailable (no WT),
+                                        TCR volume dominates and hurts performance
+binding_plus_calis          0.9622
+
+Key findings:
+  - NCI is binding-dominated: Score_EL LOPO=0.984 (near-perfect)
+  - rl_tcr_v1 fails without WT peptide (tcr_charge_diff excluded, volume hurts)
+  - Confirms: NCI uses different biology than melanoma/GBM — binding alone is sufficient
+  - Strengthens paper thesis: no single strategy works everywhere
+File: artifacts/muller_nci_results.json
+```
+
 ### SHANK2 G486S verification (2026-04-21)
 ```
 Dataset:    Keskin 2019 (GBM, patient keskin_8) — NOT in Ott 2017
@@ -227,7 +249,9 @@ This motivates the configurable platform and the paper's argument.
     8 patients have confirmed HLA, 5 unknown (P03, P07, P09, P10, P12)
     MHCflurry binding predictions run: 120/165 rows covered
     PHASE 4/5 complete: rl_tcr_v1 LOPO=0.660, binding_only LOPO=0.477
-[ ] Download Müller 2023 Data S3 — MANUAL DOWNLOAD NEEDED
+[x] Download Müller 2023 NCI data — DONE. muller_nci.tsv (23MB) ingested.
+    LOPO results: Score_EL=0.984, binding_only=0.966, rl_tcr_v1=0.492 (fails w/o WT)
+[ ] Müller 2023 Data S3 full feature set — may contain additional datasets (HiTIDE/TESLA)
     URL: https://www.cell.com/immunity/fulltext/S1074-7613(23)00406-5
     Save as: validation_papers/muller2023/Data_S3.xlsx
     Then run: py -3.11 backend/validation/ingest_muller_s3.py
@@ -239,6 +263,12 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-21 | Claude claude-sonnet-4-6 | Session 5: Müller NCI analysis
+  Changed: backend/validation/muller_nci_analysis.py (new),
+           artifacts/muller_nci_results.json
+  Validation: muller_nci Score_EL LOPO=0.984, binding_only=0.966, rl_tcr_v1=0.492
+  Tests: 40/40 passing
+  Next: paper methods draft; interpret NCI binding-dominance in paper context
 2026-04-21 | Claude claude-sonnet-4-6 | Session 4: SHANK2 verification, %rank baseline, Müller prep
   Changed: task1_shank2_verification.py, task2_percentile_baseline.py,
            add_sahin_percentile.py, ingest_muller_s3.py (all new),
