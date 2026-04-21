@@ -1,0 +1,156 @@
+{
+  "stage": 1,
+  "training_data": "nci_full_mutanome",
+  "n_rows": 292495,
+  "n_immunogenic": 82,
+  "n_patients": 56,
+  "features_used": [
+    "binding_nm",
+    "binding_log",
+    "binding_sigmoid",
+    "binding_stability",
+    "presentation_score_el",
+    "expression_log2",
+    "pep_length"
+  ],
+  "features_dropped": [],
+  "lopo_auc": 0.9767,
+  "lopo_auc_ci": [
+    0.9658,
+    0.986
+  ],
+  "lopo_aupr": 0.0539,
+  "n_lopo_folds": 43,
+  "per_patient_auc": {
+    "Muller-NCI-train_2098": {
+      "auc": 0.9635
+    },
+    "Muller-NCI-train_2369": {
+      "auc": 0.9939
+    },
+    "Muller-NCI-train_2556": {
+      "auc": 0.9989
+    },
+    "Muller-NCI-train_2591": {
+      "auc": 0.9706
+    },
+    "Muller-NCI-train_3309": {
+      "auc": 0.9886
+    },
+    "Muller-NCI-train_3678": {
+      "auc": 0.9229
+    },
+    "Muller-NCI-train_3713": {
+      "auc": 0.9908
+    },
+    "Muller-NCI-train_3716": {
+      "auc": 0.98
+    },
+    "Muller-NCI-train_3775": {
+      "auc": 0.9992
+    },
+    "Muller-NCI-train_3784": {
+      "auc": 0.9495
+    },
+    "Muller-NCI-train_3795": {
+      "auc": 0.993
+    },
+    "Muller-NCI-train_3879": {
+      "auc": 1.0
+    },
+    "Muller-NCI-train_3998": {
+      "auc": 0.9397
+    },
+    "Muller-NCI-train_4000": {
+      "auc": 0.9031
+    },
+    "Muller-NCI-train_4081": {
+      "auc": 0.998
+    },
+    "Muller-NCI-train_4095": {
+      "auc": 0.9616
+    },
+    "Muller-NCI-train_4126": {
+      "auc": 0.9823
+    },
+    "Muller-NCI-train_4134": {
+      "auc": 0.873
+    },
+    "Muller-NCI-train_4136": {
+      "auc": 0.9958
+    },
+    "Muller-NCI-train_4155": {
+      "auc": 0.9897
+    },
+    "Muller-NCI-train_4160": {
+      "auc": 1.0
+    },
+    "Muller-NCI-train_4180": {
+      "auc": 0.9981
+    },
+    "Muller-NCI-train_4186": {
+      "auc": 1.0
+    },
+    "Muller-NCI-train_4196": {
+      "auc": 0.9745
+    },
+    "Muller-NCI-train_4213": {
+      "auc": 0.9987
+    },
+    "Muller-NCI-train_4234": {
+      "auc": 0.9485
+    },
+    "Muller-NCI-train_4237": {
+      "auc": 0.9966
+    },
+    "Muller-NCI-train_4238": {
+      "auc": 0.9804
+    },
+    "Muller-NCI-train_4244": {
+      "auc": 0.9944
+    },
+    "Muller-NCI-train_4245": {
+      "auc": 0.9912
+    },
+    "Muller-NCI-train_4246": {
+      "auc": 0.9944
+    },
+    "Muller-NCI-train_4259": {
+      "auc": 0.9919
+    },
+    "Muller-NCI-train_4275": {
+      "auc": 0.9994
+    },
+    "Muller-NCI-train_4278": {
+      "auc": 0.9959
+    },
+    "Muller-NCI-train_4284": {
+      "auc": 0.9792
+    },
+    "Muller-NCI-train_4287": {
+      "auc": 0.9995
+    },
+    "Muller-NCI-train_4298": {
+      "auc": 0.9611
+    },
+    "Muller-NCI-train_4301": {
+      "auc": 0.9961
+    },
+    "Muller-NCI-train_4317": {
+      "auc": 0.9838
+    },
+    "Muller-NCI-train_4326": {
+      "auc": 0.9979
+    },
+    "Muller-NCI-train_4329": {
+      "auc": 0.9987
+    },
+    "Muller-NCI-train_4345": {
+      "auc": 0.9934
+    },
+    "Muller-NCI-train_4346": {
+      "auc": 0.9535
+    }
+  },
+  "model_backend": "xgboost"
+}

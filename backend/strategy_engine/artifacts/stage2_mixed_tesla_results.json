@@ -1,0 +1,78 @@
+{
+  "cancer_type": "mixed_tesla",
+  "datasets_used": [
+    "tesla_2020"
+  ],
+  "n_rows": 918,
+  "n_positive": 41,
+  "n_negative": 877,
+  "n_patients": 9,
+  "n_lopo_folds": 9,
+  "features_used": [
+    "tcr_hydro_mean",
+    "tcr_hydro_max",
+    "tcr_volume_mean",
+    "tcr_charge_sum",
+    "tcr_aromatic_count",
+    "calis_simplified",
+    "pep_length",
+    "hydro_full_mean",
+    "aliphatic_index",
+    "expression_log2",
+    "expression_zscore",
+    "binding_log",
+    "binding_sigmoid",
+    "presentation_probability"
+  ],
+  "features_dropped_low_coverage": [
+    "self_dissimilarity",
+    "hamming_distance",
+    "blosum62_score",
+    "blosum62_at_mutation",
+    "dai_agretopicity",
+    "mutation_position",
+    "vaf"
+  ],
+  "lopo_auc": 0.7444,
+  "lopo_auc_ci": [
+    0.6603,
+    0.8235
+  ],
+  "lopo_aupr": 0.1467,
+  "baseline_binding_only_auc": 0.73,
+  "baseline_binding_only_ci": [
+    0.654,
+    0.8066
+  ],
+  "improvement_over_binding": 0.0144,
+  "improvement_significant": false,
+  "per_patient_auc": {
+    "TESLA_1": 0.6894,
+    "TESLA_10": 0.8429,
+    "TESLA_12": 0.7088,
+    "TESLA_16": 0.5375,
+    "TESLA_2": 0.6562,
+    "TESLA_3": 0.6749,
+    "TESLA_4": 0.7333,
+    "TESLA_8": 1.0,
+    "TESLA_9": 0.9597
+  },
+  "feature_importances": {
+    "binding_sigmoid": 0.1441,
+    "binding_log": 0.1256,
+    "pep_length": 0.0933,
+    "expression_log2": 0.0905,
+    "tcr_volume_mean": 0.0806,
+    "hydro_full_mean": 0.0802,
+    "expression_zscore": 0.0713,
+    "presentation_probability": 0.065,
+    "aliphatic_index": 0.0517,
+    "calis_simplified": 0.0503,
+    "tcr_hydro_mean": 0.0502,
+    "tcr_charge_sum": 0.0437,
+    "tcr_aromatic_count": 0.0294,
+    "tcr_hydro_max": 0.0242
+  },
+  "no_transfer_partner": false,
+  "in_sample_only": false
+}

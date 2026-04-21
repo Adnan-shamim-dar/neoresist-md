@@ -1,0 +1,92 @@
+{
+  "cancer_type": "melanoma",
+  "datasets_used": [
+    "ott_2017",
+    "sahin_2017"
+  ],
+  "n_rows": 262,
+  "n_positive": 124,
+  "n_negative": 138,
+  "n_patients": 19,
+  "n_lopo_folds": 18,
+  "features_used": [
+    "tcr_hydro_mean",
+    "tcr_volume_mean",
+    "tcr_charge_sum",
+    "tcr_aromatic_count",
+    "self_dissimilarity",
+    "hamming_distance",
+    "blosum62_score",
+    "blosum62_at_mutation",
+    "calis_simplified",
+    "pep_length",
+    "hydro_full_mean",
+    "aliphatic_index",
+    "expression_log2",
+    "expression_zscore",
+    "binding_log",
+    "binding_sigmoid",
+    "presentation_probability"
+  ],
+  "features_dropped_low_coverage": [
+    "tcr_hydro_max",
+    "dai_agretopicity",
+    "mutation_position",
+    "vaf"
+  ],
+  "lopo_auc": 0.7597,
+  "lopo_auc_ci": [
+    0.7011,
+    0.8221
+  ],
+  "lopo_aupr": 0.6761,
+  "baseline_binding_only_auc": 0.5281,
+  "baseline_binding_only_ci": [
+    0.4543,
+    0.6031
+  ],
+  "improvement_over_binding": 0.2315,
+  "improvement_significant": true,
+  "per_patient_auc": {
+    "ott_1": 0.6111,
+    "ott_2": 0.75,
+    "ott_3": 0.7273,
+    "ott_4": 0.7,
+    "ott_5": 0.6333,
+    "ott_6": 0.675,
+    "sahin_P01": 0.4583,
+    "sahin_P02": 0.7083,
+    "sahin_P03": 0.1905,
+    "sahin_P04": 0.6528,
+    "sahin_P05": 0.625,
+    "sahin_P06": 0.5417,
+    "sahin_P07": 0.625,
+    "sahin_P09": 0.5,
+    "sahin_P10": 0.5,
+    "sahin_P11": 0.8095,
+    "sahin_P12": 0.5833,
+    "sahin_P17": null,
+    "sahin_P19": 0.4844
+  },
+  "feature_importances": {
+    "pep_length": 0.3124,
+    "calis_simplified": 0.123,
+    "tcr_hydro_mean": 0.0679,
+    "self_dissimilarity": 0.0674,
+    "tcr_volume_mean": 0.0576,
+    "expression_zscore": 0.0515,
+    "blosum62_score": 0.048,
+    "aliphatic_index": 0.0474,
+    "binding_sigmoid": 0.036,
+    "tcr_charge_sum": 0.0339,
+    "hydro_full_mean": 0.0329,
+    "expression_log2": 0.032,
+    "presentation_probability": 0.0306,
+    "binding_log": 0.0302,
+    "tcr_aromatic_count": 0.0293,
+    "hamming_distance": 0.0,
+    "blosum62_at_mutation": 0.0
+  },
+  "no_transfer_partner": false,
+  "in_sample_only": false
+}

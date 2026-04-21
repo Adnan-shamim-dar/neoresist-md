@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 7) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 8) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -318,6 +318,36 @@ NOTE: Sahin is a vaccine dataset — 10 pre-selected mutations per patient,
 performs near-chance (0.48). TCR features (rl_tcr_v1) show strongest
 transfer. Confirms melanoma TCR signal, consistent with rl_tcr_v1 Ott=0.758.
 
+### Two-Stage Model Results (2026-04-21, Phase 3)
+```
+Stage 1 — Presentation model (XGBoost on NCI full mutanome, 292K rows, LOPO):
+  AUC: 0.9767  CI=[0.9658, 0.9860]  AUPR: 0.0539
+  Features: binding_nm, binding_log, binding_sigmoid, binding_stability,
+            presentation_score_el, expression_log2, pep_length
+  Saved: backend/strategy_engine/artifacts/stage1_presentation_model.pkl
+
+  NOTE: presentation_probability ≈ 0 for all clinical cohorts (domain gap expected)
+  NCI positives are extreme high binders (median ~52nM); clinical cohorts already
+  pre-screened. Stage 1 "gate" is essentially open for all clinical candidates.
+
+Stage 2 — Recognition models (XGBoost, LOPO, per cancer type):
+  Cancer type    AUC      CI               Baseline  Improvement  Significant?
+  melanoma       0.7597   [0.701, 0.822]   0.5281    +0.2315      YES ★
+  gbm            0.5946   [0.506, 0.682]   0.6449    -0.0503      no (binding better)
+  pancreatic     0.5044   [0.385, 0.623]   0.5151    -0.0107      no (chance)
+  mixed_tesla    0.7444   [0.660, 0.824]   0.7300    +0.0144      no (marginal)
+  universal      0.8398   [0.815, 0.865]   0.6115    +0.2284      YES ★
+
+Key interpretation:
+  - Melanoma Stage 2 model (TCR + sequence features) provides +0.23 lift over binding
+    alone — consistent with rl_tcr_v1 LOPO on Ott (0.758) and Sahin (0.660)
+  - GBM/pancreatic: ML model with all features still cannot beat simple binding —
+    suggests different biology; expression features needed (see rl_expression_v1)
+  - Universal model (all cohorts pooled): 0.840 AUC — pooling boosts generalization
+  - Supports paper thesis: cancer-type-specific feature importance is real
+Artifacts: backend/strategy_engine/artifacts/stage2_all_results.json
+```
+
 ### Key finding (this IS the paper thesis)
 No single strategy generalizes everywhere. Cancer-type pattern emerging:
 melanoma responds to TCR/sequence features (Ott AUC=0.758, Sahin AUC=0.660),
@@ -339,6 +369,20 @@ This motivates the configurable platform and the paper's argument.
     PHASE 4/5 complete: rl_tcr_v1 LOPO=0.660, binding_only LOPO=0.477
 [x] Download Müller 2023 NCI data — DONE. muller_nci.tsv (23MB) ingested.
     LOPO results: Score_EL=0.984, binding_only=0.966, rl_tcr_v1=0.492 (fails w/o WT)
+[x] Two-stage model pipeline (Phase 1–3) — DONE 2026-04-21
+    Phase 1: feature_factory.py → 7 feature CSVs (all cohorts + NCI)
+    Phase 2: filter_nci.py → nci_full_mutanome.csv (292K), nci_prescreened_equivalent.csv
+    Phase 3: two_stage_model.py
+      Stage 1 AUC=0.9767 CI=[0.966,0.986] (NCI presentation model, XGBoost, LOPO)
+      Stage 2 melanoma AUC=0.7597 CI=[0.701,0.822] (+0.231 over binding baseline 0.528) ★ significant
+      Stage 2 GBM AUC=0.5946 (-0.050 vs binding 0.645) — binding is better
+      Stage 2 pancreatic AUC=0.5044 — near chance
+      Stage 2 TESLA AUC=0.7444 (+0.014 over 0.730) — marginal, not sig
+      Stage 2 universal AUC=0.8398 CI=[0.815,0.865] (+0.228 over 0.612) ★ significant
+      NOTE: presentation_probability=~0 for all clinical cohorts — expected domain gap
+            NCI model detects extreme high binders; clinical cohorts already pre-screened
+      Artifacts: stage1_results.json, stage1_presentation_model.pkl,
+                 stage2_{cancer_type}_results.json, stage2_all_results.json
 [ ] Müller 2023 Data S3 full feature set — may contain additional datasets (HiTIDE/TESLA)
     URL: https://www.cell.com/immunity/fulltext/S1074-7613(23)00406-5
     Save as: validation_papers/muller2023/Data_S3.xlsx
@@ -351,6 +395,19 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-21 | Claude claude-sonnet-4-6 | Session 8: Two-stage model Phase 3 execution
+  Changed: backend/strategy_engine/two_stage_model.py (XGBoost eval_metric fix),
+           artifacts/stage1_results.json, stage1_presentation_model.pkl,
+           artifacts/stage2_{melanoma,gbm,pancreatic,mixed_tesla,universal}_results.json,
+           artifacts/stage2_all_results.json
+  Results: Stage1 AUC=0.977 (NCI LOPO). Stage2 melanoma=0.760★ (+0.23 over binding),
+           GBM=0.595 (binding better), pancreatic=0.504 (chance), TESLA=0.744,
+           universal=0.840★ (+0.23 over binding). 40/40 tests passing.
+  Interpretation: TCR/sequence features significantly boost melanoma; binding dominates GBM.
+  Next: interpret Stage2 results for paper; investigate presentation_probability domain gap;
+        draft methods section; commit working tree
+2026-04-21 | Claude claude-sonnet-4-6 | Session 7: feature_factory.py + filter_nci.py + two_stage_model.py created
+  (Phase 1–3 scripts built; Phase 3 not yet run at end of session)
 2026-04-21 | Claude claude-sonnet-4-6 | Session 5: Müller NCI analysis
   Changed: backend/validation/muller_nci_analysis.py (new),
            artifacts/muller_nci_results.json

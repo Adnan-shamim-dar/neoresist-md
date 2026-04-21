@@ -1,0 +1,92 @@
+{
+  "cancer_type": "gbm",
+  "datasets_used": [
+    "hilf_2019",
+    "keskin_2019"
+  ],
+  "n_rows": 179,
+  "n_positive": 92,
+  "n_negative": 87,
+  "n_patients": 17,
+  "n_lopo_folds": 17,
+  "features_used": [
+    "tcr_hydro_mean",
+    "tcr_hydro_max",
+    "tcr_volume_mean",
+    "tcr_charge_sum",
+    "tcr_aromatic_count",
+    "self_dissimilarity",
+    "hamming_distance",
+    "blosum62_score",
+    "blosum62_at_mutation",
+    "calis_simplified",
+    "pep_length",
+    "mutation_position",
+    "hydro_full_mean",
+    "aliphatic_index",
+    "expression_log2",
+    "expression_zscore",
+    "binding_log",
+    "binding_sigmoid",
+    "presentation_probability"
+  ],
+  "features_dropped_low_coverage": [
+    "dai_agretopicity",
+    "vaf"
+  ],
+  "lopo_auc": 0.5946,
+  "lopo_auc_ci": [
+    0.5055,
+    0.6824
+  ],
+  "lopo_aupr": 0.6114,
+  "baseline_binding_only_auc": 0.6449,
+  "baseline_binding_only_ci": [
+    0.555,
+    0.7273
+  ],
+  "improvement_over_binding": -0.0503,
+  "improvement_significant": false,
+  "per_patient_auc": {
+    "hilf_1": 1.0,
+    "hilf_10": 0.4333,
+    "hilf_11": 1.0,
+    "hilf_12": 0.4,
+    "hilf_13": 0.5077,
+    "hilf_14": 0.2188,
+    "hilf_15": 1.0,
+    "hilf_16": 0.5,
+    "hilf_2": 0.75,
+    "hilf_4": 0.5556,
+    "hilf_5": 0.6889,
+    "hilf_6": 0.6857,
+    "hilf_7": 0.8333,
+    "hilf_8": 0.6667,
+    "hilf_9": 1.0,
+    "keskin_7": 0.6778,
+    "keskin_8": 0.4667
+  },
+  "feature_importances": {
+    "binding_sigmoid": 0.1285,
+    "expression_log2": 0.0996,
+    "expression_zscore": 0.0957,
+    "tcr_aromatic_count": 0.089,
+    "tcr_hydro_mean": 0.0661,
+    "binding_log": 0.0604,
+    "tcr_volume_mean": 0.0563,
+    "calis_simplified": 0.0532,
+    "hamming_distance": 0.0526,
+    "blosum62_score": 0.0498,
+    "presentation_probability": 0.0434,
+    "aliphatic_index": 0.0371,
+    "tcr_charge_sum": 0.0368,
+    "hydro_full_mean": 0.0368,
+    "tcr_hydro_max": 0.0367,
+    "self_dissimilarity": 0.036,
+    "pep_length": 0.0221,
+    "blosum62_at_mutation": 0.0,
+    "mutation_position": 0.0
+  },
+  "no_transfer_partner": false,
+  "in_sample_only": false
+}

@@ -1,0 +1,81 @@
+{
+  "cancer_type": "pancreatic",
+  "datasets_used": [
+    "rojas_2023"
+  ],
+  "n_rows": 230,
+  "n_positive": 30,
+  "n_negative": 200,
+  "n_patients": 16,
+  "n_lopo_folds": 8,
+  "features_used": [
+    "self_dissimilarity",
+    "hamming_distance",
+    "blosum62_score",
+    "blosum62_at_mutation",
+    "pep_length",
+    "hydro_full_mean",
+    "aliphatic_index",
+    "binding_log",
+    "binding_sigmoid",
+    "presentation_probability"
+  ],
+  "features_dropped_low_coverage": [
+    "tcr_hydro_mean",
+    "tcr_hydro_max",
+    "tcr_volume_mean",
+    "tcr_charge_sum",
+    "tcr_aromatic_count",
+    "dai_agretopicity",
+    "calis_simplified",
+    "mutation_position",
+    "expression_log2",
+    "expression_zscore",
+    "vaf"
+  ],
+  "lopo_auc": 0.5044,
+  "lopo_auc_ci": [
+    0.3852,
+    0.6227
+  ],
+  "lopo_aupr": 0.287,
+  "baseline_binding_only_auc": 0.5151,
+  "baseline_binding_only_ci": [
+    0.3863,
+    0.6477
+  ],
+  "improvement_over_binding": -0.0107,
+  "improvement_significant": false,
+  "per_patient_auc": {
+    "rojas_1": 0.8333,
+    "rojas_10": 0.5208,
+    "rojas_11": 0.2,
+    "rojas_14": 0.5556,
+    "rojas_18": null,
+    "rojas_19": null,
+    "rojas_20": null,
+    "rojas_23": null,
+    "rojas_25": 0.7143,
+    "rojas_28": null,
+    "rojas_29": 0.5,
+    "rojas_3": null,
+    "rojas_4": null,
+    "rojas_5": 0.9333,
+    "rojas_6": 0.5556,
+    "rojas_9": null
+  },
+  "feature_importances": {
+    "binding_log": 0.1786,
+    "presentation_probability": 0.1389,
+    "self_dissimilarity": 0.124,
+    "blosum62_score": 0.1185,
+    "aliphatic_index": 0.1166,
+    "binding_sigmoid": 0.1159,
+    "hydro_full_mean": 0.1103,
+    "blosum62_at_mutation": 0.0972,
+    "hamming_distance": 0.0,
+    "pep_length": 0.0
+  },
+  "no_transfer_partner": true,
+  "in_sample_only": false
+}
