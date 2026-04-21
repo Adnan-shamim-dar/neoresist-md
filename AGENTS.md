@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 2) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 3) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -140,11 +140,17 @@ Ott 2017:    97 mutations, 15 immuno, 6 patients (melanoma)
 TESLA 2020:  918 candidates, 41 immuno, 9 patients (mixed)
 Hilf 2019:   152 rows, 15 patients (GBM) — binding 127/152
 Rojas 2023:  230 rows, 16 patients (pancreatic) — binding complete
-Sahin 2017:  125 rows, 13 patients (melanoma) — NO binding
-             hla_allele col is EMPTY in training_matrix.csv for all 13 patients
-             P04 HLA-I confirmed from supp: A*02:01, B*07:02, B*44:02 | HLA-II: DRB1*15:01
-             Remaining 12 patients (P01-P03, P05-P13): HLA still missing
-             Need: Extended Data Table from Nature 23003 (NOT Supp Table 1)
+Sahin 2017:  125 rows → 165 rows after HLA expansion (13 patients, melanoma)
+             HLA SOURCED from Extended Data Table 3 (Nature 547:222-226):
+               P01→A*31:01  P02→B*39:06  P04→A*02:01,B*07:02,B*44:02
+               P05→B*07:02  P06→A*11:01  P11→A*02:01
+               P17→A*68:01,B*37:01  P19→B*57:01,A*11:01
+               P03, P07, P09, P10, P12 → NOT_AVAILABLE (no confirmed class-I)
+             Binding: 120/165 rows predicted via MHCflurry sliding window (8-11mer scan)
+               80/125 unique mutations covered
+             Files: validation_papers/sahin_with_binding.csv
+                    artifacts/sahin_cross_validation_with_binding.json
+                    artifacts/sahin_cross_matrix_with_binding.csv
 Keskin 2019: 27 rows (GBM) — no LOPO (too few patients)
 ```
 
@@ -157,17 +163,35 @@ rl_tcr_v1            0.758   0.510   0.493   0.675
 binding_plus_calis   0.667   0.762   0.627   0.523
 ```
 
+### Sahin 2017 PHASE 4/5 results (2026-04-21, MHCflurry binding)
+```
+Strategy                                 Sahin LOPO
+binding_only                             0.4771
+rl_v1_original                           0.4869
+rl_tcr_v1_from_ott                       0.6599  ★ best transfer
+rl_expression_v1_from_tesla              0.4371
+binding_plus_calis                       0.4011
+BEST_OF_sahin_2017 (dataset-specific)    0.7295  ★ best overall
+```
+NOTE: Sahin is a vaccine dataset — 10 pre-selected mutations per patient,
+~66% immunogenicity rate (vs ~5-15% in other datasets). Binding alone
+performs near-chance (0.48). TCR features (rl_tcr_v1) show strongest
+transfer. Confirms melanoma TCR signal, consistent with rl_tcr_v1 Ott=0.758.
+
 ### Key finding (this IS the paper thesis)
 No single strategy generalizes everywhere. Cancer-type pattern emerging:
-melanoma responds to expression signal, GBM/pancreatic respond to sequence
-features. This motivates the configurable platform and the paper's argument.
+melanoma responds to TCR/sequence features (Ott AUC=0.758, Sahin AUC=0.660),
+GBM/pancreatic respond to expression signal (Hilf/Rojas). Binding alone
+is insufficient for melanoma (Sahin LOPO=0.48, near chance).
+This motivates the configurable platform and the paper's argument.
 
 ## ACTIVE TASKS (update this every session)
 
 [x] Fix dash_bootstrap_components — installed 2026-04-21, 40/40 tests still passing
-[~] Source Sahin HLA from Nature 2017 — PARTIAL: P04 done (A*02:01, B*07:02, B*44:02, DRB1*15:01)
-    Supp Table 1 only covers P04. Need Extended Data Table for P01-P03, P05-P13.
-    data/sahin2017_supp.xlsx saved to repo.
+[x] Source Sahin HLA from Nature 2017 Extended Data Table 3 — DONE 2026-04-21
+    8 patients have confirmed HLA, 5 unknown (P03, P07, P09, P10, P12)
+    MHCflurry binding predictions run: 120/165 rows covered
+    PHASE 4/5 complete: rl_tcr_v1 LOPO=0.660, binding_only LOPO=0.477
 [ ] Download Müller 2023 Data S1-S4 from Cell Immunity paper (manual download needed)
 [ ] Install ITSNdb R package and export to CSV
 [ ] Draft paper methods section (user has template from prior Claude conversation)
@@ -177,6 +201,17 @@ features. This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-21 | Claude claude-sonnet-4-6 | Session 3: Sahin HLA from ED Table 3, MHCflurry binding
+  predictions, PHASE 4/5 run for Sahin.
+  Changed: backend/validation/add_sahin_binding.py (new),
+           backend/validation/rerun_sahin_with_binding.py (new),
+           validation_papers/sahin_with_binding.csv (generated, 165 rows),
+           artifacts/sahin_cross_validation_with_binding.json,
+           artifacts/sahin_cross_matrix_with_binding.csv
+  Validation: sahin_2017 rl_tcr_v1 LOPO=0.6599, binding_only=0.4771,
+              BEST_OF=0.7295 (dataset-specific discovery)
+  Tests: 40/40 passing
+  Next: integrate Sahin into full cross-dataset table; draft paper methods
 2026-04-21 | Claude claude-sonnet-4-6 | Session 2: installed dash-bootstrap-components, attempted
   Sahin HLA sourcing, discovered Supp Table 1 is P04-only not full cohort.
   Changed: data/sahin2017_supp.xlsx (added), AGENTS.md (updated)

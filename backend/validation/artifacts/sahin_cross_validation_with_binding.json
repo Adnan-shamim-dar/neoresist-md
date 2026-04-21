@@ -1,0 +1,856 @@
+{
+  "summary": {
+    "paper": "sahin_2017",
+    "note": "PHASE 4/5 rerun using sahin_with_binding.csv (MHCflurry sliding window)",
+    "rows_with_binding": 120,
+    "total_rows": 165,
+    "patients_with_hla": [
+      "sahin_P01",
+      "sahin_P02",
+      "sahin_P04",
+      "sahin_P05",
+      "sahin_P06",
+      "sahin_P11",
+      "sahin_P17",
+      "sahin_P19"
+    ]
+  },
+  "transfer_results": {
+    "sahin_2017": {
+      "n_rows": 165,
+      "n_immunogenic": 109,
+      "n_patients": 13,
+      "can_lopo": true,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": 0.47712053571428575,
+          "insample_auc": 0.5288335517693317,
+          "per_patient": {
+            "sahin_P01": 0.5416666666666667,
+            "sahin_P02": 0.29166666666666663,
+            "sahin_P03": 0.5,
+            "sahin_P04": 0.5416666666666667,
+            "sahin_P05": 0.125,
+            "sahin_P06": 0.375,
+            "sahin_P07": 0.5,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.5,
+            "sahin_P11": 0.42857142857142855,
+            "sahin_P12": 0.5,
+            "sahin_P17": null,
+            "sahin_P19": 0.921875
+          },
+          "features_available": [
+            "bind_log50k"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_v1_original": {
+          "lopo_auc": 0.4868551587301588,
+          "insample_auc": 0.46215596330275227,
+          "per_patient": {
+            "sahin_P01": 0.375,
+            "sahin_P02": 0.5833333333333334,
+            "sahin_P03": 0.6190476190476191,
+            "sahin_P04": 0.4375,
+            "sahin_P05": 0.41666666666666663,
+            "sahin_P06": 0.33333333333333337,
+            "sahin_P07": 0.375,
+            "sahin_P09": 0.8333333333333333,
+            "sahin_P10": 0.25,
+            "sahin_P11": 0.6190476190476191,
+            "sahin_P12": 0.125,
+            "sahin_P17": null,
+            "sahin_P19": 0.875
+          },
+          "features_available": [
+            "pres_existing",
+            "expr_existing",
+            "dissim_existing"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": 0.6598875661375662,
+          "insample_auc": 0.5367791612057667,
+          "per_patient": {
+            "sahin_P01": 0.75,
+            "sahin_P02": 0.8333333333333334,
+            "sahin_P03": 0.7619047619047619,
+            "sahin_P04": 0.7222222222222221,
+            "sahin_P05": 0.5833333333333333,
+            "sahin_P06": 0.7083333333333333,
+            "sahin_P07": 0.3958333333333333,
+            "sahin_P09": 0.8333333333333333,
+            "sahin_P10": 1.0,
+            "sahin_P11": 0.47619047619047616,
+            "sahin_P12": 0.41666666666666663,
+            "sahin_P17": null,
+            "sahin_P19": 0.4375
+          },
+          "features_available": [
+            "bind_log50k",
+            "tcr_volume",
+            "tcr_hydro"
+          ],
+          "features_missing": [
+            "tcr_charge_diff"
+          ],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": 0.4371073082010582,
+          "insample_auc": 0.4404488859764089,
+          "per_patient": {
+            "sahin_P01": 0.4166666666666667,
+            "sahin_P02": 0.3333333333333333,
+            "sahin_P03": 0.6666666666666667,
+            "sahin_P04": 0.5347222222222223,
+            "sahin_P05": 0.08333333333333333,
+            "sahin_P06": 0.29166666666666663,
+            "sahin_P07": 0.3125,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.25,
+            "sahin_P11": 0.8095238095238095,
+            "sahin_P12": 0.125,
+            "sahin_P17": null,
+            "sahin_P19": 0.921875
+          },
+          "features_available": [
+            "bind_log50k",
+            "nm_raw",
+            "expr_raw"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": 0.40106233465608465,
+          "insample_auc": 0.511959370904325,
+          "per_patient": {
+            "sahin_P01": 0.5416666666666667,
+            "sahin_P02": 0.29166666666666663,
+            "sahin_P03": 0.09523809523809526,
+            "sahin_P04": 0.5486111111111112,
+            "sahin_P05": 0.08333333333333333,
+            "sahin_P06": 0.41666666666666663,
+            "sahin_P07": 0.35416666666666663,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.25,
+            "sahin_P11": 0.47619047619047616,
+            "sahin_P12": 0.3333333333333333,
+            "sahin_P17": null,
+            "sahin_P19": 0.921875
+          },
+          "features_available": [
+            "bind_log50k",
+            "calis_immuno"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": 0.47712053571428575,
+          "insample_auc": 0.5288335517693317,
+          "per_patient": {
+            "sahin_P01": 0.5416666666666667,
+            "sahin_P02": 0.29166666666666663,
+            "sahin_P03": 0.5,
+            "sahin_P04": 0.5416666666666667,
+            "sahin_P05": 0.125,
+            "sahin_P06": 0.375,
+            "sahin_P07": 0.5,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.5,
+            "sahin_P11": 0.42857142857142855,
+            "sahin_P12": 0.5,
+            "sahin_P17": null,
+            "sahin_P19": 0.921875
+          },
+          "features_available": [
+            "bind_exp500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": 0.47712053571428575,
+          "insample_auc": 0.5288335517693317,
+          "per_patient": {
+            "sahin_P01": 0.5416666666666667,
+            "sahin_P02": 0.29166666666666663,
+            "sahin_P03": 0.5,
+            "sahin_P04": 0.5416666666666667,
+            "sahin_P05": 0.125,
+            "sahin_P06": 0.375,
+            "sahin_P07": 0.5,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.5,
+            "sahin_P11": 0.42857142857142855,
+            "sahin_P12": 0.5,
+            "sahin_P17": null,
+            "sahin_P19": 0.921875
+          },
+          "features_available": [
+            "bind_sigmoid500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        }
+      }
+    }
+  },
+  "discovery_results": {
+    "sahin_2017": {
+      "n_rows": 165,
+      "n_immunogenic": 109,
+      "n_patients": 13,
+      "can_lopo": true,
+      "eval_type": "LOPO",
+      "binding_baseline": 0.47712053571428575,
+      "single_feature_top10": [
+        {
+          "feature": "center_charge",
+          "best_auc": 0.6595371669004209,
+          "direction": "pos",
+          "p_value": 0.016460798105650834,
+          "n": 85
+        },
+        {
+          "feature": "tcr_volume",
+          "best_auc": 0.6460517693315859,
+          "direction": "pos",
+          "p_value": 0.0021667420376962473,
+          "n": 165
+        },
+        {
+          "feature": "all_volume",
+          "best_auc": 0.6315530799475755,
+          "direction": "pos",
+          "p_value": 0.005748225019186242,
+          "n": 165
+        },
+        {
+          "feature": "anchor_charge",
+          "best_auc": 0.6258503401360545,
+          "direction": "pos",
+          "p_value": 0.09279281892260943,
+          "n": 67
+        },
+        {
+          "feature": "all_pos_charge_frac",
+          "best_auc": 0.6234436435124509,
+          "direction": "pos",
+          "p_value": 0.008881977407128481,
+          "n": 165
+        },
+        {
+          "feature": "tcr_polar",
+          "best_auc": 0.619429882044561,
+          "direction": "neg",
+          "p_value": 0.01114801360062859,
+          "n": 165
+        },
+        {
+          "feature": "anchor_small",
+          "best_auc": 0.6154575628259839,
+          "direction": "pos",
+          "p_value": 0.024884027905617324,
+          "n": 94
+        },
+        {
+          "feature": "self_dissimilarity",
+          "best_auc": 0.6113204456094365,
+          "direction": "pos",
+          "p_value": 0.019443204955497766,
+          "n": 165
+        },
+        {
+          "feature": "dissim_existing",
+          "best_auc": 0.6113204456094365,
+          "direction": "pos",
+          "p_value": 0.019443204955497766,
+          "n": 165
+        },
+        {
+          "feature": "all_charged_frac",
+          "best_auc": 0.6094364351245085,
+          "direction": "pos",
+          "p_value": 0.020790636957534095,
+          "n": 165
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "center_charge",
+          "auc": 0.6595371669004209,
+          "p": 0.016460798105650834,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume",
+          "auc": 0.6460517693315859,
+          "p": 0.0021667420376962473,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_volume",
+          "auc": 0.6315530799475755,
+          "p": 0.005748225019186242,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_pos_charge_frac",
+          "auc": 0.6234436435124509,
+          "p": 0.008881977407128481,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_polar",
+          "auc": 0.619429882044561,
+          "p": 0.01114801360062859,
+          "direction": "neg"
+        },
+        {
+          "feature": "anchor_small",
+          "auc": 0.6154575628259839,
+          "p": 0.024884027905617324,
+          "direction": "pos"
+        },
+        {
+          "feature": "self_dissimilarity",
+          "auc": 0.6113204456094365,
+          "p": 0.019443204955497766,
+          "direction": "pos"
+        },
+        {
+          "feature": "dissim_existing",
+          "auc": 0.6113204456094365,
+          "p": 0.019443204955497766,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_charged_frac",
+          "auc": 0.6094364351245085,
+          "p": 0.020790636957534095,
+          "direction": "pos"
+        },
+        {
+          "feature": "center_volume",
+          "auc": 0.6057503276539974,
+          "p": 0.026425757251564475,
+          "direction": "pos"
+        }
+      ],
+      "hypotheses": {
+        "sahin_2017_binding_only": {
+          "lopo_auc": 0.47712053571428575,
+          "insample_auc": 0.5288335517693317,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_center_charge_80_20": {
+          "lopo_auc": 0.5268063822751323,
+          "insample_auc": 0.5858453473132371,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "center_charge",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_center_charge_60_40": {
+          "lopo_auc": 0.5406952711640213,
+          "insample_auc": 0.5955111402359109,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "center_charge",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_center_charge_50_50": {
+          "lopo_auc": 0.5505332341269842,
+          "insample_auc": 0.6019003931847968,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "center_charge",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_80_20": {
+          "lopo_auc": 0.6614790013227514,
+          "insample_auc": 0.5326834862385321,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_60_40": {
+          "lopo_auc": 0.6613343253968255,
+          "insample_auc": 0.5356323722149411,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_50_50": {
+          "lopo_auc": 0.6613343253968255,
+          "insample_auc": 0.5361238532110092,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_volume_80_20": {
+          "lopo_auc": 0.6751818783068783,
+          "insample_auc": 0.5250655307994757,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_volume_60_40": {
+          "lopo_auc": 0.6672247023809524,
+          "insample_auc": 0.5257208387942333,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_volume_50_50": {
+          "lopo_auc": 0.6659226190476191,
+          "insample_auc": 0.5257208387942333,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_pos_charge_frac_80_20": {
+          "lopo_auc": 0.5871982473544973,
+          "insample_auc": 0.5599606815203145,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_pos_charge_frac_60_40": {
+          "lopo_auc": 0.5945560515873015,
+          "insample_auc": 0.5742136304062909,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_pos_charge_frac_50_50": {
+          "lopo_auc": 0.6071221891534392,
+          "insample_auc": 0.5848623853211009,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_polar_80_20": {
+          "lopo_auc": 0.5888723544973545,
+          "insample_auc": 0.5489023591087812,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_polar",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_polar_60_40": {
+          "lopo_auc": 0.6062127976190476,
+          "insample_auc": 0.5611893840104849,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_polar",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_polar_50_50": {
+          "lopo_auc": 0.6211557539682541,
+          "insample_auc": 0.5724934469200524,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_polar",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_anchor_small_80_20": {
+          "lopo_auc": 0.4600694444444444,
+          "insample_auc": 0.4913990825688074,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "anchor_small",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_anchor_small_60_40": {
+          "lopo_auc": 0.4947916666666667,
+          "insample_auc": 0.5241644823066841,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "anchor_small",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_anchor_small_50_50": {
+          "lopo_auc": 0.5086805555555556,
+          "insample_auc": 0.5338302752293578,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "anchor_small",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_self_dissimilarity_80_20": {
+          "lopo_auc": 0.4812954695767196,
+          "insample_auc": 0.497870249017038,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "self_dissimilarity",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_self_dissimilarity_60_40": {
+          "lopo_auc": 0.4818741732804233,
+          "insample_auc": 0.5011467889908258,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "self_dissimilarity",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_self_dissimilarity_50_50": {
+          "lopo_auc": 0.48245287698412703,
+          "insample_auc": 0.5047509829619922,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "self_dissimilarity",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_dissim_existing_80_20": {
+          "lopo_auc": 0.4812954695767196,
+          "insample_auc": 0.497870249017038,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "dissim_existing",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_dissim_existing_60_40": {
+          "lopo_auc": 0.4818741732804233,
+          "insample_auc": 0.5011467889908258,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "dissim_existing",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_dissim_existing_50_50": {
+          "lopo_auc": 0.48245287698412703,
+          "insample_auc": 0.5047509829619922,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "dissim_existing",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_top2_bind": {
+          "lopo_auc": 0.5001860119047619,
+          "insample_auc": 0.4465104849279162,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "center_charge",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "tcr_volume",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_top3_bind": {
+          "lopo_auc": 0.49627976190476186,
+          "insample_auc": 0.45134338138925295,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "center_charge",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "tcr_volume",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "all_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_bind_expr_60_40": {
+          "lopo_auc": 0.46440972222222227,
+          "insample_auc": 0.44487221494102236,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_bind_expr_80_20": {
+          "lopo_auc": 0.4618055555555556,
+          "insample_auc": 0.43979357798165136,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_bind_calis": {
+          "lopo_auc": 0.40106233465608465,
+          "insample_auc": 0.511959370904325,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_train_fold_lr": {
+          "lopo_auc": 0.7294973544973544,
+          "insample_auc": null,
+          "features": [
+            "bind_log50k",
+            "center_charge",
+            "tcr_volume",
+            "all_volume",
+            "all_pos_charge_frac",
+            "tcr_polar"
+          ]
+        }
+      },
+      "best_strategy": "sahin_2017_train_fold_lr",
+      "best_auc": 0.7294973544973544,
+      "best_delta": 0.25237681878306867
+    }
+  }
+}
