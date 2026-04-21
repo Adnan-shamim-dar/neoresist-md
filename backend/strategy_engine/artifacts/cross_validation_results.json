@@ -1,0 +1,48 @@
+{
+  "pairs": [
+    {
+      "train": "ott_2017",
+      "test": "sahin_2017",
+      "n_train": 97,
+      "n_test": 165,
+      "n_test_positive": 109,
+      "auc": 0.5753,
+      "ci_95": [
+        0.4763,
+        0.6662
+      ],
+      "n_features": 21
+    },
+    {
+      "train": "sahin_2017",
+      "test": "ott_2017",
+      "n_train": 165,
+      "n_test": 97,
+      "n_test_positive": 15,
+      "auc": 0.4472,
+      "ci_95": [
+        0.2891,
+        0.6143
+      ],
+      "n_features": 21
+    },
+    {
+      "train": "hilf_2019",
+      "test": "keskin_2019",
+      "n_train": 152,
+      "n_test": 27,
+      "n_test_positive": 15,
+      "auc": 1.0,
+      "ci_95": [
+        1.0,
+        1.0
+      ],
+      "n_features": 35
+    }
+  ],
+  "rl_tcr_v1_sahin_zero_shot": {
+    "auc": 0.6599,
+    "note": "rl_tcr_v1 discovered on Ott, applied to Sahin without any Sahin training",
+    "source": "artifacts/sahin_cross_validation_with_binding.json"
+  }
+}
