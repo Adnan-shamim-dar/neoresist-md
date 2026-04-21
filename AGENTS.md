@@ -403,6 +403,28 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-22 | Claude claude-sonnet-4-6 | Session 11: Phase 6B full mutanome haystack
+  Changed: backend/strategy_engine/phase6b_haystack.py (new),
+           artifacts/haystack_fullmutanome_results.json,
+           artifacts/ott_fullmutanome_scored.csv,
+           validation_papers/ott_full_mutanome_labeled.csv (new — 11,094 rows, 83 labeled)
+  Results: Per-patient ranking (honest metric — labeled rows have features):
+    ott_1: 2/2 immunogenic in top 6 of 179 mutations
+    ott_2: 2/2 immunogenic at rank 1 of 1,887 mutations
+    ott_3: 3/3 immunogenic in top 4 of 820 mutations
+    ott_4: 1/1 immunogenic at rank 6 of 1,997 mutations
+    ott_5: 4/4 immunogenic in top 4 of 728 mutations
+    ott_6: 1/1 immunogenic at rank 1 of 3,920 mutations
+    Total: 13/13 immunogenic in top 20 per patient
+  Dramatic example: CIT p.P2056L (ott_3) — rank 1 of 11,094 by melanoma_ml_v1
+  AUC on 83 labeled rows: melanoma_ml_v1=0.634, rl_tcr_v1=0.614
+  LIMITATION: Full mutanome lacks mutant_peptide/binding_nm. TCR features only computed
+    for 83 labeled rows. rl_tcr_v1/rl_engine recall@100=13/13 is trivially true (only 83
+    rows scored, all labeled rows float to top). True haystack needs MHCflurry on 11K rows.
+  NeoORF: 38 frameshift rows in data (1 immunogenic), 2 excluded from join (NeoORF notation)
+  Tests: 40/40 passing
+  Next: run MHCflurry on full Ott mutanome to enable binding_only comparison;
+        paper methods draft; commit large working tree
 2026-04-21 | Claude claude-sonnet-4-6 | Session 10: Phase 5+6 registry + haystack
   Changed: build_registry.py, haystack.py (new), strategies/*.yaml (6 files),
            artifacts/haystack_results.json

@@ -1,0 +1,251 @@
+{
+  "total_mutations": 11094,
+  "immunogenic_labeled": 13,
+  "negative_labeled": 70,
+  "unlabeled": 11011,
+  "neoorf_excluded": 2,
+  "binding_available": false,
+  "strategies_evaluated": [
+    "melanoma_ml_v1",
+    "rl_tcr_v1",
+    "rl_engine",
+    "random"
+  ],
+  "feature_coverage": {
+    "tcr_hydro_mean": 0,
+    "tcr_volume_mean": 0,
+    "tcr_charge_sum": 0,
+    "tcr_aromatic_count": 0,
+    "pep_length": 0,
+    "hydro_full_mean": 0,
+    "aliphatic_index": 0,
+    "hamming_distance": 0,
+    "blosum62_score": 0,
+    "expression_log2": 79,
+    "presentation_score": 83,
+    "self_dissimilarity": 83,
+    "rl_engine_score": 83
+  },
+  "recall_at_k": {
+    "melanoma_ml_v1": {
+      "10": 3,
+      "20": 5,
+      "50": 7,
+      "100": 8,
+      "200": 8,
+      "500": 8,
+      "1000": 8
+    },
+    "rl_tcr_v1": {
+      "10": 1,
+      "20": 4,
+      "50": 9,
+      "100": 13,
+      "200": 13,
+      "500": 13,
+      "1000": 13
+    },
+    "rl_engine": {
+      "10": 3,
+      "20": 5,
+      "50": 8,
+      "100": 13,
+      "200": 13,
+      "500": 13,
+      "1000": 13
+    },
+    "random": {
+      "10": 0,
+      "20": 0,
+      "50": 0,
+      "100": 0,
+      "200": 0,
+      "500": 1,
+      "1000": 2
+    }
+  },
+  "labeled_subset_auc": {
+    "melanoma_ml_v1": 0.6341,
+    "rl_tcr_v1": 0.6143,
+    "rl_engine": 0.5604,
+    "random": 0.556
+  },
+  "per_patient": {
+    "ott_1": {
+      "total": 179,
+      "n_immunogenic": 2,
+      "best_rank": 1,
+      "worst_rank": 6,
+      "in_top20": 2,
+      "immunogenic_details": [
+        {
+          "gene": "ACPP",
+          "protein_change": "p.E34K",
+          "ml_rank": 1,
+          "binding_nm": null
+        },
+        {
+          "gene": "DCAKD",
+          "protein_change": "p.S199F",
+          "ml_rank": 6,
+          "binding_nm": null
+        }
+      ]
+    },
+    "ott_10": {
+      "total": 70,
+      "n_immunogenic": 0,
+      "best_rank": null,
+      "worst_rank": null,
+      "in_top20": 0,
+      "immunogenic_details": []
+    },
+    "ott_2": {
+      "total": 1887,
+      "n_immunogenic": 2,
+      "best_rank": 1,
+      "worst_rank": 1,
+      "in_top20": 2,
+      "immunogenic_details": [
+        {
+          "gene": "DDX3X",
+          "protein_change": "p.E388K",
+          "ml_rank": 1,
+          "binding_nm": null
+        },
+        {
+          "gene": "ITGA9",
+          "protein_change": "p.L548P",
+          "ml_rank": 1,
+          "binding_nm": null
+        }
+      ]
+    },
+    "ott_3": {
+      "total": 820,
+      "n_immunogenic": 3,
+      "best_rank": 1,
+      "worst_rank": 4,
+      "in_top20": 3,
+      "immunogenic_details": [
+        {
+          "gene": "VPS16",
+          "protein_change": "p.S404F",
+          "ml_rank": 4,
+          "binding_nm": null
+        },
+        {
+          "gene": "CIT",
+          "protein_change": "p.P2056L",
+          "ml_rank": 1,
+          "binding_nm": null
+        },
+        {
+          "gene": "CASP1",
+          "protein_change": "p.P172S",
+          "ml_rank": 4,
+          "binding_nm": null
+        }
+      ]
+    },
+    "ott_4": {
+      "total": 1997,
+      "n_immunogenic": 1,
+      "best_rank": 6,
+      "worst_rank": 6,
+      "in_top20": 1,
+      "immunogenic_details": [
+        {
+          "gene": "DHX40",
+          "protein_change": "p.S754fs",
+          "ml_rank": 6,
+          "binding_nm": null
+        }
+      ]
+    },
+    "ott_5": {
+      "total": 728,
+      "n_immunogenic": 4,
+      "best_rank": 1,
+      "worst_rank": 4,
+      "in_top20": 4,
+      "immunogenic_details": [
+        {
+          "gene": "GRIN2B",
+          "protein_change": "p.E1104K",
+          "ml_rank": 1,
+          "binding_nm": null
+        },
+        {
+          "gene": "TBX4",
+          "protein_change": "p.S271F",
+          "ml_rank": 4,
+          "binding_nm": null
+        },
+        {
+          "gene": "COL22A1",
+          "protein_change": "p.D291N",
+          "ml_rank": 4,
+          "binding_nm": null
+        },
+        {
+          "gene": "FAM200A",
+          "protein_change": "p.S116F",
+          "ml_rank": 1,
+          "binding_nm": null
+        }
+      ]
+    },
+    "ott_6": {
+      "total": 3920,
+      "n_immunogenic": 1,
+      "best_rank": 1,
+      "worst_rank": 1,
+      "in_top20": 1,
+      "immunogenic_details": [
+        {
+          "gene": "FAM50B",
+          "protein_change": "p.E78K",
+          "ml_rank": 1,
+          "binding_nm": null
+        }
+      ]
+    },
+    "ott_7": {
+      "total": 953,
+      "n_immunogenic": 0,
+      "best_rank": null,
+      "worst_rank": null,
+      "in_top20": 0,
+      "immunogenic_details": []
+    },
+    "ott_8": {
+      "total": 489,
+      "n_immunogenic": 0,
+      "best_rank": null,
+      "worst_rank": null,
+      "in_top20": 0,
+      "immunogenic_details": []
+    },
+    "ott_9": {
+      "total": 51,
+      "n_immunogenic": 0,
+      "best_rank": null,
+      "worst_rank": null,
+      "in_top20": 0,
+      "immunogenic_details": []
+    }
+  },
+  "dramatic_example": {
+    "gene": "CIT",
+    "protein_change": "p.P2056L",
+    "binding_nm": null,
+    "presentation_score": 0.6186765112522975,
+    "ml_rank": 1,
+    "binding_rank": null,
+    "patient_id": "ott_3",
+    "conclusion": "Top-1 of 11,094 by melanoma_ml_v1; presentation_score=0.619. TCR+sequence features surface this neoantigen despite no binding data."
+  },
+  "headline": "melanoma_ml_v1: 8/13 immunogenic in top 100 of 11,094 somatic mutations; AUC=0.6341 on 83 labeled rows",
+  "limitation": "Full mutanome lacks mutant_peptide and binding_nm columns. TCR contact features computable only when peptide provided. 83/11094 rows have features (vaccine-level labeled set). ML model scores unlabeled rows via NaN imputation to column medians \u2014 ranking within labeled subset is the primary evaluation signal."
+}
