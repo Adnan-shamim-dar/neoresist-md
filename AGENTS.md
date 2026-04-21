@@ -1,7 +1,7 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 5) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-21 (session 6) by Claude (claude-sonnet-4-6)
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -183,6 +183,33 @@ Key findings:
   - Confirms: NCI uses different biology than melanoma/GBM — binding alone is sufficient
   - Strengthens paper thesis: no single strategy works everywhere
 File: artifacts/muller_nci_results.json
+
+### Müller 2023 NCI — Verification + Strategy Discovery (2026-04-21)
+```
+STEP 1 — Bias check:
+  Selection bias flag NEGATIVE: only 3.7% of negatives <500nM (not pre-screened)
+  Positives: nm_raw median=52.1 nM, 80.5% below 500nM — genuine strong binders
+  Negatives: nm_raw median=24,947 nM, Score_EL median=0.0005
+  Positives: Score_EL median=0.7892 — massive clean separation
+  Per-patient EL AUC: 0.94–0.9997 across top-10 patients — signal is REAL
+  Interpretation: high AUC is not artifactual; positives are truly extreme binders
+
+STEP 2 — NCI_S1–S7 strategy discovery:
+  Pre-committed directions: Score_EL+ BindStab+ Agretopicity− expression+
+
+  Strategy                               LOPO AUC
+  NCI_S1  Score_EL only                  0.9839 ★ best
+  NCI_S2  Score_EL + BindStab            0.9678   adding BindStab slightly hurts
+  NCI_S5  Score_EL + BindStab + Agret    0.9642
+  NCI_S3  Score_EL + Agretopicity        0.9351   Agretopicity dilutes signal
+  NCI_S6  Score_EL + BindStab + expr     0.7612
+  NCI_S7  Score_EL + BindStab + Agret + expr  0.7679
+  NCI_S4  Score_EL + expression          0.7431   expression kills performance
+
+  Conclusion: Score_EL alone is optimal on NCI. No combination improves it.
+  Expression is a destructive feature on NCI (correlated within patient, not predictive).
+  Agretopicity (inverted) direction is correct but adds noise on this dataset.
+Files: artifacts/muller_nci_discovery.json, backend/validation/muller_nci_discovery.py
 ```
 
 ### SHANK2 G486S verification (2026-04-21)
