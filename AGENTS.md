@@ -403,6 +403,26 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-22 | Claude claude-sonnet-4-6 | Session 14: Phase 10 GBM validation (Hilf 2019 + Keskin 2019)
+  Changed: backend/strategy_engine/phase10_gbm_validation.py (new),
+           artifacts/phase10_gbm_results.json,
+           artifacts/stage2_gbm_model_v2.pkl,
+           strategies/gbm_ml_v1.yaml (updated: validated=False),
+           strategies/registry.yaml (updated: gbm recommended=binding_only)
+  Results (179 peptides, 92 pos, 17 patients — peptide level, no dedup due to NaN protein_change):
+    binding_only:       AUC=0.5878  CI=[0.4926,0.6766]  R@10=0.054  R@20=0.141
+    rl_tcr_v1:          AUC=0.5593  CI=[0.4747,0.6463]  R@10=0.043  R@20=0.130
+    gbm_ml_v1 (LOPO):   AUC=0.5995  CI=[0.5149,0.6844]  R@10=0.054  R@20=0.109
+    melanoma→GBM:       AUC=0.4664  (poor transfer)
+    gbm→melanoma:       AUC=0.5638  (near chance)
+  validated=False: gbm LOPO (0.5995) < binding_only + 0.05 (0.6378)
+  Corrects Phase 5 over-optimistic validated=True flag in gbm_ml_v1.yaml
+  Features selected (19): TCR features included (~79% coverage), expression dropped (19%)
+  Interpretation: GBM is binding-dominated. ML adds tiny lift (+0.012 over binding_only)
+    but below threshold. binding_only now recommended for GBM. Same conclusion as Phase 5
+    (binding baseline outperforms fitted model on GBM).
+  Tests: 40/40 passing
+  Next: paper results update (incorporate Phase 9+10 findings), Müller NCI integration
 2026-04-22 | Claude claude-sonnet-4-6 | Session 13: Phase 9 Rojas 2023 pancreatic LOPO validation
   Changed: backend/strategy_engine/phase9_rojas_pancreatic.py (new),
            artifacts/phase9_rojas_results.json,

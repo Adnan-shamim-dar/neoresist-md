@@ -8,8 +8,8 @@ strategies:
   recommended_for: melanoma
 - strategy_id: gbm_ml_v1
   cancer_type: gbm
-  validated: true
-  lopo_auc: 0.5946
+  validated: false
+  lopo_auc: 0.5995
   recommended_for: gbm
 - strategy_id: pancreatic_ml_v1
   cancer_type: pancreatic
@@ -28,7 +28,7 @@ strategies:
   recommended_for: all
 recommended_by_cancer_type:
   melanoma: melanoma_ml_v1
-  gbm: gbm_ml_v1
+  gbm: binding_only
   pancreatic: pancreatic_ml_v1
   mixed: mixed_ml_v1
   unknown: melanoma_ml_v1
