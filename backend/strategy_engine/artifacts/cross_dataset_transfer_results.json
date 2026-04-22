@@ -1,0 +1,59 @@
+{
+  "A_ott_to_tretter": {
+    "pooled_auc": 0.5374,
+    "per_patient_mean": 0.5505,
+    "ci_95": [
+      0.2171,
+      0.8533
+    ]
+  },
+  "B_tretter_to_ott": {
+    "pooled_auc": 0.4325,
+    "per_patient_mean": 0.4899,
+    "ci_95": [
+      0.3538,
+      0.6279
+    ]
+  },
+  "C_combined_lopo": {
+    "pooled_auc": 0.5284,
+    "per_patient_mean": 0.4764,
+    "ci_95": [
+      0.2939,
+      0.6392
+    ]
+  },
+  "n_common_features": 25,
+  "common_features": [
+    "aliphatic_index",
+    "binding_log",
+    "binding_log50k",
+    "binding_nm",
+    "binding_rank",
+    "binding_sigmoid",
+    "blosum62_at_mutation",
+    "blosum62_score",
+    "calis_simplified",
+    "hamming_distance",
+    "hydro_full_max",
+    "hydro_full_mean",
+    "iedb_immuno",
+    "instability_index",
+    "isoelectric_point",
+    "molecular_weight",
+    "pep_length",
+    "self_dissimilarity",
+    "tcr_aromatic_count",
+    "tcr_charge_diff",
+    "tcr_charge_sum",
+    "tcr_hydro_diff",
+    "tcr_hydro_mean",
+    "tcr_volume_diff",
+    "tcr_volume_mean"
+  ],
+  "interpretation": {
+    "threshold": 0.6,
+    "generalizes": false,
+    "implication": "registry architecture supported"
+  }
+}

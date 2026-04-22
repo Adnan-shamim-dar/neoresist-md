@@ -57,6 +57,14 @@ CALIS_WEIGHTS = {
 # TCR contact positions (0-indexed) by peptide length
 TCR_POS = {8: [2, 3, 4], 9: [3, 4, 5, 6], 10: [3, 4, 5, 6, 7], 11: [3, 4, 5, 6, 7]}
 
+# Calis 2013 AA propensity scores for TCR recognition (PLoS Comput Biol)
+IEDB_AA_SCORES = {
+    "A": -0.02, "C":  0.08, "D": -0.19, "E": -0.19, "F":  0.12,
+    "G": -0.04, "H":  0.10, "I":  0.05, "K": -0.20, "L":  0.06,
+    "M":  0.05, "N": -0.10, "P": -0.06, "Q": -0.10, "R": -0.12,
+    "S": -0.04, "T": -0.03, "V":  0.02, "W":  0.13, "Y":  0.09,
+}
+
 
 # ── BLOSUM62 loader ───────────────────────────────────────────────────────────
 def _load_blosum():
@@ -584,19 +592,19 @@ def compute_sequence_features(df: pd.DataFrame) -> pd.DataFrame:
     """Compute sequence-level features from mutant_peptide."""
     pep_col = "mutant_peptide" if "mutant_peptide" in df.columns else None
     if pep_col is None:
-        for c in ["pep_length", "calis_simplified", "hydro_full_mean",
+        for c in ["pep_length", "calis_simplified", "iedb_immuno", "hydro_full_mean",
                   "hydro_full_max", "aliphatic_index"]:
             if c not in df.columns:
                 df[c] = np.nan
         return df
 
-    lengths, calis_scores, hydro_means, hydro_maxes, aliph = [], [], [], [], []
+    lengths, calis_scores, iedb_scores, hydro_means, hydro_maxes, aliph = [], [], [], [], [], []
     mw_list, pi_list, instab_list = [], [], []
 
     for _, row in df.iterrows():
         pep_raw = row.get(pep_col)
         if pd.isna(pep_raw):
-            for lst in [lengths, calis_scores, hydro_means, hydro_maxes, aliph,
+            for lst in [lengths, calis_scores, iedb_scores, hydro_means, hydro_maxes, aliph,
                         mw_list, pi_list, instab_list]:
                 lst.append(np.nan)
             continue
@@ -617,13 +625,18 @@ def compute_sequence_features(df: pd.DataFrame) -> pd.DataFrame:
         cnt_L = pep.count("L")
         aliph.append((cnt_A * 2.9 + cnt_V * 3.9 + (cnt_I + cnt_L) * 19.0) / n if n > 0 else np.nan)
 
-        # Calis simplified
+        # Calis simplified (position-weighted hydrophobicity)
         if n in CALIS_WEIGHTS:
             ws = CALIS_WEIGHTS[n]
             sc = sum(HYDRO.get(aa, 0.0) * ws[i] for i, aa in enumerate(pep) if aa in HYDRO)
             calis_scores.append(sc)
         else:
             calis_scores.append(np.nan)
+
+        # IEDB immunogenicity — Calis 2013 propensity scores at TCR contact positions
+        tcr_pos = _tcr_positions(n)
+        vals = [IEDB_AA_SCORES[pep[i]] for i in tcr_pos if i < n and pep[i] in IEDB_AA_SCORES]
+        iedb_scores.append(float(np.mean(vals)) if vals else np.nan)
 
         # Biopython ProteinAnalysis
         try:
@@ -646,6 +659,7 @@ def compute_sequence_features(df: pd.DataFrame) -> pd.DataFrame:
 
     df["pep_length"] = lengths
     df["calis_simplified"] = calis_scores
+    df["iedb_immuno"] = iedb_scores
     df["hydro_full_mean"] = hydro_means
     df["hydro_full_max"] = hydro_maxes
     df["aliphatic_index"] = aliph
@@ -704,7 +718,7 @@ EXPECTED_FEATURES = [
     "tcr_hydro_mean", "tcr_hydro_max", "tcr_volume_mean", "tcr_charge_sum", "tcr_aromatic_count",
     "tcr_hydro_diff", "tcr_volume_diff", "tcr_charge_diff",
     "self_dissimilarity", "hamming_distance", "blosum62_score", "blosum62_at_mutation",
-    "pep_length", "calis_simplified", "hydro_full_mean", "hydro_full_max",
+    "pep_length", "calis_simplified", "iedb_immuno", "hydro_full_mean", "hydro_full_max",
     "aliphatic_index", "molecular_weight", "isoelectric_point", "instability_index",
     "mutation_position",
 ]

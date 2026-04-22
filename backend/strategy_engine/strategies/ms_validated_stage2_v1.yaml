@@ -1,0 +1,113 @@
+strategy_id: ms_validated_stage2_v1
+cancer_type: mixed
+display_name: MS-Validated Stage 2 v1 (XGBoost, TCR+DAI+blosum, Tretter 2023)
+model_type: xgboost
+model_path: backend/strategy_engine/artifacts/tretter_combination_model.pkl
+validated: false
+validation_note: >
+  LOPO CI lower bound (0.086) is below the 0.55 validation threshold. The model
+  was trained on MS-validated peptide-level data (Tretter 2023, n=77) where all
+  candidates already passed a binding pre-screen, suppressing binding signal and
+  inflating the proportion of positives in individual test folds (P01=75% pos,
+  P19=78% pos). Cross-dataset transfer to Ott 2017 collapses (pooled AUC=0.43),
+  confirming dataset-specific weights. Use within MS-validated Stage 2 evaluation
+  contexts only; do not use for full-mutanome ranking.
+validation_method: leave-one-patient-out (LOPO), 5 evaluable folds
+lopo_auc: 0.319
+lopo_auc_ci:
+  - 0.086
+  - 0.553
+lopo_n_folds: 5
+lopo_fold_aucs:
+  tretter_P01: 0.000
+  tretter_P04: 0.500
+  tretter_P11: 0.667
+  tretter_P19: 0.429
+  tretter_P37: 0.000
+prescreened_recall_at_5: 0.611
+prescreened_recall_at_10: 0.944
+cross_transfer:
+  ott_pooled_auc: 0.433
+  verdict: collapses
+  note: Tretter->Ott cross-transfer AUC=0.43; stage 2 signal does not generalize
+        across datasets — registry architecture (per-dataset weights) required.
+origin_dataset: tretter_2023
+validation_dataset: tretter_2023 (LOPO); Ott 2017 (cross-transfer, collapses)
+recommended_context: >
+  MS-validated Stage 2 candidates (pre-screened by binding affinity < 500 nM).
+  NOT suitable for full-mutanome haystack ranking.
+training_datasets:
+  - tretter_2023
+n_patients: 21
+n_rows: 77
+n_positives: 21
+xgb_params:
+  max_depth: 2
+  n_estimators: 200
+  learning_rate: 0.05
+  subsample: 0.7
+  colsample_bytree: 0.6
+  reg_alpha: 0.5
+  scale_pos_weight: 2.9
+features:
+  - self_dissimilarity
+  - tcr_hydro_max
+  - mutation_position
+  - binding_log50k
+  - pep_length
+  - dai_binding
+  - tcr_volume_mean
+  - blosum62_score
+  - binding_sigmoid
+  - dai_ratio
+  - tcr_hydro_mean
+  - tcr_charge_diff
+  - tcr_volume_diff
+  - tcr_aromatic_count
+  - hamming_distance
+  - blosum62_at_mutation
+  - calis_simplified
+  - hydro_full_mean
+  - hydro_full_max
+  - aliphatic_index
+  - molecular_weight
+  - isoelectric_point
+  - instability_index
+  - binding_nm
+  - wt_binding_nm
+  - binding_log
+  - binding_rank
+  - tcr_charge_sum
+  - mutation_position
+rfecv_selected_features:
+  - dai_binding
+  - tcr_hydro_max
+  - tcr_volume_mean
+  - blosum62_score
+  - molecular_weight
+  - instability_index
+weights:
+  self_dissimilarity: 0.129
+  tcr_hydro_max: 0.108
+  mutation_position: 0.105
+  binding_log50k: 0.105
+  pep_length: 0.097
+  dai_binding: 0.095
+  tcr_volume_mean: 0.092
+  blosum62_score: 0.092
+  binding_sigmoid: 0.089
+  dai_ratio: 0.088
+tier_thresholds:
+  tier1_high_confidence: 0.70
+  tier2_moderate: 0.45
+  tier3_low: 0.25
+  note: >
+    Thresholds calibrated on Tretter pre-screened cohort (n=77). At tier1 (>=0.70)
+    estimated precision ~60%; use R@10=94% as primary evaluation metric in this context.
+notes: >
+  Trained exclusively on Tretter 2023 MS-validated peptides (Nature Comms,
+  doi:10.1038/s41467-023-39570-7). Strongest single features by gain: self_dissimilarity,
+  tcr_hydro_max, dai_binding. binding_nm near-random in this cohort (permutation p=0.55)
+  — all candidates already passed binding pre-screen. RFECV selects 6 features:
+  dai_binding, tcr_hydro_max, tcr_volume_mean, blosum62_score, molecular_weight,
+  instability_index. Do not confuse with melanoma_ml_v1 (mutanome-level, validated=true).

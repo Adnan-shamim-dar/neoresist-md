@@ -1,5 +1,6 @@
 version: '1.0'
 updated: '2026-04-22'
+# ms_validated_stage2_v1 added 2026-04-22
 strategies:
 - strategy_id: melanoma_ml_v1
   cancer_type: melanoma
@@ -26,12 +27,25 @@ strategies:
   validated: true
   lopo_auc: 0.9767
   recommended_for: all
+- strategy_id: ms_validated_stage2_v1
+  cancer_type: mixed
+  validated: false
+  lopo_auc: 0.319
+  lopo_auc_ci: [0.086, 0.553]
+  recommended_for: ms_validated_stage2
+  validation_note: >
+    LOPO CI lower bound (0.086) below 0.55 threshold. Trained on MS-validated
+    pre-screened peptides (Tretter 2023, n=77). Cross-transfer to Ott collapses
+    (AUC=0.43). Use only for Stage 2 MS-validated evaluation contexts, not
+    full-mutanome ranking.
 recommended_by_cancer_type:
   melanoma: melanoma_ml_v1
   gbm: binding_only
   pancreatic: pancreatic_ml_v1
   mixed: mixed_ml_v1
   unknown: melanoma_ml_v1
-notes: melanoma_ml_v1 is the only strategy with significant LOPO improvement over
-  binding baseline (CI does not include baseline). For cross-cancer use, prefer hand-crafted
-  rl_tcr_v1 (Phase 4 finding).
+notes: >
+  melanoma_ml_v1 is the only strategy with significant LOPO improvement over
+  binding baseline (CI does not include baseline). For cross-cancer use, prefer
+  hand-crafted rl_tcr_v1 (Phase 4 finding). ms_validated_stage2_v1 is experimental
+  only — not suitable for full-mutanome ranking.

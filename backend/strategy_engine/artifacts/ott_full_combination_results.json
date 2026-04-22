@@ -1,0 +1,178 @@
+{
+  "model": "ott_full_combination_xgb",
+  "training_data": "ott_2017_features.csv",
+  "n_samples": 97,
+  "n_positives": 15,
+  "n_features": 56,
+  "features": [
+    "expression_tpm",
+    "expression_score",
+    "presentation_score",
+    "binding_nm",
+    "final_binding_affinity_nm",
+    "self_dissimilarity",
+    "peptide_length",
+    "dai",
+    "iedb_immuno",
+    "iedb_immuno_wt",
+    "iedb_immuno_diff",
+    "proteome_foreignness",
+    "proteome_foreignness_wt",
+    "proteome_foreignness_diff",
+    "tcr_hydrophobicity_mut",
+    "tcr_hydrophobicity_diff",
+    "tcr_hydrophobicity_abs_diff",
+    "tcr_volume_mut",
+    "tcr_volume_diff",
+    "tcr_volume_abs_diff",
+    "tcr_aromaticity_mut",
+    "tcr_aromaticity_diff",
+    "tcr_charge_mut",
+    "tcr_charge_diff",
+    "tcr_charge_abs_diff",
+    "tcr_surface_change",
+    "mut_at_tcr_contact",
+    "mut_at_anchor",
+    "mut_position_centrality",
+    "n_mutations",
+    "hamming_distance",
+    "anchor_quality",
+    "anchor_quality_wt",
+    "anchor_quality_diff",
+    "binding_log",
+    "binding_sigmoid",
+    "binding_rank",
+    "binding_log50k",
+    "expression_log2",
+    "expression_binary",
+    "expression_zscore",
+    "tcr_hydro_mean",
+    "tcr_volume_mean",
+    "tcr_charge_sum",
+    "tcr_aromatic_count",
+    "tcr_hydro_diff",
+    "blosum62_score",
+    "blosum62_at_mutation",
+    "pep_length",
+    "calis_simplified",
+    "hydro_full_mean",
+    "hydro_full_max",
+    "aliphatic_index",
+    "molecular_weight",
+    "isoelectric_point",
+    "instability_index"
+  ],
+  "xgb_params": {
+    "max_depth": 2,
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "subsample": 0.7,
+    "colsample_bytree": 0.6,
+    "min_child_weight": 3,
+    "reg_alpha": 0.5,
+    "scale_pos_weight": 5.47,
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "lopo": {
+    "n_folds": 6,
+    "fold_aucs": [
+      0.9444,
+      0.7917,
+      0.5758,
+      0.8333,
+      0.55,
+      0.75
+    ],
+    "mean_auc": 0.7409,
+    "ci_95": [
+      0.6306,
+      0.8426
+    ]
+  },
+  "prescreened_cohort": {
+    "recall_at_10": 0.8,
+    "recall_at_20": 1.0
+  },
+  "top10_features_gain": {
+    "peptide_length": 10.64,
+    "iedb_immuno_diff": 10.18,
+    "aliphatic_index": 9.23,
+    "tcr_hydro_mean": 9.04,
+    "tcr_charge_diff": 7.62,
+    "tcr_hydrophobicity_diff": 7.35,
+    "presentation_score": 6.93,
+    "tcr_volume_mut": 6.78,
+    "binding_nm": 5.92,
+    "tcr_volume_mean": 5.53
+  },
+  "phase8_haystack": {
+    "n_haystack": 11092,
+    "n_labeled_patients": 6,
+    "features_available": [
+      "expression_score",
+      "presentation_score",
+      "self_dissimilarity"
+    ],
+    "features_median_imputed": 53,
+    "recall_at_20": 1.0,
+    "hits": 12,
+    "total_positives": 12,
+    "per_patient": {
+      "ott_1": {
+        "n_total": 179,
+        "n_positive": 2,
+        "hits_in_top20": 2,
+        "positive_ranks": [
+          2,
+          5
+        ]
+      },
+      "ott_2": {
+        "n_total": 1887,
+        "n_positive": 2,
+        "hits_in_top20": 2,
+        "positive_ranks": [
+          1,
+          3
+        ]
+      },
+      "ott_3": {
+        "n_total": 820,
+        "n_positive": 3,
+        "hits_in_top20": 3,
+        "positive_ranks": [
+          3,
+          4,
+          7
+        ]
+      },
+      "ott_5": {
+        "n_total": 728,
+        "n_positive": 4,
+        "hits_in_top20": 4,
+        "positive_ranks": [
+          1,
+          3,
+          5,
+          9
+        ]
+      },
+      "ott_6": {
+        "n_total": 3920,
+        "n_positive": 1,
+        "hits_in_top20": 1,
+        "positive_ranks": [
+          1
+        ]
+      }
+    },
+    "note": "Most features median-imputed; only presentation_score, expression_score, self_dissimilarity available for full haystack.",
+    "comparison": {
+      "binding_only_r20": 0.364,
+      "melanoma_ml_v1_r20": 0.636
+    }
+  }
+}
