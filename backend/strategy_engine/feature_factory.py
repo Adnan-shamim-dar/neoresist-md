@@ -411,9 +411,10 @@ def compute_tcr_features(df: pd.DataFrame) -> pd.DataFrame:
     pep_col = "mutant_peptide" if "mutant_peptide" in df.columns else None
     wt_col = "wt_peptide" if "wt_peptide" in df.columns else None
 
-    # Check if already computed from ott_mutation_level (may use old column names)
-    already = (all(c in df.columns for c in ["tcr_hydro_mean", "tcr_volume_mean"]) or
-               all(c in df.columns for c in ["tcr_hydrophobicity_mut", "tcr_volume_mut"]))
+    # Check if already computed from ott_mutation_level (may use old column names).
+    # Require non-null values — columns present but all-NaN (e.g. Rojas) must be recomputed.
+    already = (all(c in df.columns and df[c].notna().any() for c in ["tcr_hydro_mean", "tcr_volume_mean"]) or
+               all(c in df.columns and df[c].notna().any() for c in ["tcr_hydrophobicity_mut", "tcr_volume_mut"]))
     if already:
         # Just alias to new names if needed
         if "tcr_hydro_mean" not in df.columns and "tcr_hydrophobicity_mut" in df.columns:
@@ -445,6 +446,22 @@ def compute_tcr_features(df: pd.DataFrame) -> pd.DataFrame:
 
     for _, row in df.iterrows():
         pep = _safe_pep(row[pep_col])
+        wt_for_diff = row.get(wt_col, np.nan) if wt_col else np.nan
+
+        # Fallback: when mutant_peptide is a long vaccine peptide (>11 aa), use
+        # mhcflurry_best_peptide (the predicted MHC-I epitope) for TCR contact features.
+        # Extract the matching window from wt_peptide for diff features.
+        if pep is None and "mhcflurry_best_peptide" in df.columns:
+            pep = _safe_pep(row.get("mhcflurry_best_peptide"))
+            if pep is not None and wt_col and not pd.isna(row.get(wt_col, np.nan)):
+                mut_long = str(row.get(pep_col, "") or "").strip().upper()
+                wt_long = str(row[wt_col]).strip().upper()
+                if pep in mut_long:
+                    offset = mut_long.index(pep)
+                    wt_short = wt_long[offset : offset + len(pep)]
+                    if len(wt_short) == len(pep) and all(c in HYDRO for c in wt_short):
+                        wt_for_diff = wt_short
+
         if pep is None:
             h_means.append(np.nan)
             h_maxes.append(np.nan)
@@ -465,8 +482,8 @@ def compute_tcr_features(df: pd.DataFrame) -> pd.DataFrame:
         a_counts.append(ac)
 
         # WT-based diff features
-        if wt_col and not pd.isna(row.get(wt_col, np.nan)):
-            wt = _safe_pep(row[wt_col])
+        if not pd.isna(wt_for_diff):
+            wt = _safe_pep(wt_for_diff)
             if wt is not None and len(wt) == len(pep):
                 wt_hm, _, wt_vm, wt_cs, _ = _tcr_props(wt)
                 h_diffs.append(hm - wt_hm if not np.isnan(hm) and not np.isnan(wt_hm) else np.nan)
