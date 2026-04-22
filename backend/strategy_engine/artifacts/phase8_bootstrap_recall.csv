@@ -1,0 +1,10 @@
+scorer,k,mean_recall,ci_low,ci_high,n_patients
+binding_only,10,1.0,1.0,1.0,5
+binding_only,20,1.0,1.0,1.0,5
+binding_only,50,1.0,1.0,1.0,5
+rl_tcr_v1,10,1.0,1.0,1.0,5
+rl_tcr_v1,20,1.0,1.0,1.0,5
+rl_tcr_v1,50,1.0,1.0,1.0,5
+melanoma_ml_v1,10,0.8989,0.7,1.0,5
+melanoma_ml_v1,20,1.0,1.0,1.0,5
+melanoma_ml_v1,50,1.0,1.0,1.0,5
