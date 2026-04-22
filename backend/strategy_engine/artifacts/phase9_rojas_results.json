@@ -1,0 +1,29 @@
+{
+  "dataset": "rojas_2023",
+  "n_rows": 220,
+  "n_patients": 16,
+  "n_positive": 29,
+  "features_used": [
+    "self_dissimilarity",
+    "hamming_distance",
+    "blosum62_score",
+    "blosum62_at_mutation",
+    "pep_length",
+    "hydro_full_mean",
+    "aliphatic_index",
+    "binding_log",
+    "binding_sigmoid"
+  ],
+  "lopo_auc": 0.4434,
+  "lopo_auc_ci": [
+    0.3344,
+    0.5576
+  ],
+  "binding_only_auc": 0.6469,
+  "rl_tcr_v1_auc": 0.6469,
+  "cross_transfer": {
+    "melanoma_to_pancreatic": 0.5514,
+    "pancreatic_to_melanoma": 0.4869
+  },
+  "validated": false
+}

@@ -1,5 +1,5 @@
 version: '1.0'
-updated: '2026-04-21'
+updated: '2026-04-22'
 strategies:
 - strategy_id: melanoma_ml_v1
   cancer_type: melanoma
@@ -13,8 +13,8 @@ strategies:
   recommended_for: gbm
 - strategy_id: pancreatic_ml_v1
   cancer_type: pancreatic
-  validated: true
-  lopo_auc: 0.5044
+  validated: false
+  lopo_auc: 0.4434
   recommended_for: pancreatic
 - strategy_id: mixed_ml_v1
   cancer_type: mixed

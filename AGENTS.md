@@ -403,6 +403,30 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-22 | Claude claude-sonnet-4-6 | Session 13: Phase 9 Rojas 2023 pancreatic LOPO validation
+  Changed: backend/strategy_engine/phase9_rojas_pancreatic.py (new),
+           artifacts/phase9_rojas_results.json,
+           artifacts/stage2_pancreatic_model_v2.pkl,
+           strategies/pancreatic_ml_v1.yaml (updated),
+           strategies/registry.yaml (updated)
+  Results (220 mutations, 29 pos, 16 patients after deduplication):
+    binding_only:       AUC=0.6469  CI=[0.5421,0.748]  R@10=0.103  R@20=0.172
+    rl_tcr_v1:          AUC=0.6469  CI=[0.5421,0.748]  (= binding; no TCR/expr features)
+    pancreatic_ml_v1:   AUC=0.4434  CI=[0.3344,0.5576] R@10=0.034  R@20=0.069
+    melanoma→Rojas:     AUC=0.5514  (poor transfer)
+    pancreatic→Ott+Sahin: AUC=0.4869 (near chance)
+  validated=False: pancreatic LOPO (0.4434) does not exceed binding + 0.05 (0.6969)
+  Bugs fixed: presentation_score all-zero in Rojas → rl_tcr_v1 degenerated to 0.5;
+    fixed with ps.std() > 1e-6 variance guard in the constant-column override path.
+  Features used (9): binding_log, binding_sigmoid, self_dissimilarity, pep_length,
+    hydro_full_mean, aliphatic_index, hamming_distance, blosum62_score, blosum62_at_mutation
+  Dropped (0% coverage): all TCR features, expression features, calis_simplified
+  Interpretation: Rojas is binding-dominated; no WT peptide → no TCR features; ML overfits
+    in LOPO with only sequence+binding features. binding_only remains recommended for
+    pancreatic. Consistent with Phase 5 finding (lopo_auc was 0.5044 then, 0.4434 now
+    after correct deduplication).
+  Tests: 40/40 passing
+  Next: GBM validation (Hilf+Keskin Phase 10), paper results update
 2026-04-22 | Claude claude-sonnet-4-6 | Session 12: Phase 7b-8 peptide generation + true haystack
   Changed: backend/strategy_engine/generate_peptides.py (new),
            backend/strategy_engine/phase7_binding_haystack.py (new),
