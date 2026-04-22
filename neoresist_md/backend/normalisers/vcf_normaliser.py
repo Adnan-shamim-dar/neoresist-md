@@ -131,6 +131,9 @@ class VCFNormaliser(BaseNormaliser):
         out = pd.DataFrame(records)
         if out.empty:
             return self._empty_frame()
+        vaf = pd.to_numeric(out.get("vaf"), errors="coerce").dropna()
+        suspicious_ratio = float(((vaf >= 0.45) & (vaf <= 0.55)).mean()) if not vaf.empty else 0.0
+        out.attrs["germline_contamination_suspected"] = suspicious_ratio > 0.15
         for col in self._canonical_columns():
             if col not in out.columns:
                 out[col] = None

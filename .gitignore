@@ -3,6 +3,7 @@ __pycache__/
 *.pyo
 .pytest_cache/
 .venv/
+.venv311/
 env/
 outputs/*
 !outputs/.gitkeep
@@ -10,3 +11,24 @@ local_state/*
 !local_state/.gitkeep
 local_state/strategies/*
 !local_state/strategies/.gitkeep
+
+# Logs
+app.log
+app.err.log
+
+# Large binary/data files
+data/final/*.parquet
+*.pkl
+code_only.zip
+everything-claude-code/
+
+# Large generated CSVs (reproducible from scripts)
+backend/strategy_engine/artifacts/ott_fullmutanome_peptides_scored.csv
+backend/strategy_engine/artifacts/nci_full_mutanome.csv
+backend/strategy_engine/artifacts/tesla_full_features.csv
+backend/validation/artifacts/tesla_full_features.csv
+backend/validation/artifacts/training_matrix.csv
+backend/validation/artifacts/training_matrix_optimized_scores.csv
+backend/validation/artifacts/publication_scored_neoantigens.csv
+backend/validation/artifacts/ott_haystack_scored.csv
+backend/validation/artifacts/roc_curve.png

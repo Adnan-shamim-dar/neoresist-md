@@ -3,7 +3,9 @@ from __future__ import annotations
 import dash_ag_grid as dag
 import dash_bootstrap_components as dbc
 from dash import dcc, html
+from urllib.parse import quote
 
+from neoresist.case_store import list_cases
 from neoresist.dash_app.constants import TIER_LABELS
 from neoresist.dash_app.data import (
     load_qualified_candidates,
@@ -11,6 +13,78 @@ from neoresist.dash_app.data import (
     top_exclusion_options,
 )
 from neoresist.loaders import CohortLoadError, load_cohort_for_dash
+from neoresist.tumor_features import TUMOR_TYPES
+
+
+def _nav_icon(path_d: str) -> html.Img:
+    svg = (
+        "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' "
+        "stroke='currentColor' stroke-width='1.5'>"
+        f"<path stroke-linecap='round' stroke-linejoin='round' d='{path_d}' /></svg>"
+    )
+    return html.Img(src=f"data:image/svg+xml;utf8,{quote(svg)}", className="nav-icon", alt="")
+
+
+def _nav_label(text: str, path_d: str, title: str | None = None) -> html.Span:
+    return html.Span([_nav_icon(path_d), html.Span(text, className="text-nav")], className="d-flex align-items-center gap-2", title=title)
+
+
+def build_nav_options(case_count: int) -> list[dict[str, object]]:
+    return [
+        {
+            "label": _nav_label(
+                "Overview",
+                "M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z M15 12a3 3 0 11-6 0 3 3 0 016 0Z",
+            ),
+            "value": "Overview",
+        },
+        {
+            "label": _nav_label(
+                "Patients",
+                "M18 18.72a9.094 9.094 0 003.742-.479 3 3 0 00-4.682-2.72m.94 3.198a3.75 3.75 0 00-4.474-5.97M15 9.75a3 3 0 11-6 0 3 3 0 016 0Zm6 8.25a8.966 8.966 0 01-5.745-2.063M3 18.75a8.966 8.966 0 005.745-2.063m0 0a3 3 0 10-4.243-4.243m4.243 4.243a3 3 0 114.243-4.243",
+            ),
+            "value": "Patients",
+        },
+        {
+            "label": _nav_label(
+                "Upload",
+                "M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-12-9L12 4.5m0 0 3 3m-3-3v11.25",
+            ),
+            "value": "Upload",
+        },
+        {
+            "label": _nav_label(
+                f"Cases ({case_count})",
+                "M3.75 3h16.5A2.25 2.25 0 0122.5 5.25v13.5A2.25 2.25 0 0120.25 21H3.75A2.25 2.25 0 011.5 18.75V5.25A2.25 2.25 0 013.75 3z",
+                "Switch to Expert mode to access this section.",
+            ),
+            "value": "Cases",
+        },
+        {
+            "label": _nav_label(
+                "Strategies",
+                "M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 00-2.345-2.904L3 11.25l2.842-.813a4.5 4.5 0 002.904-2.345L9.75 5.25l.813 2.842a4.5 4.5 0 002.345 2.904L15.75 12l-2.842.813a4.5 4.5 0 00-2.904 2.345z",
+                "Switch to Expert mode to access this section.",
+            ),
+            "value": "Advanced Strategies",
+        },
+        {
+            "label": _nav_label(
+                "Pipeline Status",
+                "M3 12h18m-9-9v18",
+                "Switch to Expert mode to access this section.",
+            ),
+            "value": "Pipeline Status",
+        },
+        {
+            "label": _nav_label(
+                "About",
+                "M11.25 11.25l.041-.02a.75.75 0 011.06.852l-.708 2.836a.75.75 0 001.06.852l.041-.02M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+                "Switch to Expert mode to access this section.",
+            ),
+            "value": "About",
+        },
+    ]
 
 
 def build_layout() -> dbc.Container:
@@ -33,174 +107,81 @@ def build_layout() -> dbc.Container:
 
     unique_hlas = sorted(init_df["hla_allele"].dropna().astype(str).unique().tolist()) if not init_df.empty else []
     excl_options = top_exclusion_options(init_df, 10)
+    initial_case_count = len(list_cases(limit=500))
 
     return dbc.Container(
         fluid=True,
         class_name="app-shell",
         children=[
+            html.Div(
+                dcc.Upload(
+                    id="upload-maf-global",
+                    children=dbc.Button("Upload patient file", color="info", class_name="shadow"),
+                    multiple=False,
+                    className="w-100",
+                ),
+                id="global-upload-fab",
+            ),
             dcc.Store(id="selected-key-store", data=None),
             dcc.Store(id="cohort-parquet-path", data=None),
             dcc.Store(id="strategy-edit-store", data=None),
             dcc.Store(id="strategy-refresh-store", data={"revision": 0}),
             dcc.Store(id="upload-result-store", data=None),
+            dcc.Store(id="simple-candidate-store", data=[]),
+            dcc.Store(id="expert-drawer-context-store", data=None),
             dcc.Store(id="active-case-store", data=None),
+            dcc.Store(id="tool-registry-store", data={}),
             dcc.Interval(id="case-status-interval", interval=3000, n_intervals=0, disabled=True),
+            html.Button(id="btn-download-patient", style={"display": "none"}),
             dcc.Download(id="download-patient-csv"),
             dcc.Download(id="download-canonical-csv"),
+            dcc.Download(id="expert-selected-download"),
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.Card(
-                            dbc.CardBody(
-                                [
-                                    html.Div("NeoResist-MD", className="brand"),
-                                    html.Div(id="data-banner"),
-                                    html.Label("Navigation", className="text-muted"),
-                                    dcc.Dropdown(
+                        html.Div(
+                            [
+                                html.Div("NeoResist-MD", className="text-emphasis fw-semibold px-3", style={"color": "var(--accent-blue)"}),
+                                html.Div(id="data-banner", className="px-3 pt-2"),
+                                html.Div("Analysis", className="nav-section-label"),
+                                dbc.Nav(
+                                    dbc.RadioItems(
                                         id="nav",
                                         options=[
-                                            {"label": "Overview", "value": "Overview"},
-                                            {"label": "Patients", "value": "Patients"},
-                                            {"label": "Upload", "value": "Upload"},
-                                            {"label": "Cases", "value": "Cases"},
-                                            {"label": "Advanced Strategies", "value": "Advanced Strategies"},
-                                            {"label": "Pipeline Status", "value": "Pipeline Status"},
-                                            {"label": "About", "value": "About"},
+                                            *build_nav_options(initial_case_count),
                                         ],
                                         value="Overview",
-                                        clearable=False,
-                                        className="dash-dropdown mb-3",
-                                    ),
-                                    html.Label("Mode", className="text-muted"),
-                                    dbc.RadioItems(
-                                        id="ui-mode",
-                                        options=[
-                                            {"label": "Simple", "value": "Simple"},
-                                            {"label": "Expert", "value": "Expert"},
-                                        ],
-                                        value="Simple",
-                                        inline=True,
-                                        class_name="mb-3 mode-toggle",
-                                    ),
-                                    html.Div(id="sidebar-context-note", className="small text-muted mb-3"),
-                                    html.Div(
-                                        id="cohort-sidebar-controls",
-                                        children=[
-                                            html.Label("Tier", className="text-muted"),
-                                            dcc.Dropdown(
-                                                id="tier-filter",
-                                                options=[{"label": TIER_LABELS[i], "value": i} for i in (1, 2, 3)],
-                                                value=[1, 2, 3],
-                                                multi=True,
-                                                className="dash-dropdown mb-3",
-                                            ),
-                                            html.Label("HLA allele", className="text-muted"),
-                                            dcc.Dropdown(
-                                                id="hla-filter",
-                                                options=[{"label": h, "value": h} for h in unique_hlas],
-                                                value=unique_hlas,
-                                                multi=True,
-                                                className="dash-dropdown mb-3",
-                                            ),
-                                            html.Label("Exclusion reasons (any)", className="text-muted"),
-                                            dcc.Dropdown(
-                                                id="exclusion-filter",
-                                                options=excl_options,
-                                                value=[],
-                                                multi=True,
-                                                className="dash-dropdown mb-3",
-                                            ),
-                                            html.Label("RL priority range", className="text-muted"),
-                                            dcc.RangeSlider(
-                                                id="rl-range",
-                                                min=0,
-                                                max=1,
-                                                step=0.01,
-                                                value=[0, 1],
-                                                tooltip={"placement": "bottom", "always_visible": False},
-                                                className="mb-3",
-                                            ),
-                                            html.Label("Expression TPM range", className="text-muted"),
-                                            dcc.RangeSlider(
-                                                id="expr-range",
-                                                min=0,
-                                                max=expr_max,
-                                                step=0.1,
-                                                value=expr_value,
-                                                tooltip={"placement": "bottom", "always_visible": False},
-                                                className="mb-3",
-                                            ),
-                                            html.Label("CCF range", className="text-muted"),
-                                            dcc.RangeSlider(
-                                                id="ccf-range",
-                                                min=0,
-                                                max=1,
-                                                step=0.01,
-                                                value=[0, 1],
-                                                tooltip={"placement": "bottom", "always_visible": False},
-                                                className="mb-3",
-                                            ),
-                                            html.Label("Mutations range (TMB proxy)", className="text-muted"),
-                                            dcc.RangeSlider(
-                                                id="tmb-range",
-                                                min=0,
-                                                max=_max_mut,
-                                                value=[0, _max_mut],
-                                                tooltip={"placement": "bottom", "always_visible": False},
-                                                className="mb-3",
-                                            ),
-                                            html.Label("Fanout range", className="text-muted"),
-                                            dcc.RangeSlider(
-                                                id="fanout-range",
-                                                min=0,
-                                                max=_max_fan,
-                                                step=0.1,
-                                                value=[0, _max_fan],
-                                                tooltip={"placement": "bottom", "always_visible": False},
-                                                className="mb-3",
-                                            ),
-                                            html.Label("Candidates range", className="text-muted"),
-                                            dcc.RangeSlider(
-                                                id="cand-range",
-                                                min=0,
-                                                max=_max_cand,
-                                                value=[0, _max_cand],
-                                                tooltip={"placement": "bottom", "always_visible": False},
-                                                className="mb-3",
-                                            ),
-                                            html.Label("Search", className="text-muted"),
-                                            dbc.Input(
-                                                id="search",
-                                                type="text",
-                                                placeholder="Patient, gene, peptide, ...",
-                                                class_name="mb-3",
-                                            ),
-                                            html.Label("Sort by", className="text-muted"),
-                                            dcc.Dropdown(
-                                                id="sort-by",
-                                                options=[
-                                                    {"label": "Mutations ↓", "value": "Mutations ↓"},
-                                                    {"label": "Candidates ↓", "value": "Candidates ↓"},
-                                                    {"label": "Fanout ↓", "value": "Fanout ↓"},
-                                                    {"label": "RL priority ↓", "value": "RL priority ↓"},
-                                                    {"label": "Tier ↑ (best first)", "value": "Tier ↑ (best first)"},
-                                                    {"label": "Mutations ↑", "value": "Mutations ↑"},
-                                                    {"label": "Candidates ↑", "value": "Candidates ↑"},
-                                                    {"label": "Fanout ↑", "value": "Fanout ↑"},
-                                                    {"label": "RL priority ↑", "value": "RL priority ↑"},
-                                                    {"label": "Tier ↓", "value": "Tier ↓"},
-                                                ],
-                                                value="Mutations ↓",
-                                                clearable=False,
-                                                className="dash-dropdown mb-3",
-                                            ),
-                                            dbc.Button("Reset all filters", id="reset-filters", color="primary", n_clicks=0, class_name="w-100"),
-                                        ],
-                                    ),
-                                ]
-                            ),
-                            class_name="surface sidebar",
+                                        class_name="nav-radio mb-2",
+                                        input_class_name="d-none",
+                                        label_class_name="nav-item",
+                                        label_checked_class_name="nav-item active",
+                                    )
+                                ),
+                                html.Hr(className="my-2 border-secondary"),
+                                html.Div("Platform", className="nav-section-label"),
+                                dbc.RadioItems(
+                                    id="ui-mode",
+                                    options=[
+                                        {"label": "Basic", "value": "Simple"},
+                                        {"label": "Expert", "value": "Expert"},
+                                    ],
+                                    value="Simple",
+                                    inline=True,
+                                    class_name="mode-toggle mt-auto",
+                                    input_class_name="d-none",
+                                    label_class_name="toggle-option",
+                                    label_checked_class_name="toggle-option active",
+                                ),
+                                html.Div(id="sidebar-context-note", className="small text-muted mb-3 px-3"),
+                                html.Div(
+                                    id="cohort-sidebar-controls",
+                                    className="d-none",
+                                    children=[],
+                                ),
+                            ],
+                            className="nav-rail",
                         ),
+                        class_name="nav-rail-col",
                         lg=3,
                         md=4,
                         sm=12,
@@ -244,6 +225,147 @@ def build_layout() -> dbc.Container:
                                 id="expert-hero-shell",
                             ),
                             html.Div(id="demo-mode-banner"),
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.Div("Pipeline progress", className="text-uppercase small text-muted mb-2"),
+                                        dbc.Progress(
+                                            id="global-progress-bar",
+                                            value=0,
+                                            label="No active case",
+                                            color="secondary",
+                                            striped=False,
+                                            animated=False,
+                                            class_name="mb-2",
+                                        ),
+                                        html.Div(
+                                            id="global-progress-meta",
+                                            className="small text-muted",
+                                            children="Upload a patient file to start a tracked run.",
+                                        ),
+                                    ]
+                                ),
+                                class_name="surface panel mb-2",
+                                id="global-progress-shell",
+                            ),
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.Div("Cohort controls", className="text-uppercase small text-muted mb-2"),
+                                        html.Label("Tier", className="text-muted"),
+                                        dcc.Dropdown(
+                                            id="tier-filter",
+                                            options=[{"label": TIER_LABELS[i], "value": i} for i in (1, 2, 3)],
+                                            value=[1, 2, 3],
+                                            multi=True,
+                                            className="dash-dropdown mb-3",
+                                        ),
+                                        html.Label("HLA allele", className="text-muted"),
+                                        dcc.Dropdown(
+                                            id="hla-filter",
+                                            options=[{"label": h, "value": h} for h in unique_hlas],
+                                            value=unique_hlas,
+                                            multi=True,
+                                            className="dash-dropdown mb-3",
+                                        ),
+                                        html.Label("Exclusion reasons (any)", className="text-muted"),
+                                        dcc.Dropdown(
+                                            id="exclusion-filter",
+                                            options=excl_options,
+                                            value=[],
+                                            multi=True,
+                                            className="dash-dropdown mb-3",
+                                        ),
+                                        html.Label("RL priority range", className="text-muted"),
+                                        dcc.RangeSlider(
+                                            id="rl-range",
+                                            min=0,
+                                            max=1,
+                                            step=0.01,
+                                            value=[0, 1],
+                                            tooltip={"placement": "bottom", "always_visible": False},
+                                            className="mb-3",
+                                        ),
+                                        html.Label("Expression TPM range", className="text-muted"),
+                                        dcc.RangeSlider(
+                                            id="expr-range",
+                                            min=0,
+                                            max=expr_max,
+                                            step=0.1,
+                                            value=expr_value,
+                                            tooltip={"placement": "bottom", "always_visible": False},
+                                            className="mb-3",
+                                        ),
+                                        html.Label("CCF range", className="text-muted"),
+                                        dcc.RangeSlider(
+                                            id="ccf-range",
+                                            min=0,
+                                            max=1,
+                                            step=0.01,
+                                            value=[0, 1],
+                                            tooltip={"placement": "bottom", "always_visible": False},
+                                            className="mb-3",
+                                        ),
+                                        html.Label("Mutations range (TMB proxy)", className="text-muted"),
+                                        dcc.RangeSlider(
+                                            id="tmb-range",
+                                            min=0,
+                                            max=_max_mut,
+                                            value=[0, _max_mut],
+                                            tooltip={"placement": "bottom", "always_visible": False},
+                                            className="mb-3",
+                                        ),
+                                        html.Label("Fanout range", className="text-muted"),
+                                        dcc.RangeSlider(
+                                            id="fanout-range",
+                                            min=0,
+                                            max=_max_fan,
+                                            step=0.1,
+                                            value=[0, _max_fan],
+                                            tooltip={"placement": "bottom", "always_visible": False},
+                                            className="mb-3",
+                                        ),
+                                        html.Label("Candidates range", className="text-muted"),
+                                        dcc.RangeSlider(
+                                            id="cand-range",
+                                            min=0,
+                                            max=_max_cand,
+                                            value=[0, _max_cand],
+                                            tooltip={"placement": "bottom", "always_visible": False},
+                                            className="mb-3",
+                                        ),
+                                        html.Label("Search", className="text-muted"),
+                                        dbc.Input(
+                                            id="search",
+                                            type="text",
+                                            placeholder="Patient, gene, peptide, ...",
+                                            class_name="mb-3",
+                                        ),
+                                        html.Label("Sort by", className="text-muted"),
+                                        dcc.Dropdown(
+                                            id="sort-by",
+                                            options=[
+                                                {"label": "Mutations ↓", "value": "Mutations ↓"},
+                                                {"label": "Candidates ↓", "value": "Candidates ↓"},
+                                                {"label": "Fanout ↓", "value": "Fanout ↓"},
+                                                {"label": "RL priority ↓", "value": "RL priority ↓"},
+                                                {"label": "Tier ↑ (best first)", "value": "Tier ↑ (best first)"},
+                                                {"label": "Mutations ↑", "value": "Mutations ↑"},
+                                                {"label": "Candidates ↑", "value": "Candidates ↑"},
+                                                {"label": "Fanout ↑", "value": "Fanout ↑"},
+                                                {"label": "RL priority ↑", "value": "RL priority ↑"},
+                                                {"label": "Tier ↓", "value": "Tier ↓"},
+                                            ],
+                                            value="Mutations ↓",
+                                            clearable=False,
+                                            className="dash-dropdown mb-3",
+                                        ),
+                                        dbc.Button("Reset all filters", id="reset-filters", color="primary", n_clicks=0, class_name="w-100"),
+                                    ]
+                                ),
+                                class_name="surface panel mb-2",
+                                id="cohort-controls-panel",
+                            ),
                             html.Div(
                                 [
                                     dbc.Collapse(
@@ -535,43 +657,29 @@ def build_layout() -> dbc.Container:
                                                     dbc.Card(
                                                         dbc.CardBody(
                                                             [
-                                                                html.H5("Module stack panel", className="mb-2"),
-                                                                html.P(
-                                                                    "Pipeline cards with tool selectors and per-module influence sliders. Save creates a versioned strategy.",
-                                                                    className="small text-muted mb-3",
-                                                                ),
-                                                                html.Div(id="expert-module-stack-panel"),
-                                                                html.Label("New strategy name", className="text-muted mt-2"),
-                                                                dbc.Input(
-                                                                    id="expert-strategy-name-input",
-                                                                    type="text",
-                                                                    placeholder="e.g. Immuno-heavy v2",
-                                                                    class_name="mb-2",
-                                                                ),
-                                                                dbc.Button(
-                                                                    "Save versioned strategy",
-                                                                    id="expert-save-strategy-version-btn",
-                                                                    color="success",
-                                                                    class_name="me-2",
-                                                                ),
-                                                                html.Div(id="expert-strategy-save-status", className="small mt-2"),
-                                                            ]
-                                                        ),
-                                                        class_name="surface panel h-100",
-                                                    ),
+                                                html.H5("Module stack panel", className="mb-2"),
+                                                html.Div(id="expert-module-stack-panel"),
+                                                html.Div(
+                                                    id="expert-module-stack-description",
+                                                    className="small text-muted mt-2",
+                                                    children="Hover a module to see details.",
+                                                ),
+                                            ]
+                                        ),
+                                        class_name="surface panel h-100",
+                                    ),
                                                     lg=6,
                                                     md=12,
                                                 ),
                                                 dbc.Col(
                                                     [
                                                         dbc.Card(
-                                                            dbc.CardBody(
-                                                                [
-                                                                    html.H5("Strategy library browser", className="mb-2"),
-                                                                    html.Div(id="expert-strategy-library-browser"),
-                                                                    html.Hr(className="border-secondary my-3"),
-                                                                    dbc.Button(
-                                                                        "Download raw canonical table",
+                                                    dbc.CardBody(
+                                                        [
+                                                            html.Div(id="expert-strategy-library-browser"),
+                                                            html.Hr(className="border-secondary my-3"),
+                                                            dbc.Button(
+                                                                "Download raw canonical table",
                                                                         id="download-canonical-btn",
                                                                         color="info",
                                                                         outline=True,
@@ -579,30 +687,6 @@ def build_layout() -> dbc.Container:
                                                                     ),
                                                                     html.Div(
                                                                         "Exports the current canonical long table (post-filter) as CSV.",
-                                                                        className="small text-muted",
-                                                                    ),
-                                                                ]
-                                                            ),
-                                                            class_name="surface panel mb-3",
-                                                        ),
-                                                        dbc.Card(
-                                                            dbc.CardBody(
-                                                                [
-                                                                    html.H6("AutoResearch digest", className="mb-2"),
-                                                                    html.Div(
-                                                                        "Placeholder: external retrieval/ranking digest will appear here when configured.",
-                                                                        className="small text-muted",
-                                                                    ),
-                                                                ]
-                                                            ),
-                                                            class_name="surface panel mb-3",
-                                                        ),
-                                                        dbc.Card(
-                                                            dbc.CardBody(
-                                                                [
-                                                                    html.H6("External tool upload wizard", className="mb-2"),
-                                                                    html.Div(
-                                                                        "Placeholder: guided adapter/runtime upload and validation flow.",
                                                                         className="small text-muted",
                                                                     ),
                                                                 ]
@@ -649,6 +733,50 @@ def build_layout() -> dbc.Container:
                                         dbc.CardBody(
                                             [
                                                 html.H5("RL priority map", className="mb-2"),
+                                                html.Div(
+                                                    id="scatter-controls-shell",
+                                                    children=[
+                                                        html.Label("Color dimension", className="text-muted text-micro"),
+                                                        dcc.Dropdown(
+                                                            id="scatter-color-dimension",
+                                                            options=[
+                                                                {"label": "Tier", "value": "Tier"},
+                                                                {"label": "Expression Level", "value": "Expression Level"},
+                                                                {"label": "Clonality", "value": "Clonality"},
+                                                                {"label": "LOH Status", "value": "LOH Status"},
+                                                                {"label": "Resistance Score", "value": "Resistance Score"},
+                                                            ],
+                                                            value="Tier",
+                                                            clearable=False,
+                                                            className="dash-dropdown mb-2",
+                                                        ),
+                                                        html.Label("Y axis", className="text-muted text-micro"),
+                                                        dcc.Dropdown(
+                                                            id="scatter-y-axis",
+                                                            options=[
+                                                                {"label": "Auto", "value": "auto"},
+                                                                {"label": "Resistance composite", "value": "Resistance composite"},
+                                                                {"label": "Expression score", "value": "Expression score"},
+                                                                {"label": "Clonality", "value": "Clonality"},
+                                                                {"label": "Self-dissimilarity", "value": "Self-dissimilarity"},
+                                                            ],
+                                                            value="auto",
+                                                            clearable=False,
+                                                            className="dash-dropdown mb-2",
+                                                        ),
+                                                        html.Label("Selection tool", className="text-muted text-micro"),
+                                                        dbc.RadioItems(
+                                                            id="scatter-selection-mode",
+                                                            options=[
+                                                                {"label": "⌁ Lasso", "value": "lasso"},
+                                                                {"label": "□ Box", "value": "select"},
+                                                            ],
+                                                            value="lasso",
+                                                            inline=True,
+                                                            class_name="small mb-2",
+                                                        ),
+                                                    ],
+                                                ),
                                                 dcc.Graph(id="scatter", config={"displayModeBar": False}),
                                             ]
                                         ),
@@ -882,11 +1010,22 @@ def build_layout() -> dbc.Container:
                                             "Upload a patient mutation file to create a persistent case, review module toggles, and run enabled modules in the background.",
                                             className="text-muted small",
                                         ),
+                                        html.Label("Tumor type", className="text-muted mt-2"),
+                                        dbc.Select(
+                                            id="tumor-type-select",
+                                            options=[{"label": "Select tumor type...", "value": ""}] + [{"label": value, "value": value} for value in TUMOR_TYPES],
+                                            value="",
+                                            class_name="mb-3",
+                                        ),
                                         dcc.Upload(
                                             id="upload-maf",
                                             children=dbc.Button("Choose patient MAF / TSV", color="secondary", className="w-100"),
                                             multiple=False,
                                             className="w-100",
+                                        ),
+                                        html.Div(
+                                            "Upload the somatic mutation file from your sequencing provider. Supported formats: MAF, TSV, VCF (tab-delimited).",
+                                            className="text-muted small mt-2 upload-helper-text",
                                         ),
                                         html.Div(id="upload-status", className="mt-2 text-muted small"),
                                         html.Div(id="case-create-summary", className="mt-3"),
@@ -894,21 +1033,26 @@ def build_layout() -> dbc.Container:
                                         dbc.Checklist(id="upload-module-checklist", options=[], value=[], class_name="mb-3"),
                                         dbc.Button("Run enabled modules", id="run-case-btn", color="success", disabled=True, class_name="w-100 mb-2"),
                                         html.Div(id="upload-result-panel", className="mt-2"),
-                                        html.Hr(className="border-secondary my-3"),
-                                        html.H5("Alternative cohort Parquet (optional)", className="mb-2"),
-                                        html.P(
-                                            "Absolute path to enriched_candidates.parquet on this machine. "
-                                            "When empty, default search order applies.",
-                                            className="text-muted small",
+                                        html.Div(
+                                            [
+                                                html.Hr(className="border-secondary my-3"),
+                                                html.H5("Alternative cohort Parquet (optional)", className="mb-2"),
+                                                html.P(
+                                                    "Absolute path to enriched_candidates.parquet on this machine. "
+                                                    "When empty, default search order applies.",
+                                                    className="text-muted small",
+                                                ),
+                                                dbc.Input(
+                                                    id="cohort-path-input",
+                                                    type="text",
+                                                    placeholder="e.g. C:/path/to/enriched_candidates.parquet",
+                                                    className="mb-2 font-monospace",
+                                                ),
+                                                dbc.Button("Use this cohort file", id="cohort-path-apply", color="info", outline=True, className="w-100"),
+                                                html.Div(id="cohort-path-status", className="mt-2 text-muted small"),
+                                            ],
+                                            id="upload-expert-controls",
                                         ),
-                                        dbc.Input(
-                                            id="cohort-path-input",
-                                            type="text",
-                                            placeholder="e.g. C:/path/to/enriched_candidates.parquet",
-                                            className="mb-2 font-monospace",
-                                        ),
-                                        dbc.Button("Use this cohort file", id="cohort-path-apply", color="info", outline=True, className="w-100"),
-                                        html.Div(id="cohort-path-status", className="mt-2 text-muted small"),
                                         html.Hr(className="border-secondary my-3"),
                                         html.H5("Ranked list", className="mb-2"),
                                         html.Div(id="simple-tier-badges", className="mb-2"),
@@ -1043,12 +1187,23 @@ def build_layout() -> dbc.Container:
                             ),
                             html.Div(id="footer", className="footer"),
                         ],
+                        class_name="main-content-col",
                         lg=9,
                         md=8,
                         sm=12,
                     ),
                 ],
                 class_name="g-3",
+            ),
+            html.Div(
+                id="evidence-drawer",
+                className="evidence-drawer",
+                children=html.Div(id="evidence-drawer-content", children=dbc.Button(id="evidence-drawer-close", style={"display": "none"})),
+            ),
+            html.Div(
+                id="expert-bottom-drawer",
+                className="expert-bottom-drawer",
+                children=html.Div(id="expert-bottom-drawer-content", children=dbc.Button(id="expert-bottom-drawer-close", style={"display": "none"})),
             ),
         ],
     )

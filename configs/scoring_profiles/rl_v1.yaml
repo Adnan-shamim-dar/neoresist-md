@@ -7,6 +7,10 @@ description: >
 higher_is_better: true
 primary_score_column: rl_priority
 
+# Tier thresholds are stored in configs/rule_profiles/default_rules.yaml in this
+# repo. The display layer reads the exclusion rules below after scoring without
+# changing the underlying RL formula.
+
 expression_tpm_cap: 1000.0
 blend:
   real_expression_weight: 0.85
@@ -18,3 +22,8 @@ weights:
   ccf: 0.3
   self_dissimilarity: 0.1
 escape_penalty_weight: -0.2
+
+exclusion_rules:
+  min_expression_tpm: 1.0
+  max_escape_penalty: 0.5
+  min_self_dissimilarity: 0.1

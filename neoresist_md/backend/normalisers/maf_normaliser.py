@@ -102,6 +102,9 @@ class MAFNormaliser(BaseNormaliser):
         out["alt_count"] = pd.to_numeric(df.get("t_alt_count"), errors="coerce")
         total = out["ref_count"].fillna(0) + out["alt_count"].fillna(0)
         out["vaf"] = (out["alt_count"] / total.where(total > 0)).clip(0, 1)
+        vaf = pd.to_numeric(out["vaf"], errors="coerce").dropna()
+        suspicious_ratio = float(((vaf >= 0.45) & (vaf <= 0.55)).mean()) if not vaf.empty else 0.0
+        out.attrs["germline_contamination_suspected"] = suspicious_ratio > 0.15
 
         # Step 4 degrade: keep malformed rows, flag missing as NaN instead of blocking.
         for col in self._canonical_columns():

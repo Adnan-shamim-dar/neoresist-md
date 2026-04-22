@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from neoresist.config import resolved_cohort_search_paths
+from neoresist.config import get_app_config, resolved_cohort_search_paths
 from neoresist.dash_app.data import (
     _empty_candidates_frame,
     _normalize_loaded_frame,
@@ -13,6 +13,7 @@ from neoresist.dash_app.data import (
     seed_cache,
 )
 from neoresist.schema import format_validation_message, normalize_cohort_df, validate_dash_columns
+from neoresist.tumor_features import add_candidate_tumor_flags, infer_tumor_type_from_text, normalise_tumor_type
 
 
 class CohortLoadError(Exception):
@@ -102,7 +103,20 @@ def _adapt_summary_cohort_for_dash(df: pd.DataFrame) -> pd.DataFrame:
     if "mutation_position" not in out.columns:
         out["mutation_position"] = out.index.astype(int)
     out["_summary_mode"] = True
-    return out
+    return add_candidate_tumor_flags(out)
+
+
+def _apply_cohort_tumor_type(df: pd.DataFrame, source: Path | str | None) -> pd.DataFrame:
+    out = df.copy()
+    if "tumor_type" in out.columns:
+        out["tumor_type"] = out["tumor_type"].map(normalise_tumor_type)
+        return add_candidate_tumor_flags(out)
+    try:
+        dataset_id = get_app_config().defaults.dataset_id
+    except Exception:
+        dataset_id = ""
+    out["tumor_type"] = infer_tumor_type_from_text(source, dataset_id)
+    return add_candidate_tumor_flags(out)
 
 
 def load_cohort_for_dash(*, alt_path: str | None = None) -> tuple[pd.DataFrame, str | None, list[str]]:
@@ -123,6 +137,7 @@ def load_cohort_for_dash(*, alt_path: str | None = None) -> tuple[pd.DataFrame, 
             norm = normalize_cohort_df(raw)
             norm = _adapt_summary_cohort_for_dash(norm)
             norm = _normalize_loaded_frame(norm)
+            norm = _apply_cohort_tumor_type(norm, p)
             miss, pres = validate_dash_columns(norm)
             if miss:
                 raise CohortLoadError(
@@ -142,6 +157,7 @@ def load_cohort_for_dash(*, alt_path: str | None = None) -> tuple[pd.DataFrame, 
             norm = normalize_cohort_df(raw)
             norm = _adapt_summary_cohort_for_dash(norm)
             norm = _normalize_loaded_frame(norm)
+            norm = _apply_cohort_tumor_type(norm, p)
             miss, pres = validate_dash_columns(norm)
             if miss:
                 raise CohortLoadError(
@@ -165,6 +181,7 @@ def load_cohort_for_dash(*, alt_path: str | None = None) -> tuple[pd.DataFrame, 
         norm = normalize_cohort_df(raw)
         norm = _adapt_summary_cohort_for_dash(norm)
         norm = _normalize_loaded_frame(norm)
+        norm = _apply_cohort_tumor_type(norm, rp)
         miss, pres = validate_dash_columns(norm)
         if miss:
             # Wrong shape: keep searching
@@ -175,6 +192,6 @@ def load_cohort_for_dash(*, alt_path: str | None = None) -> tuple[pd.DataFrame, 
     # Parity with legacy: use in-process parquet cache path
     df, legacy_path = load_qualified_candidates(alt_path=None)
     if legacy_path:
-        return df, legacy_path, searched
+        return _apply_cohort_tumor_type(df, legacy_path), legacy_path, searched
 
     return _empty_candidates_frame().copy(), None, searched

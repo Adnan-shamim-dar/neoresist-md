@@ -49,8 +49,7 @@ def _self_dissimilarity_fill(peptide: str, gene: str, existing: object) -> float
                 return max(0.0, min(1.0, v))
         except (TypeError, ValueError):
             pass
-    h = hash((gene or "", peptide or "")) % (2**32)
-    return h / (2**32 - 1)
+    return float("nan")
 
 
 __all__ = [

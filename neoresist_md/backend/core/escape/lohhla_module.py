@@ -7,6 +7,8 @@ import pandas as pd
 
 from ..base_module import BaseModule
 
+IFN_GAMMA_GENES = ["JAK1", "JAK2", "STAT1", "B2M", "TAP1", "TAP2", "TAPBP", "NLRC5", "IRF1"]
+
 
 class LOHHLAModule(BaseModule):
     NAME = "escape"
@@ -39,6 +41,29 @@ class LOHHLAModule(BaseModule):
         if gene in genes:
             return True
         return False
+
+    @staticmethod
+    def _append_exclusion_reason(out: pd.DataFrame, reason: str) -> None:
+        if "exclusion_reasons" not in out.columns:
+            out["exclusion_reasons"] = None
+        current = out["exclusion_reasons"].fillna("").astype(str)
+        out["exclusion_reasons"] = current.apply(
+            lambda value: reason if value.strip() == "" else (value if reason in value.split(",") else f"{value},{reason}")
+        )
+
+    def _apply_ifn_gamma_signal(self, out: pd.DataFrame) -> pd.DataFrame:
+        if "gene" not in out.columns:
+            return out
+        genes = out["gene"].fillna("").astype(str).str.upper().str.strip()
+        hits = [g for g in IFN_GAMMA_GENES if g in set(genes.tolist())]
+        if not hits:
+            return out
+        hit_gene = hits[0]
+        out["processing_disruption_flag"] = True
+        out["escape_confidence"] = "MEDIUM"
+        out["ifn_gamma_disruption_gene"] = hit_gene
+        self._append_exclusion_reason(out, f"IFN_GAMMA_PATHWAY_DISRUPTED:{hit_gene}")
+        return out
 
     @staticmethod
     def _scan_vcf_for_processing_mutation(vcf_path: str | None) -> bool:
@@ -74,7 +99,7 @@ class LOHHLAModule(BaseModule):
                 out.at[idx, "allele_integrity_flag"] = False
         out["escape_tool"] = "lohhla_stub"
         out["escape_confidence"] = "UNAVAILABLE"
-        return out
+        return self._apply_ifn_gamma_signal(out)
 
     def _run_lohhla_proxy(self, out: pd.DataFrame) -> pd.DataFrame:
         # Best-effort placeholder for installed runtime; replace with true LOHHLA parsing.
@@ -87,7 +112,7 @@ class LOHHLAModule(BaseModule):
         )
         out["escape_tool"] = "lohhla"
         out["escape_confidence"] = "LOW"
-        return out
+        return self._apply_ifn_gamma_signal(out)
 
     def run(self, df: pd.DataFrame) -> pd.DataFrame:
         out = df.copy()

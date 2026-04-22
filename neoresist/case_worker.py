@@ -24,9 +24,11 @@ from neoresist.case_store import (
 from neoresist.module_runner import module_installation
 from neoresist.module_runner import ModuleRunner
 from neoresist.paths import repo_root
+from neoresist.profiles import load_scoring_profile
 from neoresist.strategy_registry import build_consensus_table, list_strategies, score_candidates_for_strategy
 from neoresist.scoring import apply_resistance_loop_engine
 from neoresist.upload_runtime import FIXED_HLA
+from neoresist_md.backend.core.recognition.foreignness_module import ForeignnessModule
 
 
 def _now_iso() -> str:
@@ -200,7 +202,7 @@ def _run_expression_join(case_id: str) -> dict[str, object]:
             "absent": "ABSENT",
         }
     ).fillna("UNKNOWN")
-    canonical["expression_confidence"] = out["RNA_data_missing"].map(lambda is_missing: "GREY" if bool(is_missing) else "GREEN")
+    canonical["expression_confidence"] = out["RNA_data_missing"].map(lambda is_missing: "UNAVAILABLE" if bool(is_missing) else "HIGH")
     canonical_path = output_dir / "expression_canonical.csv"
     ensure_canonical_columns(
         canonical,
@@ -262,6 +264,79 @@ def _run_clonality(case_id: str) -> dict[str, object]:
     raise RuntimeError(adapter_status["message"])
 
 
+def _run_recognition(case_id: str) -> dict[str, object]:
+    source_path = _first_existing_artifact(
+        case_id,
+        [
+            ("expression_join", "expression_candidates_csv"),
+            ("neoantigen_generation", "candidates_csv"),
+        ],
+    )
+    if source_path is None:
+        raise ValueError("No candidate artifact exists for foreignness recognition.")
+    df = pd.read_csv(source_path)
+    if "mutant_peptide" not in df.columns and "peptide" in df.columns:
+        df["mutant_peptide"] = df["peptide"]
+    if "wildtype_peptide" not in df.columns:
+        df["wildtype_peptide"] = None
+    if "gene" not in df.columns and "gene_name" in df.columns:
+        df["gene"] = df["gene_name"]
+    if "patient_id" not in df.columns:
+        manifest = read_case_manifest(case_id)
+        df["patient_id"] = str(manifest.get("sample_id") or case_id)
+    df["run_id"] = case_id
+
+    scored = ForeignnessModule().safe_run(df)
+    output_dir = module_dir(case_id, "recognition_foreignness") / "artifacts"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    scored_path = output_dir / "recognition_scored.csv"
+    scored.to_csv(scored_path, index=False)
+
+    canonical = build_canonical_from_candidates(
+        scored,
+        source_module="recognition_foreignness",
+        run_id=case_id,
+        sample_barcode=str(read_case_manifest(case_id).get("sample_id") or case_id),
+    )
+    canonical["self_dissimilarity"] = pd.to_numeric(scored.get("self_dissimilarity"), errors="coerce")
+    canonical["mutant_wt_distance"] = pd.to_numeric(scored.get("mutant_wt_distance"), errors="coerce")
+    canonical["recognition_score"] = pd.to_numeric(scored.get("recognition_score"), errors="coerce")
+    canonical["recognition_tool"] = scored.get("recognition_tool", pd.Series(["blosum62_alignment"] * len(scored)))
+    canonical["recognition_confidence"] = scored.get("recognition_confidence", pd.Series(["UNAVAILABLE"] * len(scored)))
+    canonical_path = output_dir / "recognition_canonical.csv"
+    ensure_canonical_columns(
+        canonical,
+        source_module="recognition_foreignness",
+        run_id=case_id,
+        sample_barcode=str(read_case_manifest(case_id).get("sample_id") or case_id),
+    ).to_csv(canonical_path, index=False)
+
+    summary_path = output_dir / "recognition_summary.json"
+    _write_json(
+        summary_path,
+        {
+            "rows": int(len(scored)),
+            "recognition_score_min": float(pd.to_numeric(scored.get("recognition_score"), errors="coerce").dropna().min())
+            if "recognition_score" in scored.columns and not pd.to_numeric(scored.get("recognition_score"), errors="coerce").dropna().empty
+            else 0.0,
+            "recognition_score_max": float(pd.to_numeric(scored.get("recognition_score"), errors="coerce").dropna().max())
+            if "recognition_score" in scored.columns and not pd.to_numeric(scored.get("recognition_score"), errors="coerce").dropna().empty
+            else 0.0,
+            "recognition_tool": str(scored.get("recognition_tool", pd.Series(["blosum62_alignment"])).iloc[0]),
+        },
+    )
+    return {
+        "artifacts": {
+            "recognition_scored_csv": str(scored_path),
+            "recognition_canonical_csv": str(canonical_path),
+            "recognition_summary_json": str(summary_path),
+        },
+        "preview": scored.head(12).to_dict("records"),
+        "message": "Foreignness recognition completed.",
+    }
+
+
 def _run_resistance_loop(case_id: str) -> dict[str, object]:
     source_path = _first_existing_artifact(
         case_id,
@@ -282,9 +357,9 @@ def _run_resistance_loop(case_id: str) -> dict[str, object]:
     if "escape_penalty" not in df.columns:
         loh_series = df.get("hla_loh_status")
         if loh_series is not None:
-            df["escape_penalty"] = loh_series.astype(str).str.lower().map({"lost": 0.75, "loh_detected": 0.75}).fillna(0.05)
+            df["escape_penalty"] = loh_series.astype(str).str.lower().map({"lost": 0.75, "loh_detected": 0.75}).fillna(0.0)
         else:
-            df["escape_penalty"] = 0.05
+            df["escape_penalty"] = 0.0
     scored = apply_resistance_loop_engine(
         df,
         prefer_real_evidence=True,
@@ -301,8 +376,9 @@ def _run_resistance_loop(case_id: str) -> dict[str, object]:
         run_id=case_id,
         sample_barcode=str(read_case_manifest(case_id).get("sample_id") or case_id),
     )
-    canonical["resistance_composite"] = scored["rl_priority"]
-    canonical["resistance_confidence"] = scored["evidence_expression_source"].map(lambda src: "GREEN" if src != "stub" else "YELLOW")
+    resistance_weight = abs(float(load_scoring_profile("rl_v1").escape_penalty_weight))
+    canonical["resistance_composite"] = pd.to_numeric(scored.get("escape_penalty"), errors="coerce").fillna(0.0) * resistance_weight
+    canonical["resistance_confidence"] = scored["evidence_expression_source"].map(lambda src: "HIGH" if src != "stub" else "MEDIUM")
     canonical["strategy_source"] = "rl_v1"
     canonical["weight_vector_json"] = json.dumps({"profile_id": "rl_v1", "rule_profile_id": "default_rules"})
     canonical["composite_priority"] = scored["rl_priority"]
@@ -378,8 +454,19 @@ def _run_prioritization_tiering(case_id: str) -> dict[str, object]:
     consensus_path = _first_existing_artifact(case_id, [("strategy_engine", "strategy_consensus_csv")])
     if strategy_scores_path is None or consensus_path is None:
         raise ValueError("Strategy engine artifacts are missing for prioritization.")
-    scores = pd.read_csv(strategy_scores_path)
-    consensus = pd.read_csv(consensus_path)
+    if not strategy_scores_path.exists() or strategy_scores_path.stat().st_size == 0:
+        raise ValueError("No candidates available for tiering — upstream module produced empty output")
+    if not consensus_path.exists() or consensus_path.stat().st_size == 0:
+        raise ValueError("No candidates available for tiering — upstream module produced empty output")
+    try:
+        scores = pd.read_csv(strategy_scores_path)
+        consensus = pd.read_csv(consensus_path)
+    except pd.errors.EmptyDataError as exc:
+        raise ValueError("No candidates available for tiering — upstream module produced empty output") from exc
+    if scores is None or scores.empty:
+        raise ValueError("No candidates available for tiering — upstream module produced empty output")
+    if consensus is None or consensus.empty:
+        raise ValueError("No candidates available for tiering — upstream module produced empty output")
     manifest = read_case_manifest(case_id)
     if "patient_id" not in scores.columns:
         scores["patient_id"] = str(manifest.get("sample_id") or case_id)
@@ -450,6 +537,8 @@ def run_module(case_id: str, module_id: str) -> None:
             result = _run_expression_join(case_id)
         elif module_id == "clonality_pyclone_vi":
             result = _run_clonality(case_id)
+        elif module_id == "recognition_foreignness":
+            result = _run_recognition(case_id)
         elif module_id == "resistance_loop":
             result = _run_resistance_loop(case_id)
         elif module_id == "strategy_engine":
@@ -495,6 +584,8 @@ def run_module(case_id: str, module_id: str) -> None:
             ModuleRunner().resume_case(case_id)
         except Exception:
             pass
+        if module_id == "prioritization_tiering" and "No candidates available for tiering" in str(exc):
+            return
         raise
 
 

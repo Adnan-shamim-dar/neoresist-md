@@ -14,6 +14,7 @@ class ClonalityModule(BaseModule):
         "tumour_purity",
         "local_copy_number",
         "ccf",
+        "diploid_assumption_flag",
         "ccf_cluster",
         "clonality_class",
         "clonality_confidence",
@@ -42,6 +43,7 @@ class ClonalityModule(BaseModule):
         out["tumour_purity"] = self._to_num(out["tumour_purity"]).where(self._to_num(out["tumour_purity"]).notna(), 0.7)
         out["local_copy_number"] = out.get("local_copy_number", pd.Series([None] * len(out), index=out.index))
         out["local_copy_number"] = self._to_num(out["local_copy_number"]).where(self._to_num(out["local_copy_number"]).notna(), 2.0)
+        out["diploid_assumption_flag"] = True
         out["clonality_confidence"] = "LOW"
         out["clonality_tool"] = f"pyclone_vi_stub_vaf_proxy ({reason})"
         return out
@@ -57,6 +59,7 @@ class ClonalityModule(BaseModule):
         out["ccf_cluster"] = out["clonality_class"].map({"CLONAL": "cluster_1", "SUBCLONAL": "cluster_2"}).fillna("cluster_2")
         out["tumour_purity"] = purity
         out["local_copy_number"] = cn
+        out["diploid_assumption_flag"] = self._to_num(out.get("local_copy_number", pd.Series([None] * len(out), index=out.index))).isna()
         out["clonality_confidence"] = "MEDIUM"
         out["clonality_tool"] = "pyclone-vi"
         return out

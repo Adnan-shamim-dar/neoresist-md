@@ -16,6 +16,7 @@ from neoresist.dash_app.constants import TIER_COLORS, TIER_LABELS
 from neoresist.dash_app.data import _coerce_exclusion_list
 from neoresist.module_schema import load_module_schema
 from neoresist.strategy_registry import list_strategies
+from neoresist.tumor_features import normalise_tumor_type
 
 
 STATUS_COLORS = {
@@ -26,6 +27,29 @@ STATUS_COLORS = {
     "unavailable": "warning",
     "disabled": "dark",
 }
+
+
+def _msi_color(status: Any) -> str:
+    text = str(status or "INDETERMINATE").upper()
+    if text == "MSS":
+        return "success"
+    if text == "MSI-H":
+        return "warning"
+    return "secondary"
+
+_CONF_CANONICAL = {"GREEN": "HIGH", "YELLOW": "MEDIUM", "GREY": "UNAVAILABLE"}
+_CONF_BADGE_COLORS = {
+    "HIGH": "success",
+    "MEDIUM": "warning",
+    "LOW": "danger",
+    "UNAVAILABLE": "secondary",
+    "UNKNOWN": "secondary",
+}
+
+
+def _normalise_confidence(value: Any) -> str:
+    raw = str(value or "UNKNOWN").strip().upper()
+    return _CONF_CANONICAL.get(raw, raw)
 
 
 def _preview_table(records: list[dict[str, Any]], columns: list[str], empty_text: str) -> Any:
@@ -97,8 +121,15 @@ def _confidence_badges(status: dict[str, Any]) -> list[Any]:
                 if not values:
                     continue
                 top_value, top_count = values.most_common(1)[0]
-                color = {"GREEN": "success", "YELLOW": "warning", "GREY": "secondary"}.get(top_value.upper(), "secondary")
-                badges.append(dbc.Badge(f"{col.replace('_confidence', '')}: {top_value} ({top_count})", color=color, className="me-1 mb-1"))
+                normalized = _normalise_confidence(top_value)
+                color = _CONF_BADGE_COLORS.get(normalized, "secondary")
+                badges.append(
+                    dbc.Badge(
+                        f"{col.replace('_confidence', '')}: {normalized} ({top_count})",
+                        color=color,
+                        className="me-1 mb-1",
+                    )
+                )
         except Exception:
             pass
     if not badges:
@@ -139,6 +170,8 @@ def _case_overview(case_id: str, manifest: dict[str, Any], mode: str, statuses: 
         [
             dbc.Badge(f"Case: {case_id}", color="info", className="me-1 mb-1"),
             dbc.Badge(f"Sample: {manifest.get('sample_id', '—')}", color="secondary", className="me-1 mb-1"),
+            dbc.Badge(f"Tumor: {normalise_tumor_type(manifest.get('tumor_type'))}", color="info", className="me-1 mb-1"),
+            dbc.Badge(f"MSI: {manifest.get('msi_status', 'INDETERMINATE')}", color=_msi_color(manifest.get("msi_status")), className="me-1 mb-1"),
             dbc.Badge(f"Input: {manifest.get('input_mode', '—')}", color="secondary", className="me-1 mb-1"),
             dbc.Badge("HLA-A0201", color="secondary", className="me-1 mb-1"),
             dbc.Badge("Simple mode" if mode == "Simple" else "Expert mode", color="dark", className="me-1 mb-1"),
@@ -268,10 +301,24 @@ def _module_cards(statuses: dict[str, dict[str, Any]], expert: bool) -> Any:
     return dbc.Row(cards, class_name="g-3 mb-3")
 
 
-def render_case_list(cases: list[dict[str, Any]], active_case_id: str | None) -> Any:
+def render_case_list(cases: list[dict[str, Any]], active_case_id: str | None, expert: bool = False) -> Any:
     if not cases:
         return html.Div("No uploaded cases yet. Create one from the Upload page.", className="text-muted small")
-    rows = []
+    rows = [
+        html.Div(
+            [
+                dbc.Badge(f"Cases ({len(cases)})", color="info", className="me-2 mb-2"),
+                dcc.ConfirmDialogProvider(
+                    dbc.Button("Delete all test cases", color="danger", outline=True, size="sm", className="mb-2"),
+                    id="bulk-delete-test-cases-confirm",
+                    message="Delete all demo/test cases except the curated keep set?",
+                )
+                if expert
+                else html.Div(),
+            ],
+            className="d-flex flex-wrap align-items-center gap-2 mb-2",
+        )
+    ]
     for manifest in cases:
         case_id = str(manifest.get("case_id") or "unknown")
         badge_color = "info" if case_id == active_case_id else "secondary"
@@ -281,14 +328,21 @@ def render_case_list(cases: list[dict[str, Any]], active_case_id: str | None) ->
                     dbc.Badge(case_id, color=badge_color, className="me-2 mb-1"),
                     html.Span(str(manifest.get("sample_id") or "sample"), className="me-2"),
                     html.Span(str(manifest.get("input_mode") or "unknown"), className="text-muted small"),
+                    dcc.ConfirmDialogProvider(
+                        dbc.Button("Delete case", color="danger", outline=True, size="sm", className="ms-auto"),
+                        id={"type": "delete-case-confirm", "case_id": case_id},
+                        message=f"Delete case {case_id}? This removes the stored case directory.",
+                    )
+                    if expert
+                    else html.Div(),
                 ],
-                className="mb-2",
+                className="d-flex flex-wrap align-items-center gap-2 mb-2",
             )
         )
     return html.Div(rows)
 
 
-def render_case_detail(case_id: str | None, mode: str) -> Any:
+def render_case_detail(case_id: str | None, mode: str, active_strategy_id: str = "rl_v1") -> Any:
     if not case_id:
         return html.Div(
             [
@@ -327,12 +381,73 @@ def render_case_detail(case_id: str | None, mode: str) -> Any:
     )
     top = _case_overview(case_id, manifest, mode, statuses)
     progress_strip = _module_progress_strip(statuses)
+    state_counts = Counter(str(status.get("status", "pending")) for status in statuses.values())
+    if state_counts.get("running", 0):
+        stage_label = "Processing"
+        stage_color = "info"
+    elif state_counts.get("pending", 0):
+        stage_label = "Queued"
+        stage_color = "secondary"
+    elif state_counts.get("failed", 0):
+        stage_label = "Needs attention"
+        stage_color = "danger"
+    else:
+        stage_label = "Results ready"
+        stage_color = "success"
+    blocking = next(
+        (
+            f"{spec.display_name}: {statuses[module_id].get('message') or 'waiting'}"
+            for module_id, spec in load_module_schema().items()
+            if str(statuses[module_id].get("status")) in {"pending", "running", "failed", "unavailable"}
+        ),
+        "All enabled modules have finished or are disabled for this case.",
+    )
+
+    case_hero = dbc.Card(
+        dbc.CardBody(
+            [
+                html.Div(
+                    [
+                        html.Div(
+                            [
+                                html.H3(f"Patient case {case_id}", className="mb-1"),
+                                html.Div(
+                                    f"Sample: {manifest.get('sample_id', '—')} · Tumor: {normalise_tumor_type(manifest.get('tumor_type'))} · MSI: {manifest.get('msi_status', 'INDETERMINATE')} ({float(manifest.get('msi_frameshift_indel_ratio') or 0.0):.2f}) · Input: {manifest.get('input_mode', '—')}",
+                                    className="text-muted",
+                                ),
+                            ]
+                        ),
+                        dbc.Badge(stage_label, color=stage_color, className="ms-2"),
+                    ],
+                    className="d-flex justify-content-between align-items-start flex-wrap gap-2",
+                ),
+                html.Div(
+                    [
+                        dbc.Badge(f"Active strategy: {active_strategy_id}", color="info", className="me-1 mb-1"),
+                        dbc.Badge(f"Complete {state_counts.get('complete', 0)}", color="success", className="me-1 mb-1"),
+                        dbc.Badge(f"Running {state_counts.get('running', 0)}", color="info", className="me-1 mb-1"),
+                        dbc.Badge(f"Pending {state_counts.get('pending', 0)}", color="secondary", className="me-1 mb-1"),
+                        dbc.Badge(f"Unavailable {state_counts.get('unavailable', 0)}", color="warning", className="me-1 mb-1"),
+                        dbc.Badge(f"Failed {state_counts.get('failed', 0)}", color="danger", className="me-1 mb-1"),
+                    ],
+                    className="mt-3",
+                ),
+                html.Div(
+                    f"This patient page reads stored module outputs from disk and updates as each module finishes. "
+                    f"Current blocker / next step: {blocking}.",
+                    className="mt-3 small text-muted",
+                ),
+            ]
+        ),
+        class_name="surface panel mb-3",
+    )
     inputs = manifest.get("input_files", {}) or {}
     audit_rows = read_case_audit(case_id)
     strategy_names = [strategy.display_name for strategy in list_strategies()[:6]]
 
     simple = html.Div(
         [
+            case_hero,
             top,
             progress_strip,
             dbc.Alert(
@@ -543,4 +658,4 @@ def render_case_detail(case_id: str | None, mode: str) -> Any:
 
     if mode == "Simple":
         return simple
-    return html.Div([top, progress_strip, expert_tabs])
+    return html.Div([case_hero, top, progress_strip, expert_tabs])

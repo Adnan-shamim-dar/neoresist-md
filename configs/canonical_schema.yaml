@@ -18,12 +18,14 @@ column_groups:
     - ref_count
     - alt_count
     - vaf
+    - kras_g12_flag
   peptide:
     - mutant_peptide
     - wildtype_peptide
     - peptide_length
     - peptide_position
     - peptide_source
+    - shared_neoantigen_flag
   binding:
     - binding_affinity
     - binding_rank
@@ -91,3 +93,5 @@ defaults:
   escape_confidence: GREY
   recognition_confidence: GREY
   resistance_confidence: GREY
+  kras_g12_flag: false
+  shared_neoantigen_flag: false

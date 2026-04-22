@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 import shutil
@@ -39,6 +40,18 @@ def _wsl_pyclone_available() -> tuple[bool, str]:
         return False, f"WSL adapter check failed: {exc}"
     if proc.returncode == 0 and proc.stdout.strip():
         return True, f"PyClone-VI adapter available via WSL at {proc.stdout.strip()}."
+    try:
+        fallback = subprocess.run(
+            ["wsl", "sh", "-lc", "test -x /home/rambe/neoresist-pyclone/bin/pyclone-vi && echo /home/rambe/neoresist-pyclone/bin/pyclone-vi"],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=20,
+        )
+        if fallback.returncode == 0 and fallback.stdout.strip():
+            return True, f"PyClone-VI adapter available via WSL at {fallback.stdout.strip()}."
+    except Exception:
+        pass
     stderr = proc.stderr.replace("\x00", "").strip() or proc.stdout.replace("\x00", "").strip() or "PyClone-VI executable not found in WSL."
     return False, stderr
 
@@ -58,7 +71,16 @@ def module_installation(module_id: str) -> tuple[bool, str]:
     if module_id == "escape_lohhla":
         return False, "LOHHLA runtime is not installed in this environment."
     if module_id == "recognition_foreignness":
-        return False, "Foreignness recognition runtime is not installed in this environment."
+        has_bio = importlib.util.find_spec("Bio") is not None
+        has_module = (repo_root() / "neoresist_md" / "backend" / "core" / "recognition" / "foreignness_module.py").is_file()
+        if has_bio and has_module:
+            return True, "Foreignness recognition is available via local BLOSUM62 module."
+        missing = []
+        if not has_bio:
+            missing.append("Biopython not installed")
+        if not has_module:
+            missing.append("foreignness module file missing")
+        return False, f"Foreignness recognition unavailable: {', '.join(missing)}."
     return False, "Unknown module."
 
 

@@ -8,6 +8,7 @@ from typing import Any
 
 import pandas as pd
 
+from neoresist.dash_app.display_utils import ensure_display_columns
 from neoresist.paths import repo_root
 
 _CACHE_MT: float | None = None
@@ -93,7 +94,7 @@ def load_qualified_candidates(alt_path: str | None = None) -> tuple[pd.DataFrame
 def _normalize_loaded_frame(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return _empty_candidates_frame()
-    out = df.copy()
+    out = ensure_display_columns(df)
     if "exclusion_reasons" not in out.columns:
         out["exclusion_reasons"] = [[] for _ in range(len(out))]
     if "hla_loh_status" not in out.columns:
@@ -241,6 +242,21 @@ def _aggregate_patient_hla(cand: pd.DataFrame) -> pd.DataFrame:
             if "hla_loh_status" in g.columns and not g["hla_loh_status"].dropna().empty
             else "—"
         )
+        evidence_availability = pd.DataFrame(
+            {
+                "presentation": pd.to_numeric(g.get("presentation_score"), errors="coerce"),
+                "expression": pd.to_numeric(g.get("expression_tpm", g.get("expression_norm")), errors="coerce"),
+                "clonality": pd.to_numeric(g.get("ccf"), errors="coerce"),
+                "recognition": pd.to_numeric(g.get("self_dissimilarity"), errors="coerce"),
+            }
+        ).notna().sum(axis=1)
+        mean_availability = float(evidence_availability.mean()) if len(evidence_availability) else 0.0
+        if mean_availability >= 4:
+            score_confidence = "full"
+        elif mean_availability >= 2:
+            score_confidence = "partial"
+        else:
+            score_confidence = "minimal"
         top_exc = _top_exclusion_strings(g["exclusion_reasons"], 5)
         rows.append(
             {
@@ -258,6 +274,8 @@ def _aggregate_patient_hla(cand: pd.DataFrame) -> pd.DataFrame:
                 "mean_purity_used": mean_purity_u if not math.isnan(mean_purity_u) else None,
                 "purity_source_mode": purity_src_mode,
                 "hla_loh_status": loh_mode,
+                "score_confidence": score_confidence,
+                "data_quality_zero": bool(mean_rl == 0.0 and mean_availability <= 1.0),
                 "top_exclusions": "; ".join(top_exc) if top_exc else "",
             }
         )

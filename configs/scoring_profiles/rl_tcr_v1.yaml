@@ -1,0 +1,35 @@
+# NeoResist-MD Scoring Profile: rl_tcr_v1
+# TCR-aware neoantigen prioritization
+# Source: Targeted hypothesis testing on Ott et al. 2017
+# N: 97 mutations, 15 immunogenic, 6 patients
+# LOPO AUC: 0.7577 (vs 0.6494 binding-only baseline)
+# Delta: +0.1083
+# Bootstrap 95% CI: [-0.047, +0.264]
+# Date: 2026-04-20
+# Status: Pre-specified hypothesis, not optimized on data
+
+weights:
+  presentation: 0.40
+  tcr_volume: 0.20
+  tcr_charge_diff: 0.20
+  tcr_hydrophobicity: 0.20
+  expression: 0.00
+  ccf: 0.00
+  self_dissimilarity: 0.00
+
+escape_penalty_weight: -0.2
+
+blend:
+  real_ccf_weight: 0.85
+  real_expression_weight: 0.85
+
+validation:
+  dataset: "Ott et al. 2017 (Nature 547:217-221)"
+  n_mutations: 97
+  n_immunogenic: 15
+  n_patients: 6
+  lopo_auc: 0.7577
+  baseline_auc: 0.6494
+  delta: 0.1083
+  bootstrap_ci: [-0.047, 0.264]
+  evaluation: "Leave-one-patient-out, pre-specified weights"

@@ -25,8 +25,7 @@ def _self_dissimilarity_fill(peptide: str, gene: str, existing: object) -> float
                 return max(0.0, min(1.0, v))
         except (TypeError, ValueError):
             pass
-    h = hash((gene or "", peptide or "")) % (2**32)
-    return h / (2**32 - 1)
+    return float("nan")
 
 
 def _float_or(row: pd.Series, key: str, default: float = 0.0) -> float:
@@ -80,6 +79,7 @@ def apply_resistance_loop_engine(
     profile_id: str = "rl_v1",
     rule_profile_id: str = "default_rules",
 ) -> pd.DataFrame:
+    # Canonical RL formula: immunogenicity_blend × (1 − resistance_penalty). See docs/architecture.md
     sp = load_scoring_profile(profile_id)
     out = df.copy()
     if out.empty:
@@ -123,17 +123,32 @@ def apply_resistance_loop_engine(
     out["evidence_expression_source"] = expr_src
     out["evidence_ccf_source"] = ccf_src
     out["self_dissimilarity"] = sd
+    out["self_dissimilarity_confidence"] = [
+        "UNAVAILABLE" if pd.isna(v) else "HIGH" for v in sd
+    ]
 
     w = sp.weights
+    w_expr = max(0.0, float(w.get("expression_norm", 0.0)))
+    w_pres = max(0.0, float(w.get("presentation", 0.0)))
+    w_ccf = max(0.0, float(w.get("ccf", 0.0)))
+    w_sd = max(0.0, float(w.get("self_dissimilarity", 0.0)))
+    w_sum = max(w_expr + w_pres + w_ccf + w_sd, 1e-12)
+    w_expr, w_pres, w_ccf, w_sd = (
+        w_expr / w_sum,
+        w_pres / w_sum,
+        w_ccf / w_sum,
+        w_sd / w_sum,
+    )
+    resistance_weight = max(0.0, min(1.0, abs(float(sp.escape_penalty_weight))))
+
     rl = []
     for e_n, p, c, s, e_p in zip(expr_norm, pres, ccf, sd, esc, strict=True):
-        score = (
-            w["expression_norm"] * e_n
-            + w["presentation"] * p
-            + w["ccf"] * c
-            + w["self_dissimilarity"] * s
-            + sp.escape_penalty_weight * e_p
+        s_term = 0.0 if pd.isna(s) else float(s)
+        immunogenicity_blend = (
+            w_expr * e_n + w_pres * p + w_ccf * c + w_sd * s_term
         )
+        resistance_penalty = max(0.0, min(1.0, float(e_p) * resistance_weight))
+        score = immunogenicity_blend * (1.0 - resistance_penalty)
         rl.append(max(0.0, min(1.0, score)))
     out["rl_priority"] = rl
     out["tier"] = [tier_from_score(x, rule_profile_id=rule_profile_id) for x in rl]
@@ -143,3 +158,7 @@ def apply_resistance_loop_engine(
     out["rule_profile"] = rule_profile_id
 
     return out
+
+
+def compute_rl_priority(df: pd.DataFrame, **kwargs) -> pd.DataFrame:
+    return apply_resistance_loop_engine(df, **kwargs)

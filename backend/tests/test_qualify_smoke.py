@@ -5,7 +5,6 @@ import subprocess
 import sys
 import unittest
 from pathlib import Path
-from tempfile import TemporaryDirectory
 
 import pandas as pd
 
@@ -15,6 +14,7 @@ from backend.core.qualification.clonality import apply_layer as apply_clonality_
 from backend.core.qualification.escape import apply_layer as apply_escape_layer
 from backend.core.qualification.expression import apply_layer as apply_expression_layer
 from backend.core.qualification.presentation import apply_layer as apply_presentation_layer
+from backend.tests.tmp_workspace import temp_workspace
 
 
 def _write_minimal_run(run_dir: Path) -> None:
@@ -81,8 +81,7 @@ def _write_minimal_run(run_dir: Path) -> None:
 
 class TestQualifySmoke(unittest.TestCase):
     def test_pipeline_in_memory(self) -> None:
-        with TemporaryDirectory() as tmp:
-            root = Path(tmp)
+        with temp_workspace("qualify_mem") as root:
             hla_root = root / "hla_test" / "HLA-A0201" / "sarc_TCGA_TEST_0001"
             hla_root.mkdir(parents=True)
             _write_minimal_run(hla_root)
@@ -95,6 +94,7 @@ class TestQualifySmoke(unittest.TestCase):
             df = apply_presentation_layer(df)
             df = apply_clonality_layer(df)
             df = apply_escape_layer(df)
+            self.assertTrue((pd.to_numeric(df["escape_penalty"], errors="coerce").fillna(-1.0) == 0.0).all())
             df = apply_resistance_loop(df)
 
             self.assertIn("rl_priority", df.columns)
@@ -109,8 +109,7 @@ class TestQualifySmoke(unittest.TestCase):
 
     def test_cli_module_smoke(self) -> None:
         repo_root = Path(__file__).resolve().parents[2]
-        with TemporaryDirectory() as tmp:
-            tmp_path = Path(tmp)
+        with temp_workspace("qualify_cli") as tmp_path:
             hla_root = tmp_path / "hla_test" / "HLA-A0201" / "sarc_TCGA_TEST_0002"
             hla_root.mkdir(parents=True)
             _write_minimal_run(hla_root)

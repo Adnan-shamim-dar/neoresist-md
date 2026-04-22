@@ -2,5 +2,10 @@ profile_id: default_rules
 display_name: Default tier rules
 version: "1.0"
 tier_thresholds:
-  tier1_above: 0.7
-  tier2_above: 0.4
+  # Calibrated on the current enriched demo cohort so reviewer-facing tiers
+  # stay selective by default.
+  # Tier 1: approximately top 10-15% of candidates
+  # Tier 2: approximately next 35-40% of candidates
+  # Tier 3: remaining candidates
+  tier1_above: 0.43
+  tier2_above: 0.34

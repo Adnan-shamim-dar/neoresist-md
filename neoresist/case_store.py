@@ -3,9 +3,11 @@ from __future__ import annotations
 import base64
 import json
 import re
+import shutil
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 import yaml
 
@@ -113,14 +115,24 @@ def read_case_audit(case_id: str, limit: int = 40) -> list[dict[str, Any]]:
 def write_case_manifest(manifest: dict[str, Any]) -> None:
     path = manifest_path(str(manifest["case_id"]))
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
+    tmp_path = path.with_suffix(f".{uuid4().hex}.tmp")
+    with tmp_path.open("w", encoding="utf-8") as handle:
         yaml.safe_dump(manifest, handle, sort_keys=False, allow_unicode=False)
+    tmp_path.replace(path)
 
 
 def read_case_manifest(case_id: str) -> dict[str, Any]:
     path = manifest_path(case_id)
-    with path.open("r", encoding="utf-8") as handle:
-        return yaml.safe_load(handle) or {}
+    if not path.is_file():
+        return {}
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            data = yaml.safe_load(handle) or {}
+    except Exception:
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    return data
 
 
 def write_module_status(case_id: str, module_id: str, status: dict[str, Any]) -> None:
@@ -214,7 +226,12 @@ def create_case_from_upload(
             "row_count": validation.row_count,
             "columns": validation.columns,
             "message": validation.message,
+            "germline_contamination_suspected": bool(getattr(validation, "germline_contamination_suspected", False)),
+            "ith_entropy": getattr(validation, "ith_entropy", None),
+            "hla_format_invalid_count": int(getattr(validation, "hla_format_invalid_count", 0) or 0),
         },
+        "germline_contamination_suspected": bool(getattr(validation, "germline_contamination_suspected", False)),
+        "ith_entropy": getattr(validation, "ith_entropy", None),
     }
     for module_id in module_specs:
         installed, install_message = (install_checks or {}).get(module_id, (True, ""))
@@ -252,8 +269,16 @@ def attach_case_input(case_id: str, input_role: str, contents: str, filename: st
 
 def set_module_enabled(case_id: str, module_id: str, enabled: bool) -> dict[str, Any]:
     manifest = read_case_manifest(case_id)
+    if "case_id" not in manifest:
+        manifest["case_id"] = case_id
+    if "enabled_modules" not in manifest or not isinstance(manifest.get("enabled_modules"), dict):
+        manifest["enabled_modules"] = {}
+    if "module_status" not in manifest or not isinstance(manifest.get("module_status"), dict):
+        manifest["module_status"] = {}
     manifest["enabled_modules"][module_id] = bool(enabled)
     status = read_module_status(case_id, module_id)
+    if not status:
+        status = _initial_module_status(case_id, module_id, bool(enabled), True, "")
     status["enabled"] = bool(enabled)
     status["status"] = "pending" if enabled else "disabled"
     status["message"] = "Queued for run." if enabled else "Disabled for this case."
@@ -278,6 +303,8 @@ def mark_run_requested(case_id: str, run_requested: bool) -> dict[str, Any]:
 
 def reset_module_for_rerun(case_id: str, module_id: str) -> dict[str, Any]:
     status = read_module_status(case_id, module_id)
+    if not status:
+        status = _initial_module_status(case_id, module_id, True, True, "")
     status["status"] = "pending"
     status["message"] = "Queued for rerun."
     status["started_at"] = None
@@ -289,6 +316,10 @@ def reset_module_for_rerun(case_id: str, module_id: str) -> dict[str, Any]:
     status["checkpoint_label"] = "reset_for_rerun"
     write_module_status(case_id, module_id, status)
     manifest = read_case_manifest(case_id)
+    if "case_id" not in manifest:
+        manifest["case_id"] = case_id
+    if "module_status" not in manifest or not isinstance(manifest.get("module_status"), dict):
+        manifest["module_status"] = {}
     manifest["module_status"][module_id] = "pending"
     write_case_manifest(manifest)
     append_case_audit_event(case_id, "module_reset", {"module_id": module_id})
@@ -297,10 +328,14 @@ def reset_module_for_rerun(case_id: str, module_id: str) -> dict[str, Any]:
 
 def reset_modules_for_rerun(case_id: str, module_ids: list[str]) -> dict[str, Any]:
     manifest = read_case_manifest(case_id)
+    if "case_id" not in manifest:
+        manifest["case_id"] = case_id
+    if "module_status" not in manifest or not isinstance(manifest.get("module_status"), dict):
+        manifest["module_status"] = {}
     for module_id in module_ids:
         status = read_module_status(case_id, module_id)
         if not status:
-            continue
+            status = _initial_module_status(case_id, module_id, True, True, "")
         status["status"] = "pending"
         status["message"] = "Queued for rerun."
         status["started_at"] = None
@@ -319,6 +354,8 @@ def reset_modules_for_rerun(case_id: str, module_ids: list[str]) -> dict[str, An
 
 def synchronize_manifest(case_id: str) -> dict[str, Any]:
     manifest = read_case_manifest(case_id)
+    if not manifest or "case_id" not in manifest:
+        return {}
     module_specs = load_module_schema()
     artifact_index: dict[str, dict[str, str]] = {}
     for module_id in module_specs:
@@ -370,6 +407,27 @@ def list_cases(limit: int = 24) -> list[dict[str, Any]]:
     return manifests
 
 
+def delete_case(case_id: str) -> bool:
+    root = ensure_case_root().resolve()
+    target = case_dir(case_id).resolve()
+    if root not in target.parents:
+        raise ValueError(f"Refusing to delete case outside case root: {target}")
+    if not target.is_dir():
+        return False
+    shutil.rmtree(target)
+    return True
+
+
 def resolve_case_input(case_id: str, input_role: str) -> Path | None:
     manifest = read_case_manifest(case_id)
     return _absolute_from_case(case_id, manifest.get("input_files", {}).get(input_role))
+
+
+class CaseStore:
+    create_case_from_upload = staticmethod(create_case_from_upload)
+    read_case_manifest = staticmethod(read_case_manifest)
+    write_case_manifest = staticmethod(write_case_manifest)
+    list_cases = staticmethod(list_cases)
+    delete_case = staticmethod(delete_case)
+    resolve_case_input = staticmethod(resolve_case_input)
+    attach_case_input = staticmethod(attach_case_input)

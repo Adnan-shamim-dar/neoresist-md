@@ -187,16 +187,23 @@ modules:
   recognition_foreignness:
     display_name: "Foreignness recognition"
     version: "1.0.0"
-    heavy: true
+    heavy: false
     dependencies:
       - neoantigen_generation
     required_inputs: []
     optional_inputs: []
     outputs:
-      - artifact_key: adapter_status_json
-        filename: adapter_status.json
-        label: "Adapter status"
-    missing_policy: "mark_unavailable"
+      - artifact_key: recognition_scored_csv
+        filename: recognition_scored.csv
+        label: "Recognition-scored candidates"
+        display_columns: ["gene", "mutant_peptide", "self_dissimilarity", "mutant_wt_distance", "recognition_score", "recognition_confidence"]
+      - artifact_key: recognition_canonical_csv
+        filename: recognition_canonical.csv
+        label: "Recognition canonical table"
+      - artifact_key: recognition_summary_json
+        filename: recognition_summary.json
+        label: "Recognition summary"
+    missing_policy: "required"
     tooltip:
-      short: "Optional recognition model for peptide foreignness."
-      long: "This slot is reserved for a foreignness or mutant-vs-self recognition model. Until the supporting model/runtime is installed, it remains visible as an unavailable module."
+      short: "Computes peptide foreignness and recognition score with BLOSUM62 alignment."
+      long: "This module applies the local BLOSUM62-based foreignness model to candidate peptides and writes scored plus canonical artifacts for downstream ranking and review."

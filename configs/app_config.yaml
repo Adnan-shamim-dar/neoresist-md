@@ -10,6 +10,10 @@ defaults:
 
 cohort:
   search_paths:
+    - "data/final/enriched_candidates.parquet"
+    - "neoresist-md/data/final/enriched_candidates.parquet"
+    - "data/final/qualified_candidates.parquet"
+    - "neoresist-md/data/final/qualified_candidates.parquet"
     - "data/final_sarc_cohort.csv"
     - "data/final/sarccohort.csv"
     - "data/datasarccohort.csv"
@@ -18,7 +22,3 @@ cohort:
     - "data/finalsarccohort.csv"
     - "neoresist-md/data/final_sarc_cohort.csv"
     - "data/datasarccohort.xlsx"
-    - "data/final/enriched_candidates.parquet"
-    - "neoresist-md/data/final/enriched_candidates.parquet"
-    - "data/final/qualified_candidates.parquet"
-    - "neoresist-md/data/final/qualified_candidates.parquet"

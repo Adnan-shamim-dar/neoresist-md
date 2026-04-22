@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+EXPERT_ONLY_NAV = {"Advanced Strategies", "Cases", "Pipeline Status", "About"}
+
 
 def section_style(visible: bool) -> dict[str, str]:
     return {"display": "block"} if visible else {"display": "none"}
@@ -9,7 +11,8 @@ def resolve_view_state(nav: str | None, ui_mode: str | None) -> dict[str, object
     current = nav or "Overview"
     is_expert = str(ui_mode or "Simple") == "Expert"
     if not is_expert:
-        simple_overview = current in {"Overview", "Advanced Strategies"}
+        effective = current if current == "Upload" else "Overview"
+        simple_overview = effective == "Overview"
         return {
             "show_filters": False,
             "note": "Simple mode: upload, ranked answers, tier badges, and evidence cards.",
@@ -17,7 +20,7 @@ def resolve_view_state(nav: str | None, ui_mode: str | None) -> dict[str, object
             "advanced_section": False,
             "overview_section": simple_overview,
             "patients_section": False,
-            "upload_section": current in {"Overview", "Upload"},
+            "upload_section": effective in {"Overview", "Upload"},
             "cases_section": False,
             "about_section": False,
             "pipeline_status_section": False,
@@ -30,6 +33,7 @@ def resolve_view_state(nav: str | None, ui_mode: str | None) -> dict[str, object
             "expert_diagnostics_shell": False,
             "expert_two_panel_shell": False,
             "expert_extra_diagnostics_shell": False,
+            "scatter_controls_shell": False,
         }
     # In Simple mode, treat Advanced Strategies as Overview so core plots never
     # disappear behind Expert-only navigation state.
@@ -61,4 +65,5 @@ def resolve_view_state(nav: str | None, ui_mode: str | None) -> dict[str, object
         "expert_diagnostics_shell": effective == "Overview" and is_expert,
         "expert_two_panel_shell": effective == "Overview" and is_expert,
         "expert_extra_diagnostics_shell": effective == "Overview" and is_expert,
+        "scatter_controls_shell": effective == "Overview" and is_expert,
     }

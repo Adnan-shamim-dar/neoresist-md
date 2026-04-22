@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -12,12 +11,12 @@ from backend.core.prioritization.resistance_loop import apply_resistance_loop
 from backend.core.qualification.purity_resolution import apply_evidence_provenance_columns, apply_purity_resolution
 from backend.core.qualification.real_clonality import apply_layer as apply_real_clonality_layer
 from backend.core.qualification.real_expression import apply_layer as apply_real_expression_layer
+from backend.tests.tmp_workspace import temp_workspace
 
 
 class TestTcgaIntegration(unittest.TestCase):
     def test_stub_metadata_join_expression_clonality(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            tdir = Path(tmp)
+        with temp_workspace("tcga_stub") as tdir:
             meta_path = tdir / "tcga_sarc_metadata.parquet"
             pids = ["TCGA-DX-P1-01A", "TCGA-DX-P2-01A"]
             write_stub_tcga_metadata(pids, meta_path, genes=["GENE1", "TP53"])
@@ -98,8 +97,7 @@ class TestTcgaIntegration(unittest.TestCase):
                 self.assertIn(col, out.columns)
 
     def test_enrich_cli_smoke(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            tdir = Path(tmp)
+        with temp_workspace("tcga_cli") as tdir:
             qual = tdir / "qualified_candidates.parquet"
             df = pd.DataFrame(
                 [
@@ -150,8 +148,7 @@ class TestTcgaIntegration(unittest.TestCase):
             self.assertIn("scoring_profile", edf.columns)
 
     def test_enrich_with_purity_file_override(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            tdir = Path(tmp)
+        with temp_workspace("tcga_purity") as tdir:
             qual = tdir / "qualified_candidates.parquet"
             df = pd.DataFrame(
                 [

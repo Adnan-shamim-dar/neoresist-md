@@ -39,9 +39,22 @@ def _load_yaml(path: Path) -> dict[str, Any]:
         return yaml.safe_load(f) or {}
 
 
+def _float_value(raw: dict[str, Any], key: str, default: float) -> float:
+    value = raw.get(key)
+    return float(default if value is None else value)
+
+
+def _scoring_profile_path(profile_id: str) -> Path:
+    for subdir in ("scoring_profiles", "profiles"):
+        path = config_dir() / subdir / f"{profile_id}.yaml"
+        if path.is_file():
+            return path
+    return config_dir() / "scoring_profiles" / f"{profile_id}.yaml"
+
+
 @lru_cache(maxsize=8)
 def load_scoring_profile(profile_id: str) -> ScoringProfile:
-    path = config_dir() / "scoring_profiles" / f"{profile_id}.yaml"
+    path = _scoring_profile_path(profile_id)
     raw = _load_yaml(path)
     blend = raw.get("blend") or {}
     w = raw.get("weights") or {}
@@ -52,16 +65,16 @@ def load_scoring_profile(profile_id: str) -> ScoringProfile:
         description=str(raw.get("description") or "").strip(),
         higher_is_better=bool(raw.get("higher_is_better", True)),
         primary_score_column=str(raw.get("primary_score_column") or "rl_priority"),
-        expression_tpm_cap=float(raw.get("expression_tpm_cap") or 1000.0),
-        blend_expression=float(blend.get("real_expression_weight") or 0.85),
-        blend_ccf=float(blend.get("real_ccf_weight") or 0.85),
+        expression_tpm_cap=_float_value(raw, "expression_tpm_cap", 1000.0),
+        blend_expression=_float_value(blend, "real_expression_weight", 0.85),
+        blend_ccf=_float_value(blend, "real_ccf_weight", 0.85),
         weights={
-            "expression_norm": float(w.get("expression_norm") or 0.2),
-            "presentation": float(w.get("presentation") or 0.3),
-            "ccf": float(w.get("ccf") or 0.3),
-            "self_dissimilarity": float(w.get("self_dissimilarity") or 0.1),
+            "expression_norm": _float_value(w, "expression_norm", 0.2),
+            "presentation": _float_value(w, "presentation", 0.3),
+            "ccf": _float_value(w, "ccf", 0.3),
+            "self_dissimilarity": _float_value(w, "self_dissimilarity", 0.1),
         },
-        escape_penalty_weight=float(raw.get("escape_penalty_weight") or -0.2),
+        escape_penalty_weight=_float_value(raw, "escape_penalty_weight", -0.2),
     )
 
 

@@ -27,14 +27,13 @@ def _self_dissimilarity_fill(peptide: str, gene: str, existing: object) -> float
                 return max(0.0, min(1.0, v))
         except (TypeError, ValueError):
             pass
-    h = hash((gene or "", peptide or "")) % (2**32)
-    return h / (2**32 - 1)
+    return float("nan")
 
 
 def tier_from_rl(rl: float) -> int:
-    if rl > 0.7:
+    if rl > 0.43:
         return 1
-    if rl >= 0.4:
+    if rl >= 0.34:
         return 2
     return 3
 
@@ -125,9 +124,16 @@ def apply_resistance_loop_reference(df: pd.DataFrame, *, prefer_real_evidence: b
     out["evidence_ccf_source"] = ccf_src
     out["self_dissimilarity"] = sd
 
+    w_expr, w_pres, w_ccf, w_sd = 0.2, 0.3, 0.3, 0.1
+    w_sum = w_expr + w_pres + w_ccf + w_sd
+    w_expr, w_pres, w_ccf, w_sd = w_expr / w_sum, w_pres / w_sum, w_ccf / w_sum, w_sd / w_sum
+    resistance_weight = abs(-0.2)
     rl = []
     for e_n, p, c, s, e_p in zip(expr_norm, pres, ccf, sd, esc, strict=True):
-        score = 0.2 * e_n + 0.3 * p + 0.3 * c + 0.1 * s - 0.2 * e_p
+        s_term = 0.0 if pd.isna(s) else float(s)
+        immunogenicity_blend = w_expr * e_n + w_pres * p + w_ccf * c + w_sd * s_term
+        resistance_penalty = max(0.0, min(1.0, e_p * resistance_weight))
+        score = immunogenicity_blend * (1.0 - resistance_penalty)
         rl.append(max(0.0, min(1.0, score)))
     out["rl_priority"] = rl
     out["tier"] = [tier_from_rl(x) for x in rl]

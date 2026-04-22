@@ -188,12 +188,24 @@ def _contract_to_strategy(contract: StrategyDefinitionContract) -> ResolvedStrat
 
 def list_strategies() -> list[ResolvedStrategy]:
     _ensure_state_dirs()
-    builtin_ids = sorted({p.stem for p in (Path(__file__).resolve().parent.parent / "configs" / "scoring_profiles").glob("*.yaml")})
+    config_root = Path(__file__).resolve().parent.parent / "configs"
+    builtin_ids = sorted(
+        {
+            p.stem
+            for subdir in ("scoring_profiles", "profiles")
+            for p in (config_root / subdir).glob("*.yaml")
+        }
+    )
     items = [strategy_from_profiles(profile_id) for profile_id in builtin_ids]
+    seen_ids = {item.strategy_id for item in items}
     for path in sorted(strategy_store_dir().glob("*.json")):
         try:
             raw = json.loads(path.read_text(encoding="utf-8"))
-            items.append(_contract_to_strategy(StrategyDefinitionContract.model_validate(raw)))
+            item = _contract_to_strategy(StrategyDefinitionContract.model_validate(raw))
+            if item.strategy_id in seen_ids:
+                continue
+            items.append(item)
+            seen_ids.add(item.strategy_id)
         except Exception:
             continue
     items.sort(key=lambda s: (0 if s.origin == "builtin" else 1, s.display_name.lower()))
@@ -362,19 +374,29 @@ def score_candidates_for_strategy(df: pd.DataFrame, strategy: ResolvedStrategy) 
     ccf_vals: list[float] = []
     rl_vals: list[float] = []
     tiers: list[int] = []
+    w_expr = max(0.0, float(strategy.weights.get("expression_norm", 0.0)))
+    w_pres = max(0.0, float(strategy.weights.get("presentation", 0.0)))
+    w_ccf = max(0.0, float(strategy.weights.get("ccf", 0.0)))
+    w_sd = max(0.0, float(strategy.weights.get("self_dissimilarity", 0.0)))
+    w_sum = max(w_expr + w_pres + w_ccf + w_sd, 1e-12)
+    w_expr, w_pres, w_ccf, w_sd = (
+        w_expr / w_sum,
+        w_pres / w_sum,
+        w_ccf / w_sum,
+        w_sd / w_sum,
+    )
+    resistance_weight = max(0.0, min(1.0, abs(float(strategy.escape_penalty_weight))))
     for _, row in out.iterrows():
         expr = _blend_expression(row, strategy)
         ccf = _blend_ccf(row, strategy)
         present = max(0.0, min(1.0, _float_or(row, "presentation_score", 0.0)))
         sd = max(0.0, min(1.0, _float_or(row, "self_dissimilarity", 0.0)))
         esc = max(0.0, min(1.0, _float_or(row, "escape_penalty", 0.0)))
-        score = (
-            strategy.weights["expression_norm"] * expr
-            + strategy.weights["presentation"] * present
-            + strategy.weights["ccf"] * ccf
-            + strategy.weights["self_dissimilarity"] * sd
-            + strategy.escape_penalty_weight * esc
+        immunogenicity_blend = (
+            w_expr * expr + w_pres * present + w_ccf * ccf + w_sd * sd
         )
+        resistance_penalty = max(0.0, min(1.0, esc * resistance_weight))
+        score = immunogenicity_blend * (1.0 - resistance_penalty)
         score = max(0.0, min(1.0, score))
         if score > strategy.tier1_above:
             tier = 1
@@ -561,3 +583,12 @@ def build_consensus_table(strategy_frames: dict[str, pd.DataFrame], *, top_n: in
         ascending=[False, False, False],
     ).reset_index(drop=True)
     return cons
+
+
+class StrategyRegistry:
+    list_strategies = staticmethod(list_strategies)
+    get_strategy = staticmethod(get_strategy)
+    clone_strategy = staticmethod(clone_strategy)
+    save_strategy = staticmethod(save_strategy)
+    score_candidates_for_strategy = staticmethod(score_candidates_for_strategy)
+    build_consensus_table = staticmethod(build_consensus_table)

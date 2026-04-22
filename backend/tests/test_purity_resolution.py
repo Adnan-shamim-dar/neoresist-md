@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 import json
-import tempfile
 import unittest
-from pathlib import Path
 
 import pandas as pd
 
@@ -16,6 +14,7 @@ from backend.core.qualification.purity_resolution import (
     normalize_purity_scalar,
     resolve_purity_for_row,
 )
+from backend.tests.tmp_workspace import temp_workspace
 
 
 class TestPurityResolution(unittest.TestCase):
@@ -113,15 +112,14 @@ def math_is_nan(x: object) -> bool:
 
 class TestPurityTableLoad(unittest.TestCase):
     def test_load_csv(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            p = Path(tmp) / "p.csv"
+        with temp_workspace("purity_csv") as tmp:
+            p = tmp / "p.csv"
             p.write_text("patient_id,purity\nTCGA-X,0.61\n", encoding="utf-8")
             df = load_purity_table(p)
             self.assertIn("purity", df.columns)
 
     def test_integration_join_and_resolve(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            tdir = Path(tmp)
+        with temp_workspace("purity_join") as tdir:
             meta_path = tdir / "meta.parquet"
             write_stub_tcga_metadata(["TCGA-DX-P1-01A"], meta_path, genes=["TP53"])
             cand = pd.DataFrame(

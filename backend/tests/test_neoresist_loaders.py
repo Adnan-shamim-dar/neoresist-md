@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-import tempfile
 import unittest
-from pathlib import Path
 
 import pandas as pd
 
 from neoresist.loaders import CohortLoadError, load_cohort_for_dash
+from backend.tests.tmp_workspace import temp_workspace
 
 
 class TestNeoresistLoaders(unittest.TestCase):
     def test_cohort_load_error_lists_paths(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            bad = Path(tmp) / "bad.csv"
+        with temp_workspace("loaders_bad") as tmp:
+            bad = tmp / "bad.csv"
             bad.write_text("only_one_col\n1\n", encoding="utf-8")
             try:
                 load_cohort_for_dash(alt_path=str(bad))
@@ -24,8 +23,8 @@ class TestNeoresistLoaders(unittest.TestCase):
                 self.fail("expected CohortLoadError")
 
     def test_valid_minimal_parquet_roundtrip(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            p = Path(tmp) / "ok.parquet"
+        with temp_workspace("loaders_ok") as tmp:
+            p = tmp / "ok.parquet"
             df = pd.DataFrame(
                 [
                     {

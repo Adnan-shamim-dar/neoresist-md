@@ -1,11 +1,18 @@
 from __future__ import annotations
 
 import importlib.metadata
+import importlib.util
+import shutil
 import shlex
 import subprocess
 from pathlib import Path
 
 import yaml
+
+PYTHON_TOOL_MODULES = {
+    "binding.mhcflurry": "mhcflurry",
+    "recognition.blosum62": "Bio",
+}
 
 
 def _parse_requirement_name(line: str) -> str:
@@ -38,9 +45,33 @@ def check_tools(tool_registry_path: Path) -> dict[str, str]:
                 continue
             cmd = tool.get("check_command")
             key = f"{group_name}.{tool_id}"
+            python_module = PYTHON_TOOL_MODULES.get(key)
+
+            # Python-only checks for tools exposed as libraries.
+            if python_module and importlib.util.find_spec(python_module) is not None:
+                status[key] = "available"
+                continue
+
             if not cmd:
                 status[key] = "no_check_command"
                 continue
+            command_name = shlex.split(str(cmd))[0]
+            if shutil.which(command_name):
+                status[key] = "available"
+                continue
+            if key == "clonality.pyclone_vi":
+                try:
+                    proc = subprocess.run(
+                        ["wsl", "sh", "-lc", "test -x /home/rambe/neoresist-pyclone/bin/pyclone-vi && echo ok"],
+                        capture_output=True,
+                        text=True,
+                        timeout=10,
+                    )
+                    if proc.returncode == 0 and "ok" in proc.stdout:
+                        status[key] = "available"
+                        continue
+                except Exception:
+                    pass
             try:
                 proc = subprocess.run(shlex.split(str(cmd)), capture_output=True, text=True, timeout=4)
                 status[key] = "available" if proc.returncode in {0, 1, 2} else "unavailable"
@@ -72,4 +103,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

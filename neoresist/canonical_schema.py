@@ -9,6 +9,7 @@ import pandas as pd
 import yaml
 
 from neoresist.paths import config_dir
+from neoresist.tumor_features import add_candidate_tumor_flags
 
 
 @dataclass(frozen=True)
@@ -67,6 +68,10 @@ def validate_canonical_df(df: pd.DataFrame) -> CanonicalValidationResult:
     )
 
 
+def validate_canonical_table(df: pd.DataFrame) -> CanonicalValidationResult:
+    return validate_canonical_df(df)
+
+
 def ensure_canonical_columns(
     df: pd.DataFrame,
     *,
@@ -76,6 +81,7 @@ def ensure_canonical_columns(
 ) -> pd.DataFrame:
     schema = load_canonical_schema()
     out = df.copy()
+    out = add_candidate_tumor_flags(out)
     for column in schema.ordered_columns:
         if column not in out.columns:
             out[column] = schema.defaults.get(column)
@@ -109,7 +115,9 @@ def build_canonical_from_candidates(
         "sample_barcode": ("sample_barcode",),
         "gene": ("gene", "gene_name", "Hugo_Symbol"),
         "protein_change": ("protein_change", "source_hgvsp_short"),
+        "kras_g12_flag": ("kras_g12_flag",),
         "mutant_peptide": ("mutant_peptide", "peptide"),
+        "shared_neoantigen_flag": ("shared_neoantigen_flag",),
         "wildtype_peptide": ("wildtype_peptide",),
         "peptide_length": ("peptide_length",),
         "peptide_position": ("peptide_position", "mutation_position"),
