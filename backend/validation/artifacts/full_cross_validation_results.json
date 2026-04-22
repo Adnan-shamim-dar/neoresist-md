@@ -1,0 +1,4611 @@
+{
+  "summary": {
+    "papers_tested": [
+      "hilf_2019",
+      "keskin_2019",
+      "rojas_2023",
+      "sahin_2017",
+      "tesla_2020",
+      "ott_2017_mutation"
+    ],
+    "transfer_strategies_tested": 7,
+    "total_hypotheses_tested": 171,
+    "evaluation_method": "LOPO where possible, in-sample otherwise"
+  },
+  "transfer_results": {
+    "hilf_2019": {
+      "n_rows": 152,
+      "n_immunogenic": 77,
+      "n_patients": 15,
+      "can_lopo": true,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": 0.6125771265771267,
+          "insample_auc": 0.5877056277056277,
+          "per_patient": {
+            "hilf_2": 0.6875,
+            "hilf_4": 0.7777777777777778,
+            "hilf_5": 0.7333333333333333,
+            "hilf_7": 0.6041666666666666,
+            "hilf_12": 0.54,
+            "hilf_13": 0.4923076923076923,
+            "hilf_14": 0.5625,
+            "hilf_16": 0.75,
+            "hilf_10": 0.7666666666666667,
+            "hilf_6": 0.6285714285714286,
+            "hilf_8": 0.4444444444444444,
+            "hilf_9": 0.888888888888889,
+            "hilf_11": 0.8125,
+            "hilf_1": 0.25,
+            "hilf_15": 0.25
+          },
+          "features_available": [
+            "bind_log50k"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_v1_original": {
+          "lopo_auc": 0.6031877289377289,
+          "insample_auc": 0.5823376623376623,
+          "per_patient": {
+            "hilf_2": 0.6124999999999999,
+            "hilf_4": 0.8333333333333334,
+            "hilf_5": 0.7111111111111111,
+            "hilf_7": 0.6041666666666667,
+            "hilf_12": 0.52,
+            "hilf_13": 0.4769230769230769,
+            "hilf_14": 0.59375,
+            "hilf_16": 0.75,
+            "hilf_10": 0.7666666666666667,
+            "hilf_6": 0.4571428571428572,
+            "hilf_8": 0.3333333333333333,
+            "hilf_9": 0.888888888888889,
+            "hilf_11": 0.75,
+            "hilf_1": 0.25,
+            "hilf_15": 0.5
+          },
+          "features_available": [
+            "pres_existing",
+            "expr_existing",
+            "dissim_existing"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": 0.5777586487586487,
+          "insample_auc": 0.5797402597402597,
+          "per_patient": {
+            "hilf_2": 0.6499999999999999,
+            "hilf_4": 0.3888888888888889,
+            "hilf_5": 0.6222222222222222,
+            "hilf_7": 0.6875,
+            "hilf_12": 0.36,
+            "hilf_13": 0.6615384615384615,
+            "hilf_14": 0.6875,
+            "hilf_16": 0.5,
+            "hilf_10": 0.3666666666666667,
+            "hilf_6": 0.7142857142857143,
+            "hilf_8": 0.5555555555555556,
+            "hilf_9": 0.22222222222222224,
+            "hilf_11": 0.5,
+            "hilf_1": 0.75,
+            "hilf_15": 1.0
+          },
+          "features_available": [
+            "bind_log50k",
+            "tcr_volume",
+            "tcr_charge_diff",
+            "tcr_hydro"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": 0.6628574481074482,
+          "insample_auc": 0.6480519480519481,
+          "per_patient": {
+            "hilf_2": 0.8125,
+            "hilf_4": 0.6111111111111112,
+            "hilf_5": 0.7555555555555555,
+            "hilf_7": 0.7291666666666666,
+            "hilf_12": 0.54,
+            "hilf_13": 0.7692307692307692,
+            "hilf_14": 0.59375,
+            "hilf_16": 0.25,
+            "hilf_10": 0.43333333333333335,
+            "hilf_6": 0.8857142857142858,
+            "hilf_8": 0.7777777777777778,
+            "hilf_9": 0.22222222222222224,
+            "hilf_11": 0.5625,
+            "hilf_1": 1.0,
+            "hilf_15": 1.0
+          },
+          "features_available": [
+            "bind_log50k",
+            "nm_raw",
+            "expr_raw"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": 0.6535933048433049,
+          "insample_auc": 0.6145454545454545,
+          "per_patient": {
+            "hilf_2": 0.7250000000000001,
+            "hilf_4": 0.7777777777777778,
+            "hilf_5": 0.6888888888888889,
+            "hilf_7": 0.6875,
+            "hilf_12": 0.4000000000000001,
+            "hilf_13": 0.4615384615384615,
+            "hilf_14": 0.59375,
+            "hilf_16": 1.0,
+            "hilf_10": 0.8,
+            "hilf_6": 0.6,
+            "hilf_8": 0.4444444444444444,
+            "hilf_9": 1.0,
+            "hilf_11": 0.875,
+            "hilf_1": 0.25,
+            "hilf_15": 0.5
+          },
+          "features_available": [
+            "bind_log50k",
+            "calis_immuno"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": 0.6125771265771267,
+          "insample_auc": 0.5877056277056277,
+          "per_patient": {
+            "hilf_2": 0.6875,
+            "hilf_4": 0.7777777777777778,
+            "hilf_5": 0.7333333333333333,
+            "hilf_7": 0.6041666666666666,
+            "hilf_12": 0.54,
+            "hilf_13": 0.4923076923076923,
+            "hilf_14": 0.5625,
+            "hilf_16": 0.75,
+            "hilf_10": 0.7666666666666667,
+            "hilf_6": 0.6285714285714286,
+            "hilf_8": 0.4444444444444444,
+            "hilf_9": 0.888888888888889,
+            "hilf_11": 0.8125,
+            "hilf_1": 0.25,
+            "hilf_15": 0.25
+          },
+          "features_available": [
+            "bind_exp500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": 0.6125771265771267,
+          "insample_auc": 0.5877056277056277,
+          "per_patient": {
+            "hilf_2": 0.6875,
+            "hilf_4": 0.7777777777777778,
+            "hilf_5": 0.7333333333333333,
+            "hilf_7": 0.6041666666666666,
+            "hilf_12": 0.54,
+            "hilf_13": 0.4923076923076923,
+            "hilf_14": 0.5625,
+            "hilf_16": 0.75,
+            "hilf_10": 0.7666666666666667,
+            "hilf_6": 0.6285714285714286,
+            "hilf_8": 0.4444444444444444,
+            "hilf_9": 0.888888888888889,
+            "hilf_11": 0.8125,
+            "hilf_1": 0.25,
+            "hilf_15": 0.25
+          },
+          "features_available": [
+            "bind_sigmoid500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        }
+      }
+    },
+    "keskin_2019": {
+      "n_rows": 27,
+      "n_immunogenic": 15,
+      "n_patients": 2,
+      "can_lopo": false,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": null,
+          "insample_auc": 0.5555555555555556,
+          "per_patient": {},
+          "features_available": [
+            "bind_log50k"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_v1_original": {
+          "lopo_auc": null,
+          "insample_auc": 0.41666666666666663,
+          "per_patient": {},
+          "features_available": [
+            "pres_existing",
+            "expr_existing",
+            "dissim_existing"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": null,
+          "insample_auc": 0.3111111111111111,
+          "per_patient": {},
+          "features_available": [
+            "bind_log50k",
+            "tcr_volume",
+            "tcr_charge_diff",
+            "tcr_hydro"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": null,
+          "insample_auc": 0.4388888888888889,
+          "per_patient": {},
+          "features_available": [
+            "bind_log50k",
+            "nm_raw",
+            "expr_raw"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": null,
+          "insample_auc": 0.5722222222222222,
+          "per_patient": {},
+          "features_available": [
+            "bind_log50k",
+            "calis_immuno"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": null,
+          "insample_auc": 0.5555555555555556,
+          "per_patient": {},
+          "features_available": [
+            "bind_exp500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": null,
+          "insample_auc": 0.5555555555555556,
+          "per_patient": {},
+          "features_available": [
+            "bind_sigmoid500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        }
+      }
+    },
+    "rojas_2023": {
+      "n_rows": 230,
+      "n_immunogenic": 30,
+      "n_patients": 16,
+      "can_lopo": true,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_log50k'])"
+        },
+        "rl_v1_original": {
+          "lopo_auc": 0.4112351190476191,
+          "insample_auc": 0.5644166666666667,
+          "per_patient": {
+            "rojas_1": 0.0,
+            "rojas_3": null,
+            "rojas_4": null,
+            "rojas_5": 0.4,
+            "rojas_6": 0.2222222222222222,
+            "rojas_9": null,
+            "rojas_10": 0.6041666666666667,
+            "rojas_11": 0.6666666666666666,
+            "rojas_14": 0.11111111111111116,
+            "rojas_18": null,
+            "rojas_19": null,
+            "rojas_20": null,
+            "rojas_23": null,
+            "rojas_25": 0.6714285714285715,
+            "rojas_28": null,
+            "rojas_29": 0.6142857142857143
+          },
+          "features_available": [
+            "pres_existing",
+            "dissim_existing"
+          ],
+          "features_missing": [
+            "expr_existing"
+          ],
+          "status": "computed"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": 0.6764880952380953,
+          "insample_auc": 0.5246666666666667,
+          "per_patient": {
+            "rojas_1": 0.6666666666666667,
+            "rojas_3": null,
+            "rojas_4": null,
+            "rojas_5": 1.0,
+            "rojas_6": 1.0,
+            "rojas_9": null,
+            "rojas_10": 0.5833333333333334,
+            "rojas_11": 0.33333333333333337,
+            "rojas_14": 1.0,
+            "rojas_18": null,
+            "rojas_19": null,
+            "rojas_20": null,
+            "rojas_23": null,
+            "rojas_25": 0.34285714285714286,
+            "rojas_28": null,
+            "rojas_29": 0.4857142857142857
+          },
+          "features_available": [
+            "tcr_volume",
+            "tcr_charge_diff",
+            "tcr_hydro"
+          ],
+          "features_missing": [
+            "bind_log50k"
+          ],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_log50k', 'nm_raw', 'expr_raw'])"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": 0.47016369047619044,
+          "insample_auc": 0.4605,
+          "per_patient": {
+            "rojas_1": 0.16666666666666663,
+            "rojas_3": null,
+            "rojas_4": null,
+            "rojas_5": 0.06666666666666665,
+            "rojas_6": 0.0,
+            "rojas_9": null,
+            "rojas_10": 0.7708333333333333,
+            "rojas_11": 0.7999999999999999,
+            "rojas_14": 1.0,
+            "rojas_18": null,
+            "rojas_19": null,
+            "rojas_20": null,
+            "rojas_23": null,
+            "rojas_25": 0.3142857142857143,
+            "rojas_28": null,
+            "rojas_29": 0.6428571428571428
+          },
+          "features_available": [
+            "calis_immuno"
+          ],
+          "features_missing": [
+            "bind_log50k"
+          ],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_exp500'])"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_sigmoid500'])"
+        }
+      }
+    },
+    "sahin_2017": {
+      "n_rows": 125,
+      "n_immunogenic": 75,
+      "n_patients": 13,
+      "can_lopo": true,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_log50k'])"
+        },
+        "rl_v1_original": {
+          "lopo_auc": 0.4868551587301588,
+          "insample_auc": 0.44906666666666667,
+          "per_patient": {
+            "sahin_P01": 0.375,
+            "sahin_P02": 0.5833333333333334,
+            "sahin_P03": 0.6190476190476191,
+            "sahin_P04": 0.4375,
+            "sahin_P05": 0.41666666666666663,
+            "sahin_P06": 0.33333333333333337,
+            "sahin_P07": 0.375,
+            "sahin_P09": 0.8333333333333333,
+            "sahin_P10": 0.25,
+            "sahin_P11": 0.6190476190476191,
+            "sahin_P12": 0.125,
+            "sahin_P17": null,
+            "sahin_P19": 0.875
+          },
+          "features_available": [
+            "pres_existing",
+            "expr_existing",
+            "dissim_existing"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": 0.6569940476190477,
+          "insample_auc": 0.6436,
+          "per_patient": {
+            "sahin_P01": 0.7083333333333334,
+            "sahin_P02": 0.8333333333333334,
+            "sahin_P03": 0.7619047619047619,
+            "sahin_P04": 0.6875,
+            "sahin_P05": 0.625,
+            "sahin_P06": 0.7083333333333333,
+            "sahin_P07": 0.3958333333333333,
+            "sahin_P09": 0.8333333333333333,
+            "sahin_P10": 1.0,
+            "sahin_P11": 0.47619047619047616,
+            "sahin_P12": 0.41666666666666663,
+            "sahin_P17": null,
+            "sahin_P19": 0.4375
+          },
+          "features_available": [
+            "tcr_volume",
+            "tcr_hydro"
+          ],
+          "features_missing": [
+            "bind_log50k",
+            "tcr_charge_diff"
+          ],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": 0.4618055555555556,
+          "insample_auc": 0.44013333333333327,
+          "per_patient": {
+            "sahin_P01": 0.375,
+            "sahin_P02": 0.6458333333333333,
+            "sahin_P03": 0.6666666666666667,
+            "sahin_P04": 0.4375,
+            "sahin_P05": 0.41666666666666663,
+            "sahin_P06": 0.33333333333333337,
+            "sahin_P07": 0.3125,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.25,
+            "sahin_P11": 0.6666666666666666,
+            "sahin_P12": 0.125,
+            "sahin_P17": null,
+            "sahin_P19": 0.8125
+          },
+          "features_available": [
+            "expr_raw"
+          ],
+          "features_missing": [
+            "bind_log50k",
+            "nm_raw"
+          ],
+          "status": "computed"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": 0.4437003968253968,
+          "insample_auc": 0.41973333333333335,
+          "per_patient": {
+            "sahin_P01": 0.33333333333333337,
+            "sahin_P02": 0.5416666666666666,
+            "sahin_P03": 0.09523809523809526,
+            "sahin_P04": 0.8125,
+            "sahin_P05": 0.2916666666666667,
+            "sahin_P06": 0.8333333333333334,
+            "sahin_P07": 0.35416666666666663,
+            "sahin_P09": 0.5,
+            "sahin_P10": 0.25,
+            "sahin_P11": 0.6666666666666667,
+            "sahin_P12": 0.3333333333333333,
+            "sahin_P17": null,
+            "sahin_P19": 0.3125
+          },
+          "features_available": [
+            "calis_immuno"
+          ],
+          "features_missing": [
+            "bind_log50k"
+          ],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_exp500'])"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['bind_sigmoid500'])"
+        }
+      }
+    },
+    "tesla_2020": {
+      "n_rows": 918,
+      "n_immunogenic": 41,
+      "n_patients": 9,
+      "can_lopo": true,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "per_patient": {
+            "TESLA_3": 0.7614468864468864,
+            "TESLA_2": 0.6201923076923077,
+            "TESLA_1": 0.7853535353535352,
+            "TESLA_12": 0.6529411764705882,
+            "TESLA_16": 0.5428571428571428,
+            "TESLA_10": 0.9571428571428572,
+            "TESLA_8": 0.9906542056074766,
+            "TESLA_9": 0.8669354838709676,
+            "TESLA_4": 0.76
+          },
+          "features_available": [
+            "bind_log50k"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_v1_original": {
+          "lopo_auc": null,
+          "insample_auc": null,
+          "status": "no features available (missing: ['pres_existing', 'expr_existing', 'dissim_existing'])"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": 0.5099915950589029,
+          "insample_auc": 0.48583029729955224,
+          "per_patient": {
+            "TESLA_3": 0.3983516483516484,
+            "TESLA_2": 0.5745192307692307,
+            "TESLA_1": 0.45202020202020204,
+            "TESLA_12": 0.5794117647058824,
+            "TESLA_16": 0.5375,
+            "TESLA_10": 0.48095238095238096,
+            "TESLA_8": 0.9252336448598131,
+            "TESLA_9": 0.24193548387096775,
+            "TESLA_4": 0.4
+          },
+          "features_available": [
+            "bind_log50k",
+            "tcr_volume",
+            "tcr_hydro"
+          ],
+          "features_missing": [
+            "tcr_charge_diff"
+          ],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": 0.8134179059185117,
+          "insample_auc": 0.823066440470562,
+          "per_patient": {
+            "TESLA_3": 0.7316849816849818,
+            "TESLA_2": 0.6298076923076923,
+            "TESLA_1": 0.9027777777777778,
+            "TESLA_12": 0.6294117647058823,
+            "TESLA_16": 0.5625,
+            "TESLA_10": 0.9666666666666667,
+            "TESLA_8": 0.9906542056074766,
+            "TESLA_9": 0.907258064516129,
+            "TESLA_4": 1.0
+          },
+          "features_available": [
+            "bind_log50k",
+            "nm_raw",
+            "expr_raw"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": 0.7620323282250328,
+          "insample_auc": 0.781822732708513,
+          "per_patient": {
+            "TESLA_3": 0.7252747252747253,
+            "TESLA_2": 0.59375,
+            "TESLA_1": 0.7777777777777778,
+            "TESLA_12": 0.6529411764705881,
+            "TESLA_16": 0.5839285714285715,
+            "TESLA_10": 0.9380952380952381,
+            "TESLA_8": 0.9813084112149533,
+            "TESLA_9": 0.8185483870967742,
+            "TESLA_4": 0.7866666666666666
+          },
+          "features_available": [
+            "bind_log50k",
+            "calis_immuno"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "per_patient": {
+            "TESLA_3": 0.7614468864468864,
+            "TESLA_2": 0.6201923076923077,
+            "TESLA_1": 0.7853535353535352,
+            "TESLA_12": 0.6529411764705882,
+            "TESLA_16": 0.5428571428571428,
+            "TESLA_10": 0.9571428571428572,
+            "TESLA_8": 0.9906542056074766,
+            "TESLA_9": 0.8669354838709676,
+            "TESLA_4": 0.76
+          },
+          "features_available": [
+            "bind_exp500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "per_patient": {
+            "TESLA_3": 0.7614468864468864,
+            "TESLA_2": 0.6201923076923077,
+            "TESLA_1": 0.7853535353535352,
+            "TESLA_12": 0.6529411764705882,
+            "TESLA_16": 0.5428571428571428,
+            "TESLA_10": 0.9571428571428572,
+            "TESLA_8": 0.9906542056074766,
+            "TESLA_9": 0.8669354838709676,
+            "TESLA_4": 0.76
+          },
+          "features_available": [
+            "bind_sigmoid500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        }
+      }
+    },
+    "ott_2017_mutation": {
+      "n_rows": 97,
+      "n_immunogenic": 15,
+      "n_patients": 6,
+      "can_lopo": true,
+      "strategies": {
+        "binding_only": {
+          "lopo_auc": 0.6493686868686869,
+          "insample_auc": 0.633739837398374,
+          "per_patient": {
+            "ott_1": 0.8333333333333334,
+            "ott_2": 0.4583333333333333,
+            "ott_3": 0.4545454545454545,
+            "ott_4": 0.7,
+            "ott_5": 0.7,
+            "ott_6": 0.75
+          },
+          "features_available": [
+            "bind_log50k"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_v1_original": {
+          "lopo_auc": 0.6609848484848485,
+          "insample_auc": 0.6024390243902439,
+          "per_patient": {
+            "ott_1": 0.5,
+            "ott_2": 0.7083333333333334,
+            "ott_3": 0.7575757575757576,
+            "ott_4": 0.8,
+            "ott_5": 0.5,
+            "ott_6": 0.7000000000000001
+          },
+          "features_available": [
+            "pres_existing",
+            "expr_existing",
+            "dissim_existing"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_tcr_v1_from_ott": {
+          "lopo_auc": 0.6802609427609427,
+          "insample_auc": 0.5861788617886179,
+          "per_patient": {
+            "ott_1": 0.9444444444444444,
+            "ott_2": 0.7083333333333334,
+            "ott_3": 0.5454545454545454,
+            "ott_4": 0.8666666666666667,
+            "ott_5": 0.4666666666666667,
+            "ott_6": 0.55
+          },
+          "features_available": [
+            "bind_log50k",
+            "tcr_volume",
+            "tcr_charge_diff",
+            "tcr_hydro"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "rl_expression_v1_from_tesla": {
+          "lopo_auc": 0.7161195286195287,
+          "insample_auc": 0.6804878048780487,
+          "per_patient": {
+            "ott_1": 0.7777777777777779,
+            "ott_2": 0.7916666666666666,
+            "ott_3": 0.7272727272727272,
+            "ott_4": 0.6,
+            "ott_5": 0.6,
+            "ott_6": 0.8
+          },
+          "features_available": [
+            "bind_log50k",
+            "nm_raw",
+            "expr_raw"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "binding_plus_calis": {
+          "lopo_auc": 0.6668350168350168,
+          "insample_auc": 0.6276422764227643,
+          "per_patient": {
+            "ott_1": 0.8888888888888888,
+            "ott_2": 0.5,
+            "ott_3": 0.5454545454545454,
+            "ott_4": 0.7666666666666666,
+            "ott_5": 0.6,
+            "ott_6": 0.7
+          },
+          "features_available": [
+            "bind_log50k",
+            "calis_immuno"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_exp500": {
+          "lopo_auc": 0.660479797979798,
+          "insample_auc": 0.6357723577235772,
+          "per_patient": {
+            "ott_1": 0.8333333333333334,
+            "ott_2": 0.4583333333333333,
+            "ott_3": 0.4545454545454545,
+            "ott_4": 0.7666666666666666,
+            "ott_5": 0.7,
+            "ott_6": 0.75
+          },
+          "features_available": [
+            "bind_exp500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        },
+        "bind_sigmoid500": {
+          "lopo_auc": 0.660479797979798,
+          "insample_auc": 0.6357723577235772,
+          "per_patient": {
+            "ott_1": 0.8333333333333334,
+            "ott_2": 0.4583333333333333,
+            "ott_3": 0.4545454545454545,
+            "ott_4": 0.7666666666666666,
+            "ott_5": 0.7,
+            "ott_6": 0.75
+          },
+          "features_available": [
+            "bind_sigmoid500"
+          ],
+          "features_missing": [],
+          "status": "computed"
+        }
+      }
+    }
+  },
+  "discovery_results": {
+    "hilf_2019": {
+      "n_rows": 152,
+      "n_immunogenic": 77,
+      "n_patients": 15,
+      "can_lopo": true,
+      "eval_type": "LOPO",
+      "binding_baseline": 0.6125771265771267,
+      "single_feature_top10": [
+        {
+          "feature": "bind_log50k_prank",
+          "best_auc": 0.7333743842364533,
+          "direction": "pos",
+          "p_value": 1.7121842546924374e-05,
+          "n": 114
+        },
+        {
+          "feature": "bind_rank_patient",
+          "best_auc": 0.7139778325123153,
+          "direction": "pos",
+          "p_value": 8.08464985544905e-05,
+          "n": 114
+        },
+        {
+          "feature": "predicted_affinity_nm",
+          "best_auc": 0.6968903940886699,
+          "direction": "neg",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "final_binding_affinity_nm",
+          "best_auc": 0.6968903940886699,
+          "direction": "neg",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "nm_raw",
+          "best_auc": 0.6968903940886699,
+          "direction": "neg",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "bind_log50k",
+          "best_auc": 0.6968903940886699,
+          "direction": "pos",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "bind_log5k",
+          "best_auc": 0.6968903940886699,
+          "direction": "pos",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "bind_sigmoid500",
+          "best_auc": 0.6968903940886699,
+          "direction": "pos",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "bind_exp500",
+          "best_auc": 0.6968903940886699,
+          "direction": "pos",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        },
+        {
+          "feature": "bind_exp150",
+          "best_auc": 0.6968903940886699,
+          "direction": "pos",
+          "p_value": 0.00028636576137482724,
+          "n": 114
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "predicted_affinity_nm",
+          "auc": 0.6968903940886699,
+          "p": 0.00028636576137482724,
+          "direction": "neg"
+        },
+        {
+          "feature": "final_binding_affinity_nm",
+          "auc": 0.6968903940886699,
+          "p": 0.00028636576137482724,
+          "direction": "neg"
+        },
+        {
+          "feature": "rl_priority",
+          "auc": 0.6716883116883118,
+          "p": 0.00025611026369376223,
+          "direction": "pos"
+        },
+        {
+          "feature": "center_helix",
+          "auc": 0.64008658008658,
+          "p": 0.0028372287290112036,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_aromatic_frac",
+          "auc": 0.6116883116883117,
+          "p": 0.016119014100443106,
+          "direction": "pos"
+        },
+        {
+          "feature": "c_term_helix",
+          "auc": 0.606147186147186,
+          "p": 0.023805516023701925,
+          "direction": "neg"
+        },
+        {
+          "feature": "center_beta",
+          "auc": 0.6028571428571429,
+          "p": 0.02854458638727626,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_large_frac",
+          "auc": 0.6022510822510823,
+          "p": 0.02834460247602763,
+          "direction": "pos"
+        },
+        {
+          "feature": "center_aliphatic",
+          "auc": 0.5907308377896614,
+          "p": 0.004766530484465046,
+          "direction": "neg"
+        },
+        {
+          "feature": "all_aliphatic",
+          "auc": 0.5890663390663391,
+          "p": 0.0020825456381118744,
+          "direction": "neg"
+        }
+      ],
+      "hypotheses": {
+        "hilf_2019_binding_only": {
+          "lopo_auc": 0.6125771265771267,
+          "insample_auc": 0.5877056277056277,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "hilf_2019_predicted_affinity_nm_80_20": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "predicted_affinity_nm",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_predicted_affinity_nm_60_40": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "predicted_affinity_nm",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_predicted_affinity_nm_50_50": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "predicted_affinity_nm",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_final_binding_affinity_nm_80_20": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "final_binding_affinity_nm",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_final_binding_affinity_nm_60_40": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "final_binding_affinity_nm",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_final_binding_affinity_nm_50_50": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "final_binding_affinity_nm",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_rl_priority_80_20": {
+          "lopo_auc": 0.6345776353276354,
+          "insample_auc": 0.6062337662337662,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "rl_priority",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_rl_priority_60_40": {
+          "lopo_auc": 0.6436517094017093,
+          "insample_auc": 0.6136796536796536,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "rl_priority",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_rl_priority_50_50": {
+          "lopo_auc": 0.6430366300366299,
+          "insample_auc": 0.6214718614718614,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "rl_priority",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_center_helix_80_20": {
+          "lopo_auc": 0.6214429181929183,
+          "insample_auc": 0.6457142857142857,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "center_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_center_helix_60_40": {
+          "lopo_auc": 0.6049308099308099,
+          "insample_auc": 0.6458874458874458,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "center_helix",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_center_helix_50_50": {
+          "lopo_auc": 0.592826109076109,
+          "insample_auc": 0.6384415584415584,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "center_helix",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_all_aromatic_frac_80_20": {
+          "lopo_auc": 0.6515060032560032,
+          "insample_auc": 0.5981818181818181,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_aromatic_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_all_aromatic_frac_60_40": {
+          "lopo_auc": 0.6173271265771266,
+          "insample_auc": 0.5696103896103896,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_aromatic_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_all_aromatic_frac_50_50": {
+          "lopo_auc": 0.6099197191697192,
+          "insample_auc": 0.5668398268398268,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_aromatic_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_c_term_helix_80_20": {
+          "lopo_auc": 0.6070142450142451,
+          "insample_auc": 0.6033766233766235,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "c_term_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_c_term_helix_60_40": {
+          "lopo_auc": 0.6000817053317052,
+          "insample_auc": 0.5886580086580087,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "c_term_helix",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_c_term_helix_50_50": {
+          "lopo_auc": 0.5842412494912494,
+          "insample_auc": 0.5806926406926407,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "c_term_helix",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_center_beta_80_20": {
+          "lopo_auc": 0.5986969881969881,
+          "insample_auc": 0.637056277056277,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "center_beta",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_center_beta_60_40": {
+          "lopo_auc": 0.6435068172568172,
+          "insample_auc": 0.6611255411255411,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "center_beta",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_center_beta_50_50": {
+          "lopo_auc": 0.6513242775742775,
+          "insample_auc": 0.65991341991342,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "center_beta",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_all_large_frac_80_20": {
+          "lopo_auc": 0.5898605006105005,
+          "insample_auc": 0.5859740259740259,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_large_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_all_large_frac_60_40": {
+          "lopo_auc": 0.5591004273504274,
+          "insample_auc": 0.5681385281385282,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_large_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_all_large_frac_50_50": {
+          "lopo_auc": 0.5519451566951566,
+          "insample_auc": 0.5677922077922077,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_large_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_top2_bind": {
+          "lopo_auc": 0.3977586487586488,
+          "insample_auc": 0.36623376623376624,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "predicted_affinity_nm",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "final_binding_affinity_nm",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_top3_bind": {
+          "lopo_auc": 0.42078479853479855,
+          "insample_auc": 0.3800865800865801,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "predicted_affinity_nm",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "final_binding_affinity_nm",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "rl_priority",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "hilf_2019_bind_expr_60_40": {
+          "lopo_auc": 0.7369610297110297,
+          "insample_auc": 0.7027705627705627,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "hilf_2019_bind_expr_80_20": {
+          "lopo_auc": 0.7369610297110297,
+          "insample_auc": 0.7027705627705627,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              false
+            ]
+          ]
+        },
+        "hilf_2019_bind_calis": {
+          "lopo_auc": 0.6535933048433049,
+          "insample_auc": 0.6145454545454545,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "hilf_2019_train_fold_lr": {
+          "lopo_auc": 0.6826814204314203,
+          "insample_auc": null,
+          "features": [
+            "bind_log50k",
+            "predicted_affinity_nm",
+            "final_binding_affinity_nm",
+            "rl_priority",
+            "center_helix",
+            "all_aromatic_frac"
+          ]
+        }
+      },
+      "best_strategy": "hilf_2019_bind_expr_60_40",
+      "best_auc": 0.7369610297110297,
+      "best_delta": 0.12438390313390302
+    },
+    "keskin_2019": {
+      "n_rows": 27,
+      "n_immunogenic": 15,
+      "n_patients": 2,
+      "can_lopo": false,
+      "eval_type": "IN-SAMPLE (no LOPO)",
+      "binding_baseline": 0.5555555555555556,
+      "single_feature_top10": [
+        {
+          "feature": "pep_entropy",
+          "best_auc": 0.8638888888888889,
+          "direction": "neg",
+          "p_value": 0.0013384070002524688,
+          "n": 27
+        },
+        {
+          "feature": "pep_entropy_prank",
+          "best_auc": 0.8527777777777777,
+          "direction": "neg",
+          "p_value": 0.0020101136630619127,
+          "n": 27
+        },
+        {
+          "feature": "all_small_frac",
+          "best_auc": 0.85,
+          "direction": "pos",
+          "p_value": 0.0020805705160850782,
+          "n": 27
+        },
+        {
+          "feature": "tcr_small_frac",
+          "best_auc": 0.8472222222222222,
+          "direction": "pos",
+          "p_value": 0.002269952981431375,
+          "n": 27
+        },
+        {
+          "feature": "anchor_helix",
+          "best_auc": 0.813888888888889,
+          "direction": "pos",
+          "p_value": 0.006205880407820358,
+          "n": 27
+        },
+        {
+          "feature": "tcr_volume_prank",
+          "best_auc": 0.7722222222222223,
+          "direction": "neg",
+          "p_value": 0.017901848327112366,
+          "n": 27
+        },
+        {
+          "feature": "all_helix",
+          "best_auc": 0.7611111111111111,
+          "direction": "pos",
+          "p_value": 0.02322818431532798,
+          "n": 27
+        },
+        {
+          "feature": "tcr_volume",
+          "best_auc": 0.7555555555555555,
+          "direction": "neg",
+          "p_value": 0.0263610763311199,
+          "n": 27
+        },
+        {
+          "feature": "all_polar",
+          "best_auc": 0.7305555555555555,
+          "direction": "pos",
+          "p_value": 0.009347603468762563,
+          "n": 27
+        },
+        {
+          "feature": "tcr_polar",
+          "best_auc": 0.7222222222222222,
+          "direction": "pos",
+          "p_value": 0.008608581023316178,
+          "n": 23
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "pep_entropy",
+          "auc": 0.8638888888888889,
+          "p": 0.0013384070002524688,
+          "direction": "neg"
+        },
+        {
+          "feature": "pep_entropy_prank",
+          "auc": 0.8527777777777777,
+          "p": 0.0020101136630619127,
+          "direction": "neg"
+        },
+        {
+          "feature": "all_small_frac",
+          "auc": 0.85,
+          "p": 0.0020805705160850782,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_small_frac",
+          "auc": 0.8472222222222222,
+          "p": 0.002269952981431375,
+          "direction": "pos"
+        },
+        {
+          "feature": "anchor_helix",
+          "auc": 0.813888888888889,
+          "p": 0.006205880407820358,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume_prank",
+          "auc": 0.7722222222222223,
+          "p": 0.017901848327112366,
+          "direction": "neg"
+        },
+        {
+          "feature": "all_helix",
+          "auc": 0.7611111111111111,
+          "p": 0.02322818431532798,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume",
+          "auc": 0.7555555555555555,
+          "p": 0.0263610763311199,
+          "direction": "neg"
+        },
+        {
+          "feature": "all_polar",
+          "auc": 0.7305555555555555,
+          "p": 0.009347603468762563,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_polar",
+          "auc": 0.7222222222222222,
+          "p": 0.008608581023316178,
+          "direction": "pos"
+        }
+      ],
+      "hypotheses": {
+        "keskin_2019_binding_only": {
+          "lopo_auc": null,
+          "insample_auc": 0.5555555555555556,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "keskin_2019_pep_entropy_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.65,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "pep_entropy",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_pep_entropy_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.7333333333333334,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "pep_entropy",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_pep_entropy_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.75,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "pep_entropy",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_pep_entropy_prank_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.6444444444444444,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "pep_entropy_prank",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_pep_entropy_prank_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.7666666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "pep_entropy_prank",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_pep_entropy_prank_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.8,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "pep_entropy_prank",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_all_small_frac_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.6055555555555556,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_small_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_all_small_frac_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.6777777777777778,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_small_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_all_small_frac_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.6888888888888889,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_small_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_small_frac_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.65,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_small_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_small_frac_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.7166666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_small_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_small_frac_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.7666666666666666,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_small_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_anchor_helix_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.6,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "anchor_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_anchor_helix_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.6722222222222223,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "anchor_helix",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_anchor_helix_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.7444444444444445,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "anchor_helix",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_volume_prank_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.6277777777777778,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_volume_prank_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.6944444444444444,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_volume_prank_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.6944444444444444,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_all_helix_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.5888888888888888,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_all_helix_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.6166666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_helix",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_all_helix_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.6277777777777778,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_helix",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_volume_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.7611111111111111,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_volume_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.7611111111111111,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_tcr_volume_50_50": {
+          "lopo_auc": null,
+          "insample_auc": 0.7611111111111111,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_top2_bind": {
+          "lopo_auc": null,
+          "insample_auc": 0.7722222222222223,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "pep_entropy",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "pep_entropy_prank",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_top3_bind": {
+          "lopo_auc": null,
+          "insample_auc": 0.8055555555555556,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "pep_entropy",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "pep_entropy_prank",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "all_small_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "keskin_2019_bind_expr_60_40": {
+          "lopo_auc": null,
+          "insample_auc": 0.40555555555555556,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "keskin_2019_bind_expr_80_20": {
+          "lopo_auc": null,
+          "insample_auc": 0.38888888888888884,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              false
+            ]
+          ]
+        },
+        "keskin_2019_bind_calis": {
+          "lopo_auc": null,
+          "insample_auc": 0.5722222222222222,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        }
+      },
+      "best_strategy": "keskin_2019_top3_bind",
+      "best_auc": 0.8055555555555556,
+      "best_delta": 0.25
+    },
+    "rojas_2023": {
+      "n_rows": 230,
+      "n_immunogenic": 30,
+      "n_patients": 16,
+      "can_lopo": true,
+      "eval_type": "LOPO",
+      "binding_baseline": 0.5,
+      "single_feature_top10": [
+        {
+          "feature": "c_term_hydro",
+          "best_auc": 0.6809166666666667,
+          "direction": "neg",
+          "p_value": 0.0014078829085268022,
+          "n": 230
+        },
+        {
+          "feature": "c_term_aromatic",
+          "best_auc": 0.6323529411764706,
+          "direction": "pos",
+          "p_value": 0.19480647783779526,
+          "n": 73
+        },
+        {
+          "feature": "c_term_beta",
+          "best_auc": 0.6280833333333333,
+          "direction": "neg",
+          "p_value": 0.02381899544272507,
+          "n": 230
+        },
+        {
+          "feature": "center_helix",
+          "best_auc": 0.6132500000000001,
+          "direction": "pos",
+          "p_value": 0.045709714182808774,
+          "n": 230
+        },
+        {
+          "feature": "anchor_small_frac",
+          "best_auc": 0.61325,
+          "direction": "neg",
+          "p_value": 0.02507919580215538,
+          "n": 230
+        },
+        {
+          "feature": "all_polar",
+          "best_auc": 0.6037688442211055,
+          "direction": "pos",
+          "p_value": 0.06495127598079532,
+          "n": 229
+        },
+        {
+          "feature": "all_aromatic",
+          "best_auc": 0.6009872480460716,
+          "direction": "pos",
+          "p_value": 0.07529054051921785,
+          "n": 213
+        },
+        {
+          "feature": "center_aromatic",
+          "best_auc": 0.5968468468468469,
+          "direction": "pos",
+          "p_value": 0.20486974419062598,
+          "n": 86
+        },
+        {
+          "feature": "c_term_small",
+          "best_auc": 0.5955882352941175,
+          "direction": "neg",
+          "p_value": 0.14149348130338116,
+          "n": 139
+        },
+        {
+          "feature": "tcr_polar",
+          "best_auc": 0.5952261306532663,
+          "direction": "pos",
+          "p_value": 0.08876883969411181,
+          "n": 229
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "c_term_hydro",
+          "auc": 0.6809166666666667,
+          "p": 0.0014078829085268022,
+          "direction": "neg"
+        },
+        {
+          "feature": "c_term_beta",
+          "auc": 0.6280833333333333,
+          "p": 0.02381899544272507,
+          "direction": "neg"
+        },
+        {
+          "feature": "center_helix",
+          "auc": 0.6132500000000001,
+          "p": 0.045709714182808774,
+          "direction": "pos"
+        },
+        {
+          "feature": "anchor_small_frac",
+          "auc": 0.61325,
+          "p": 0.02507919580215538,
+          "direction": "neg"
+        }
+      ],
+      "hypotheses": {
+        "rojas_2023_binding_only": {
+          "lopo_auc": 0.5,
+          "insample_auc": 0.5,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "rojas_2023_c_term_hydro_80_20": {
+          "lopo_auc": 0.655171130952381,
+          "insample_auc": 0.6809166666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "c_term_hydro",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_c_term_hydro_60_40": {
+          "lopo_auc": 0.655171130952381,
+          "insample_auc": 0.6809166666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "c_term_hydro",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_c_term_hydro_50_50": {
+          "lopo_auc": 0.655171130952381,
+          "insample_auc": 0.6809166666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "c_term_hydro",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_c_term_beta_80_20": {
+          "lopo_auc": 0.5945684523809525,
+          "insample_auc": 0.6280833333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "c_term_beta",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_c_term_beta_60_40": {
+          "lopo_auc": 0.5945684523809525,
+          "insample_auc": 0.6280833333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "c_term_beta",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_c_term_beta_50_50": {
+          "lopo_auc": 0.5945684523809525,
+          "insample_auc": 0.6280833333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "c_term_beta",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_center_helix_80_20": {
+          "lopo_auc": 0.5887400793650794,
+          "insample_auc": 0.6132500000000001,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "center_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_center_helix_60_40": {
+          "lopo_auc": 0.5887400793650794,
+          "insample_auc": 0.6132500000000001,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "center_helix",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_center_helix_50_50": {
+          "lopo_auc": 0.5887400793650794,
+          "insample_auc": 0.6132500000000001,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "center_helix",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_anchor_small_frac_80_20": {
+          "lopo_auc": 0.668030753968254,
+          "insample_auc": 0.61325,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "anchor_small_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_anchor_small_frac_60_40": {
+          "lopo_auc": 0.668030753968254,
+          "insample_auc": 0.61325,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "anchor_small_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_anchor_small_frac_50_50": {
+          "lopo_auc": 0.668030753968254,
+          "insample_auc": 0.61325,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "anchor_small_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_top2_bind": {
+          "lopo_auc": 0.6640625,
+          "insample_auc": 0.6850833333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "c_term_hydro",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "c_term_beta",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_top3_bind": {
+          "lopo_auc": 0.6908482142857142,
+          "insample_auc": 0.6936666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "c_term_hydro",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "c_term_beta",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "center_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "rojas_2023_bind_calis": {
+          "lopo_auc": 0.47016369047619044,
+          "insample_auc": 0.4605,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "rojas_2023_train_fold_lr": {
+          "lopo_auc": 0.7051587301587301,
+          "insample_auc": null,
+          "features": [
+            "bind_log50k",
+            "c_term_hydro",
+            "c_term_beta",
+            "center_helix",
+            "anchor_small_frac"
+          ]
+        }
+      },
+      "best_strategy": "rojas_2023_train_fold_lr",
+      "best_auc": 0.7051587301587301,
+      "best_delta": 0.2051587301587301
+    },
+    "sahin_2017": {
+      "n_rows": 125,
+      "n_immunogenic": 75,
+      "n_patients": 13,
+      "can_lopo": true,
+      "eval_type": "LOPO",
+      "binding_baseline": 0.5,
+      "single_feature_top10": [
+        {
+          "feature": "all_pos_charge_frac",
+          "best_auc": 0.664,
+          "direction": "pos",
+          "p_value": 0.0017936771582928476,
+          "n": 125
+        },
+        {
+          "feature": "tcr_volume",
+          "best_auc": 0.65,
+          "direction": "pos",
+          "p_value": 0.0046226301402417696,
+          "n": 125
+        },
+        {
+          "feature": "center_charge",
+          "best_auc": 0.6453634085213034,
+          "direction": "pos",
+          "p_value": 0.0536189335948145,
+          "n": 61
+        },
+        {
+          "feature": "all_charged_frac",
+          "best_auc": 0.6425333333333333,
+          "direction": "pos",
+          "p_value": 0.006781153935142812,
+          "n": 125
+        },
+        {
+          "feature": "all_volume",
+          "best_auc": 0.6398666666666667,
+          "direction": "pos",
+          "p_value": 0.008273008555540992,
+          "n": 125
+        },
+        {
+          "feature": "anchor_small",
+          "best_auc": 0.6375212224108658,
+          "direction": "pos",
+          "p_value": 0.02517048894410259,
+          "n": 69
+        },
+        {
+          "feature": "tcr_pos_charge_frac",
+          "best_auc": 0.6374666666666667,
+          "direction": "pos",
+          "p_value": 0.00883199618532771,
+          "n": 125
+        },
+        {
+          "feature": "tcr_charged_frac",
+          "best_auc": 0.6255999999999999,
+          "direction": "pos",
+          "p_value": 0.017053628212451252,
+          "n": 125
+        },
+        {
+          "feature": "tcr_volume_prank",
+          "best_auc": 0.6252,
+          "direction": "pos",
+          "p_value": 0.017553724251052855,
+          "n": 125
+        },
+        {
+          "feature": "tcr_polar",
+          "best_auc": 0.6222666666666667,
+          "direction": "neg",
+          "p_value": 0.01898240527505309,
+          "n": 125
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "all_pos_charge_frac",
+          "auc": 0.664,
+          "p": 0.0017936771582928476,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume",
+          "auc": 0.65,
+          "p": 0.0046226301402417696,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_charged_frac",
+          "auc": 0.6425333333333333,
+          "p": 0.006781153935142812,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_volume",
+          "auc": 0.6398666666666667,
+          "p": 0.008273008555540992,
+          "direction": "pos"
+        },
+        {
+          "feature": "anchor_small",
+          "auc": 0.6375212224108658,
+          "p": 0.02517048894410259,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_pos_charge_frac",
+          "auc": 0.6374666666666667,
+          "p": 0.00883199618532771,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_charged_frac",
+          "auc": 0.6255999999999999,
+          "p": 0.017053628212451252,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume_prank",
+          "auc": 0.6252,
+          "p": 0.017553724251052855,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_polar",
+          "auc": 0.6222666666666667,
+          "p": 0.01898240527505309,
+          "direction": "neg"
+        },
+        {
+          "feature": "tcr_hydro_std",
+          "auc": 0.6193333333333333,
+          "p": 0.024279855360662343,
+          "direction": "pos"
+        }
+      ],
+      "hypotheses": {
+        "sahin_2017_binding_only": {
+          "lopo_auc": 0.5,
+          "insample_auc": 0.5,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_all_pos_charge_frac_80_20": {
+          "lopo_auc": 0.654513888888889,
+          "insample_auc": 0.664,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_pos_charge_frac_60_40": {
+          "lopo_auc": 0.654513888888889,
+          "insample_auc": 0.664,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_pos_charge_frac_50_50": {
+          "lopo_auc": 0.654513888888889,
+          "insample_auc": 0.664,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_80_20": {
+          "lopo_auc": 0.662202380952381,
+          "insample_auc": 0.65,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_60_40": {
+          "lopo_auc": 0.662202380952381,
+          "insample_auc": 0.65,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_50_50": {
+          "lopo_auc": 0.662202380952381,
+          "insample_auc": 0.65,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_charged_frac_80_20": {
+          "lopo_auc": 0.6576140873015873,
+          "insample_auc": 0.6425333333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_charged_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_charged_frac_60_40": {
+          "lopo_auc": 0.6576140873015873,
+          "insample_auc": 0.6425333333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_charged_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_charged_frac_50_50": {
+          "lopo_auc": 0.6576140873015873,
+          "insample_auc": 0.6425333333333333,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_charged_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_volume_80_20": {
+          "lopo_auc": 0.6624503968253969,
+          "insample_auc": 0.6398666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_volume_60_40": {
+          "lopo_auc": 0.6624503968253969,
+          "insample_auc": 0.6398666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_all_volume_50_50": {
+          "lopo_auc": 0.6624503968253969,
+          "insample_auc": 0.6398666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_anchor_small_80_20": {
+          "lopo_auc": 0.45337301587301587,
+          "insample_auc": 0.4865333333333334,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "anchor_small",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_anchor_small_60_40": {
+          "lopo_auc": 0.45337301587301587,
+          "insample_auc": 0.4865333333333334,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "anchor_small",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_anchor_small_50_50": {
+          "lopo_auc": 0.45337301587301587,
+          "insample_auc": 0.4865333333333334,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "anchor_small",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_pos_charge_frac_80_20": {
+          "lopo_auc": 0.621031746031746,
+          "insample_auc": 0.6374666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_pos_charge_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_pos_charge_frac_60_40": {
+          "lopo_auc": 0.621031746031746,
+          "insample_auc": 0.6374666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_pos_charge_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_pos_charge_frac_50_50": {
+          "lopo_auc": 0.621031746031746,
+          "insample_auc": 0.6374666666666667,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_pos_charge_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_charged_frac_80_20": {
+          "lopo_auc": 0.6372767857142857,
+          "insample_auc": 0.6255999999999999,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_charged_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_charged_frac_60_40": {
+          "lopo_auc": 0.6372767857142857,
+          "insample_auc": 0.6255999999999999,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_charged_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_charged_frac_50_50": {
+          "lopo_auc": 0.6372767857142857,
+          "insample_auc": 0.6255999999999999,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_charged_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_prank_80_20": {
+          "lopo_auc": 0.662202380952381,
+          "insample_auc": 0.6252,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_prank_60_40": {
+          "lopo_auc": 0.662202380952381,
+          "insample_auc": 0.6252,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_tcr_volume_prank_50_50": {
+          "lopo_auc": 0.662202380952381,
+          "insample_auc": 0.6252,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_top2_bind": {
+          "lopo_auc": 0.6587301587301587,
+          "insample_auc": 0.6515999999999998,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "tcr_volume",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_top3_bind": {
+          "lopo_auc": 0.6587301587301587,
+          "insample_auc": 0.6524000000000001,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "all_pos_charge_frac",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "tcr_volume",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "all_charged_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "sahin_2017_bind_expr_60_40": {
+          "lopo_auc": 0.4618055555555556,
+          "insample_auc": 0.44013333333333327,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_bind_expr_80_20": {
+          "lopo_auc": 0.4618055555555556,
+          "insample_auc": 0.44013333333333327,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_bind_calis": {
+          "lopo_auc": 0.4437003968253968,
+          "insample_auc": 0.41973333333333335,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "sahin_2017_train_fold_lr": {
+          "lopo_auc": 0.6510416666666666,
+          "insample_auc": null,
+          "features": [
+            "bind_log50k",
+            "all_pos_charge_frac",
+            "tcr_volume",
+            "all_charged_frac",
+            "all_volume",
+            "anchor_small"
+          ]
+        }
+      },
+      "best_strategy": "sahin_2017_all_volume_80_20",
+      "best_auc": 0.6624503968253969,
+      "best_delta": 0.16245039682539686,
+      "expression_direction_note": "Expression negatively correlated with immunogenicity in Sahin 2017 (immunogenic mean TPM=50.1, non-immunogenic mean TPM=54.3, AUC=0.44). Possible immune editing signal: highly expressed neoantigens may be preferentially eliminated under immune pressure. Requires investigation.",
+      "sahin_best_strategy_note": "Best strategy uses all_volume (20%) not expression, suggesting peptide physicochemical properties carry more signal than expression in this cohort."
+    },
+    "tesla_2020": {
+      "n_rows": 918,
+      "n_immunogenic": 41,
+      "n_patients": 9,
+      "can_lopo": true,
+      "eval_type": "LOPO",
+      "binding_baseline": 0.7708359550490846,
+      "single_feature_top10": [
+        {
+          "feature": "binding_affinity_nm",
+          "best_auc": 0.7915982979670162,
+          "direction": "neg",
+          "p_value": 2.6473290315391236e-10,
+          "n": 918
+        },
+        {
+          "feature": "nm_raw",
+          "best_auc": 0.7915982979670162,
+          "direction": "neg",
+          "p_value": 2.6473290315391236e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_log50k",
+          "best_auc": 0.7915982979670162,
+          "direction": "pos",
+          "p_value": 2.647327353081964e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_log5k",
+          "best_auc": 0.7915982979670162,
+          "direction": "pos",
+          "p_value": 2.6469207751550503e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_sigmoid500",
+          "best_auc": 0.7915982979670162,
+          "direction": "pos",
+          "p_value": 2.6473290315391236e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_exp500",
+          "best_auc": 0.7915982979670162,
+          "direction": "pos",
+          "p_value": 2.6473290315391236e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_exp150",
+          "best_auc": 0.7915982979670162,
+          "direction": "pos",
+          "p_value": 2.6473290315391236e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_neglog",
+          "best_auc": 0.7915982979670162,
+          "direction": "pos",
+          "p_value": 2.6473290315391236e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_x_pep_entropy",
+          "best_auc": 0.7863559251327975,
+          "direction": "pos",
+          "p_value": 5.485659199845146e-10,
+          "n": 918
+        },
+        {
+          "feature": "bind_x_tcr_volume",
+          "best_auc": 0.7533998943182134,
+          "direction": "pos",
+          "p_value": 4.009324113572624e-08,
+          "n": 918
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "binding_affinity_nm",
+          "auc": 0.7915982979670162,
+          "p": 2.6473290315391236e-10,
+          "direction": "neg"
+        },
+        {
+          "feature": "expression_tpm",
+          "auc": 0.7301205891514262,
+          "p": 7.868545503765868e-06,
+          "direction": "pos"
+        },
+        {
+          "feature": "expr_raw",
+          "auc": 0.7301205891514262,
+          "p": 7.868545503765868e-06,
+          "direction": "pos"
+        },
+        {
+          "feature": "expr_log2",
+          "auc": 0.7301205891514262,
+          "p": 7.868545503765868e-06,
+          "direction": "pos"
+        },
+        {
+          "feature": "expr_sqrt",
+          "auc": 0.7301205891514262,
+          "p": 7.868545503765868e-06,
+          "direction": "pos"
+        },
+        {
+          "feature": "expr_sigmoid10",
+          "auc": 0.7301205891514262,
+          "p": 7.868545503765868e-06,
+          "direction": "pos"
+        },
+        {
+          "feature": "expr_rank",
+          "auc": 0.7301205891514262,
+          "p": 7.868545503765868e-06,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_charged_frac",
+          "auc": 0.6435325527713658,
+          "p": 0.0017669223152393392,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_hydro",
+          "auc": 0.6278054342687098,
+          "p": 0.0056224089012802455,
+          "direction": "neg"
+        },
+        {
+          "feature": "n_term_small",
+          "auc": 0.6275217391304349,
+          "p": 0.02010172743111604,
+          "direction": "pos"
+        }
+      ],
+      "hypotheses": {
+        "tesla_2020_binding_only": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "tesla_2020_binding_affinity_nm_80_20": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "binding_affinity_nm",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_binding_affinity_nm_60_40": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "binding_affinity_nm",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_binding_affinity_nm_50_50": {
+          "lopo_auc": 0.7708359550490846,
+          "insample_auc": 0.7915982979670162,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "binding_affinity_nm",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expression_tpm_80_20": {
+          "lopo_auc": 0.753946987483855,
+          "insample_auc": 0.7129905164502044,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expression_tpm",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expression_tpm_60_40": {
+          "lopo_auc": 0.7574281015041847,
+          "insample_auc": 0.701087409961899,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expression_tpm",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expression_tpm_50_50": {
+          "lopo_auc": 0.759809053885137,
+          "insample_auc": 0.6985009872903746,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "expression_tpm",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_raw_80_20": {
+          "lopo_auc": 0.753946987483855,
+          "insample_auc": 0.7129905164502044,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_raw_60_40": {
+          "lopo_auc": 0.7574281015041847,
+          "insample_auc": 0.701087409961899,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_raw_50_50": {
+          "lopo_auc": 0.759809053885137,
+          "insample_auc": 0.6985009872903746,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "expr_raw",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_log2_80_20": {
+          "lopo_auc": 0.7899728296109535,
+          "insample_auc": 0.7464749561976806,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_log2",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_log2_60_40": {
+          "lopo_auc": 0.7681767139925719,
+          "insample_auc": 0.7146591762382847,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_log2",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_log2_50_50": {
+          "lopo_auc": 0.7673220902212816,
+          "insample_auc": 0.7062880663014156,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "expr_log2",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_sqrt_80_20": {
+          "lopo_auc": 0.7714498388343243,
+          "insample_auc": 0.7428039046639041,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_sqrt",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_sqrt_60_40": {
+          "lopo_auc": 0.7631551769462089,
+          "insample_auc": 0.7143810662736045,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_sqrt",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_sqrt_50_50": {
+          "lopo_auc": 0.7608128340555838,
+          "insample_auc": 0.7059265233473315,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "expr_sqrt",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_sigmoid10_80_20": {
+          "lopo_auc": 0.8016478653375921,
+          "insample_auc": 0.813944433629057,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_sigmoid10",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_sigmoid10_60_40": {
+          "lopo_auc": 0.7862764536537199,
+          "insample_auc": 0.8050449147592958,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_sigmoid10",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_sigmoid10_50_50": {
+          "lopo_auc": 0.7792492810158047,
+          "insample_auc": 0.7954779319743027,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "expr_sigmoid10",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_rank_80_20": {
+          "lopo_auc": 0.8081193667845837,
+          "insample_auc": 0.8169758322440692,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_rank",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_rank_60_40": {
+          "lopo_auc": 0.7963994080998874,
+          "insample_auc": 0.8106905470423005,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_rank",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_expr_rank_50_50": {
+          "lopo_auc": 0.7903728796394032,
+          "insample_auc": 0.8021525711266234,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "expr_rank",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_all_charged_frac_80_20": {
+          "lopo_auc": 0.7897640151820784,
+          "insample_auc": 0.8149317240036711,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_charged_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_all_charged_frac_60_40": {
+          "lopo_auc": 0.7970832663446249,
+          "insample_auc": 0.8189086964985955,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_charged_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_all_charged_frac_50_50": {
+          "lopo_auc": 0.7823415830668354,
+          "insample_auc": 0.8078677309007981,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_charged_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_top2_bind": {
+          "lopo_auc": 0.8134179059185117,
+          "insample_auc": 0.823066440470562,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "binding_affinity_nm",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "expression_tpm",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_top3_bind": {
+          "lopo_auc": 0.808634426609231,
+          "insample_auc": 0.814890007508969,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "binding_affinity_nm",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "expression_tpm",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "expr_raw",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "tesla_2020_bind_expr_60_40": {
+          "lopo_auc": 0.7574281015041847,
+          "insample_auc": 0.701087409961899,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "tesla_2020_bind_expr_80_20": {
+          "lopo_auc": 0.753946987483855,
+          "insample_auc": 0.7129905164502044,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              false
+            ]
+          ]
+        },
+        "tesla_2020_bind_calis": {
+          "lopo_auc": 0.7620323282250328,
+          "insample_auc": 0.781822732708513,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "tesla_2020_train_fold_lr": {
+          "lopo_auc": 0.8179252790359419,
+          "insample_auc": null,
+          "features": [
+            "bind_log50k",
+            "binding_affinity_nm",
+            "expression_tpm",
+            "expr_raw",
+            "expr_log2",
+            "expr_sqrt"
+          ]
+        }
+      },
+      "best_strategy": "tesla_2020_train_fold_lr",
+      "best_auc": 0.8179252790359419,
+      "best_delta": 0.04708932398685728
+    },
+    "ott_2017_mutation": {
+      "n_rows": 97,
+      "n_immunogenic": 15,
+      "n_patients": 6,
+      "can_lopo": true,
+      "eval_type": "LOPO",
+      "binding_baseline": 0.6493686868686869,
+      "single_feature_top10": [
+        {
+          "feature": "n_term_small",
+          "best_auc": 0.7545454545454545,
+          "direction": "neg",
+          "p_value": 0.016498281050885327,
+          "n": 62
+        },
+        {
+          "feature": "all_volume",
+          "best_auc": 0.7373983739837399,
+          "direction": "pos",
+          "p_value": 0.0036319869512183313,
+          "n": 97
+        },
+        {
+          "feature": "n_term_volume",
+          "best_auc": 0.7308943089430894,
+          "direction": "pos",
+          "p_value": 0.004672548726819005,
+          "n": 97
+        },
+        {
+          "feature": "tcr_volume_mut",
+          "best_auc": 0.6943089430894309,
+          "direction": "pos",
+          "p_value": 0.01732863642508858,
+          "n": 97
+        },
+        {
+          "feature": "anchor_polar",
+          "best_auc": 0.6935483870967742,
+          "direction": "neg",
+          "p_value": 0.34743036956997664,
+          "n": 33
+        },
+        {
+          "feature": "bind_x_tcr_beta",
+          "best_auc": 0.6926829268292682,
+          "direction": "pos",
+          "p_value": 0.0182898845901442,
+          "n": 97
+        },
+        {
+          "feature": "bind_x_tcr_polar",
+          "best_auc": 0.6847826086956521,
+          "direction": "pos",
+          "p_value": 0.04259864042556085,
+          "n": 81
+        },
+        {
+          "feature": "all_hydrophobic_frac",
+          "best_auc": 0.6845528455284553,
+          "direction": "pos",
+          "p_value": 0.022857100336052545,
+          "n": 97
+        },
+        {
+          "feature": "bind_x_tcr_volume",
+          "best_auc": 0.6804878048780487,
+          "direction": "pos",
+          "p_value": 0.02710287160584037,
+          "n": 97
+        },
+        {
+          "feature": "tcr_volume_prank",
+          "best_auc": 0.6739837398373983,
+          "direction": "pos",
+          "p_value": 0.03311825820227384,
+          "n": 97
+        }
+      ],
+      "significant_non_binding": [
+        {
+          "feature": "n_term_small",
+          "auc": 0.7545454545454545,
+          "p": 0.016498281050885327,
+          "direction": "neg"
+        },
+        {
+          "feature": "all_volume",
+          "auc": 0.7373983739837399,
+          "p": 0.0036319869512183313,
+          "direction": "pos"
+        },
+        {
+          "feature": "n_term_volume",
+          "auc": 0.7308943089430894,
+          "p": 0.004672548726819005,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume_mut",
+          "auc": 0.6943089430894309,
+          "p": 0.01732863642508858,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_hydrophobic_frac",
+          "auc": 0.6845528455284553,
+          "p": 0.022857100336052545,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume_prank",
+          "auc": 0.6739837398373983,
+          "p": 0.03311825820227384,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_volume",
+          "auc": 0.6715447154471544,
+          "p": 0.03570363910547166,
+          "direction": "pos"
+        },
+        {
+          "feature": "tcr_helix",
+          "auc": 0.6707317073170732,
+          "p": 0.036586352663037336,
+          "direction": "pos"
+        },
+        {
+          "feature": "all_small_frac",
+          "auc": 0.66869918699187,
+          "p": 0.03699650176224582,
+          "direction": "neg"
+        },
+        {
+          "feature": "tcr_hydrophobicity_mut",
+          "auc": 0.6686991869918699,
+          "p": 0.0388865565013559,
+          "direction": "pos"
+        }
+      ],
+      "hypotheses": {
+        "ott_2017_mutation_binding_only": {
+          "lopo_auc": 0.6493686868686869,
+          "insample_auc": 0.633739837398374,
+          "features": [
+            [
+              "bind_log50k",
+              1.0,
+              false
+            ]
+          ]
+        },
+        "ott_2017_mutation_n_term_small_80_20": {
+          "lopo_auc": 0.7268518518518517,
+          "insample_auc": 0.6776422764227642,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "n_term_small",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_n_term_small_60_40": {
+          "lopo_auc": 0.7310185185185185,
+          "insample_auc": 0.7036585365853659,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "n_term_small",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_n_term_small_50_50": {
+          "lopo_auc": 0.7310185185185185,
+          "insample_auc": 0.7060975609756097,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "n_term_small",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_all_volume_80_20": {
+          "lopo_auc": 0.764520202020202,
+          "insample_auc": 0.7430894308943089,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_all_volume_60_40": {
+          "lopo_auc": 0.7714646464646465,
+          "insample_auc": 0.7414634146341463,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_all_volume_50_50": {
+          "lopo_auc": 0.7714646464646465,
+          "insample_auc": 0.7406504065040651,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_n_term_volume_80_20": {
+          "lopo_auc": 0.7493686868686869,
+          "insample_auc": 0.7317073170731707,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "n_term_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_n_term_volume_60_40": {
+          "lopo_auc": 0.7535353535353536,
+          "insample_auc": 0.7317073170731707,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "n_term_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_n_term_volume_50_50": {
+          "lopo_auc": 0.753030303030303,
+          "insample_auc": 0.7325203252032522,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "n_term_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_mut_80_20": {
+          "lopo_auc": 0.7100589225589226,
+          "insample_auc": 0.6983739837398375,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume_mut",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_mut_60_40": {
+          "lopo_auc": 0.7072811447811448,
+          "insample_auc": 0.6951219512195121,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume_mut",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_mut_50_50": {
+          "lopo_auc": 0.7072811447811448,
+          "insample_auc": 0.6951219512195121,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume_mut",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_all_hydrophobic_frac_80_20": {
+          "lopo_auc": 0.695959595959596,
+          "insample_auc": 0.6666666666666666,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "all_hydrophobic_frac",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_all_hydrophobic_frac_60_40": {
+          "lopo_auc": 0.7741161616161616,
+          "insample_auc": 0.691869918699187,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "all_hydrophobic_frac",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_all_hydrophobic_frac_50_50": {
+          "lopo_auc": 0.7838383838383839,
+          "insample_auc": 0.7,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "all_hydrophobic_frac",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_prank_80_20": {
+          "lopo_auc": 0.6751683501683501,
+          "insample_auc": 0.6747967479674797,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_prank_60_40": {
+          "lopo_auc": 0.7084175084175084,
+          "insample_auc": 0.6707317073170732,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_prank_50_50": {
+          "lopo_auc": 0.6997053872053872,
+          "insample_auc": 0.6829268292682926,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume_prank",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_80_20": {
+          "lopo_auc": 0.6908670033670034,
+          "insample_auc": 0.6739837398373985,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_60_40": {
+          "lopo_auc": 0.6908670033670034,
+          "insample_auc": 0.6715447154471544,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_volume_50_50": {
+          "lopo_auc": 0.6959175084175085,
+          "insample_auc": 0.6723577235772358,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_volume",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_helix_80_20": {
+          "lopo_auc": 0.696422558922559,
+          "insample_auc": 0.6650406504065041,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "tcr_helix",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_helix_60_40": {
+          "lopo_auc": 0.7037457912457913,
+          "insample_auc": 0.6813008130081302,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "tcr_helix",
+              0.4,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_tcr_helix_50_50": {
+          "lopo_auc": 0.7124579124579125,
+          "insample_auc": 0.6861788617886179,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "tcr_helix",
+              0.5,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_top2_bind": {
+          "lopo_auc": 0.7700757575757575,
+          "insample_auc": 0.7260162601626017,
+          "features": [
+            [
+              "bind_log50k",
+              0.5,
+              false
+            ],
+            [
+              "n_term_small",
+              0.25,
+              "AUTO"
+            ],
+            [
+              "all_volume",
+              0.25,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_top3_bind": {
+          "lopo_auc": 0.7853114478114477,
+          "insample_auc": 0.7398373983739838,
+          "features": [
+            [
+              "bind_log50k",
+              0.4,
+              false
+            ],
+            [
+              "n_term_small",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "all_volume",
+              0.2,
+              "AUTO"
+            ],
+            [
+              "n_term_volume",
+              0.2,
+              "AUTO"
+            ]
+          ]
+        },
+        "ott_2017_mutation_bind_expr_60_40": {
+          "lopo_auc": 0.5342592592592593,
+          "insample_auc": 0.5211382113821139,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "expr_raw",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "ott_2017_mutation_bind_expr_80_20": {
+          "lopo_auc": 0.5596801346801347,
+          "insample_auc": 0.5292682926829269,
+          "features": [
+            [
+              "bind_log50k",
+              0.8,
+              false
+            ],
+            [
+              "expr_raw",
+              0.2,
+              false
+            ]
+          ]
+        },
+        "ott_2017_mutation_bind_calis": {
+          "lopo_auc": 0.6668350168350168,
+          "insample_auc": 0.6276422764227643,
+          "features": [
+            [
+              "bind_log50k",
+              0.6,
+              false
+            ],
+            [
+              "calis_immuno",
+              0.4,
+              false
+            ]
+          ]
+        },
+        "ott_2017_mutation_train_fold_lr": {
+          "lopo_auc": 0.7664141414141414,
+          "insample_auc": null,
+          "features": [
+            "bind_log50k",
+            "n_term_small",
+            "all_volume",
+            "n_term_volume",
+            "tcr_volume_mut",
+            "all_hydrophobic_frac"
+          ]
+        }
+      },
+      "best_strategy": "ott_2017_mutation_top3_bind",
+      "best_auc": 0.7853114478114477,
+      "best_delta": 0.1359427609427608
+    }
+  },
+  "repertoire": {
+    "rl_binding_only": {
+      "description": "MHC binding affinity only",
+      "type": "universal",
+      "features": {
+        "bind_log50k": 1.0
+      },
+      "performance": {
+        "hilf_2019": 0.6125771265771267,
+        "keskin_2019": 0.5555555555555556,
+        "tesla_2020": 0.7708359550490846,
+        "ott_2017_mutation": 0.6493686868686869
+      }
+    },
+    "rl_expression_v1": {
+      "description": "Binding (dual) + Expression",
+      "type": "cross-validated",
+      "features": {
+        "bind_log50k": 0.5,
+        "nm_raw_inv": 0.25,
+        "expression": 0.25
+      },
+      "performance": {
+        "hilf_2019": 0.6628574481074482,
+        "keskin_2019": 0.4388888888888889,
+        "sahin_2017": 0.4618055555555556,
+        "tesla_2020": 0.8134179059185117,
+        "ott_2017_mutation": 0.7161195286195287
+      }
+    },
+    "rl_hilf_2019_v1": {
+      "description": "Best strategy for hilf_2019",
+      "type": "paper-specific",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "expr_raw",
+          0.4,
+          false
+        ]
+      ],
+      "performance": {
+        "hilf_2019": 0.7369610297110297
+      },
+      "delta_over_binding": 0.12438390313390302
+    },
+    "rl_keskin_2019_v1": {
+      "description": "Best strategy for keskin_2019",
+      "type": "paper-specific",
+      "features": [
+        [
+          "bind_log50k",
+          0.4,
+          false
+        ],
+        [
+          "pep_entropy",
+          0.2,
+          "AUTO"
+        ],
+        [
+          "pep_entropy_prank",
+          0.2,
+          "AUTO"
+        ],
+        [
+          "all_small_frac",
+          0.2,
+          "AUTO"
+        ]
+      ],
+      "performance": {
+        "keskin_2019": 0.8055555555555556
+      },
+      "delta_over_binding": 0.25
+    },
+    "rl_rojas_2023_v1": {
+      "description": "Best strategy for rojas_2023",
+      "type": "paper-specific",
+      "features": [
+        "bind_log50k",
+        "c_term_hydro",
+        "c_term_beta",
+        "center_helix",
+        "anchor_small_frac"
+      ],
+      "performance": {
+        "rojas_2023": 0.7051587301587301
+      },
+      "delta_over_binding": 0.2051587301587301
+    },
+    "rl_sahin_2017_v1": {
+      "description": "Best strategy for sahin_2017",
+      "type": "paper-specific",
+      "features": [
+        [
+          "bind_log50k",
+          0.8,
+          false
+        ],
+        [
+          "all_volume",
+          0.2,
+          "AUTO"
+        ]
+      ],
+      "performance": {
+        "sahin_2017": 0.6624503968253969
+      },
+      "delta_over_binding": 0.16245039682539686
+    },
+    "rl_tesla_2020_v1": {
+      "description": "Best strategy for tesla_2020",
+      "type": "paper-specific",
+      "features": [
+        "bind_log50k",
+        "binding_affinity_nm",
+        "expression_tpm",
+        "expr_raw",
+        "expr_log2",
+        "expr_sqrt"
+      ],
+      "performance": {
+        "tesla_2020": 0.8179252790359419
+      },
+      "delta_over_binding": 0.04708932398685728
+    },
+    "rl_ott_2017_mutation_v1": {
+      "description": "Best strategy for ott_2017_mutation",
+      "type": "paper-specific",
+      "features": [
+        [
+          "bind_log50k",
+          0.4,
+          false
+        ],
+        [
+          "n_term_small",
+          0.2,
+          "AUTO"
+        ],
+        [
+          "all_volume",
+          0.2,
+          "AUTO"
+        ],
+        [
+          "n_term_volume",
+          0.2,
+          "AUTO"
+        ]
+      ],
+      "performance": {
+        "ott_2017_mutation": 0.7853114478114477
+      },
+      "delta_over_binding": 0.1359427609427608
+    }
+  }
+}

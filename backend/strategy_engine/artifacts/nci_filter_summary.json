@@ -1,0 +1,19 @@
+{
+  "v1_path": "backend\\strategy_engine\\artifacts\\nci_full_mutanome.csv",
+  "v1_rows": 292495,
+  "v1_immunogenic": 82,
+  "v2_path": "backend\\strategy_engine\\artifacts\\nci_prescreened_equivalent.csv",
+  "v2_rows": 10900,
+  "v2_immunogenic": 66,
+  "v2_threshold_nm": 500,
+  "v2_pos_neg_ratio": "1:164",
+  "stage1_features_present": [
+    "binding_nm",
+    "binding_log",
+    "presentation_score_el",
+    "binding_stability",
+    "expression_tpm",
+    "pep_length"
+  ],
+  "stage1_features_missing": []
+}

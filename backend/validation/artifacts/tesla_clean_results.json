@@ -1,0 +1,339 @@
+{
+  "leaky_columns_removed": [
+    "response_type",
+    "tesla_tcr_flow_i",
+    "tesla_tcr_flow_i_quant",
+    "tesla_tcr_flow_ii",
+    "tesla_tcr_flow_ii_quant"
+  ],
+  "uncertain_columns_removed": [
+    "detection_method",
+    "usable_for_training",
+    "notes",
+    "tesla_tcr_nanoparticle"
+  ],
+  "n_clean_features": 175,
+  "binding_baseline_lopo": 0.7708359550490846,
+  "results": {
+    "CLEAN_top2_bind": {
+      "mean_auc": 0.8134179059185117,
+      "in_sample": 0.823066440470562,
+      "delta": 0.042581950869427065,
+      "rationale": "Bind + binding_affinity_nm + expression_tpm"
+    },
+    "CLEAN_top3_bind": {
+      "mean_auc": 0.8131423118099007,
+      "in_sample": 0.82260755902884,
+      "delta": 0.042306356760816066,
+      "rationale": "Bind + top 3 clean features"
+    },
+    "CLEAN_full_charged_frac_60_40": {
+      "mean_auc": 0.7970832663446249,
+      "in_sample": 0.8189086964985955,
+      "delta": 0.026247311295540254,
+      "rationale": "Binding(0.6) + full_charged_frac(0.4)"
+    },
+    "CLEAN_full_hydrophobic_frac_60_40": {
+      "mean_auc": 0.7937871252178121,
+      "in_sample": 0.8121367188586368,
+      "delta": 0.022951170168727497,
+      "rationale": "Binding(0.6) + full_hydrophobic_frac(0.4)"
+    },
+    "CLEAN_full_charged_frac_80_20": {
+      "mean_auc": 0.7897640151820784,
+      "in_sample": 0.8149317240036711,
+      "delta": 0.01892806013299375,
+      "rationale": "Binding(0.8) + full_charged_frac(0.2)"
+    },
+    "CLEAN_full_hydrophobic_frac_80_20": {
+      "mean_auc": 0.7883599611341281,
+      "in_sample": 0.813833189643185,
+      "delta": 0.017524006085043453,
+      "rationale": "Binding(0.8) + full_hydrophobic_frac(0.2)"
+    },
+    "CLEAN_full_hydrophobic_frac_50_50": {
+      "mean_auc": 0.7869277553222044,
+      "in_sample": 0.7935867842144784,
+      "delta": 0.01609180027311974,
+      "rationale": "Binding(0.5) + full_hydrophobic_frac(0.5)"
+    },
+    "CLEAN_full_charged_frac_50_50": {
+      "mean_auc": 0.7823415830668354,
+      "in_sample": 0.8078677309007981,
+      "delta": 0.01150562801775079,
+      "rationale": "Binding(0.5) + full_charged_frac(0.5)"
+    },
+    "CLEAN_full_pos_charge_frac_80_20": {
+      "mean_auc": 0.7820039926244594,
+      "in_sample": 0.806004394137442,
+      "delta": 0.011168037575374767,
+      "rationale": "Binding(0.8) + full_pos_charge_frac(0.2)"
+    },
+    "CLEAN_full_pos_charge_frac_60_40": {
+      "mean_auc": 0.7796111440938815,
+      "in_sample": 0.8013321467308173,
+      "delta": 0.008775189044796905,
+      "rationale": "Binding(0.6) + full_pos_charge_frac(0.4)"
+    },
+    "CLEAN_full_neg_charge_frac_60_40": {
+      "mean_auc": 0.7789501862896865,
+      "in_sample": 0.8035848374447258,
+      "delta": 0.008114231240601844,
+      "rationale": "Binding(0.6) + full_neg_charge_frac(0.4)"
+    },
+    "CLEAN_nterm_small_80_20": {
+      "mean_auc": 0.7785203554819822,
+      "in_sample": 0.7964791278471508,
+      "delta": 0.007684400432897531,
+      "rationale": "Binding(0.8) + nterm_small(0.2)"
+    },
+    "CLEAN_full_neg_charge_frac_50_50": {
+      "mean_auc": 0.778206073744314,
+      "in_sample": 0.7984398030981451,
+      "delta": 0.007370118695229411,
+      "rationale": "Binding(0.5) + full_neg_charge_frac(0.5)"
+    },
+    "CLEAN_full_neg_charge_frac_80_20": {
+      "mean_auc": 0.7766725710803826,
+      "in_sample": 0.8012765247378814,
+      "delta": 0.005836616031297925,
+      "rationale": "Binding(0.8) + full_neg_charge_frac(0.2)"
+    },
+    "CLEAN_strong_bind_x_calis_80_20": {
+      "mean_auc": 0.771860990760052,
+      "in_sample": 0.7948939010484746,
+      "delta": 0.001025035710967348,
+      "rationale": "Binding(0.8) + strong_bind_x_calis(0.2)"
+    },
+    "CLEAN_TRAIN_FOLD_LR": {
+      "mean_auc": 0.7708616453261982,
+      "in_sample": null,
+      "delta": 2.5690277113521454e-05,
+      "rationale": "LR on fold: ['bind_log50k', 'binding_affinity_nm', 'expression_tpm', 'full_charged_frac', 'full_hydro', 'nterm_small', 'cterm_hydro', 'full_neg_charge_frac', 'strong_bind_x_calis', 'full_hydrophobic_frac', 'full_pos_charge_frac']"
+    },
+    "CLEAN_binding_only": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample": 0.7915982979670162,
+      "delta": 0.0,
+      "rationale": "Baseline"
+    },
+    "CLEAN_binding_affinity_nm_80_20": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample": 0.7915982979670162,
+      "delta": 0.0,
+      "rationale": "Binding(0.8) + binding_affinity_nm(0.2)"
+    },
+    "CLEAN_binding_affinity_nm_60_40": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample": 0.7915982979670162,
+      "delta": 0.0,
+      "rationale": "Binding(0.6) + binding_affinity_nm(0.4)"
+    },
+    "CLEAN_binding_affinity_nm_50_50": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample": 0.7915982979670162,
+      "delta": 0.0,
+      "rationale": "Binding(0.5) + binding_affinity_nm(0.5)"
+    },
+    "CLEAN_strong_bind_x_calis_60_40": {
+      "mean_auc": 0.7672236497762531,
+      "in_sample": 0.7986483855716551,
+      "delta": -0.0036123052728315175,
+      "rationale": "Binding(0.6) + strong_bind_x_calis(0.4)"
+    },
+    "CLEAN_full_hydro_80_20": {
+      "mean_auc": 0.7641364179815828,
+      "in_sample": 0.7631059320855467,
+      "delta": -0.006699537067501815,
+      "rationale": "Binding(0.8) + full_hydro(0.2)"
+    },
+    "CLEAN_strong_bind_x_calis_50_50": {
+      "mean_auc": 0.7638848988080221,
+      "in_sample": 0.7968962927941708,
+      "delta": -0.006951056241062514,
+      "rationale": "Binding(0.5) + strong_bind_x_calis(0.5)"
+    },
+    "CLEAN_calis_60_40": {
+      "mean_auc": 0.7620323282250328,
+      "in_sample": 0.781822732708513,
+      "delta": -0.008803626824051891,
+      "rationale": "Binding + Calis (biological prior)"
+    },
+    "CLEAN_expression_tpm_50_50": {
+      "mean_auc": 0.759809053885137,
+      "in_sample": 0.6985009872903746,
+      "delta": -0.011026901163947667,
+      "rationale": "Binding(0.5) + expression_tpm(0.5)"
+    },
+    "CLEAN_expression_tpm_60_40": {
+      "mean_auc": 0.7574281015041847,
+      "in_sample": 0.701087409961899,
+      "delta": -0.013407853544899928,
+      "rationale": "Binding(0.6) + expression_tpm(0.4)"
+    },
+    "CLEAN_nterm_small_60_40": {
+      "mean_auc": 0.7542478153412393,
+      "in_sample": 0.7761771004255082,
+      "delta": -0.01658813970784534,
+      "rationale": "Binding(0.6) + nterm_small(0.4)"
+    },
+    "CLEAN_expression_tpm_80_20": {
+      "mean_auc": 0.753946987483855,
+      "in_sample": 0.7129905164502044,
+      "delta": -0.016888967565229618,
+      "rationale": "Binding(0.8) + expression_tpm(0.2)"
+    },
+    "CLEAN_full_pos_charge_frac_50_50": {
+      "mean_auc": 0.7531946337785463,
+      "in_sample": 0.7835887309842312,
+      "delta": -0.0176413212705383,
+      "rationale": "Binding(0.5) + full_pos_charge_frac(0.5)"
+    },
+    "CLEAN_nterm_small_50_50": {
+      "mean_auc": 0.7397249560817662,
+      "in_sample": 0.7607141863892983,
+      "delta": -0.031110998967318393,
+      "rationale": "Binding(0.5) + nterm_small(0.5)"
+    },
+    "CLEAN_full_hydro_60_40": {
+      "mean_auc": 0.6914330052025274,
+      "in_sample": 0.693216897961454,
+      "delta": -0.07940294984655727,
+      "rationale": "Binding(0.6) + full_hydro(0.4)"
+    },
+    "CLEAN_cterm_hydro_80_20": {
+      "mean_auc": 0.6759197652793477,
+      "in_sample": 0.6946908807742581,
+      "delta": -0.09491618976973693,
+      "rationale": "Binding(0.8) + cterm_hydro(0.2)"
+    },
+    "CLEAN_full_hydro_50_50": {
+      "mean_auc": 0.6645511599330829,
+      "in_sample": 0.6731373585115555,
+      "delta": -0.10628479511600175,
+      "rationale": "Binding(0.5) + full_hydro(0.5)"
+    },
+    "CLEAN_cterm_hydro_60_40": {
+      "mean_auc": 0.6283395480428737,
+      "in_sample": 0.6434074032872598,
+      "delta": -0.1424964070062109,
+      "rationale": "Binding(0.6) + cterm_hydro(0.4)"
+    },
+    "CLEAN_cterm_hydro_50_50": {
+      "mean_auc": 0.6229357551270366,
+      "in_sample": 0.6330617126011625,
+      "delta": -0.14790019992204806,
+      "rationale": "Binding(0.5) + cterm_hydro(0.5)"
+    }
+  },
+  "significant_clean_features": [
+    {
+      "feature": "binding_affinity_nm",
+      "auc": 0.7915982979670162,
+      "p": 2.6473290315391236e-10,
+      "direction": "neg"
+    },
+    {
+      "feature": "expression_tpm",
+      "auc": 0.7301205891514262,
+      "p": 7.868545503765868e-06,
+      "direction": "pos"
+    },
+    {
+      "feature": "full_charged_frac",
+      "auc": 0.6435325527713658,
+      "p": 0.0017669223152393392,
+      "direction": "pos"
+    },
+    {
+      "feature": "full_hydro",
+      "auc": 0.6277915287704758,
+      "p": 0.005627596993245384,
+      "direction": "neg"
+    },
+    {
+      "feature": "nterm_small",
+      "auc": 0.6275217391304349,
+      "p": 0.02010172743111604,
+      "direction": "pos"
+    },
+    {
+      "feature": "cterm_hydro",
+      "auc": 0.6088939566704675,
+      "p": 0.018307111206933752,
+      "direction": "neg"
+    },
+    {
+      "feature": "full_neg_charge_frac",
+      "auc": 0.604722307200267,
+      "p": 0.014734123642422298,
+      "direction": "pos"
+    },
+    {
+      "feature": "strong_bind_x_calis",
+      "auc": 0.6020107350446366,
+      "p": 0.026520160105041234,
+      "direction": "neg"
+    },
+    {
+      "feature": "full_hydrophobic_frac",
+      "auc": 0.6011207831576606,
+      "p": 0.02789445386727949,
+      "direction": "neg"
+    },
+    {
+      "feature": "full_pos_charge_frac",
+      "auc": 0.5916650443585394,
+      "p": 0.04335926922475189,
+      "direction": "pos"
+    },
+    {
+      "feature": "tcr_neg_charge_frac",
+      "auc": 0.5908863364574353,
+      "p": 0.022838879931830276,
+      "direction": "pos"
+    },
+    {
+      "feature": "nterm_aliphatic",
+      "auc": 0.584051724137931,
+      "p": 0.008457622056904002,
+      "direction": "pos"
+    },
+    {
+      "feature": "cterm_is_K",
+      "auc": 0.5839753038351364,
+      "p": 0.000708397338111266,
+      "direction": "pos"
+    },
+    {
+      "feature": "center_aliphatic",
+      "auc": 0.5815958299919808,
+      "p": 0.002597048552856292,
+      "direction": "neg"
+    },
+    {
+      "feature": "hla_is_A03",
+      "auc": 0.5782740495591957,
+      "p": 0.002472953781101975,
+      "direction": "pos"
+    },
+    {
+      "feature": "cterm_is_F",
+      "auc": 0.5539394276496927,
+      "p": 0.0430752242372889,
+      "direction": "neg"
+    },
+    {
+      "feature": "pos2_is_T",
+      "auc": 0.5471674500097338,
+      "p": 0.03024446644734771,
+      "direction": "pos"
+    },
+    {
+      "feature": "cterm_is_H",
+      "auc": 0.5110548710960313,
+      "p": 0.015514109234388977,
+      "direction": "pos"
+    }
+  ]
+}

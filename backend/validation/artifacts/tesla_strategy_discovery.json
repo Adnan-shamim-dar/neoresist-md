@@ -1,0 +1,1534 @@
+{
+  "dataset": {
+    "name": "TESLA 2020 (Wells et al.)",
+    "n_candidates": 918,
+    "n_immunogenic": 41,
+    "n_patients": 9,
+    "patients": [
+      "TESLA_3",
+      "TESLA_2",
+      "TESLA_1",
+      "TESLA_12",
+      "TESLA_16",
+      "TESLA_10",
+      "TESLA_8",
+      "TESLA_9",
+      "TESLA_4"
+    ],
+    "wildtype_available": false
+  },
+  "binding_baseline_lopo": 0.7708359550490846,
+  "single_feature_results": [
+    {
+      "feature": "tesla_tcr_flow_i_quant",
+      "auc": 0.8261949099937926,
+      "auc_inv": 0.17380509000620734,
+      "best_auc": 0.8261949099937926,
+      "direction": "pos",
+      "p_value": 9.390541096637111e-49,
+      "n": 573,
+      "immuno_mean": 0.4868055555555556,
+      "non_immuno_mean": 0.00040335195530726253
+    },
+    {
+      "feature": "tesla_tcr_flow_i",
+      "auc": 0.8055555555555556,
+      "auc_inv": 0.19444444444444445,
+      "best_auc": 0.8055555555555556,
+      "direction": "pos",
+      "p_value": 1.3794978911886167e-78,
+      "n": 592,
+      "immuno_mean": 0.6111111111111112,
+      "non_immuno_mean": 0.0
+    },
+    {
+      "feature": "binding_affinity_nm",
+      "auc": 0.20840170203298383,
+      "auc_inv": 0.7915982979670162,
+      "best_auc": 0.7915982979670162,
+      "direction": "neg",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 50.121644514502435,
+      "non_immuno_mean": 573.2794587363828
+    },
+    {
+      "feature": "bind_log50k",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.647327353081964e-10,
+      "n": 918,
+      "immuno_mean": 0.7116032539714516,
+      "non_immuno_mean": 0.5520429947961619
+    },
+    {
+      "feature": "bind_log5k",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6469207751550503e-10,
+      "n": 918,
+      "immuno_mean": 0.633636483305433,
+      "non_immuno_mean": 0.4319556994837559
+    },
+    {
+      "feature": "bind_log500",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298386,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.2725974663118267e-10,
+      "n": 918,
+      "immuno_mean": 0.49789450910565053,
+      "non_immuno_mean": 0.25621819739416635
+    },
+    {
+      "feature": "bind_sigmoid500",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.9237150563220085,
+      "non_immuno_mean": 0.71458959311128
+    },
+    {
+      "feature": "bind_sigmoid50",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.6554798664394911,
+      "non_immuno_mean": 0.353840746279943
+    },
+    {
+      "feature": "bind_exp500",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.915428503398113,
+      "non_immuno_mean": 0.661642442140831
+    },
+    {
+      "feature": "bind_exp150",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.787050835845291,
+      "non_immuno_mean": 0.4412769505184142
+    },
+    {
+      "feature": "bind_exp50",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.586542735161913,
+      "non_immuno_mean": 0.2469138521401322
+    },
+    {
+      "feature": "bind_neglog",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": -1.3551676589362611,
+      "non_immuno_mean": -2.1040077414638314
+    },
+    {
+      "feature": "bind_linear500",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298386,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.2725989285436266e-10,
+      "n": 918,
+      "immuno_mean": 0.8997567109709952,
+      "non_immuno_mean": 0.5957605503493617
+    },
+    {
+      "feature": "bind_linear50k",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.99899756710971,
+      "non_immuno_mean": 0.9885344108252723
+    },
+    {
+      "feature": "bind_rank_global",
+      "auc": 0.7915982979670162,
+      "auc_inv": 0.20840170203298383,
+      "best_auc": 0.7915982979670162,
+      "direction": "pos",
+      "p_value": 2.6473290315391236e-10,
+      "n": 918,
+      "immuno_mean": 0.778030182262607,
+      "non_immuno_mean": 0.48643188429559076
+    },
+    {
+      "feature": "bind_x_entropy",
+      "auc": 0.7863559251327975,
+      "auc_inv": 0.21364407486720247,
+      "best_auc": 0.7863559251327975,
+      "direction": "pos",
+      "p_value": 5.485659199845146e-10,
+      "n": 918,
+      "immuno_mean": 1.9861708775959366,
+      "non_immuno_mean": 1.5124104073025055
+    },
+    {
+      "feature": "tesla_tcr_flow_ii",
+      "auc": 0.7619047619047619,
+      "auc_inv": 0.23809523809523808,
+      "best_auc": 0.7619047619047619,
+      "direction": "pos",
+      "p_value": 2.5495188102885828e-59,
+      "n": 515,
+      "immuno_mean": 0.5238095238095238,
+      "non_immuno_mean": 0.0
+    },
+    {
+      "feature": "tesla_tcr_flow_ii_quant",
+      "auc": 0.7619047619047619,
+      "auc_inv": 0.23809523809523808,
+      "best_auc": 0.7619047619047619,
+      "direction": "pos",
+      "p_value": 2.60182180687484e-59,
+      "n": 515,
+      "immuno_mean": 1.2425238095238096,
+      "non_immuno_mean": 0.0
+    },
+    {
+      "feature": "bind_x_tcr_volume",
+      "auc": 0.7533998943182134,
+      "auc_inv": 0.2466001056817866,
+      "best_auc": 0.7533998943182134,
+      "direction": "pos",
+      "p_value": 4.009324113572624e-08,
+      "n": 918,
+      "immuno_mean": 98.26567147681557,
+      "non_immuno_mean": 75.4428445610201
+    },
+    {
+      "feature": "bind_tiered",
+      "auc": 0.7507161331590511,
+      "auc_inv": 0.2492838668409489,
+      "best_auc": 0.7507161331590511,
+      "direction": "pos",
+      "p_value": 3.6180954107180285e-09,
+      "n": 918,
+      "immuno_mean": 0.8780487804878049,
+      "non_immuno_mean": 0.5501710376282782
+    },
+    {
+      "feature": "bind_log50k_prank",
+      "auc": 0.7369914064020915,
+      "auc_inv": 0.2630085935979086,
+      "best_auc": 0.7369914064020915,
+      "direction": "pos",
+      "p_value": 2.822837687167233e-07,
+      "n": 918,
+      "immuno_mean": 0.731098789078233,
+      "non_immuno_mean": 0.4943271945812913
+    },
+    {
+      "feature": "bind_rank_patient",
+      "auc": 0.7363656589815614,
+      "auc_inv": 0.2636343410184387,
+      "best_auc": 0.7363656589815614,
+      "direction": "pos",
+      "p_value": 3.0335772727531895e-07,
+      "n": 918,
+      "immuno_mean": 0.7209536959311367,
+      "non_immuno_mean": 0.4845392228812125
+    },
+    {
+      "feature": "expression_tpm",
+      "auc": 0.7301205891514262,
+      "auc_inv": 0.26987941084857386,
+      "best_auc": 0.7301205891514262,
+      "direction": "pos",
+      "p_value": 7.868545503765868e-06,
+      "n": 714,
+      "immuno_mean": 42.32517666441539,
+      "non_immuno_mean": 22.612947171234367
+    },
+    {
+      "feature": "bind_binary50",
+      "auc": 0.7258252913201881,
+      "auc_inv": 0.274174708679812,
+      "best_auc": 0.7258252913201881,
+      "direction": "pos",
+      "p_value": 1.6073700162830274e-09,
+      "n": 918,
+      "immuno_mean": 0.7560975609756098,
+      "non_immuno_mean": 0.30444697833523376
+    },
+    {
+      "feature": "bind_x_tcr_aromatic",
+      "auc": 0.6892953700574519,
+      "auc_inv": 0.3107046299425482,
+      "best_auc": 0.6892953700574519,
+      "direction": "pos",
+      "p_value": 0.0026012604290050613,
+      "n": 560,
+      "immuno_mean": 0.6207245631385421,
+      "non_immuno_mean": 0.4944627992957006
+    },
+    {
+      "feature": "full_charged_frac",
+      "auc": 0.6435325527713658,
+      "auc_inv": 0.3564674472286342,
+      "best_auc": 0.6435325527713658,
+      "direction": "pos",
+      "p_value": 0.0017669223152393392,
+      "n": 918,
+      "immuno_mean": 0.2637472283813747,
+      "non_immuno_mean": 0.19702882636177962
+    },
+    {
+      "feature": "full_hydro",
+      "auc": 0.3721945657312902,
+      "auc_inv": 0.6278054342687098,
+      "best_auc": 0.6278054342687098,
+      "direction": "neg",
+      "p_value": 0.0056224089012802455,
+      "n": 918,
+      "immuno_mean": -0.15468280364621828,
+      "non_immuno_mean": 0.2290328067979151
+    },
+    {
+      "feature": "nterm_small",
+      "auc": 0.6275217391304349,
+      "auc_inv": 0.37247826086956526,
+      "best_auc": 0.6275217391304349,
+      "direction": "pos",
+      "p_value": 0.02010172743111604,
+      "n": 523,
+      "immuno_mean": 0.782608695652174,
+      "non_immuno_mean": 0.6731666666666667
+    },
+    {
+      "feature": "center_charge",
+      "auc": 0.3740990990990991,
+      "auc_inv": 0.6259009009009009,
+      "best_auc": 0.6259009009009009,
+      "direction": "neg",
+      "p_value": 0.04466776776384301,
+      "n": 464,
+      "immuno_mean": -0.1208333333333333,
+      "non_immuno_mean": 0.20945945945945946
+    },
+    {
+      "feature": "bind_x_calis",
+      "auc": 0.38718469282754403,
+      "auc_inv": 0.6128153071724559,
+      "best_auc": 0.6128153071724559,
+      "direction": "neg",
+      "p_value": 0.014516842717917472,
+      "n": 918,
+      "immuno_mean": -0.018914036176689398,
+      "non_immuno_mean": -0.011666294830026772
+    },
+    {
+      "feature": "anchor_charge",
+      "auc": 0.6104546622142306,
+      "auc_inv": 0.3895453377857694,
+      "best_auc": 0.6104546622142306,
+      "direction": "pos",
+      "p_value": 0.07187420098547849,
+      "n": 246,
+      "immuno_mean": 0.75,
+      "non_immuno_mean": 0.28820960698689957
+    },
+    {
+      "feature": "cterm_hydro",
+      "auc": 0.39103651583836246,
+      "auc_inv": 0.6089634841616375,
+      "best_auc": 0.6089634841616375,
+      "direction": "neg",
+      "p_value": 0.018233195328822716,
+      "n": 918,
+      "immuno_mean": -0.12195121951219519,
+      "non_immuno_mean": 0.446826301786393
+    },
+    {
+      "feature": "full_neg_charge_frac",
+      "auc": 0.604722307200267,
+      "auc_inv": 0.395277692799733,
+      "best_auc": 0.604722307200267,
+      "direction": "pos",
+      "p_value": 0.014734123642422298,
+      "n": 918,
+      "immuno_mean": 0.09928553830992853,
+      "non_immuno_mean": 0.0711667624153371
+    },
+    {
+      "feature": "strong_bind_x_calis",
+      "auc": 0.39786411547125733,
+      "auc_inv": 0.6021358845287427,
+      "best_auc": 0.6021358845287427,
+      "direction": "neg",
+      "p_value": 0.02633668661941325,
+      "n": 918,
+      "immuno_mean": -0.026953542392566785,
+      "non_immuno_mean": -0.016291790687457737
+    },
+    {
+      "feature": "bind_binary500",
+      "auc": 0.6020524515393386,
+      "auc_inv": 0.3979475484606613,
+      "best_auc": 0.6020524515393386,
+      "direction": "pos",
+      "p_value": 0.0012731106970557012,
+      "n": 918,
+      "immuno_mean": 1.0,
+      "non_immuno_mean": 0.7958950969213227
+    },
+    {
+      "feature": "full_hydrophobic_frac",
+      "auc": 0.39887921684233946,
+      "auc_inv": 0.6011207831576606,
+      "best_auc": 0.6011207831576606,
+      "direction": "neg",
+      "p_value": 0.02789445386727949,
+      "n": 918,
+      "immuno_mean": 0.40327666913032767,
+      "non_immuno_mean": 0.45272571087850444
+    },
+    {
+      "feature": "full_pos_charge_frac",
+      "auc": 0.5916650443585394,
+      "auc_inv": 0.40833495564146066,
+      "best_auc": 0.5916650443585394,
+      "direction": "pos",
+      "p_value": 0.04335926922475189,
+      "n": 918,
+      "immuno_mean": 0.16446169007144615,
+      "non_immuno_mean": 0.1258620639464425
+    },
+    {
+      "feature": "tcr_neg_charge_frac",
+      "auc": 0.5908863364574353,
+      "auc_inv": 0.4091136635425648,
+      "best_auc": 0.5908863364574353,
+      "direction": "pos",
+      "p_value": 0.022838879931830276,
+      "n": 918,
+      "immuno_mean": 0.1148664343786295,
+      "non_immuno_mean": 0.07944701946982449
+    },
+    {
+      "feature": "bind_ultra",
+      "auc": 0.5905943209945212,
+      "auc_inv": 0.40940567900547875,
+      "best_auc": 0.5905943209945212,
+      "direction": "pos",
+      "p_value": 9.969442473846837e-06,
+      "n": 918,
+      "immuno_mean": 0.24390243902439024,
+      "non_immuno_mean": 0.06271379703534778
+    },
+    {
+      "feature": "tcr_aromatic_prank",
+      "auc": 0.4098935451165934,
+      "auc_inv": 0.5901064548834065,
+      "best_auc": 0.5901064548834065,
+      "direction": "neg",
+      "p_value": 0.15086461656251235,
+      "n": 560,
+      "immuno_mean": 0.451737282041678,
+      "non_immuno_mean": 0.5103378806600057
+    },
+    {
+      "feature": "tcr_polar_prank",
+      "auc": 0.5874897354421793,
+      "auc_inv": 0.4125102645578207,
+      "best_auc": 0.5874897354421793,
+      "direction": "pos",
+      "p_value": 0.0714843583063995,
+      "n": 794,
+      "immuno_mean": 0.5262026757070432,
+      "non_immuno_mean": 0.5046638058108842
+    },
+    {
+      "feature": "tcr_charge",
+      "auc": 0.4125892857142857,
+      "auc_inv": 0.5874107142857143,
+      "best_auc": 0.5874107142857143,
+      "direction": "neg",
+      "p_value": 0.07331318465057919,
+      "n": 675,
+      "immuno_mean": -0.08571428571428572,
+      "non_immuno_mean": 0.15947916666666667
+    },
+    {
+      "feature": "nterm_polar",
+      "auc": 0.4151393112517465,
+      "auc_inv": 0.5848606887482534,
+      "best_auc": 0.5848606887482534,
+      "direction": "neg",
+      "p_value": 0.0939518096195059,
+      "n": 552,
+      "immuno_mean": 0.7934782608695652,
+      "non_immuno_mean": 0.8676748582230623
+    },
+    {
+      "feature": "nterm_aliphatic",
+      "auc": 0.584051724137931,
+      "auc_inv": 0.41594827586206895,
+      "best_auc": 0.584051724137931,
+      "direction": "pos",
+      "p_value": 0.008457622056904002,
+      "n": 731,
+      "immuno_mean": 1.0,
+      "non_immuno_mean": 0.9415708812260537
+    },
+    {
+      "feature": "cterm_is_K",
+      "auc": 0.5839753038351364,
+      "auc_inv": 0.4160246961648636,
+      "best_auc": 0.5839753038351364,
+      "direction": "pos",
+      "p_value": 0.000708397338111266,
+      "n": 918,
+      "immuno_mean": 0.2682926829268293,
+      "non_immuno_mean": 0.10034207525655645
+    },
+    {
+      "feature": "patient_candidate_count",
+      "auc": 0.41799927691409183,
+      "auc_inv": 0.5820007230859081,
+      "best_auc": 0.5820007230859081,
+      "direction": "neg",
+      "p_value": 0.0711364922494009,
+      "n": 918,
+      "immuno_mean": 101.29268292682927,
+      "non_immuno_mean": 106.76282782212087
+    },
+    {
+      "feature": "center_aliphatic",
+      "auc": 0.4184041700080192,
+      "auc_inv": 0.5815958299919808,
+      "best_auc": 0.5815958299919808,
+      "direction": "neg",
+      "p_value": 0.002597048552856292,
+      "n": 631,
+      "immuno_mean": 0.896551724137931,
+      "non_immuno_mean": 0.96843853820598
+    },
+    {
+      "feature": "bind_x_tcr_hydro",
+      "auc": 0.4197791806880441,
+      "auc_inv": 0.5802208193119559,
+      "best_auc": 0.5802208193119559,
+      "direction": "neg",
+      "p_value": 0.08222023982655034,
+      "n": 918,
+      "immuno_mean": -0.2362897293817391,
+      "non_immuno_mean": -0.04755178033430866
+    },
+    {
+      "feature": "hla_is_A03",
+      "auc": 0.5782740495591957,
+      "auc_inv": 0.4217259504408043,
+      "best_auc": 0.5782740495591957,
+      "direction": "pos",
+      "p_value": 0.002472953781101975,
+      "n": 918,
+      "immuno_mean": 0.2682926829268293,
+      "non_immuno_mean": 0.11174458380843785
+    },
+    {
+      "feature": "full_small",
+      "auc": 0.5752260174642846,
+      "auc_inv": 0.42477398253571536,
+      "best_auc": 0.5752260174642846,
+      "direction": "pos",
+      "p_value": 0.10379189974024572,
+      "n": 870,
+      "immuno_mean": 0.7292735042735042,
+      "non_immuno_mean": 0.684265228353676
+    }
+  ],
+  "n_hypotheses_tested": 55,
+  "cv_results": {
+    "H0_binding_only": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Baseline",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_i_quant_60_40": {
+      "mean_auc": 0.8012480538435365,
+      "in_sample_auc": 0.7306783102038547,
+      "rationale": "Binding + tesla_tcr_flow_i_quant",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_i_quant_80_20": {
+      "mean_auc": 0.7914036816217132,
+      "in_sample_auc": 0.7913619044970381,
+      "rationale": "Binding heavy + tesla_tcr_flow_i_quant",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_i_quant_50_50": {
+      "mean_auc": 0.8064566342972148,
+      "in_sample_auc": 0.6936340629084741,
+      "rationale": "Equal binding + tesla_tcr_flow_i_quant",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_i_60_40": {
+      "mean_auc": 0.9097683552559945,
+      "in_sample_auc": 0.8734182495758823,
+      "rationale": "Binding + tesla_tcr_flow_i",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_i_80_20": {
+      "mean_auc": 0.893581111127574,
+      "in_sample_auc": 0.8912729093083405,
+      "rationale": "Binding heavy + tesla_tcr_flow_i",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_i_50_50": {
+      "mean_auc": 0.9103025432901828,
+      "in_sample_auc": 0.8556192118363599,
+      "rationale": "Equal binding + tesla_tcr_flow_i",
+      "n_computable": 9
+    },
+    "H_binding_affinity_nm_60_40": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Binding + binding_affinity_nm",
+      "n_computable": 9
+    },
+    "H_binding_affinity_nm_80_20": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Binding heavy + binding_affinity_nm",
+      "n_computable": 9
+    },
+    "H_binding_affinity_nm_50_50": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Equal binding + binding_affinity_nm",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_ii_60_40": {
+      "mean_auc": 0.8413708613463515,
+      "in_sample_auc": 0.8293934421670328,
+      "rationale": "Binding + tesla_tcr_flow_ii",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_ii_80_20": {
+      "mean_auc": 0.8360303595542369,
+      "in_sample_auc": 0.8389604249520262,
+      "rationale": "Binding heavy + tesla_tcr_flow_ii",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_ii_50_50": {
+      "mean_auc": 0.8413708613463515,
+      "in_sample_auc": 0.8240259198487081,
+      "rationale": "Equal binding + tesla_tcr_flow_ii",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_ii_quant_60_40": {
+      "mean_auc": 0.8191835952074725,
+      "in_sample_auc": 0.7561948994632477,
+      "rationale": "Binding + tesla_tcr_flow_ii_quant",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_ii_quant_80_20": {
+      "mean_auc": 0.8113796085728407,
+      "in_sample_auc": 0.7961593013877687,
+      "rationale": "Binding heavy + tesla_tcr_flow_ii_quant",
+      "n_computable": 9
+    },
+    "H_tesla_tcr_flow_ii_quant_50_50": {
+      "mean_auc": 0.8242838190576963,
+      "in_sample_auc": 0.7422894012292459,
+      "rationale": "Equal binding + tesla_tcr_flow_ii_quant",
+      "n_computable": 9
+    },
+    "H_expression_tpm_60_40": {
+      "mean_auc": 0.7574281015041847,
+      "in_sample_auc": 0.701087409961899,
+      "rationale": "Binding + expression_tpm",
+      "n_computable": 9
+    },
+    "H_expression_tpm_80_20": {
+      "mean_auc": 0.753946987483855,
+      "in_sample_auc": 0.7129905164502044,
+      "rationale": "Binding heavy + expression_tpm",
+      "n_computable": 9
+    },
+    "H_expression_tpm_50_50": {
+      "mean_auc": 0.759809053885137,
+      "in_sample_auc": 0.6985009872903746,
+      "rationale": "Equal binding + expression_tpm",
+      "n_computable": 9
+    },
+    "H_full_charged_frac_60_40": {
+      "mean_auc": 0.7970832663446249,
+      "in_sample_auc": 0.8189086964985955,
+      "rationale": "Binding + full_charged_frac",
+      "n_computable": 9
+    },
+    "H_full_charged_frac_80_20": {
+      "mean_auc": 0.7897640151820784,
+      "in_sample_auc": 0.8149317240036711,
+      "rationale": "Binding heavy + full_charged_frac",
+      "n_computable": 9
+    },
+    "H_full_charged_frac_50_50": {
+      "mean_auc": 0.7823415830668354,
+      "in_sample_auc": 0.8078677309007981,
+      "rationale": "Equal binding + full_charged_frac",
+      "n_computable": 9
+    },
+    "H_full_hydro_60_40": {
+      "mean_auc": 0.6914330052025274,
+      "in_sample_auc": 0.693216897961454,
+      "rationale": "Binding + full_hydro",
+      "n_computable": 9
+    },
+    "H_full_hydro_80_20": {
+      "mean_auc": 0.7641364179815828,
+      "in_sample_auc": 0.7631059320855467,
+      "rationale": "Binding heavy + full_hydro",
+      "n_computable": 9
+    },
+    "H_full_hydro_50_50": {
+      "mean_auc": 0.6645511599330829,
+      "in_sample_auc": 0.6731373585115555,
+      "rationale": "Equal binding + full_hydro",
+      "n_computable": 9
+    },
+    "H_nterm_small_60_40": {
+      "mean_auc": 0.7542478153412393,
+      "in_sample_auc": 0.7761771004255082,
+      "rationale": "Binding + nterm_small",
+      "n_computable": 9
+    },
+    "H_nterm_small_80_20": {
+      "mean_auc": 0.7785203554819822,
+      "in_sample_auc": 0.7964791278471508,
+      "rationale": "Binding heavy + nterm_small",
+      "n_computable": 9
+    },
+    "H_nterm_small_50_50": {
+      "mean_auc": 0.7397249560817662,
+      "in_sample_auc": 0.7607141863892983,
+      "rationale": "Equal binding + nterm_small",
+      "n_computable": 9
+    },
+    "H_center_charge_60_40": {
+      "mean_auc": 0.6471474508818746,
+      "in_sample_auc": 0.7072197346830937,
+      "rationale": "Binding + center_charge",
+      "n_computable": 9
+    },
+    "H_center_charge_80_20": {
+      "mean_auc": 0.6774810065328458,
+      "in_sample_auc": 0.7437911950385182,
+      "rationale": "Binding heavy + center_charge",
+      "n_computable": 9
+    },
+    "H_center_charge_50_50": {
+      "mean_auc": 0.6366284835660216,
+      "in_sample_auc": 0.6955113051700643,
+      "rationale": "Equal binding + center_charge",
+      "n_computable": 9
+    },
+    "H_cterm_hydro_60_40": {
+      "mean_auc": 0.6283395480428737,
+      "in_sample_auc": 0.6434074032872598,
+      "rationale": "Binding + cterm_hydro",
+      "n_computable": 9
+    },
+    "H_cterm_hydro_80_20": {
+      "mean_auc": 0.6759197652793477,
+      "in_sample_auc": 0.6946908807742581,
+      "rationale": "Binding heavy + cterm_hydro",
+      "n_computable": 9
+    },
+    "H_cterm_hydro_50_50": {
+      "mean_auc": 0.6229357551270366,
+      "in_sample_auc": 0.6330617126011625,
+      "rationale": "Equal binding + cterm_hydro",
+      "n_computable": 9
+    },
+    "H_full_neg_charge_frac_60_40": {
+      "mean_auc": 0.7789501862896865,
+      "in_sample_auc": 0.8035848374447258,
+      "rationale": "Binding + full_neg_charge_frac",
+      "n_computable": 9
+    },
+    "H_full_neg_charge_frac_80_20": {
+      "mean_auc": 0.7766725710803826,
+      "in_sample_auc": 0.8012765247378814,
+      "rationale": "Binding heavy + full_neg_charge_frac",
+      "n_computable": 9
+    },
+    "H_full_neg_charge_frac_50_50": {
+      "mean_auc": 0.778206073744314,
+      "in_sample_auc": 0.7984398030981451,
+      "rationale": "Equal binding + full_neg_charge_frac",
+      "n_computable": 9
+    },
+    "H_strong_bind_x_calis_60_40": {
+      "mean_auc": 0.7672236497762531,
+      "in_sample_auc": 0.7986483855716551,
+      "rationale": "Binding + strong_bind_x_calis",
+      "n_computable": 9
+    },
+    "H_strong_bind_x_calis_80_20": {
+      "mean_auc": 0.771860990760052,
+      "in_sample_auc": 0.7948939010484746,
+      "rationale": "Binding heavy + strong_bind_x_calis",
+      "n_computable": 9
+    },
+    "H_strong_bind_x_calis_50_50": {
+      "mean_auc": 0.7638848988080221,
+      "in_sample_auc": 0.7968962927941708,
+      "rationale": "Equal binding + strong_bind_x_calis",
+      "n_computable": 9
+    },
+    "H_full_hydrophobic_frac_60_40": {
+      "mean_auc": 0.7937871252178121,
+      "in_sample_auc": 0.8121367188586368,
+      "rationale": "Binding + full_hydrophobic_frac",
+      "n_computable": 9
+    },
+    "H_full_hydrophobic_frac_80_20": {
+      "mean_auc": 0.7883599611341281,
+      "in_sample_auc": 0.813833189643185,
+      "rationale": "Binding heavy + full_hydrophobic_frac",
+      "n_computable": 9
+    },
+    "H_full_hydrophobic_frac_50_50": {
+      "mean_auc": 0.7869277553222044,
+      "in_sample_auc": 0.7935867842144784,
+      "rationale": "Equal binding + full_hydrophobic_frac",
+      "n_computable": 9
+    },
+    "H_full_pos_charge_frac_60_40": {
+      "mean_auc": 0.7796111440938815,
+      "in_sample_auc": 0.8013321467308173,
+      "rationale": "Binding + full_pos_charge_frac",
+      "n_computable": 9
+    },
+    "H_full_pos_charge_frac_80_20": {
+      "mean_auc": 0.7820039926244594,
+      "in_sample_auc": 0.806004394137442,
+      "rationale": "Binding heavy + full_pos_charge_frac",
+      "n_computable": 9
+    },
+    "H_full_pos_charge_frac_50_50": {
+      "mean_auc": 0.7531946337785463,
+      "in_sample_auc": 0.7835887309842312,
+      "rationale": "Equal binding + full_pos_charge_frac",
+      "n_computable": 9
+    },
+    "H_top2_with_bind": {
+      "mean_auc": 0.9049606629483024,
+      "in_sample_auc": 0.8249853992268542,
+      "rationale": "Binding + top2",
+      "n_computable": 9
+    },
+    "H_top3_with_bind": {
+      "mean_auc": 0.7752815593721399,
+      "in_sample_auc": 0.8017910281725396,
+      "rationale": "Binding + top3",
+      "n_computable": 9
+    },
+    "H_calis_60_40": {
+      "mean_auc": 0.7620323282250328,
+      "in_sample_auc": 0.781822732708513,
+      "rationale": "Binding + Calis",
+      "n_computable": 9
+    },
+    "H_bind_exp500_only": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Alternative binding: bind_exp500",
+      "n_computable": 9
+    },
+    "H_bind_sigmoid500_only": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Alternative binding: bind_sigmoid500",
+      "n_computable": 9
+    },
+    "H_bind_exp150_only": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Alternative binding: bind_exp150",
+      "n_computable": 9
+    },
+    "H_bind_neglog_only": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7915982979670162,
+      "rationale": "Alternative binding: bind_neglog",
+      "n_computable": 9
+    },
+    "H_prank_binding": {
+      "mean_auc": 0.7708359550490846,
+      "in_sample_auc": 0.7369914064020915,
+      "rationale": "Patient normalized binding rank",
+      "n_computable": 9
+    },
+    "H_prank_bind_calis": {
+      "mean_auc": 0.7345662599349342,
+      "in_sample_auc": 0.6777678894234781,
+      "rationale": "Patient normalized bind+calis",
+      "n_computable": 9
+    },
+    "TRAIN_FOLD_LR": {
+      "mean_auc": 0.9509117425784093,
+      "in_sample_auc": null,
+      "rationale": "LR trained on folds with ['bind_log50k', 'tesla_tcr_flow_i_quant', 'tesla_tcr_flow_i', 'binding_affinity_nm', 'tesla_tcr_flow_ii', 'tesla_tcr_flow_ii_quant', 'expression_tpm', 'full_charged_frac', 'full_hydro', 'nterm_small']",
+      "n_computable": 9
+    }
+  },
+  "winners": [
+    {
+      "name": "TRAIN_FOLD_LR",
+      "auc": 0.9509117425784093,
+      "delta": 0.18007578752932463
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_50_50",
+      "auc": 0.9103025432901828,
+      "delta": 0.13946658824109814
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_60_40",
+      "auc": 0.9097683552559945,
+      "delta": 0.1389324002069099
+    },
+    {
+      "name": "H_top2_with_bind",
+      "auc": 0.9049606629483024,
+      "delta": 0.1341247078992177
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_80_20",
+      "auc": 0.893581111127574,
+      "delta": 0.12274515607848935
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_60_40",
+      "auc": 0.8413708613463515,
+      "delta": 0.07053490629726689
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_50_50",
+      "auc": 0.8413708613463515,
+      "delta": 0.07053490629726689
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_80_20",
+      "auc": 0.8360303595542369,
+      "delta": 0.06519440450515224
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_quant_50_50",
+      "auc": 0.8242838190576963,
+      "delta": 0.05344786400861168
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_quant_60_40",
+      "auc": 0.8191835952074725,
+      "delta": 0.04834764015838788
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_quant_80_20",
+      "auc": 0.8113796085728407,
+      "delta": 0.04054365352375611
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_quant_50_50",
+      "auc": 0.8064566342972148,
+      "delta": 0.03562067924813017
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_quant_60_40",
+      "auc": 0.8012480538435365,
+      "delta": 0.030412098794451836
+    },
+    {
+      "name": "H_full_charged_frac_60_40",
+      "auc": 0.7970832663446249,
+      "delta": 0.026247311295540254
+    },
+    {
+      "name": "H_full_hydrophobic_frac_60_40",
+      "auc": 0.7937871252178121,
+      "delta": 0.022951170168727497
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_quant_80_20",
+      "auc": 0.7914036816217132,
+      "delta": 0.02056772657262851
+    },
+    {
+      "name": "H_full_charged_frac_80_20",
+      "auc": 0.7897640151820784,
+      "delta": 0.01892806013299375
+    },
+    {
+      "name": "H_full_hydrophobic_frac_80_20",
+      "auc": 0.7883599611341281,
+      "delta": 0.017524006085043453
+    },
+    {
+      "name": "H_full_hydrophobic_frac_50_50",
+      "auc": 0.7869277553222044,
+      "delta": 0.01609180027311974
+    },
+    {
+      "name": "H_full_charged_frac_50_50",
+      "auc": 0.7823415830668354,
+      "delta": 0.01150562801775079
+    },
+    {
+      "name": "H_full_pos_charge_frac_80_20",
+      "auc": 0.7820039926244594,
+      "delta": 0.011168037575374767
+    }
+  ],
+  "repertoire": {
+    "rl_binding_only": {
+      "description": "MHC binding affinity only",
+      "features": {
+        "bind_log50k": 1.0
+      },
+      "validated_on": {
+        "tesla_2020": 0.7708359550490846
+      },
+      "best_for": "Universal baseline, feature-poor data"
+    },
+    "rl_tesla_h_tesla_tcr_flow_i_50_50": {
+      "description": "Equal binding + tesla_tcr_flow_i",
+      "features": {
+        "bind_log50k": 0.5,
+        "tesla_tcr_flow_i": 0.5
+      },
+      "validated_on": {
+        "tesla_2020": 0.9103025432901828
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_i_60_40": {
+      "description": "Binding + tesla_tcr_flow_i",
+      "features": {
+        "bind_log50k": 0.6,
+        "tesla_tcr_flow_i": 0.4
+      },
+      "validated_on": {
+        "tesla_2020": 0.9097683552559945
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_top2_with_bind": {
+      "description": "Binding + top2",
+      "features": {
+        "bind_log50k": 0.5,
+        "tesla_tcr_flow_i_quant": 0.25,
+        "tesla_tcr_flow_i": 0.25
+      },
+      "validated_on": {
+        "tesla_2020": 0.9049606629483024
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_i_80_20": {
+      "description": "Binding heavy + tesla_tcr_flow_i",
+      "features": {
+        "bind_log50k": 0.8,
+        "tesla_tcr_flow_i": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.893581111127574
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_ii_60_40": {
+      "description": "Binding + tesla_tcr_flow_ii",
+      "features": {
+        "bind_log50k": 0.6,
+        "tesla_tcr_flow_ii": 0.4
+      },
+      "validated_on": {
+        "tesla_2020": 0.8413708613463515
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_ii_50_50": {
+      "description": "Equal binding + tesla_tcr_flow_ii",
+      "features": {
+        "bind_log50k": 0.5,
+        "tesla_tcr_flow_ii": 0.5
+      },
+      "validated_on": {
+        "tesla_2020": 0.8413708613463515
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_ii_80_20": {
+      "description": "Binding heavy + tesla_tcr_flow_ii",
+      "features": {
+        "bind_log50k": 0.8,
+        "tesla_tcr_flow_ii": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.8360303595542369
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_ii_quant_50_50": {
+      "description": "Equal binding + tesla_tcr_flow_ii_quant",
+      "features": {
+        "bind_log50k": 0.5,
+        "tesla_tcr_flow_ii_quant": 0.5
+      },
+      "validated_on": {
+        "tesla_2020": 0.8242838190576963
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_ii_quant_60_40": {
+      "description": "Binding + tesla_tcr_flow_ii_quant",
+      "features": {
+        "bind_log50k": 0.6,
+        "tesla_tcr_flow_ii_quant": 0.4
+      },
+      "validated_on": {
+        "tesla_2020": 0.8191835952074725
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_ii_quant_80_20": {
+      "description": "Binding heavy + tesla_tcr_flow_ii_quant",
+      "features": {
+        "bind_log50k": 0.8,
+        "tesla_tcr_flow_ii_quant": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.8113796085728407
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_i_quant_50_50": {
+      "description": "Equal binding + tesla_tcr_flow_i_quant",
+      "features": {
+        "bind_log50k": 0.5,
+        "tesla_tcr_flow_i_quant": 0.5
+      },
+      "validated_on": {
+        "tesla_2020": 0.8064566342972148
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_i_quant_60_40": {
+      "description": "Binding + tesla_tcr_flow_i_quant",
+      "features": {
+        "bind_log50k": 0.6,
+        "tesla_tcr_flow_i_quant": 0.4
+      },
+      "validated_on": {
+        "tesla_2020": 0.8012480538435365
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_charged_frac_60_40": {
+      "description": "Binding + full_charged_frac",
+      "features": {
+        "bind_log50k": 0.6,
+        "full_charged_frac": 0.4
+      },
+      "validated_on": {
+        "tesla_2020": 0.7970832663446249
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_hydrophobic_frac_60_40": {
+      "description": "Binding + full_hydrophobic_frac",
+      "features": {
+        "bind_log50k": 0.6,
+        "full_hydrophobic_frac": 0.4
+      },
+      "validated_on": {
+        "tesla_2020": 0.7937871252178121
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_tesla_tcr_flow_i_quant_80_20": {
+      "description": "Binding heavy + tesla_tcr_flow_i_quant",
+      "features": {
+        "bind_log50k": 0.8,
+        "tesla_tcr_flow_i_quant": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.7914036816217132
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_charged_frac_80_20": {
+      "description": "Binding heavy + full_charged_frac",
+      "features": {
+        "bind_log50k": 0.8,
+        "full_charged_frac": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.7897640151820784
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_hydrophobic_frac_80_20": {
+      "description": "Binding heavy + full_hydrophobic_frac",
+      "features": {
+        "bind_log50k": 0.8,
+        "full_hydrophobic_frac": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.7883599611341281
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_hydrophobic_frac_50_50": {
+      "description": "Equal binding + full_hydrophobic_frac",
+      "features": {
+        "bind_log50k": 0.5,
+        "full_hydrophobic_frac": 0.5
+      },
+      "validated_on": {
+        "tesla_2020": 0.7869277553222044
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_charged_frac_50_50": {
+      "description": "Equal binding + full_charged_frac",
+      "features": {
+        "bind_log50k": 0.5,
+        "full_charged_frac": 0.5
+      },
+      "validated_on": {
+        "tesla_2020": 0.7823415830668354
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    },
+    "rl_tesla_h_full_pos_charge_frac_80_20": {
+      "description": "Binding heavy + full_pos_charge_frac",
+      "features": {
+        "bind_log50k": 0.8,
+        "full_pos_charge_frac": 0.2
+      },
+      "validated_on": {
+        "tesla_2020": 0.7820039926244594
+      },
+      "best_for": "TESLA-like data (mutant-only peptide data)"
+    }
+  },
+  "ranked_lopo": [
+    {
+      "name": "TRAIN_FOLD_LR",
+      "mean_auc": 0.9509117425784093,
+      "delta_vs_binding": 0.18007578752932463
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_50_50",
+      "mean_auc": 0.9103025432901828,
+      "delta_vs_binding": 0.13946658824109814
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_60_40",
+      "mean_auc": 0.9097683552559945,
+      "delta_vs_binding": 0.1389324002069099
+    },
+    {
+      "name": "H_top2_with_bind",
+      "mean_auc": 0.9049606629483024,
+      "delta_vs_binding": 0.1341247078992177
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_80_20",
+      "mean_auc": 0.893581111127574,
+      "delta_vs_binding": 0.12274515607848935
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_60_40",
+      "mean_auc": 0.8413708613463515,
+      "delta_vs_binding": 0.07053490629726689
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_50_50",
+      "mean_auc": 0.8413708613463515,
+      "delta_vs_binding": 0.07053490629726689
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_80_20",
+      "mean_auc": 0.8360303595542369,
+      "delta_vs_binding": 0.06519440450515224
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_quant_50_50",
+      "mean_auc": 0.8242838190576963,
+      "delta_vs_binding": 0.05344786400861168
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_quant_60_40",
+      "mean_auc": 0.8191835952074725,
+      "delta_vs_binding": 0.04834764015838788
+    },
+    {
+      "name": "H_tesla_tcr_flow_ii_quant_80_20",
+      "mean_auc": 0.8113796085728407,
+      "delta_vs_binding": 0.04054365352375611
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_quant_50_50",
+      "mean_auc": 0.8064566342972148,
+      "delta_vs_binding": 0.03562067924813017
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_quant_60_40",
+      "mean_auc": 0.8012480538435365,
+      "delta_vs_binding": 0.030412098794451836
+    },
+    {
+      "name": "H_full_charged_frac_60_40",
+      "mean_auc": 0.7970832663446249,
+      "delta_vs_binding": 0.026247311295540254
+    },
+    {
+      "name": "H_full_hydrophobic_frac_60_40",
+      "mean_auc": 0.7937871252178121,
+      "delta_vs_binding": 0.022951170168727497
+    },
+    {
+      "name": "H_tesla_tcr_flow_i_quant_80_20",
+      "mean_auc": 0.7914036816217132,
+      "delta_vs_binding": 0.02056772657262851
+    },
+    {
+      "name": "H_full_charged_frac_80_20",
+      "mean_auc": 0.7897640151820784,
+      "delta_vs_binding": 0.01892806013299375
+    },
+    {
+      "name": "H_full_hydrophobic_frac_80_20",
+      "mean_auc": 0.7883599611341281,
+      "delta_vs_binding": 0.017524006085043453
+    },
+    {
+      "name": "H_full_hydrophobic_frac_50_50",
+      "mean_auc": 0.7869277553222044,
+      "delta_vs_binding": 0.01609180027311974
+    },
+    {
+      "name": "H_full_charged_frac_50_50",
+      "mean_auc": 0.7823415830668354,
+      "delta_vs_binding": 0.01150562801775079
+    },
+    {
+      "name": "H_full_pos_charge_frac_80_20",
+      "mean_auc": 0.7820039926244594,
+      "delta_vs_binding": 0.011168037575374767
+    },
+    {
+      "name": "H_full_pos_charge_frac_60_40",
+      "mean_auc": 0.7796111440938815,
+      "delta_vs_binding": 0.008775189044796905
+    },
+    {
+      "name": "H_full_neg_charge_frac_60_40",
+      "mean_auc": 0.7789501862896865,
+      "delta_vs_binding": 0.008114231240601844
+    },
+    {
+      "name": "H_nterm_small_80_20",
+      "mean_auc": 0.7785203554819822,
+      "delta_vs_binding": 0.007684400432897531
+    },
+    {
+      "name": "H_full_neg_charge_frac_50_50",
+      "mean_auc": 0.778206073744314,
+      "delta_vs_binding": 0.007370118695229411
+    },
+    {
+      "name": "H_full_neg_charge_frac_80_20",
+      "mean_auc": 0.7766725710803826,
+      "delta_vs_binding": 0.005836616031297925
+    },
+    {
+      "name": "H_top3_with_bind",
+      "mean_auc": 0.7752815593721399,
+      "delta_vs_binding": 0.004445604323055297
+    },
+    {
+      "name": "H_strong_bind_x_calis_80_20",
+      "mean_auc": 0.771860990760052,
+      "delta_vs_binding": 0.001025035710967348
+    },
+    {
+      "name": "H0_binding_only",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_binding_affinity_nm_60_40",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_binding_affinity_nm_80_20",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_binding_affinity_nm_50_50",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_bind_exp500_only",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_bind_sigmoid500_only",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_bind_exp150_only",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_bind_neglog_only",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_prank_binding",
+      "mean_auc": 0.7708359550490846,
+      "delta_vs_binding": 0.0
+    },
+    {
+      "name": "H_strong_bind_x_calis_60_40",
+      "mean_auc": 0.7672236497762531,
+      "delta_vs_binding": -0.0036123052728315175
+    },
+    {
+      "name": "H_full_hydro_80_20",
+      "mean_auc": 0.7641364179815828,
+      "delta_vs_binding": -0.006699537067501815
+    },
+    {
+      "name": "H_strong_bind_x_calis_50_50",
+      "mean_auc": 0.7638848988080221,
+      "delta_vs_binding": -0.006951056241062514
+    },
+    {
+      "name": "H_calis_60_40",
+      "mean_auc": 0.7620323282250328,
+      "delta_vs_binding": -0.008803626824051891
+    },
+    {
+      "name": "H_expression_tpm_50_50",
+      "mean_auc": 0.759809053885137,
+      "delta_vs_binding": -0.011026901163947667
+    },
+    {
+      "name": "H_expression_tpm_60_40",
+      "mean_auc": 0.7574281015041847,
+      "delta_vs_binding": -0.013407853544899928
+    },
+    {
+      "name": "H_nterm_small_60_40",
+      "mean_auc": 0.7542478153412393,
+      "delta_vs_binding": -0.01658813970784534
+    },
+    {
+      "name": "H_expression_tpm_80_20",
+      "mean_auc": 0.753946987483855,
+      "delta_vs_binding": -0.016888967565229618
+    },
+    {
+      "name": "H_full_pos_charge_frac_50_50",
+      "mean_auc": 0.7531946337785463,
+      "delta_vs_binding": -0.0176413212705383
+    },
+    {
+      "name": "H_nterm_small_50_50",
+      "mean_auc": 0.7397249560817662,
+      "delta_vs_binding": -0.031110998967318393
+    },
+    {
+      "name": "H_prank_bind_calis",
+      "mean_auc": 0.7345662599349342,
+      "delta_vs_binding": -0.03626969511415046
+    },
+    {
+      "name": "H_full_hydro_60_40",
+      "mean_auc": 0.6914330052025274,
+      "delta_vs_binding": -0.07940294984655727
+    },
+    {
+      "name": "H_center_charge_80_20",
+      "mean_auc": 0.6774810065328458,
+      "delta_vs_binding": -0.09335494851623882
+    },
+    {
+      "name": "H_cterm_hydro_80_20",
+      "mean_auc": 0.6759197652793477,
+      "delta_vs_binding": -0.09491618976973693
+    },
+    {
+      "name": "H_full_hydro_50_50",
+      "mean_auc": 0.6645511599330829,
+      "delta_vs_binding": -0.10628479511600175
+    },
+    {
+      "name": "H_center_charge_60_40",
+      "mean_auc": 0.6471474508818746,
+      "delta_vs_binding": -0.12368850416721
+    },
+    {
+      "name": "H_center_charge_50_50",
+      "mean_auc": 0.6366284835660216,
+      "delta_vs_binding": -0.134207471483063
+    },
+    {
+      "name": "H_cterm_hydro_60_40",
+      "mean_auc": 0.6283395480428737,
+      "delta_vs_binding": -0.1424964070062109
+    },
+    {
+      "name": "H_cterm_hydro_50_50",
+      "mean_auc": 0.6229357551270366,
+      "delta_vs_binding": -0.14790019992204806
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "rows": 701,
+  "positives": 215,
+  "negatives": 486,
+  "features": [
+    "expression_score",
+    "presentation_score",
+    "ccf",
+    "self_dissimilarity"
+  ],
+  "current_rl_auc_insample": 0.566853287395923,
+  "baseline_auc_insample": 0.5124653076849459,
+  "cv_best_auc": 0.6283539404733365,
+  "cv_fold_aucs": [
+    0.6088039867109636,
+    0.6609925677295613,
+    0.666866458882762,
+    0.5988971469671542,
+    0.6062095420762408
+  ],
+  "best_weights": {
+    "expression_score": 0.45,
+    "presentation_score": 0.05,
+    "ccf": 0.5,
+    "self_dissimilarity": 0.0
+  },
+  "optimized_auc_insample": 0.6261938941525504
+}

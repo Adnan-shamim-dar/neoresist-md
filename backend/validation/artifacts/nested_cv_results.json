@@ -1,0 +1,322 @@
+{
+  "dataset": {
+    "rows": 97,
+    "positives": 15,
+    "patients": [
+      "ott_1",
+      "ott_2",
+      "ott_3",
+      "ott_4",
+      "ott_5",
+      "ott_6"
+    ]
+  },
+  "results_by_patient": {
+    "ott_1": {
+      "status": "computed",
+      "n": 11,
+      "n_pos": 2,
+      "baseline_auc": 0.8333333333333334,
+      "rl_v1_auc": 0.5,
+      "equal_auc": 0.4444444444444445,
+      "sweep_winner_auc": 0.6666666666666666,
+      "weighted_sum_auc": 0.6666666666666666,
+      "lr_auc": 0.7777777777777778,
+      "inner_config": {
+        "method": "weighted_sum",
+        "bind": "bind_exp500",
+        "expr": "expr_current",
+        "dissim": "dissim_hamming",
+        "weights": [
+          0.769231,
+          0.153846,
+          0.076923
+        ],
+        "train_auc": 0.6838777660695469
+      },
+      "inner_train_auc": 0.6838777660695469,
+      "lr_train_auc": 0.6406743940990516
+    },
+    "ott_2": {
+      "status": "computed",
+      "n": 14,
+      "n_pos": 2,
+      "baseline_auc": 0.4583333333333333,
+      "rl_v1_auc": 0.6666666666666667,
+      "equal_auc": 0.7083333333333334,
+      "sweep_winner_auc": 0.6666666666666667,
+      "weighted_sum_auc": 0.375,
+      "lr_auc": 0.4583333333333333,
+      "inner_config": {
+        "method": "weighted_sum",
+        "bind": "bind_exp150",
+        "expr": "expr_current",
+        "dissim": "dissim_hamming",
+        "weights": [
+          0.666667,
+          0.0,
+          0.333333
+        ],
+        "train_auc": 0.7076923076923077
+      },
+      "inner_train_auc": 0.7076923076923077,
+      "lr_train_auc": 0.6747252747252748
+    },
+    "ott_3": {
+      "status": "computed",
+      "n": 14,
+      "n_pos": 3,
+      "baseline_auc": 0.4545454545454545,
+      "rl_v1_auc": 0.7575757575757576,
+      "equal_auc": 0.7272727272727272,
+      "sweep_winner_auc": 0.7272727272727273,
+      "weighted_sum_auc": 0.3939393939393939,
+      "lr_auc": 0.3939393939393939,
+      "inner_config": {
+        "method": "weighted_sum",
+        "bind": "bind_exp500",
+        "expr": "expr_current",
+        "dissim": "dissim_inverted",
+        "weights": [
+          0.444444,
+          0.0,
+          0.555556
+        ],
+        "train_auc": 0.7417840375586855
+      },
+      "inner_train_auc": 0.7417840375586855,
+      "lr_train_auc": 0.7347417840375587
+    },
+    "ott_4": {
+      "status": "computed",
+      "n": 17,
+      "n_pos": 2,
+      "baseline_auc": 0.7,
+      "rl_v1_auc": 0.7333333333333334,
+      "equal_auc": 0.7666666666666666,
+      "sweep_winner_auc": 0.9,
+      "weighted_sum_auc": 0.7333333333333334,
+      "lr_auc": 0.6333333333333333,
+      "inner_config": {
+        "method": "weighted_sum",
+        "bind": "bind_sigmoid500",
+        "expr": "expr_current",
+        "dissim": "dissim_inverted",
+        "weights": [
+          0.526316,
+          0.0,
+          0.473684
+        ],
+        "train_auc": 0.6946039035591274
+      },
+      "inner_train_auc": 0.6946039035591274,
+      "lr_train_auc": 0.6900114810562572
+    },
+    "ott_5": {
+      "status": "computed",
+      "n": 19,
+      "n_pos": 4,
+      "baseline_auc": 0.7,
+      "rl_v1_auc": 0.4833333333333334,
+      "equal_auc": 0.5,
+      "sweep_winner_auc": 0.5666666666666667,
+      "weighted_sum_auc": 0.5333333333333333,
+      "lr_auc": 0.5333333333333333,
+      "inner_config": {
+        "method": "weighted_sum",
+        "bind": "bind_exp500",
+        "expr": "expr_current",
+        "dissim": "dissim_hamming",
+        "weights": [
+          0.714286,
+          0.142857,
+          0.142857
+        ],
+        "train_auc": 0.7530529172320217
+      },
+      "inner_train_auc": 0.7530529172320217,
+      "lr_train_auc": 0.7462686567164181
+    },
+    "ott_6": {
+      "status": "computed",
+      "n": 22,
+      "n_pos": 2,
+      "baseline_auc": 0.75,
+      "rl_v1_auc": 0.7000000000000001,
+      "equal_auc": 0.625,
+      "sweep_winner_auc": 0.825,
+      "weighted_sum_auc": 0.3,
+      "lr_auc": 0.475,
+      "inner_config": {
+        "method": "weighted_sum",
+        "bind": "bind_neglog",
+        "expr": "expr_current",
+        "dissim": "dissim_inverted",
+        "weights": [
+          0.45,
+          0.1,
+          0.45
+        ],
+        "train_auc": 0.6873449131513648
+      },
+      "inner_train_auc": 0.6873449131513648,
+      "lr_train_auc": 0.6352357320099256
+    }
+  },
+  "means": {
+    "baseline": 0.6493686868686869,
+    "rl_v1": 0.6401515151515152,
+    "equal": 0.6286195286195286,
+    "sweep_winner": 0.725378787878788,
+    "nested_ws": 0.5003787878787879,
+    "nested_lr": 0.5452861952861953
+  },
+  "deltas_over_baseline": {
+    "rl_v1": -0.009217171717171624,
+    "equal": -0.02074915824915824,
+    "sweep_winner": 0.07601010101010108,
+    "nested_ws": -0.148989898989899,
+    "nested_lr": -0.10408249158249161
+  },
+  "inner_configs": [
+    {
+      "test_patient": "ott_1",
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming",
+      "weights": [
+        0.769231,
+        0.153846,
+        0.076923
+      ]
+    },
+    {
+      "test_patient": "ott_2",
+      "bind": "bind_exp150",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming",
+      "weights": [
+        0.666667,
+        0.0,
+        0.333333
+      ]
+    },
+    {
+      "test_patient": "ott_3",
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_inverted",
+      "weights": [
+        0.444444,
+        0.0,
+        0.555556
+      ]
+    },
+    {
+      "test_patient": "ott_4",
+      "bind": "bind_sigmoid500",
+      "expr": "expr_current",
+      "dissim": "dissim_inverted",
+      "weights": [
+        0.526316,
+        0.0,
+        0.473684
+      ]
+    },
+    {
+      "test_patient": "ott_5",
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming",
+      "weights": [
+        0.714286,
+        0.142857,
+        0.142857
+      ]
+    },
+    {
+      "test_patient": "ott_6",
+      "bind": "bind_neglog",
+      "expr": "expr_current",
+      "dissim": "dissim_inverted",
+      "weights": [
+        0.45,
+        0.1,
+        0.45
+      ]
+    }
+  ],
+  "consistency": {
+    "unique_config_count": 6,
+    "total_computed_folds": 6
+  },
+  "train_test_gap": {
+    "mean_inner_train_auc": 0.7113926408771757,
+    "mean_outer_test_auc": 0.5003787878787879,
+    "gap": 0.21101385299838782
+  },
+  "top5_strategies": [
+    {
+      "name": "Sweep winner (pre-specified)",
+      "mean_auc": 0.725378787878788
+    },
+    {
+      "name": "Binding only (pre-specified)",
+      "mean_auc": 0.6493686868686869
+    },
+    {
+      "name": "rl_v1 (pre-specified)",
+      "mean_auc": 0.6401515151515152
+    },
+    {
+      "name": "Equal weights (pre-specified)",
+      "mean_auc": 0.6286195286195286
+    },
+    {
+      "name": "Nested CV logistic regression",
+      "mean_auc": 0.5452861952861953
+    }
+  ],
+  "fixed_configs": {
+    "binding_only": {
+      "bind": "bind_log50k",
+      "expr": null,
+      "dissim": null,
+      "weights": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "rl_v1": {
+      "bind": "bind_log50k",
+      "expr": "expr_current",
+      "dissim": "dissim_current",
+      "weights": [
+        0.5,
+        0.33,
+        0.17
+      ]
+    },
+    "equal": {
+      "bind": "bind_log50k",
+      "expr": "expr_current",
+      "dissim": "dissim_current",
+      "weights": [
+        0.333,
+        0.333,
+        0.333
+      ]
+    },
+    "sweep_winner": {
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming",
+      "weights": [
+        0.7692307692307692,
+        0.15384615384615385,
+        0.07692307692307693
+      ]
+    }
+  }
+}

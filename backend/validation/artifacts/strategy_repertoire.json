@@ -1,0 +1,164 @@
+{
+  "rl_binding_only": {
+    "description": "MHC binding affinity only",
+    "type": "universal",
+    "features": {
+      "bind_log50k": 1.0
+    },
+    "performance": {
+      "hilf_2019": 0.6125771265771267,
+      "keskin_2019": 0.5555555555555556,
+      "tesla_2020": 0.7708359550490846,
+      "ott_2017_mutation": 0.6493686868686869
+    }
+  },
+  "rl_expression_v1": {
+    "description": "Binding (dual) + Expression",
+    "type": "cross-validated",
+    "features": {
+      "bind_log50k": 0.5,
+      "nm_raw_inv": 0.25,
+      "expression": 0.25
+    },
+    "performance": {
+      "hilf_2019": 0.6628574481074482,
+      "keskin_2019": 0.4388888888888889,
+      "sahin_2017": 0.4618055555555556,
+      "tesla_2020": 0.8134179059185117,
+      "ott_2017_mutation": 0.7161195286195287
+    }
+  },
+  "rl_hilf_2019_v1": {
+    "description": "Best strategy for hilf_2019",
+    "type": "paper-specific",
+    "features": [
+      [
+        "bind_log50k",
+        0.6,
+        false
+      ],
+      [
+        "expr_raw",
+        0.4,
+        false
+      ]
+    ],
+    "performance": {
+      "hilf_2019": 0.7369610297110297
+    },
+    "delta_over_binding": 0.12438390313390302
+  },
+  "rl_keskin_2019_v1": {
+    "description": "Best strategy for keskin_2019",
+    "type": "paper-specific",
+    "features": [
+      [
+        "bind_log50k",
+        0.4,
+        false
+      ],
+      [
+        "pep_entropy",
+        0.2,
+        "AUTO"
+      ],
+      [
+        "pep_entropy_prank",
+        0.2,
+        "AUTO"
+      ],
+      [
+        "all_small_frac",
+        0.2,
+        "AUTO"
+      ]
+    ],
+    "performance": {
+      "keskin_2019": 0.8055555555555556
+    },
+    "delta_over_binding": 0.25
+  },
+  "rl_rojas_2023_v1": {
+    "description": "Best strategy for rojas_2023",
+    "type": "paper-specific",
+    "features": [
+      "bind_log50k",
+      "c_term_hydro",
+      "c_term_beta",
+      "center_helix",
+      "anchor_small_frac"
+    ],
+    "performance": {
+      "rojas_2023": 0.7051587301587301
+    },
+    "delta_over_binding": 0.2051587301587301
+  },
+  "rl_sahin_2017_v1": {
+    "description": "Best strategy for sahin_2017",
+    "type": "paper-specific",
+    "features": [
+      [
+        "bind_log50k",
+        0.8,
+        false
+      ],
+      [
+        "all_volume",
+        0.2,
+        "AUTO"
+      ]
+    ],
+    "performance": {
+      "sahin_2017": 0.6624503968253969
+    },
+    "delta_over_binding": 0.16245039682539686,
+    "expression_direction_note": "Expression negatively correlated with immunogenicity in Sahin 2017 (immunogenic mean TPM=50.1, non-immunogenic mean TPM=54.3, AUC=0.44). Possible immune editing signal: highly expressed neoantigens may be preferentially eliminated under immune pressure. Requires investigation.",
+    "sahin_best_strategy_note": "Best strategy uses all_volume (20%) not expression, suggesting peptide physicochemical properties carry more signal than expression in this cohort."
+  },
+  "rl_tesla_2020_v1": {
+    "description": "Best strategy for tesla_2020",
+    "type": "paper-specific",
+    "features": [
+      "bind_log50k",
+      "binding_affinity_nm",
+      "expression_tpm",
+      "expr_raw",
+      "expr_log2",
+      "expr_sqrt"
+    ],
+    "performance": {
+      "tesla_2020": 0.8179252790359419
+    },
+    "delta_over_binding": 0.04708932398685728
+  },
+  "rl_ott_2017_mutation_v1": {
+    "description": "Best strategy for ott_2017_mutation",
+    "type": "paper-specific",
+    "features": [
+      [
+        "bind_log50k",
+        0.4,
+        false
+      ],
+      [
+        "n_term_small",
+        0.2,
+        "AUTO"
+      ],
+      [
+        "all_volume",
+        0.2,
+        "AUTO"
+      ],
+      [
+        "n_term_volume",
+        0.2,
+        "AUTO"
+      ]
+    ],
+    "performance": {
+      "ott_2017_mutation": 0.7853114478114477
+    },
+    "delta_over_binding": 0.1359427609427608
+  }
+}

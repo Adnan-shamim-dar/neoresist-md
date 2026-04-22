@@ -1,0 +1,1928 @@
+{
+  "ott_2017": {
+    "rows": 97,
+    "immunogenic": 15,
+    "patients": 6,
+    "cancer_type": "melanoma",
+    "features": {
+      "binding_nm": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 68.4568,
+        "std": 92.8014
+      },
+      "binding_log": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 1.4406,
+        "std": 0.7457
+      },
+      "binding_sigmoid": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": -1.8263,
+        "std": 7.7472
+      },
+      "binding_rank": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.5309,
+        "std": 0.2895
+      },
+      "binding_log50k": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.6867,
+        "std": 0.1411
+      },
+      "binding_stability": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "presentation_score_el": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "expression_tpm": {
+        "coverage": 0.959,
+        "n_valid": 93,
+        "n_total": 97,
+        "usable": true,
+        "mean": 24.0316,
+        "std": 44.4975
+      },
+      "expression_log2": {
+        "coverage": 0.959,
+        "n_valid": 93,
+        "n_total": 97,
+        "usable": true,
+        "mean": 3.2755,
+        "std": 1.9613
+      },
+      "expression_binary": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.8351,
+        "std": 0.3731
+      },
+      "expression_zscore": {
+        "coverage": 0.959,
+        "n_valid": 93,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.0,
+        "std": 0.9724
+      },
+      "vaf": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": -0.4829,
+        "std": 1.1348
+      },
+      "tcr_hydro_max": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      },
+      "tcr_volume_mean": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 133.9664,
+        "std": 15.6958
+      },
+      "tcr_charge_sum": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.0608,
+        "std": 0.1913
+      },
+      "tcr_aromatic_count": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.1043,
+        "std": 0.1099
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.794,
+        "n_valid": 77,
+        "n_total": 97,
+        "usable": false,
+        "mean": 0.1136,
+        "std": 0.3895
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.794,
+        "n_valid": 77,
+        "n_total": 97,
+        "usable": false,
+        "mean": 3.0289,
+        "std": 6.6594
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.794,
+        "n_valid": 77,
+        "n_total": 97,
+        "usable": false,
+        "mean": 0.0291,
+        "std": 0.1307
+      },
+      "self_dissimilarity": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 0.3894,
+        "std": 0.047
+      },
+      "hamming_distance": {
+        "coverage": 0.794,
+        "n_valid": 77,
+        "n_total": 97,
+        "usable": false,
+        "mean": 0.1063,
+        "std": 0.0041
+      },
+      "blosum62_score": {
+        "coverage": 0.794,
+        "n_valid": 77,
+        "n_total": 97,
+        "usable": false,
+        "mean": 42.6494,
+        "std": 4.5502
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.794,
+        "n_valid": 77,
+        "n_total": 97,
+        "usable": false,
+        "mean": -0.7403,
+        "std": 1.6968
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 9.4227,
+        "std": 0.4966
+      },
+      "calis_simplified": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": -0.2968,
+        "std": 0.9679
+      },
+      "hydro_full_mean": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": -0.0565,
+        "std": 0.778
+      },
+      "hydro_full_max": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 4.0402,
+        "std": 0.6474
+      },
+      "aliphatic_index": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 3.5786,
+        "std": 2.1651
+      },
+      "molecular_weight": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 1096.7641,
+        "std": 97.3267
+      },
+      "isoelectric_point": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 7.453,
+        "std": 2.686
+      },
+      "instability_index": {
+        "coverage": 1.0,
+        "n_valid": 97,
+        "n_total": 97,
+        "usable": true,
+        "mean": 43.3482,
+        "std": 45.6992
+      },
+      "mutation_position": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 97,
+        "usable": false
+      }
+    }
+  },
+  "tesla_2020": {
+    "rows": 918,
+    "immunogenic": 41,
+    "patients": 9,
+    "cancer_type": "melanoma",
+    "features": {
+      "binding_nm": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 549.914,
+        "std": 1629.609
+      },
+      "binding_log": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 2.0706,
+        "std": 0.7621
+      },
+      "binding_sigmoid": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.074,
+        "std": 19.8573
+      },
+      "binding_rank": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.5049,
+        "std": 0.2888
+      },
+      "binding_log50k": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.5592,
+        "std": 0.1616
+      },
+      "binding_stability": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "presentation_score_el": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "expression_tpm": {
+        "coverage": 0.778,
+        "n_valid": 714,
+        "n_total": 918,
+        "usable": false,
+        "mean": 23.524,
+        "std": 46.6224
+      },
+      "expression_log2": {
+        "coverage": 0.778,
+        "n_valid": 714,
+        "n_total": 918,
+        "usable": false,
+        "mean": 3.1499,
+        "std": 2.0069
+      },
+      "expression_binary": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.6612,
+        "std": 0.4736
+      },
+      "expression_zscore": {
+        "coverage": 0.778,
+        "n_valid": 714,
+        "n_total": 918,
+        "usable": false,
+        "mean": 0.0,
+        "std": 0.9944
+      },
+      "vaf": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 0.993,
+        "n_valid": 912,
+        "n_total": 918,
+        "usable": true,
+        "mean": -0.1022,
+        "std": 1.4136
+      },
+      "tcr_hydro_max": {
+        "coverage": 0.993,
+        "n_valid": 912,
+        "n_total": 918,
+        "usable": true,
+        "mean": 3.2473,
+        "std": 1.6506
+      },
+      "tcr_volume_mean": {
+        "coverage": 0.993,
+        "n_valid": 912,
+        "n_total": 918,
+        "usable": true,
+        "mean": 136.7965,
+        "std": 18.9302
+      },
+      "tcr_charge_sum": {
+        "coverage": 0.993,
+        "n_valid": 912,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.0751,
+        "std": 0.9069
+      },
+      "tcr_aromatic_count": {
+        "coverage": 0.993,
+        "n_valid": 912,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.5208,
+        "std": 0.6656
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "self_dissimilarity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      },
+      "hamming_distance": {
+        "coverage": 0.003,
+        "n_valid": 3,
+        "n_total": 918,
+        "usable": false,
+        "mean": 12.3333,
+        "std": 0.5774
+      },
+      "blosum62_score": {
+        "coverage": 0.003,
+        "n_valid": 3,
+        "n_total": 918,
+        "usable": false,
+        "mean": -9.3333,
+        "std": 8.0829
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.003,
+        "n_valid": 3,
+        "n_total": 918,
+        "usable": false,
+        "mean": -1.3333,
+        "std": 1.1547
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 9.5969,
+        "std": 0.7945
+      },
+      "calis_simplified": {
+        "coverage": 0.993,
+        "n_valid": 912,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.0443,
+        "std": 1.0886
+      },
+      "hydro_full_mean": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 0.2119,
+        "std": 0.977
+      },
+      "hydro_full_max": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 4.1129,
+        "std": 0.5292
+      },
+      "aliphatic_index": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 4.0955,
+        "std": 2.3784
+      },
+      "molecular_weight": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 1131.1242,
+        "std": 127.5547
+      },
+      "isoelectric_point": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 7.0112,
+        "std": 2.3884
+      },
+      "instability_index": {
+        "coverage": 1.0,
+        "n_valid": 918,
+        "n_total": 918,
+        "usable": true,
+        "mean": 37.6283,
+        "std": 40.3225
+      },
+      "mutation_position": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 918,
+        "usable": false
+      }
+    }
+  },
+  "sahin_2017": {
+    "rows": 165,
+    "immunogenic": 109,
+    "patients": 13,
+    "cancer_type": "melanoma",
+    "features": {
+      "binding_nm": {
+        "coverage": 0.727,
+        "n_valid": 120,
+        "n_total": 165,
+        "usable": false,
+        "mean": 2185.435,
+        "std": 6065.8039
+      },
+      "binding_log": {
+        "coverage": 0.727,
+        "n_valid": 120,
+        "n_total": 165,
+        "usable": false,
+        "mean": 2.3534,
+        "std": 0.8776
+      },
+      "binding_sigmoid": {
+        "coverage": 0.727,
+        "n_valid": 120,
+        "n_total": 165,
+        "usable": false,
+        "mean": -1.0601,
+        "std": 9.1765
+      },
+      "binding_rank": {
+        "coverage": 0.727,
+        "n_valid": 120,
+        "n_total": 165,
+        "usable": false,
+        "mean": 0.5333,
+        "std": 0.2895
+      },
+      "binding_log50k": {
+        "coverage": 0.727,
+        "n_valid": 120,
+        "n_total": 165,
+        "usable": false,
+        "mean": 0.4992,
+        "std": 0.1868
+      },
+      "binding_stability": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "presentation_score_el": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "expression_tpm": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 49.0757,
+        "std": 86.3833
+      },
+      "expression_log2": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 3.9797,
+        "std": 2.2387
+      },
+      "expression_binary": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 0.9576,
+        "std": 0.2022
+      },
+      "expression_zscore": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": -0.0,
+        "std": 0.9627
+      },
+      "vaf": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_hydro_max": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_volume_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_charge_sum": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_aromatic_count": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "self_dissimilarity": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 0.5361,
+        "std": 0.0142
+      },
+      "hamming_distance": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "blosum62_score": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 26.5515,
+        "std": 1.7545
+      },
+      "calis_simplified": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      },
+      "hydro_full_mean": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": -0.2328,
+        "std": 0.6245
+      },
+      "hydro_full_max": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 4.3782,
+        "std": 0.1929
+      },
+      "aliphatic_index": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 3.5245,
+        "std": 1.4154
+      },
+      "molecular_weight": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 3008.1916,
+        "std": 251.007
+      },
+      "isoelectric_point": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 7.1652,
+        "std": 2.3777
+      },
+      "instability_index": {
+        "coverage": 1.0,
+        "n_valid": 165,
+        "n_total": 165,
+        "usable": true,
+        "mean": 42.1585,
+        "std": 27.0882
+      },
+      "mutation_position": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 165,
+        "usable": false
+      }
+    }
+  },
+  "hilf_2019": {
+    "rows": 152,
+    "immunogenic": 77,
+    "patients": 15,
+    "cancer_type": "GBM",
+    "features": {
+      "binding_nm": {
+        "coverage": 0.836,
+        "n_valid": 127,
+        "n_total": 152,
+        "usable": true,
+        "mean": 583.8023,
+        "std": 3160.2024
+      },
+      "binding_log": {
+        "coverage": 0.836,
+        "n_valid": 127,
+        "n_total": 152,
+        "usable": true,
+        "mean": 1.5858,
+        "std": 0.6904
+      },
+      "binding_sigmoid": {
+        "coverage": 0.836,
+        "n_valid": 127,
+        "n_total": 152,
+        "usable": true,
+        "mean": -0.4597,
+        "std": 1.4418
+      },
+      "binding_rank": {
+        "coverage": 0.836,
+        "n_valid": 127,
+        "n_total": 152,
+        "usable": true,
+        "mean": 0.5591,
+        "std": 0.2898
+      },
+      "binding_log50k": {
+        "coverage": 0.836,
+        "n_valid": 127,
+        "n_total": 152,
+        "usable": true,
+        "mean": 0.6625,
+        "std": 0.1469
+      },
+      "binding_stability": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "presentation_score_el": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "expression_tpm": {
+        "coverage": 0.079,
+        "n_valid": 12,
+        "n_total": 152,
+        "usable": false,
+        "mean": 23.996,
+        "std": 27.8208
+      },
+      "expression_log2": {
+        "coverage": 0.079,
+        "n_valid": 12,
+        "n_total": 152,
+        "usable": false,
+        "mean": 3.8816,
+        "std": 1.5247
+      },
+      "expression_binary": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 0.0789,
+        "std": 0.2705
+      },
+      "expression_zscore": {
+        "coverage": 0.053,
+        "n_valid": 8,
+        "n_total": 152,
+        "usable": false,
+        "mean": -0.0,
+        "std": 0.7559
+      },
+      "vaf": {
+        "coverage": 0.079,
+        "n_valid": 12,
+        "n_total": 152,
+        "usable": false,
+        "mean": 0.3221,
+        "std": 0.1351
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 0.75,
+        "n_valid": 114,
+        "n_total": 152,
+        "usable": false,
+        "mean": -0.1025,
+        "std": 1.1548
+      },
+      "tcr_hydro_max": {
+        "coverage": 0.75,
+        "n_valid": 114,
+        "n_total": 152,
+        "usable": false,
+        "mean": 3.2351,
+        "std": 1.4608
+      },
+      "tcr_volume_mean": {
+        "coverage": 0.75,
+        "n_valid": 114,
+        "n_total": 152,
+        "usable": false,
+        "mean": 128.8923,
+        "std": 20.4029
+      },
+      "tcr_charge_sum": {
+        "coverage": 0.75,
+        "n_valid": 114,
+        "n_total": 152,
+        "usable": false,
+        "mean": -0.25,
+        "std": 0.6881
+      },
+      "tcr_aromatic_count": {
+        "coverage": 0.75,
+        "n_valid": 114,
+        "n_total": 152,
+        "usable": false,
+        "mean": 0.5088,
+        "std": 0.7195
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.711,
+        "n_valid": 108,
+        "n_total": 152,
+        "usable": false,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.711,
+        "n_valid": 108,
+        "n_total": 152,
+        "usable": false,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.711,
+        "n_valid": 108,
+        "n_total": 152,
+        "usable": false,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "self_dissimilarity": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 0.3595,
+        "std": 0.1226
+      },
+      "hamming_distance": {
+        "coverage": 0.875,
+        "n_valid": 133,
+        "n_total": 152,
+        "usable": true,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "blosum62_score": {
+        "coverage": 0.875,
+        "n_valid": 133,
+        "n_total": 152,
+        "usable": true,
+        "mean": 54.3308,
+        "std": 12.4947
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 11.0921,
+        "std": 3.2191
+      },
+      "calis_simplified": {
+        "coverage": 0.75,
+        "n_valid": 114,
+        "n_total": 152,
+        "usable": false,
+        "mean": 0.1996,
+        "std": 0.9002
+      },
+      "hydro_full_mean": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 0.2251,
+        "std": 0.8418
+      },
+      "hydro_full_max": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 4.2421,
+        "std": 0.2771
+      },
+      "aliphatic_index": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 3.9874,
+        "std": 1.5459
+      },
+      "molecular_weight": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 1262.2701,
+        "std": 395.961
+      },
+      "isoelectric_point": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 6.2367,
+        "std": 1.9227
+      },
+      "instability_index": {
+        "coverage": 1.0,
+        "n_valid": 152,
+        "n_total": 152,
+        "usable": true,
+        "mean": 29.7013,
+        "std": 35.5032
+      },
+      "mutation_position": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 152,
+        "usable": false
+      }
+    }
+  },
+  "rojas_2023": {
+    "rows": 230,
+    "immunogenic": 30,
+    "patients": 16,
+    "cancer_type": "pancreatic",
+    "features": {
+      "binding_nm": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 1456.4874,
+        "std": 4924.209
+      },
+      "binding_log": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 2.3165,
+        "std": 0.732
+      },
+      "binding_sigmoid": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 14.8464,
+        "std": 231.4502
+      },
+      "binding_rank": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 0.5348,
+        "std": 0.2887
+      },
+      "binding_log50k": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 0.507,
+        "std": 0.1558
+      },
+      "binding_stability": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "presentation_score_el": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "expression_tpm": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "expression_log2": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "expression_binary": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "expression_zscore": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "vaf": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_hydro_max": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_volume_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_charge_sum": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_aromatic_count": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "self_dissimilarity": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 0.5364,
+        "std": 0.0164
+      },
+      "hamming_distance": {
+        "coverage": 0.965,
+        "n_valid": 222,
+        "n_total": 230,
+        "usable": true,
+        "mean": 1.009,
+        "std": 0.0947
+      },
+      "blosum62_score": {
+        "coverage": 0.965,
+        "n_valid": 222,
+        "n_total": 230,
+        "usable": true,
+        "mean": 131.3964,
+        "std": 17.0176
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.965,
+        "n_valid": 222,
+        "n_total": 230,
+        "usable": true,
+        "mean": -0.7027,
+        "std": 1.5492
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 26.2913,
+        "std": 3.4473
+      },
+      "calis_simplified": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      },
+      "hydro_full_mean": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": -0.2979,
+        "std": 0.7191
+      },
+      "hydro_full_max": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 4.3635,
+        "std": 0.3009
+      },
+      "aliphatic_index": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 3.185,
+        "std": 1.3054
+      },
+      "molecular_weight": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 2953.2061,
+        "std": 419.2797
+      },
+      "isoelectric_point": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 7.1995,
+        "std": 2.4724
+      },
+      "instability_index": {
+        "coverage": 1.0,
+        "n_valid": 230,
+        "n_total": 230,
+        "usable": true,
+        "mean": 44.7006,
+        "std": 30.0214
+      },
+      "mutation_position": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 230,
+        "usable": false
+      }
+    }
+  },
+  "keskin_2019": {
+    "rows": 27,
+    "immunogenic": 15,
+    "patients": 2,
+    "cancer_type": "GBM",
+    "features": {
+      "binding_nm": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 91.0685,
+        "std": 116.5969
+      },
+      "binding_log": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 1.4874,
+        "std": 0.8276
+      },
+      "binding_sigmoid": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.5112,
+        "std": 4.912
+      },
+      "binding_rank": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.537,
+        "std": 0.2936
+      },
+      "binding_log50k": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.6796,
+        "std": 0.1681
+      },
+      "binding_stability": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "presentation_score_el": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "expression_tpm": {
+        "coverage": 0.852,
+        "n_valid": 23,
+        "n_total": 27,
+        "usable": true,
+        "mean": 47.8916,
+        "std": 64.6239
+      },
+      "expression_log2": {
+        "coverage": 0.852,
+        "n_valid": 23,
+        "n_total": 27,
+        "usable": true,
+        "mean": 4.2713,
+        "std": 2.1861
+      },
+      "expression_binary": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.7778,
+        "std": 0.4237
+      },
+      "expression_zscore": {
+        "coverage": 0.852,
+        "n_valid": 23,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.0,
+        "std": 0.977
+      },
+      "vaf": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 27,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": -0.0939,
+        "std": 1.1684
+      },
+      "tcr_hydro_max": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 3.2333,
+        "std": 1.5072
+      },
+      "tcr_volume_mean": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 129.4407,
+        "std": 17.8971
+      },
+      "tcr_charge_sum": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": -0.0259,
+        "std": 0.9925
+      },
+      "tcr_aromatic_count": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.2963,
+        "std": 0.6086
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": -0.0431,
+        "std": 0.1976
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": 1.331,
+        "std": 5.7402
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": -0.075,
+        "std": 0.2541
+      },
+      "self_dissimilarity": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.3837,
+        "std": 0.0602
+      },
+      "hamming_distance": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "blosum62_score": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": 41.75,
+        "std": 3.5661
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": 0.25,
+        "std": 1.1887
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 9.3704,
+        "std": 0.4921
+      },
+      "calis_simplified": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": -0.0244,
+        "std": 0.887
+      },
+      "hydro_full_mean": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": -0.0038,
+        "std": 0.9092
+      },
+      "hydro_full_max": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 3.9889,
+        "std": 0.6375
+      },
+      "aliphatic_index": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 3.5,
+        "std": 1.9251
+      },
+      "molecular_weight": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 1056.6968,
+        "std": 79.8271
+      },
+      "isoelectric_point": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 7.6221,
+        "std": 2.1572
+      },
+      "instability_index": {
+        "coverage": 1.0,
+        "n_valid": 27,
+        "n_total": 27,
+        "usable": true,
+        "mean": 30.4992,
+        "std": 35.7187
+      },
+      "mutation_position": {
+        "coverage": 0.889,
+        "n_valid": 24,
+        "n_total": 27,
+        "usable": true,
+        "mean": 3.8333,
+        "std": 3.3188
+      }
+    }
+  },
+  "muller_nci": {
+    "rows": 292495,
+    "immunogenic": 82,
+    "patients": 56,
+    "cancer_type": "mixed_solid",
+    "features": {
+      "binding_nm": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 23451.0343,
+        "std": 13747.5731
+      },
+      "binding_log": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 4.1831,
+        "std": 0.5802
+      },
+      "binding_sigmoid": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.269,
+        "std": 8.9573
+      },
+      "binding_rank": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.5001,
+        "std": 0.2887
+      },
+      "binding_log50k": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.1098,
+        "std": 0.1235
+      },
+      "binding_stability": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.2792,
+        "std": 0.8524
+      },
+      "dai_binding": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "dai_ratio": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "dai_agretopicity": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 1.1795,
+        "std": 8.1086
+      },
+      "presentation_score_el": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.026,
+        "std": 0.0993
+      },
+      "expression_tpm": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 63.447,
+        "std": 273.6682
+      },
+      "expression_log2": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 3.495,
+        "std": 2.6915
+      },
+      "expression_binary": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.734,
+        "std": 0.4419
+      },
+      "expression_zscore": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 0.0,
+        "std": 0.9999
+      },
+      "vaf": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "clonality_class": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_hydro_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_hydro_max": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_volume_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_charge_sum": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_aromatic_count": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_hydro_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_volume_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "tcr_charge_diff": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "self_dissimilarity": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "hamming_distance": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "blosum62_score": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "blosum62_at_mutation": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "pep_length": {
+        "coverage": 1.0,
+        "n_valid": 292495,
+        "n_total": 292495,
+        "usable": true,
+        "mean": 10.0973,
+        "std": 1.3664
+      },
+      "calis_simplified": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "hydro_full_mean": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "hydro_full_max": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "aliphatic_index": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "molecular_weight": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "isoelectric_point": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "instability_index": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      },
+      "mutation_position": {
+        "coverage": 0.0,
+        "n_valid": 0,
+        "n_total": 292495,
+        "usable": false
+      }
+    }
+  }
+}

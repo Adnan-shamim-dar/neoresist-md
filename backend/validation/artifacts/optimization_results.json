@@ -1,0 +1,29 @@
+{
+  "auc_baseline": 0.6651018418757375,
+  "auc_rl_v1": 0.566853287395923,
+  "auc_calibrated": 0.5821035505790028,
+  "auc_logistic": 0.6291176189109006,
+  "auc_grid_best": 0.6262608862092066,
+  "grid_best_weights": {
+    "expression": 0.47619047619047616,
+    "presentation": 0.047619047619047616,
+    "ccf": 0.47619047619047616,
+    "self_dissimilarity": 0.0
+  },
+  "calibrated_weights": {
+    "expression": 0.332445804088203,
+    "presentation": 0.0,
+    "ccf": 0.6675541959117969,
+    "self_dissimilarity": 0.0
+  },
+  "lopo_mean_auc": 0.5285478460935644,
+  "lopo_median_auc": 0.5,
+  "n_usable": 701,
+  "n_2plus": 701,
+  "logistic_coefficients": {
+    "expression": 0.25783239122547524,
+    "presentation": -0.25842740846804013,
+    "ccf": 0.5177297847888392,
+    "self_dissimilarity": -0.36871506121529896
+  }
+}

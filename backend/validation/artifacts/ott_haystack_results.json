@@ -1,0 +1,489 @@
+{
+  "mode": "fallback_labeled_only",
+  "limitations": {
+    "missing_haystack_expression": true,
+    "missing_haystack_peptides": true,
+    "note": "Unlabeled haystack rows are not true negatives; all AUCs here are lower-bound or fallback estimates."
+  },
+  "dataset": {
+    "patients": 6,
+    "vaccine_peptides": 167,
+    "immunogenic_peptides": 18,
+    "mutation_level_rows": 97,
+    "mutation_level_immunogenic": 15,
+    "haystack_rows": 11092,
+    "haystack_labeled_overlap": 77
+  },
+  "primary_result": {
+    "binding_only_auc": 0.6357723577235772,
+    "dynamic_rl_auc": 0.6024390243902439,
+    "delta": -0.033333333333333326,
+    "auc_delta_ci95": [
+      -0.20138316331528203,
+      0.1558622590634358
+    ],
+    "p_value_bootstrap": 0.716,
+    "n_haystack": 11092,
+    "n_immunogenic": 15,
+    "n_patients": 6
+  },
+  "per_patient": [
+    {
+      "patient_id": "ott_1",
+      "score": "binding_only_score",
+      "haystack_n": 25,
+      "immunogenic_n": 3,
+      "median_rank_immunogenic": 5.0,
+      "median_percentile_immunogenic": 0.2,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.7727272727272727,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_1",
+      "score": "dynamic_rl_score",
+      "haystack_n": 25,
+      "immunogenic_n": 3,
+      "median_rank_immunogenic": 15.0,
+      "median_percentile_immunogenic": 0.6,
+      "recall_at_20": 0.6666666666666666,
+      "recall_at_50": 1.0,
+      "auc": 0.5,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_2",
+      "score": "binding_only_score",
+      "haystack_n": 18,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 11.0,
+      "median_percentile_immunogenic": 0.6111111111111112,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.40625,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_2",
+      "score": "dynamic_rl_score",
+      "haystack_n": 18,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 8.0,
+      "median_percentile_immunogenic": 0.4444444444444444,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.59375,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_3",
+      "score": "binding_only_score",
+      "haystack_n": 26,
+      "immunogenic_n": 3,
+      "median_rank_immunogenic": 21.0,
+      "median_percentile_immunogenic": 0.8076923076923077,
+      "recall_at_20": 0.3333333333333333,
+      "recall_at_50": 1.0,
+      "auc": 0.2753623188405797,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_3",
+      "score": "dynamic_rl_score",
+      "haystack_n": 26,
+      "immunogenic_n": 3,
+      "median_rank_immunogenic": 9.0,
+      "median_percentile_immunogenic": 0.34615384615384615,
+      "recall_at_20": 0.6666666666666666,
+      "recall_at_50": 1.0,
+      "auc": 0.6231884057971014,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_4",
+      "score": "binding_only_score",
+      "haystack_n": 29,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 6.5,
+      "median_percentile_immunogenic": 0.22413793103448276,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.8148148148148149,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_4",
+      "score": "dynamic_rl_score",
+      "haystack_n": 29,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 6.5,
+      "median_percentile_immunogenic": 0.22413793103448276,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.8148148148148149,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_5",
+      "score": "binding_only_score",
+      "haystack_n": 35,
+      "immunogenic_n": 6,
+      "median_rank_immunogenic": 17.0,
+      "median_percentile_immunogenic": 0.4857142857142857,
+      "recall_at_20": 0.5,
+      "recall_at_50": 1.0,
+      "auc": 0.5459770114942528,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_5",
+      "score": "dynamic_rl_score",
+      "haystack_n": 35,
+      "immunogenic_n": 6,
+      "median_rank_immunogenic": 14.5,
+      "median_percentile_immunogenic": 0.41428571428571426,
+      "recall_at_20": 0.6666666666666666,
+      "recall_at_50": 1.0,
+      "auc": 0.6091954022988506,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_6",
+      "score": "binding_only_score",
+      "haystack_n": 34,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 17.0,
+      "median_percentile_immunogenic": 0.5,
+      "recall_at_20": 0.5,
+      "recall_at_50": 1.0,
+      "auc": 0.515625,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_6",
+      "score": "dynamic_rl_score",
+      "haystack_n": 34,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 18.5,
+      "median_percentile_immunogenic": 0.5441176470588235,
+      "recall_at_20": 0.5,
+      "recall_at_50": 1.0,
+      "auc": 0.46875,
+      "level": "peptide"
+    },
+    {
+      "patient_id": "ott_1",
+      "score": "binding_only_score",
+      "haystack_n": 11,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 3.0,
+      "median_percentile_immunogenic": 0.2727272727272727,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.8333333333333334,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_1",
+      "score": "dynamic_rl_score",
+      "haystack_n": 11,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 6.0,
+      "median_percentile_immunogenic": 0.5454545454545454,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.5,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_2",
+      "score": "binding_only_score",
+      "haystack_n": 14,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 8.0,
+      "median_percentile_immunogenic": 0.5714285714285714,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.4583333333333333,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_2",
+      "score": "dynamic_rl_score",
+      "haystack_n": 14,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 5.0,
+      "median_percentile_immunogenic": 0.3571428571428571,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.7083333333333334,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_3",
+      "score": "binding_only_score",
+      "haystack_n": 14,
+      "immunogenic_n": 3,
+      "median_rank_immunogenic": 10.0,
+      "median_percentile_immunogenic": 0.7142857142857143,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.4545454545454545,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_3",
+      "score": "dynamic_rl_score",
+      "haystack_n": 14,
+      "immunogenic_n": 3,
+      "median_rank_immunogenic": 3.0,
+      "median_percentile_immunogenic": 0.21428571428571427,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.7575757575757576,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_4",
+      "score": "binding_only_score",
+      "haystack_n": 17,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 5.0,
+      "median_percentile_immunogenic": 0.29411764705882354,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.7666666666666666,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_4",
+      "score": "dynamic_rl_score",
+      "haystack_n": 17,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 4.5,
+      "median_percentile_immunogenic": 0.2647058823529412,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.8,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_5",
+      "score": "binding_only_score",
+      "haystack_n": 19,
+      "immunogenic_n": 4,
+      "median_rank_immunogenic": 7.0,
+      "median_percentile_immunogenic": 0.3684210526315789,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.7,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_5",
+      "score": "dynamic_rl_score",
+      "haystack_n": 19,
+      "immunogenic_n": 4,
+      "median_rank_immunogenic": 11.5,
+      "median_percentile_immunogenic": 0.6052631578947368,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.5,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_6",
+      "score": "binding_only_score",
+      "haystack_n": 22,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 6.5,
+      "median_percentile_immunogenic": 0.29545454545454547,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.75,
+      "level": "mutation"
+    },
+    {
+      "patient_id": "ott_6",
+      "score": "dynamic_rl_score",
+      "haystack_n": 22,
+      "immunogenic_n": 2,
+      "median_rank_immunogenic": 7.5,
+      "median_percentile_immunogenic": 0.34090909090909094,
+      "recall_at_20": 1.0,
+      "recall_at_50": 1.0,
+      "auc": 0.7000000000000001,
+      "level": "mutation"
+    }
+  ],
+  "ablation": {
+    "all_three": 0.583739837398374,
+    "drop_expression": 0.6146341463414634,
+    "drop_presentation": 0.5276422764227642,
+    "drop_dissimilarity": 0.5845528455284553,
+    "presentation_only": 0.6357723577235772,
+    "expression_only": 0.5284810126582278,
+    "dissimilarity_only": 0.4565040650406504
+  },
+  "optimal_weights": {
+    "grid_best": {
+      "expression_score": 0.15,
+      "presentation_score": 1.0,
+      "self_dissimilarity": 0.05
+    },
+    "grid_best_auc": 0.6430894308943089,
+    "top20": [
+      {
+        "auc": 0.6430894308943089,
+        "expression_score": 0.15,
+        "presentation_score": 1.0,
+        "self_dissimilarity": 0.05
+      },
+      {
+        "auc": 0.6422764227642276,
+        "expression_score": 0.1,
+        "presentation_score": 0.65,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.6414634146341464,
+        "expression_score": 0.05,
+        "presentation_score": 0.35,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.6414634146341464,
+        "expression_score": 0.1,
+        "presentation_score": 0.65,
+        "self_dissimilarity": 0.05
+      },
+      {
+        "auc": 0.6414634146341464,
+        "expression_score": 0.1,
+        "presentation_score": 0.7,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.6414634146341464,
+        "expression_score": 0.1,
+        "presentation_score": 0.75,
+        "self_dissimilarity": 0.05
+      },
+      {
+        "auc": 0.6414634146341464,
+        "expression_score": 0.2,
+        "presentation_score": 0.95,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.6406504065040651,
+        "expression_score": 0.1,
+        "presentation_score": 0.75,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.05,
+        "presentation_score": 0.2,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.05,
+        "presentation_score": 0.4,
+        "self_dissimilarity": 0.05
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.05,
+        "presentation_score": 0.9,
+        "self_dissimilarity": 0.05
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.05,
+        "presentation_score": 0.95,
+        "self_dissimilarity": 0.05
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.1,
+        "presentation_score": 0.4,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.1,
+        "presentation_score": 0.8,
+        "self_dissimilarity": 0.1
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.15,
+        "presentation_score": 0.6,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.15,
+        "presentation_score": 1.0,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.2,
+        "presentation_score": 0.8,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.640650406504065,
+        "expression_score": 0.25,
+        "presentation_score": 1.0,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.6398373983739838,
+        "expression_score": 0.05,
+        "presentation_score": 0.85,
+        "self_dissimilarity": 0.0
+      },
+      {
+        "auc": 0.6398373983739838,
+        "expression_score": 0.05,
+        "presentation_score": 0.9,
+        "self_dissimilarity": 0.0
+      }
+    ],
+    "logistic_regression_auc": 0.6284552845528455,
+    "logistic_coefficients": {
+      "expression_score": 0.24309594785331726,
+      "presentation_score": 0.505746070393723,
+      "self_dissimilarity": -0.20559915920675056
+    }
+  },
+  "lopo_cv": {
+    "per_patient_auc": {
+      "ott_1": 0.6666666666666667,
+      "ott_2": 0.375,
+      "ott_3": 0.4545454545454545,
+      "ott_4": 0.7666666666666666,
+      "ott_5": 0.4833333333333334,
+      "ott_6": 0.75
+    },
+    "mean_auc": 0.5827020202020202,
+    "median_auc": 0.5750000000000001
+  },
+  "shank2_case": {
+    "patient_id": "keskin_8",
+    "gene": "SHANK2",
+    "binding_affinity_nm": 447.37,
+    "presentation_score": 0.4356993888397686,
+    "expression_score": 0.2894623334818679,
+    "self_dissimilarity": 0.325,
+    "rl_priority": 0.2243139893911717,
+    "binding_rank_within_keskin8": 8,
+    "rl_rank_within_keskin8": 6,
+    "n_keskin8_rows": 8
+  }
+}

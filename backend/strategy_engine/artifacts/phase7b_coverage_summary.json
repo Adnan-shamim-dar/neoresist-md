@@ -1,0 +1,7 @@
+{
+  "total_mutations": 11094,
+  "missense_parseable": 8463,
+  "with_binding_prediction": 6617,
+  "labeled_mutations_covered": 70,
+  "coverage_fraction": 0.5964
+}

@@ -1,0 +1,1274 @@
+{
+  "source": {
+    "paper": "Wells et al., Cell 2020 (10.1016/j.cell.2020.09.015)",
+    "retrieval": "CaltechAUTHORS DOI mirror supplementary xlsx files",
+    "files": [
+      "1-s2.0-S0092867420311569-mmc1.xlsx",
+      "1-s2.0-S0092867420311569-mmc2.xlsx",
+      "1-s2.0-S0092867420311569-mmc3.xlsx",
+      "1-s2.0-S0092867420311569-mmc4.xlsx",
+      "1-s2.0-S0092867420311569-mmc5.xlsx",
+      "1-s2.0-S0092867420311569-mmc6.xlsx",
+      "1-s2.0-S0092867420311569-mmc7.xlsx"
+    ]
+  },
+  "prepared_csv": "C:\\Users\\rambe\\Documents\\neovax\\validation_papers\\tesla_prepared.csv",
+  "summary": {
+    "total_candidates": 918,
+    "total_immunogenic": 41,
+    "total_non_immunogenic": 877,
+    "per_patient_breakdown": [
+      {
+        "patient_id": "TESLA_1",
+        "total": 97,
+        "immunogenic": 9
+      },
+      {
+        "patient_id": "TESLA_10",
+        "total": 73,
+        "immunogenic": 3
+      },
+      {
+        "patient_id": "TESLA_12",
+        "total": 89,
+        "immunogenic": 4
+      },
+      {
+        "patient_id": "TESLA_16",
+        "total": 144,
+        "immunogenic": 4
+      },
+      {
+        "patient_id": "TESLA_2",
+        "total": 108,
+        "immunogenic": 4
+      },
+      {
+        "patient_id": "TESLA_3",
+        "total": 97,
+        "immunogenic": 13
+      },
+      {
+        "patient_id": "TESLA_4",
+        "total": 76,
+        "immunogenic": 1
+      },
+      {
+        "patient_id": "TESLA_8",
+        "total": 108,
+        "immunogenic": 1
+      },
+      {
+        "patient_id": "TESLA_9",
+        "total": 126,
+        "immunogenic": 2
+      }
+    ],
+    "feature_availability_counts": {
+      "binding_affinity_nm": 918,
+      "expression_tpm": 714,
+      "mutant_peptide": 918,
+      "wildtype_peptide": 0,
+      "hla_allele": 918,
+      "both_mut_and_wt": 0
+    }
+  },
+  "hypothesis_results": {
+    "n_rows": 918,
+    "n_pos": 41,
+    "n_neg": 877,
+    "patients": [
+      "TESLA_1",
+      "TESLA_10",
+      "TESLA_12",
+      "TESLA_16",
+      "TESLA_2",
+      "TESLA_3",
+      "TESLA_4",
+      "TESLA_8",
+      "TESLA_9"
+    ],
+    "hypotheses": {
+      "H0_binding_only": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H1_bind_plus_tcr_volume": {
+        "in_sample_auc": 0.4882220429958006,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.4482323232323232,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.47619047619047616,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5911764705882352,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5214285714285715,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5817307692307693,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.41666666666666663,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.41333333333333333,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9439252336448598,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.2338709677419355,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.51406164578413
+      },
+      "H2_bind_plus_charge_diff": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H3_bind_plus_hydro": {
+        "in_sample_auc": 0.49965236254414996,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.5921717171717171,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.4238095238095238,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.3941176470588236,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.6714285714285715,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.4326923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.41300366300366304,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.24,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.7757009345794392,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.5080645161290323,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.49455432009700867
+      },
+      "H4_bind_plus_surface_change": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H5_bind_plus_iedb": {
+        "in_sample_auc": 0.781822732708513,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7777777777777778,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9380952380952381,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705881,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5839285714285715,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.59375,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7252747252747253,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.7866666666666666,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9813084112149533,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8185483870967742,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7620323282250328
+      },
+      "H6_bind_plus_iedb_diff": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H7_bind_plus_dai": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H8_bind_plus_foreignness": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H9_bind_plus_expression": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H10_bind_plus_anchor": {
+        "in_sample_auc": 0.6191423088689267,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.76010101010101,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.7809523809523808,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.47352941176470587,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5410714285714286,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5865384615384615,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.5155677655677656,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.8266666666666667,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.5981308411214954,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.7782258064516129,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.6511981969706142
+      },
+      "H11_bind_plus_position": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H12_bind_vol_charge": {
+        "in_sample_auc": 0.4898907027838808,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.4494949494949495,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.47619047619047616,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5911764705882353,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5214285714285715,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5817307692307693,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.41849816849816857,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.41333333333333333,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9439252336448598,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.23790322580645162,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5148534664684239
+      },
+      "H13_bind_vol_hydro": {
+        "in_sample_auc": 0.48583029729955224,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.45202020202020204,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.48095238095238096,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5794117647058824,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5375,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5745192307692307,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.3983516483516484,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.4,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9252336448598131,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.24193548387096775,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5099915950589028
+      },
+      "H14_bind_plus_3tcr": {
+        "in_sample_auc": 0.48583029729955224,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.45202020202020204,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.48095238095238096,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5794117647058824,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5375,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5745192307692307,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.3983516483516484,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.4,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9252336448598131,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.24193548387096775,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5099915950589028
+      },
+      "H15_tcr_only": {
+        "in_sample_auc": 0.4805462079706316,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.4494949494949495,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.4714285714285714,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5764705882352941,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5303571428571429,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5721153846153846,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.39743589743589747,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.4,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9158878504672897,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.22580645161290325,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5043329817941591
+      },
+      "H16_rl_v1_dynamic": {
+        "in_sample_auc": 0.7915982979670162,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.7853535353535352,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.9571428571428572,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.6529411764705882,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5428571428571428,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.6201923076923077,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.7614468864468864,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.76,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9906542056074766,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.8669354838709676,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.7708359550490846
+      },
+      "H17_bind_heavy_tcr_volume": {
+        "in_sample_auc": 0.4905581666991128,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.4494949494949495,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.47619047619047616,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5911764705882353,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5214285714285715,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5817307692307693,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.41849816849816857,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.41333333333333333,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9439252336448598,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.25,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5161975524899293
+      },
+      "H18_equal_bind_tcr_volume": {
+        "in_sample_auc": 0.4871096031370804,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.44696969696969696,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.47619047619047616,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5911764705882352,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5214285714285715,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5817307692307693,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.41758241758241765,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.4,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9439252336448598,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.2338709677419355,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5125416225974403
+      },
+      "H19_tcr_volume_heavy": {
+        "in_sample_auc": 0.48524626637372414,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.4457070707070707,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.47619047619047616,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5911764705882352,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5232142857142857,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5817307692307693,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.41758241758241765,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.4,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9345794392523364,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.2338709677419355,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5115613218897251
+      },
+      "H20_kitchen_sink": {
+        "in_sample_auc": 0.48455099146202407,
+        "per_patient_auc": {
+          "TESLA_1": {
+            "auc": 0.4532828282828283,
+            "n": 97,
+            "n_pos": 9
+          },
+          "TESLA_10": {
+            "auc": 0.47619047619047616,
+            "n": 73,
+            "n_pos": 3
+          },
+          "TESLA_12": {
+            "auc": 0.5823529411764705,
+            "n": 89,
+            "n_pos": 4
+          },
+          "TESLA_16": {
+            "auc": 0.5339285714285714,
+            "n": 144,
+            "n_pos": 4
+          },
+          "TESLA_2": {
+            "auc": 0.5745192307692307,
+            "n": 108,
+            "n_pos": 4
+          },
+          "TESLA_3": {
+            "auc": 0.39743589743589747,
+            "n": 97,
+            "n_pos": 13
+          },
+          "TESLA_4": {
+            "auc": 0.4,
+            "n": 76,
+            "n_pos": 1
+          },
+          "TESLA_8": {
+            "auc": 0.9252336448598131,
+            "n": 108,
+            "n_pos": 1
+          },
+          "TESLA_9": {
+            "auc": 0.24193548387096775,
+            "n": 126,
+            "n_pos": 2
+          }
+        },
+        "mean_per_patient_auc": 0.5094310082238062
+      }
+    },
+    "ranked_in_sample": [
+      {
+        "hypothesis": "H0_binding_only",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H2_bind_plus_charge_diff",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H4_bind_plus_surface_change",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H6_bind_plus_iedb_diff",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H7_bind_plus_dai",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H8_bind_plus_foreignness",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H9_bind_plus_expression",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H11_bind_plus_position",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H16_rl_v1_dynamic",
+        "in_sample_auc": 0.7915982979670162
+      },
+      {
+        "hypothesis": "H5_bind_plus_iedb",
+        "in_sample_auc": 0.781822732708513
+      },
+      {
+        "hypothesis": "H10_bind_plus_anchor",
+        "in_sample_auc": 0.6191423088689267
+      },
+      {
+        "hypothesis": "H3_bind_plus_hydro",
+        "in_sample_auc": 0.49965236254414996
+      },
+      {
+        "hypothesis": "H17_bind_heavy_tcr_volume",
+        "in_sample_auc": 0.4905581666991128
+      },
+      {
+        "hypothesis": "H12_bind_vol_charge",
+        "in_sample_auc": 0.4898907027838808
+      },
+      {
+        "hypothesis": "H1_bind_plus_tcr_volume",
+        "in_sample_auc": 0.4882220429958006
+      },
+      {
+        "hypothesis": "H18_equal_bind_tcr_volume",
+        "in_sample_auc": 0.4871096031370804
+      },
+      {
+        "hypothesis": "H13_bind_vol_hydro",
+        "in_sample_auc": 0.48583029729955224
+      },
+      {
+        "hypothesis": "H14_bind_plus_3tcr",
+        "in_sample_auc": 0.48583029729955224
+      },
+      {
+        "hypothesis": "H19_tcr_volume_heavy",
+        "in_sample_auc": 0.48524626637372414
+      },
+      {
+        "hypothesis": "H20_kitchen_sink",
+        "in_sample_auc": 0.48455099146202407
+      },
+      {
+        "hypothesis": "H15_tcr_only",
+        "in_sample_auc": 0.4805462079706316
+      }
+    ],
+    "h14_summary": {
+      "in_sample_auc": 0.48583029729955224,
+      "in_sample_auc_ci95": [
+        0.3979340604786702,
+        0.574795402370751
+      ],
+      "binding_only_auc": 0.7915982979670162,
+      "binding_only_auc_ci95": [
+        0.7296146262002743,
+        0.8504132827340368
+      ],
+      "delta_h14_minus_binding": -0.30576800066746396,
+      "delta_ci95": [
+        -0.388184716852975,
+        -0.21991624636152718
+      ]
+    },
+    "lopo_tesla": {
+      "n_patients": 9,
+      "n_computable": 9,
+      "mean_auc": 0.5099915950589028,
+      "median_auc": 0.48095238095238096
+    }
+  }
+}

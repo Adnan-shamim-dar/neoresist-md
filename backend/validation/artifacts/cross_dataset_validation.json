@@ -1,0 +1,29 @@
+{
+  "setup": "train_on_ott_fixed_h14_then_test_on_tesla",
+  "h14_features": [
+    [
+      "bind_log50k",
+      0.4,
+      false
+    ],
+    [
+      "tcr_volume_mut",
+      0.2,
+      false
+    ],
+    [
+      "tcr_charge_diff",
+      0.2,
+      false
+    ],
+    [
+      "tcr_hydrophobicity_mut",
+      0.2,
+      false
+    ]
+  ],
+  "ott_in_sample_auc": 0.6502609992542878,
+  "tesla_test_auc": 0.48583029729955224,
+  "ott_n": 167,
+  "tesla_n": 918
+}

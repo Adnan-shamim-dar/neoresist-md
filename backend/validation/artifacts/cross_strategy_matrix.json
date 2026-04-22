@@ -1,0 +1,78 @@
+{
+  "strategies": {
+    "ott_h14": {
+      "ott_lopo_auc": 0.7577020202020202,
+      "tesla_lopo_auc": 0.486
+    },
+    "tesla_clean_top2_bind": {
+      "definition": [
+        [
+          "bind_log50k",
+          0.5,
+          false
+        ],
+        [
+          "binding_affinity_nm",
+          0.25,
+          true
+        ],
+        [
+          "expression_tpm",
+          0.25,
+          false
+        ]
+      ],
+      "ott_lopo_auc": 0.7161195286195287,
+      "ott_in_sample_auc": 0.6804878048780487,
+      "ott_per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777779,
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.7916666666666666,
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7272727272727272,
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6,
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6,
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.8,
+          "n": 22,
+          "n_pos": 2
+        }
+      },
+      "tesla_lopo_auc": 0.8134179059185117
+    },
+    "binding_only": {
+      "ott_lopo_auc": 0.6493686868686869,
+      "tesla_lopo_auc": 0.7708359550490846
+    }
+  },
+  "matrix": {
+    "tested_on_ott": {
+      "Ott_H14": 0.7577020202020202,
+      "TESLA_strat": 0.7161195286195287,
+      "Binding": 0.6493686868686869
+    },
+    "tested_on_tesla": {
+      "Ott_H14": 0.486,
+      "TESLA_strat": 0.8134179059185117,
+      "Binding": 0.7708359550490846
+    }
+  }
+}

@@ -1,0 +1,761 @@
+{
+  "leaderboard": [
+    {
+      "name": "BEST_LR: expr_quantile+bind_neglog_x_expr_sqrt+bind_exp150_x_expr_sigmoid10",
+      "level": "mutation",
+      "auc": 0.7567811934900542,
+      "n": 93,
+      "n_pos": -1,
+      "details": "logistic regression"
+    },
+    {
+      "name": "BEST_COMBO: bind_exp500+expr_current+dissim_hamming",
+      "level": "mutation",
+      "auc": 0.6837398373983741,
+      "n": 97,
+      "n_pos": 15,
+      "details": "weights: [0.7692307692307692, 0.15384615384615385, 0.07692307692307693]"
+    },
+    {
+      "name": "bind_patient_rank",
+      "level": "mutation",
+      "auc": 0.6540650406504065,
+      "n": 97,
+      "n_pos": 15,
+      "details": "within-patient percentile rank"
+    },
+    {
+      "name": "derived_rank_product",
+      "level": "mutation",
+      "auc": 0.6414634146341464,
+      "n": 97,
+      "n_pos": 15,
+      "details": "binding_rank \u00d7 expression_rank"
+    },
+    {
+      "name": "dissim_charge_change",
+      "level": "peptide",
+      "auc": 0.6405684754521964,
+      "n": 144,
+      "n_pos": 15,
+      "details": "charge change magnitude"
+    },
+    {
+      "name": "bind_linear50k",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1 - nM/50000"
+    },
+    {
+      "name": "bind_linear500",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1 - nM/500, clipped"
+    },
+    {
+      "name": "bind_sigmoid500",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1/(1 + nM/500)"
+    },
+    {
+      "name": "bind_sigmoid50",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1/(1 + nM/50)"
+    },
+    {
+      "name": "bind_exp500",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "exp(-nM/500)"
+    },
+    {
+      "name": "bind_exp150",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "exp(-nM/150)"
+    },
+    {
+      "name": "bind_inverse",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1/nM"
+    },
+    {
+      "name": "bind_global_rank",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "global percentile rank (inverted)"
+    },
+    {
+      "name": "bind_neglog",
+      "level": "mutation",
+      "auc": 0.6357723577235772,
+      "n": 97,
+      "n_pos": 15,
+      "details": "-log10(nM)"
+    },
+    {
+      "name": "bind_log50k",
+      "level": "mutation",
+      "auc": 0.633739837398374,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1 - log10(nM)/log10(50000)"
+    },
+    {
+      "name": "bind_log5k",
+      "level": "mutation",
+      "auc": 0.633739837398374,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1 - log10(nM)/log10(5000)"
+    },
+    {
+      "name": "bind_log500",
+      "level": "mutation",
+      "auc": 0.633739837398374,
+      "n": 97,
+      "n_pos": 15,
+      "details": "1 - log10(nM)/log10(500)"
+    },
+    {
+      "name": "interact_max",
+      "level": "mutation",
+      "auc": 0.6075949367088607,
+      "n": 93,
+      "n_pos": 14,
+      "details": "max(pres, expr, dissim)"
+    },
+    {
+      "name": "impute_mean_v1weights",
+      "level": "mutation",
+      "auc": 0.6032520325203252,
+      "n": 97,
+      "n_pos": 15,
+      "details": "mean-fill, rl_v1 weights"
+    },
+    {
+      "name": "impute_median_v1weights",
+      "level": "mutation",
+      "auc": 0.6032520325203252,
+      "n": 97,
+      "n_pos": 15,
+      "details": "median-fill, rl_v1 weights"
+    },
+    {
+      "name": "impute_dynamic_v1weights",
+      "level": "mutation",
+      "auc": 0.6024390243902439,
+      "n": 97,
+      "n_pos": 15,
+      "details": "dynamic renorm, rl_v1 weights"
+    },
+    {
+      "name": "impute_zero_v1weights",
+      "level": "mutation",
+      "auc": 0.5934959349593496,
+      "n": 97,
+      "n_pos": 15,
+      "details": "zero-fill, rl_v1 weights"
+    },
+    {
+      "name": "dissim_hamming",
+      "level": "mutation",
+      "auc": 0.5903846153846154,
+      "n": 77,
+      "n_pos": 12,
+      "details": "Hamming distance proportion"
+    },
+    {
+      "name": "interact_bind_x_dissim",
+      "level": "peptide",
+      "auc": 0.5902311707680835,
+      "n": 167,
+      "n_pos": 18,
+      "details": "presentation \u00d7 dissimilarity"
+    },
+    {
+      "name": "impute_complete_only",
+      "level": "mutation",
+      "auc": 0.5886075949367089,
+      "n": 93,
+      "n_pos": 14,
+      "details": "complete cases only (n=93)"
+    },
+    {
+      "name": "derived_rank_product",
+      "level": "peptide",
+      "auc": 0.5850111856823267,
+      "n": 167,
+      "n_pos": 18,
+      "details": "binding_rank \u00d7 expression_rank"
+    },
+    {
+      "name": "interact_bind_x_dissim",
+      "level": "mutation",
+      "auc": 0.5821138211382113,
+      "n": 97,
+      "n_pos": 15,
+      "details": "presentation \u00d7 dissimilarity"
+    },
+    {
+      "name": "interact_bind_x_expr",
+      "level": "mutation",
+      "auc": 0.574141048824593,
+      "n": 93,
+      "n_pos": 14,
+      "details": "presentation \u00d7 expression"
+    },
+    {
+      "name": "interact_harmonic",
+      "level": "mutation",
+      "auc": 0.5731707317073171,
+      "n": 97,
+      "n_pos": 15,
+      "details": "harmonic mean of nonzero features"
+    },
+    {
+      "name": "interact_geomean",
+      "level": "mutation",
+      "auc": 0.5699186991869919,
+      "n": 97,
+      "n_pos": 15,
+      "details": "geometric mean of nonzero features"
+    },
+    {
+      "name": "interact_all_three",
+      "level": "peptide",
+      "auc": 0.5689136968656074,
+      "n": 154,
+      "n_pos": 17,
+      "details": "pres \u00d7 expr \u00d7 dissim"
+    },
+    {
+      "name": "expr_binary_10",
+      "level": "peptide",
+      "auc": 0.5676255903821382,
+      "n": 154,
+      "n_pos": 17,
+      "details": "binary: TPM > 10"
+    },
+    {
+      "name": "interact_bind_x_expr",
+      "level": "peptide",
+      "auc": 0.5637612709317303,
+      "n": 154,
+      "n_pos": 17,
+      "details": "presentation \u00d7 expression"
+    },
+    {
+      "name": "expr_patient_rank",
+      "level": "peptide",
+      "auc": 0.5629025332760842,
+      "n": 154,
+      "n_pos": 17,
+      "details": "within-patient percentile"
+    },
+    {
+      "name": "bind_linear50k",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1 - nM/50000"
+    },
+    {
+      "name": "bind_linear500",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1 - nM/500, clipped"
+    },
+    {
+      "name": "bind_sigmoid500",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1/(1 + nM/500)"
+    },
+    {
+      "name": "bind_sigmoid50",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1/(1 + nM/50)"
+    },
+    {
+      "name": "bind_exp500",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "exp(-nM/500)"
+    },
+    {
+      "name": "bind_exp150",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "exp(-nM/150)"
+    },
+    {
+      "name": "bind_inverse",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1/nM"
+    },
+    {
+      "name": "bind_global_rank",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "global percentile rank (inverted)"
+    },
+    {
+      "name": "bind_neglog",
+      "level": "peptide",
+      "auc": 0.5613348247576435,
+      "n": 167,
+      "n_pos": 18,
+      "details": "-log10(nM)"
+    },
+    {
+      "name": "bind_tiered",
+      "level": "mutation",
+      "auc": 0.5609756097560975,
+      "n": 97,
+      "n_pos": 15,
+      "details": "<50nM=1.0, <500nM=0.5, else=0"
+    },
+    {
+      "name": "bind_log50k",
+      "level": "peptide",
+      "auc": 0.5598434004474273,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1 - log10(nM)/log10(50000)"
+    },
+    {
+      "name": "bind_log5k",
+      "level": "peptide",
+      "auc": 0.5598434004474273,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1 - log10(nM)/log10(5000)"
+    },
+    {
+      "name": "bind_log500",
+      "level": "peptide",
+      "auc": 0.5598434004474273,
+      "n": 167,
+      "n_pos": 18,
+      "details": "1 - log10(nM)/log10(500)"
+    },
+    {
+      "name": "bind_binary50",
+      "level": "mutation",
+      "auc": 0.5589430894308942,
+      "n": 97,
+      "n_pos": 15,
+      "details": "binary: nM < 50"
+    },
+    {
+      "name": "interact_harmonic",
+      "level": "peptide",
+      "auc": 0.5589112602535421,
+      "n": 167,
+      "n_pos": 18,
+      "details": "harmonic mean of nonzero features"
+    },
+    {
+      "name": "interact_geomean",
+      "level": "peptide",
+      "auc": 0.55779269202088,
+      "n": 167,
+      "n_pos": 18,
+      "details": "geometric mean of nonzero features"
+    }
+  ],
+  "best_combo": {
+    "auc": 0.6837398373983741,
+    "name": "bind_exp500+expr_current+dissim_hamming",
+    "weights": [
+      0.7692307692307692,
+      0.15384615384615385,
+      0.07692307692307693
+    ],
+    "bind": "bind_exp500",
+    "expr": "expr_current",
+    "dissim": "dissim_hamming"
+  },
+  "top_lr": [
+    {
+      "features": "expr_quantile+bind_neglog_x_expr_sqrt+bind_exp150_x_expr_sigmoid10",
+      "auc": 0.7567811934900542,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.3071861840442283,
+        "bind_neglog_x_expr_sqrt": -0.5588057548574978,
+        "bind_exp150_x_expr_sigmoid10": 1.211101292168269
+      }
+    },
+    {
+      "features": "expr_quantile+bind_neglog_x_expr_sqrt+bind_exp150_x_expr_current",
+      "auc": 0.7432188065099457,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.3305914981025337,
+        "bind_neglog_x_expr_sqrt": -0.5626135886294455,
+        "bind_exp150_x_expr_current": 1.2852359256091983
+      }
+    },
+    {
+      "features": "expr_quantile+bind_neglog_x_expr_log2+bind_exp150_x_expr_current",
+      "auc": 0.740506329113924,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.3629041280454557,
+        "bind_neglog_x_expr_log2": -0.5542021981638834,
+        "bind_exp150_x_expr_current": 1.3424672437011698
+      }
+    },
+    {
+      "features": "expr_quantile+bind_neglog_x_expr_log2+bind_exp150_x_expr_log2",
+      "auc": 0.7396021699819169,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.2842865568998325,
+        "bind_neglog_x_expr_log2": -0.47842384000719895,
+        "bind_exp150_x_expr_log2": 1.2991384814146192
+      }
+    },
+    {
+      "features": "expr_quantile+bind_log50k_x_expr_quantile+bind_sigmoid500_x_expr_log2",
+      "auc": 0.7368896925858952,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.0448253719802776,
+        "bind_log50k_x_expr_quantile": -0.0781947974712683,
+        "bind_sigmoid500_x_expr_log2": 1.273523513747506
+      }
+    },
+    {
+      "features": "expr_quantile+bind_neglog_x_expr_current+bind_exp150_x_expr_log2",
+      "auc": 0.7368896925858951,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.286446114692416,
+        "bind_neglog_x_expr_current": -0.46914834806527106,
+        "bind_exp150_x_expr_log2": 1.3167392298019283
+      }
+    },
+    {
+      "features": "bind_log50k_x_expr_quantile+bind_neglog_x_expr_sqrt+bind_exp150_x_expr_current",
+      "auc": 0.7350813743218807,
+      "n": 93,
+      "coefs": {
+        "bind_log50k_x_expr_quantile": -1.1788623274251715,
+        "bind_neglog_x_expr_sqrt": -0.16044759724724283,
+        "bind_exp150_x_expr_current": 1.4311625635518492
+      }
+    },
+    {
+      "features": "expr_quantile+bind_exp500_x_expr_current+bind_neglog_x_expr_sqrt",
+      "auc": 0.7350813743218806,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.286366056225137,
+        "bind_exp500_x_expr_current": 1.279929652216864,
+        "bind_neglog_x_expr_sqrt": -0.25273126263411133
+      }
+    },
+    {
+      "features": "expr_sqrt+bind_log50k_x_expr_quantile+bind_exp150_x_expr_sqrt",
+      "auc": 0.7341772151898733,
+      "n": 93,
+      "coefs": {
+        "expr_sqrt": -0.42204903128735044,
+        "bind_log50k_x_expr_quantile": -0.31689279409096627,
+        "bind_exp150_x_expr_sqrt": 1.0066916271744089
+      }
+    },
+    {
+      "features": "expr_quantile+bind_neglog_x_expr_log2+bind_exp150_x_expr_sigmoid10",
+      "auc": 0.7341772151898733,
+      "n": 93,
+      "coefs": {
+        "expr_quantile": -1.2683212158072743,
+        "bind_neglog_x_expr_log2": -0.5032249344489138,
+        "bind_exp150_x_expr_sigmoid10": 1.2239804127290308
+      }
+    }
+  ],
+  "combo_results_top20": [
+    {
+      "combo": "bind_exp500+expr_current+dissim_hamming",
+      "auc": 0.6837398373983741,
+      "weights": [
+        0.7692307692307692,
+        0.15384615384615385,
+        0.07692307692307693
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp150+expr_current+dissim_hamming",
+      "auc": 0.683739837398374,
+      "weights": [
+        0.5555555555555556,
+        0.2777777777777778,
+        0.16666666666666666
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp150+expr_current+dissim_inverted",
+      "auc": 0.6796747967479675,
+      "weights": [
+        0.5833333333333333,
+        0.3333333333333333,
+        0.08333333333333333
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_current",
+      "dissim": "dissim_inverted"
+    },
+    {
+      "combo": "bind_exp150+expr_sigmoid10+dissim_hamming",
+      "auc": 0.6780487804878049,
+      "weights": [
+        0.5882352941176471,
+        0.23529411764705885,
+        0.17647058823529413
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp500+expr_current+dissim_inverted",
+      "auc": 0.6780487804878048,
+      "weights": [
+        0.7692307692307692,
+        0.15384615384615385,
+        0.07692307692307693
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_inverted"
+    },
+    {
+      "combo": "bind_exp150+expr_current+dissim_current",
+      "auc": 0.6780487804878048,
+      "weights": [
+        0.6428571428571429,
+        0.35714285714285715,
+        0.0
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_current",
+      "dissim": "dissim_current"
+    },
+    {
+      "combo": "bind_sigmoid500+expr_current+dissim_hamming",
+      "auc": 0.6772357723577236,
+      "weights": [
+        0.7692307692307692,
+        0.15384615384615385,
+        0.07692307692307693
+      ],
+      "bind": "bind_sigmoid500",
+      "expr": "expr_current",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_sigmoid500+expr_current+dissim_inverted",
+      "auc": 0.6764227642276422,
+      "weights": [
+        0.6666666666666666,
+        0.13333333333333333,
+        0.19999999999999998
+      ],
+      "bind": "bind_sigmoid500",
+      "expr": "expr_current",
+      "dissim": "dissim_inverted"
+    },
+    {
+      "combo": "bind_exp150+expr_log2+dissim_hamming",
+      "auc": 0.6764227642276422,
+      "weights": [
+        0.7692307692307692,
+        0.07692307692307693,
+        0.15384615384615385
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_log2",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp500+expr_current+dissim_current",
+      "auc": 0.6756097560975609,
+      "weights": [
+        0.8333333333333334,
+        0.16666666666666669,
+        0.0
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_current",
+      "dissim": "dissim_current"
+    },
+    {
+      "combo": "bind_exp150+expr_log2+dissim_inverted",
+      "auc": 0.673170731707317,
+      "weights": [
+        0.8333333333333333,
+        0.08333333333333333,
+        0.08333333333333333
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_log2",
+      "dissim": "dissim_inverted"
+    },
+    {
+      "combo": "bind_sigmoid500+expr_current+dissim_current",
+      "auc": 0.6723577235772358,
+      "weights": [
+        0.8571428571428572,
+        0.14285714285714288,
+        0.0
+      ],
+      "bind": "bind_sigmoid500",
+      "expr": "expr_current",
+      "dissim": "dissim_current"
+    },
+    {
+      "combo": "bind_exp500+expr_sigmoid10+dissim_hamming",
+      "auc": 0.6715447154471545,
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp150+expr_quantile+dissim_hamming",
+      "auc": 0.6715447154471545,
+      "weights": [
+        0.5294117647058824,
+        0.29411764705882354,
+        0.17647058823529413
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_quantile",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp150+expr_sigmoid10+dissim_inverted",
+      "auc": 0.6715447154471544,
+      "weights": [
+        0.6153846153846153,
+        0.30769230769230765,
+        0.07692307692307691
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_inverted"
+    },
+    {
+      "combo": "bind_sigmoid500+expr_sigmoid10+dissim_hamming",
+      "auc": 0.6707317073170731,
+      "weights": [
+        0.8,
+        0.1,
+        0.1
+      ],
+      "bind": "bind_sigmoid500",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp500+expr_sigmoid10+dissim_inverted",
+      "auc": 0.6707317073170731,
+      "weights": [
+        0.6428571428571428,
+        0.14285714285714285,
+        0.21428571428571425
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_inverted"
+    },
+    {
+      "combo": "bind_exp500+expr_sigmoid10+dissim_current",
+      "auc": 0.6691056910569105,
+      "weights": [
+        0.75,
+        0.12500000000000003,
+        0.12500000000000003
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_current"
+    },
+    {
+      "combo": "bind_exp500+expr_quantile+dissim_hamming",
+      "auc": 0.6691056910569105,
+      "weights": [
+        0.7692307692307692,
+        0.15384615384615385,
+        0.07692307692307693
+      ],
+      "bind": "bind_exp500",
+      "expr": "expr_quantile",
+      "dissim": "dissim_hamming"
+    },
+    {
+      "combo": "bind_exp150+expr_sigmoid10+dissim_current",
+      "auc": 0.6691056910569105,
+      "weights": [
+        0.6428571428571428,
+        0.2857142857142857,
+        0.07142857142857142
+      ],
+      "bind": "bind_exp150",
+      "expr": "expr_sigmoid10",
+      "dissim": "dissim_current"
+    }
+  ],
+  "baseline_auc": 0.633739837398374
+}

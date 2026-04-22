@@ -1,0 +1,29 @@
+{
+  "n_rows_scored": 701,
+  "n_labels": 701,
+  "n_positive": 215,
+  "n_negative": 486,
+  "auc_roc_rl_priority": 0.566853287395923,
+  "auc_roc_binding_affinity_only": 0.5124653076849459,
+  "auc_delta_rl_minus_binding": 0.054387979710977086,
+  "binding_source_counts": {
+    "reported": 587,
+    "predicted": 114
+  },
+  "rows_by_paper_source": {
+    "rojas_2023": 230,
+    "ott_2017": 167,
+    "hilf_2019": 152,
+    "sahin_2017": 125,
+    "keskin_2019": 27
+  },
+  "expression_score_summary": {
+    "nan_count": 387,
+    "zero_count": 0,
+    "nonzero_count": 314,
+    "mean": 0.5348610146020396
+  },
+  "training_matrix_csv": "C:\\Users\\rambe\\Documents\\neovax\\backend\\validation\\artifacts\\training_matrix.csv",
+  "scored_rows_csv": "C:\\Users\\rambe\\Documents\\neovax\\backend\\validation\\artifacts\\publication_scored_neoantigens.csv",
+  "results_table_csv": "C:\\Users\\rambe\\Documents\\neovax\\backend\\validation\\artifacts\\results_table.csv"
+}

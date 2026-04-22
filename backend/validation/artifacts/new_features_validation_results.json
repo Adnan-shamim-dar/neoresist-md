@@ -1,0 +1,1052 @@
+{
+  "dataset": {
+    "peptide_rows": 167,
+    "mutation_rows": 97,
+    "positives": 15,
+    "patients": [
+      "ott_1",
+      "ott_2",
+      "ott_3",
+      "ott_4",
+      "ott_5",
+      "ott_6"
+    ]
+  },
+  "feature_status": {
+    "dai": true,
+    "iedb_immuno": "True",
+    "proteome_foreignness": "True",
+    "tcr_properties": true,
+    "anchor_quality": true,
+    "mutation_position": true,
+    "hamming_distance": true
+  },
+  "single_feature_results": [
+    {
+      "feature": "tcr_volume_mut",
+      "auc": 0.6943089430894309,
+      "auc_raw": 0.6943089430894309,
+      "auc_inverted": 0.30569105691056914,
+      "n": 97,
+      "p_value": 0.01732863642508858,
+      "direction": "positive",
+      "mean_immunogenic": 142.16858148148145,
+      "mean_non_immunogenic": 132.46605352303524
+    },
+    {
+      "feature": "tcr_charge_diff",
+      "auc": 0.6743589743589744,
+      "auc_raw": 0.6743589743589744,
+      "auc_inverted": 0.3256410256410256,
+      "n": 77,
+      "p_value": 0.016962672196256696,
+      "direction": "positive",
+      "mean_immunogenic": 0.11222222222222222,
+      "mean_non_immunogenic": 0.013803418803418802
+    },
+    {
+      "feature": "tcr_hydrophobicity_mut",
+      "auc": 0.6686991869918699,
+      "auc_raw": 0.6686991869918699,
+      "auc_inverted": 0.3313008130081301,
+      "n": 97,
+      "p_value": 0.03888719844277361,
+      "direction": "positive",
+      "mean_immunogenic": 0.0257481481481482,
+      "mean_non_immunogenic": -0.5758976964769646
+    },
+    {
+      "feature": "tcr_volume_abs_diff",
+      "auc": 0.648076923076923,
+      "auc_raw": 0.648076923076923,
+      "auc_inverted": 0.3519230769230769,
+      "n": 77,
+      "p_value": 0.1022002723119552,
+      "direction": "positive",
+      "mean_immunogenic": 6.41680555555556,
+      "mean_non_immunogenic": 4.4463846153846145
+    },
+    {
+      "feature": "presentation_score",
+      "auc": 0.6357723577235772,
+      "auc_raw": 0.6357723577235772,
+      "auc_inverted": 0.36422764227642274,
+      "n": 97,
+      "p_value": 0.09665338772700302,
+      "direction": "positive",
+      "mean_immunogenic": 0.7196370193681155,
+      "mean_non_immunogenic": 0.6721347211591279
+    },
+    {
+      "feature": "tcr_surface_change",
+      "auc": 0.6199186991869918,
+      "auc_raw": 0.6199186991869918,
+      "auc_inverted": 0.3800813008130081,
+      "n": 97,
+      "p_value": 0.12599121474180258,
+      "direction": "positive",
+      "mean_immunogenic": 0.12666511421601243,
+      "mean_non_immunogenic": 0.08331502983193505
+    },
+    {
+      "feature": "tcr_volume_diff",
+      "auc": 0.6134615384615385,
+      "auc_raw": 0.6134615384615385,
+      "auc_inverted": 0.3865384615384615,
+      "n": 77,
+      "p_value": 0.21108820931407823,
+      "direction": "positive",
+      "mean_immunogenic": 4.28763888888889,
+      "mean_non_immunogenic": 2.7965726495726484
+    },
+    {
+      "feature": "dai",
+      "auc": 0.6051282051282052,
+      "auc_raw": 0.6051282051282052,
+      "auc_inverted": 0.39487179487179486,
+      "n": 77,
+      "p_value": 0.2523750151784173,
+      "direction": "positive",
+      "mean_immunogenic": 0.5015210995103684,
+      "mean_non_immunogenic": 0.4037064783907836
+    },
+    {
+      "feature": "tcr_charge_abs_diff",
+      "auc": 0.5858974358974359,
+      "auc_raw": 0.5858974358974359,
+      "auc_inverted": 0.4141025641025641,
+      "n": 77,
+      "p_value": 0.24099258502196952,
+      "direction": "positive",
+      "mean_immunogenic": 0.11222222222222222,
+      "mean_non_immunogenic": 0.05414529914529914
+    },
+    {
+      "feature": "tcr_charge_mut",
+      "auc": 0.5796747967479675,
+      "auc_raw": 0.5796747967479675,
+      "auc_inverted": 0.4203252032520325,
+      "n": 97,
+      "p_value": 0.3262137999821142,
+      "direction": "positive",
+      "mean_immunogenic": 0.08644444444444445,
+      "mean_non_immunogenic": 0.05606368563685637
+    },
+    {
+      "feature": "anchor_quality_diff",
+      "auc": 0.5717948717948718,
+      "auc_raw": 0.5717948717948718,
+      "auc_inverted": 0.4282051282051282,
+      "n": 77,
+      "p_value": 0.2694056839163419,
+      "direction": "positive",
+      "mean_immunogenic": 0.1625,
+      "mean_non_immunogenic": 0.09
+    },
+    {
+      "feature": "mut_position_centrality",
+      "auc": 0.5641025641025641,
+      "auc_raw": 0.5641025641025641,
+      "auc_inverted": 0.4358974358974359,
+      "n": 77,
+      "p_value": 0.48140302049262595,
+      "direction": "positive",
+      "mean_immunogenic": 0.46597222222222223,
+      "mean_non_immunogenic": 0.3998219373219373
+    },
+    {
+      "feature": "self_dissimilarity",
+      "auc": 0.5434959349593496,
+      "auc_raw": 0.4565040650406504,
+      "auc_inverted": 0.5434959349593496,
+      "n": 97,
+      "p_value": 0.5969277699552298,
+      "direction": "inverted",
+      "mean_immunogenic": 0.3848721555555556,
+      "mean_non_immunogenic": 0.3902520223577236
+    },
+    {
+      "feature": "tcr_hydrophobicity_diff",
+      "auc": 0.542948717948718,
+      "auc_raw": 0.45705128205128204,
+      "auc_inverted": 0.542948717948718,
+      "n": 77,
+      "p_value": 0.634778456213438,
+      "direction": "inverted",
+      "mean_immunogenic": 0.051944444444444404,
+      "mean_non_immunogenic": 0.12493162393162395
+    },
+    {
+      "feature": "tcr_aromaticity_diff",
+      "auc": 0.5423076923076922,
+      "auc_raw": 0.5423076923076922,
+      "auc_inverted": 0.45769230769230773,
+      "n": 77,
+      "p_value": 0.5091217711565967,
+      "direction": "positive",
+      "mean_immunogenic": 0.03333333333333333,
+      "mean_non_immunogenic": 0.021495726495726498
+    },
+    {
+      "feature": "anchor_quality",
+      "auc": 0.5398373983739837,
+      "auc_raw": 0.5398373983739837,
+      "auc_inverted": 0.4601626016260162,
+      "n": 97,
+      "p_value": 0.6092310123112263,
+      "direction": "positive",
+      "mean_immunogenic": 0.6966666666666667,
+      "mean_non_immunogenic": 0.6597560975609755
+    },
+    {
+      "feature": "tcr_hydrophobicity_abs_diff",
+      "auc": 0.5391025641025642,
+      "auc_raw": 0.5391025641025642,
+      "auc_inverted": 0.46089743589743587,
+      "n": 77,
+      "p_value": 0.6658635009250928,
+      "direction": "positive",
+      "mean_immunogenic": 0.2741666666666666,
+      "mean_non_immunogenic": 0.24151282051282053
+    },
+    {
+      "feature": "mut_at_tcr_contact",
+      "auc": 0.5371794871794872,
+      "auc_raw": 0.5371794871794872,
+      "auc_inverted": 0.46282051282051284,
+      "n": 77,
+      "p_value": 0.6668266642715228,
+      "direction": "positive",
+      "mean_immunogenic": 0.6652777777777777,
+      "mean_non_immunogenic": 0.582051282051282
+    },
+    {
+      "feature": "proteome_foreignness_diff",
+      "auc": 0.5365384615384615,
+      "auc_raw": 0.5365384615384615,
+      "auc_inverted": 0.4634615384615384,
+      "n": 77,
+      "p_value": 0.6838631825578709,
+      "direction": "positive",
+      "mean_immunogenic": 0.10675925925925928,
+      "mean_non_immunogenic": 0.10616809116809116
+    },
+    {
+      "feature": "hamming_distance",
+      "auc": 0.5365384615384615,
+      "auc_raw": 0.5365384615384615,
+      "auc_inverted": 0.4634615384615384,
+      "n": 77,
+      "p_value": 0.6838631825578709,
+      "direction": "positive",
+      "mean_immunogenic": 0.10675925925925928,
+      "mean_non_immunogenic": 0.10616809116809116
+    },
+    {
+      "feature": "iedb_immuno_diff",
+      "auc": 0.5346153846153847,
+      "auc_raw": 0.4653846153846154,
+      "auc_inverted": 0.5346153846153847,
+      "n": 77,
+      "p_value": 0.7054618223627374,
+      "direction": "inverted",
+      "mean_immunogenic": 0.0043777777777777764,
+      "mean_non_immunogenic": 0.005122222222222222
+    },
+    {
+      "feature": "expression_score",
+      "auc": 0.5284810126582278,
+      "auc_raw": 0.5284810126582278,
+      "auc_inverted": 0.4715189873417721,
+      "n": 93,
+      "p_value": 0.7390600953676514,
+      "direction": "positive",
+      "mean_immunogenic": 0.5221419855439016,
+      "mean_non_immunogenic": 0.48020700121018106
+    },
+    {
+      "feature": "iedb_immuno",
+      "auc": 0.5158536585365854,
+      "auc_raw": 0.5158536585365854,
+      "auc_inverted": 0.4841463414634146,
+      "n": 97,
+      "p_value": 0.8496395929091727,
+      "direction": "positive",
+      "mean_immunogenic": -0.0353837037037037,
+      "mean_non_immunogenic": -0.03713956639566396
+    },
+    {
+      "feature": "proteome_foreignness",
+      "auc": 0.5146341463414634,
+      "auc_raw": 0.5146341463414634,
+      "auc_inverted": 0.48536585365853663,
+      "n": 97,
+      "p_value": 0.8589721940401714,
+      "direction": "positive",
+      "mean_immunogenic": 0.21874074074074076,
+      "mean_non_immunogenic": 0.22419828364950317
+    },
+    {
+      "feature": "tcr_aromaticity_mut",
+      "auc": 0.5028455284552846,
+      "auc_raw": 0.4971544715447155,
+      "auc_inverted": 0.5028455284552846,
+      "n": 97,
+      "p_value": 0.9752048223021614,
+      "direction": "inverted",
+      "mean_immunogenic": 0.10048148148148148,
+      "mean_non_immunogenic": 0.10494579945799459
+    }
+  ],
+  "top_single_features": [
+    {
+      "feature": "tcr_volume_mut",
+      "auc": 0.6943089430894309,
+      "auc_raw": 0.6943089430894309,
+      "auc_inverted": 0.30569105691056914,
+      "n": 97,
+      "p_value": 0.01732863642508858,
+      "direction": "positive",
+      "mean_immunogenic": 142.16858148148145,
+      "mean_non_immunogenic": 132.46605352303524
+    },
+    {
+      "feature": "tcr_charge_diff",
+      "auc": 0.6743589743589744,
+      "auc_raw": 0.6743589743589744,
+      "auc_inverted": 0.3256410256410256,
+      "n": 77,
+      "p_value": 0.016962672196256696,
+      "direction": "positive",
+      "mean_immunogenic": 0.11222222222222222,
+      "mean_non_immunogenic": 0.013803418803418802
+    },
+    {
+      "feature": "tcr_hydrophobicity_mut",
+      "auc": 0.6686991869918699,
+      "auc_raw": 0.6686991869918699,
+      "auc_inverted": 0.3313008130081301,
+      "n": 97,
+      "p_value": 0.03888719844277361,
+      "direction": "positive",
+      "mean_immunogenic": 0.0257481481481482,
+      "mean_non_immunogenic": -0.5758976964769646
+    },
+    {
+      "feature": "tcr_volume_abs_diff",
+      "auc": 0.648076923076923,
+      "auc_raw": 0.648076923076923,
+      "auc_inverted": 0.3519230769230769,
+      "n": 77,
+      "p_value": 0.1022002723119552,
+      "direction": "positive",
+      "mean_immunogenic": 6.41680555555556,
+      "mean_non_immunogenic": 4.4463846153846145
+    },
+    {
+      "feature": "presentation_score",
+      "auc": 0.6357723577235772,
+      "auc_raw": 0.6357723577235772,
+      "auc_inverted": 0.36422764227642274,
+      "n": 97,
+      "p_value": 0.09665338772700302,
+      "direction": "positive",
+      "mean_immunogenic": 0.7196370193681155,
+      "mean_non_immunogenic": 0.6721347211591279
+    },
+    {
+      "feature": "tcr_surface_change",
+      "auc": 0.6199186991869918,
+      "auc_raw": 0.6199186991869918,
+      "auc_inverted": 0.3800813008130081,
+      "n": 97,
+      "p_value": 0.12599121474180258,
+      "direction": "positive",
+      "mean_immunogenic": 0.12666511421601243,
+      "mean_non_immunogenic": 0.08331502983193505
+    },
+    {
+      "feature": "tcr_volume_diff",
+      "auc": 0.6134615384615385,
+      "auc_raw": 0.6134615384615385,
+      "auc_inverted": 0.3865384615384615,
+      "n": 77,
+      "p_value": 0.21108820931407823,
+      "direction": "positive",
+      "mean_immunogenic": 4.28763888888889,
+      "mean_non_immunogenic": 2.7965726495726484
+    },
+    {
+      "feature": "dai",
+      "auc": 0.6051282051282052,
+      "auc_raw": 0.6051282051282052,
+      "auc_inverted": 0.39487179487179486,
+      "n": 77,
+      "p_value": 0.2523750151784173,
+      "direction": "positive",
+      "mean_immunogenic": 0.5015210995103684,
+      "mean_non_immunogenic": 0.4037064783907836
+    },
+    {
+      "feature": "tcr_charge_abs_diff",
+      "auc": 0.5858974358974359,
+      "auc_raw": 0.5858974358974359,
+      "auc_inverted": 0.4141025641025641,
+      "n": 77,
+      "p_value": 0.24099258502196952,
+      "direction": "positive",
+      "mean_immunogenic": 0.11222222222222222,
+      "mean_non_immunogenic": 0.05414529914529914
+    },
+    {
+      "feature": "tcr_charge_mut",
+      "auc": 0.5796747967479675,
+      "auc_raw": 0.5796747967479675,
+      "auc_inverted": 0.4203252032520325,
+      "n": 97,
+      "p_value": 0.3262137999821142,
+      "direction": "positive",
+      "mean_immunogenic": 0.08644444444444445,
+      "mean_non_immunogenic": 0.05606368563685637
+    },
+    {
+      "feature": "anchor_quality_diff",
+      "auc": 0.5717948717948718,
+      "auc_raw": 0.5717948717948718,
+      "auc_inverted": 0.4282051282051282,
+      "n": 77,
+      "p_value": 0.2694056839163419,
+      "direction": "positive",
+      "mean_immunogenic": 0.1625,
+      "mean_non_immunogenic": 0.09
+    },
+    {
+      "feature": "mut_position_centrality",
+      "auc": 0.5641025641025641,
+      "auc_raw": 0.5641025641025641,
+      "auc_inverted": 0.4358974358974359,
+      "n": 77,
+      "p_value": 0.48140302049262595,
+      "direction": "positive",
+      "mean_immunogenic": 0.46597222222222223,
+      "mean_non_immunogenic": 0.3998219373219373
+    },
+    {
+      "feature": "self_dissimilarity",
+      "auc": 0.5434959349593496,
+      "auc_raw": 0.4565040650406504,
+      "auc_inverted": 0.5434959349593496,
+      "n": 97,
+      "p_value": 0.5969277699552298,
+      "direction": "inverted",
+      "mean_immunogenic": 0.3848721555555556,
+      "mean_non_immunogenic": 0.3902520223577236
+    },
+    {
+      "feature": "tcr_hydrophobicity_diff",
+      "auc": 0.542948717948718,
+      "auc_raw": 0.45705128205128204,
+      "auc_inverted": 0.542948717948718,
+      "n": 77,
+      "p_value": 0.634778456213438,
+      "direction": "inverted",
+      "mean_immunogenic": 0.051944444444444404,
+      "mean_non_immunogenic": 0.12493162393162395
+    },
+    {
+      "feature": "tcr_aromaticity_diff",
+      "auc": 0.5423076923076922,
+      "auc_raw": 0.5423076923076922,
+      "auc_inverted": 0.45769230769230773,
+      "n": 77,
+      "p_value": 0.5091217711565967,
+      "direction": "positive",
+      "mean_immunogenic": 0.03333333333333333,
+      "mean_non_immunogenic": 0.021495726495726498
+    }
+  ],
+  "strategy_sweep_top20": [
+    {
+      "name": "lr:tcr_volume_mut+tcr_charge_diff+tcr_hydrophobicity_mut",
+      "auc": 0.7837398373983739,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_charge_diff",
+          "tcr_hydrophobicity_mut"
+        ],
+        "coef": [
+          0.5852773655874217,
+          0.5335712536676134,
+          0.6575164161440337
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_charge_diff+tcr_volume_abs_diff+dai",
+      "auc": 0.7743589743589743,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_charge_diff",
+          "tcr_volume_abs_diff",
+          "dai"
+        ],
+        "coef": [
+          0.8214836763083474,
+          0.642224158388725,
+          0.6056569491069345
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_hydrophobicity_mut+tcr_charge_abs_diff",
+      "auc": 0.759349593495935,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut",
+          "tcr_charge_abs_diff"
+        ],
+        "coef": [
+          0.6224796935176186,
+          0.6077270355320648,
+          0.2304914009580726
+        ]
+      }
+    },
+    {
+      "name": "lr:bind_log50k+tcr_volume_mut+tcr_charge_diff",
+      "auc": 0.756910569105691,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "bind_log50k",
+          "tcr_volume_mut",
+          "tcr_charge_diff"
+        ],
+        "coef": [
+          0.5144536893553061,
+          0.6359618826583056,
+          0.4957851482267926
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_charge_diff+tcr_surface_change+dai",
+      "auc": 0.7551282051282051,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_charge_diff",
+          "tcr_surface_change",
+          "dai"
+        ],
+        "coef": [
+          0.6682280851336587,
+          0.5937577009348046,
+          0.5934249702547418
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_charge_diff+tcr_hydrophobicity_mut+dai",
+      "auc": 0.7544715447154472,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_charge_diff",
+          "tcr_hydrophobicity_mut",
+          "dai"
+        ],
+        "coef": [
+          0.6499459706661944,
+          0.6959482205474213,
+          0.291585903474903
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_charge_diff+dai",
+      "auc": 0.7528455284552846,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_charge_diff",
+          "dai"
+        ],
+        "coef": [
+          0.6379020711515173,
+          0.4889449510158179,
+          0.3083703414040138
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_charge_diff+tcr_volume_abs_diff",
+      "auc": 0.748780487804878,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_charge_diff",
+          "tcr_volume_abs_diff"
+        ],
+        "coef": [
+          0.5499995671880367,
+          0.4705056700758696,
+          0.18805638858625895
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_hydrophobicity_mut+tcr_surface_change",
+      "auc": 0.748780487804878,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut",
+          "tcr_surface_change"
+        ],
+        "coef": [
+          0.6324736836549874,
+          0.5744095791434276,
+          0.17558119376019887
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_charge_diff+tcr_charge_abs_diff",
+      "auc": 0.7471544715447154,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_charge_diff",
+          "tcr_charge_abs_diff"
+        ],
+        "coef": [
+          0.6323240897718788,
+          0.889245360854086,
+          -0.5148542226380903
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_charge_diff+tcr_hydrophobicity_mut+tcr_charge_abs_diff",
+      "auc": 0.7467479674796748,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_charge_diff",
+          "tcr_hydrophobicity_mut",
+          "tcr_charge_abs_diff"
+        ],
+        "coef": [
+          0.9990947122111905,
+          0.6750565168433474,
+          -0.4443648525686532
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_hydrophobicity_mut+tcr_volume_abs_diff",
+      "auc": 0.743089430894309,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut",
+          "tcr_volume_abs_diff"
+        ],
+        "coef": [
+          0.6568622125079714,
+          0.5693241939414179,
+          0.13405829939710717
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_hydrophobicity_mut+dai",
+      "auc": 0.7406504065040651,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut",
+          "dai"
+        ],
+        "coef": [
+          0.7279689565933102,
+          0.5946348548181167,
+          0.2727683400760709
+        ]
+      }
+    },
+    {
+      "name": "lr:bind_log50k+tcr_volume_mut+tcr_hydrophobicity_mut",
+      "auc": 0.7390243902439024,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "bind_log50k",
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut"
+        ],
+        "coef": [
+          0.32992426906590755,
+          0.7231379119548526,
+          0.4878079969029704
+        ]
+      }
+    },
+    {
+      "name": "lr:bind_log50k+tcr_charge_diff+tcr_hydrophobicity_mut",
+      "auc": 0.7382113821138212,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "bind_log50k",
+          "tcr_charge_diff",
+          "tcr_hydrophobicity_mut"
+        ],
+        "coef": [
+          0.3191628931455805,
+          0.6281749344296337,
+          0.5801031646914017
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_charge_diff+tcr_hydrophobicity_mut",
+      "auc": 0.7378048780487805,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_charge_diff",
+          "tcr_hydrophobicity_mut"
+        ],
+        "coef": [
+          0.6101026728156592,
+          0.6626288359303549
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_charge_diff+tcr_hydrophobicity_mut+tcr_volume_diff",
+      "auc": 0.7378048780487805,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_charge_diff",
+          "tcr_hydrophobicity_mut",
+          "tcr_volume_diff"
+        ],
+        "coef": [
+          0.6095992688986241,
+          0.6621444685912661,
+          0.003152448270948318
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_hydrophobicity_mut",
+      "auc": 0.7373983739837399,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut"
+        ],
+        "coef": [
+          0.6847147332258817,
+          0.5787311309841594
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_charge_diff",
+      "auc": 0.7365853658536585,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_charge_diff"
+        ],
+        "coef": [
+          0.594243686095557,
+          0.46021249546158716
+        ]
+      }
+    },
+    {
+      "name": "lr:tcr_volume_mut+tcr_hydrophobicity_mut+tcr_volume_diff",
+      "auc": 0.7357723577235773,
+      "kind": "lr_in_sample",
+      "config": {
+        "features": [
+          "tcr_volume_mut",
+          "tcr_hydrophobicity_mut",
+          "tcr_volume_diff"
+        ],
+        "coef": [
+          0.6808677254657752,
+          0.5755212221270548,
+          0.024257384961732815
+        ]
+      }
+    }
+  ],
+  "nested_cv_per_patient": [
+    {
+      "patient": "ott_1",
+      "n": 11,
+      "n_pos": 2,
+      "status": "computed",
+      "auc_binding_only": 0.8333333333333334,
+      "auc_rl_v1_ref": 0.5,
+      "auc_equal3_ref": 0.4444444444444445,
+      "auc_sweep_winner_ref": 0.6666666666666666,
+      "auc_nested_ws": 0.7222222222222222,
+      "inner_train_auc_ws": 0.6796628029504742,
+      "inner_choice": {
+        "bind": "bind_exp500",
+        "feat": "dai",
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "auc_nested_lr": 0.8888888888888888,
+      "inner_train_auc_lr": 0.6638566912539515,
+      "inner_lr_features": [
+        "tcr_surface_change",
+        "bind_exp500",
+        "bind_log50k"
+      ]
+    },
+    {
+      "patient": "ott_2",
+      "n": 14,
+      "n_pos": 2,
+      "status": "computed",
+      "auc_binding_only": 0.4583333333333333,
+      "auc_rl_v1_ref": 0.6666666666666667,
+      "auc_equal3_ref": 0.625,
+      "auc_sweep_winner_ref": 0.6666666666666667,
+      "auc_nested_ws": 0.2916666666666667,
+      "inner_train_auc_ws": 0.7340659340659341,
+      "inner_choice": {
+        "bind": "bind_exp500",
+        "feat": "dai",
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "auc_nested_lr": 0.41666666666666663,
+      "inner_train_auc_lr": 0.7197802197802198,
+      "inner_lr_features": [
+        "dai",
+        "bind_exp500",
+        "bind_log50k"
+      ]
+    },
+    {
+      "patient": "ott_3",
+      "n": 14,
+      "n_pos": 3,
+      "status": "computed",
+      "auc_binding_only": 0.4545454545454545,
+      "auc_rl_v1_ref": 0.7575757575757576,
+      "auc_equal3_ref": 0.7575757575757576,
+      "auc_sweep_winner_ref": 0.7272727272727273,
+      "auc_nested_ws": 0.4545454545454545,
+      "inner_train_auc_ws": 0.6924882629107981,
+      "inner_choice": {
+        "bind": "bind_exp500",
+        "feat": "hamming_distance",
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "auc_nested_lr": 0.5151515151515151,
+      "inner_train_auc_lr": 0.7089201877934272,
+      "inner_lr_features": [
+        "bind_exp500",
+        "bind_log50k",
+        "tcr_surface_change"
+      ]
+    },
+    {
+      "patient": "ott_4",
+      "n": 17,
+      "n_pos": 2,
+      "status": "computed",
+      "auc_binding_only": 0.7,
+      "auc_rl_v1_ref": 0.7333333333333334,
+      "auc_equal3_ref": 0.8833333333333334,
+      "auc_sweep_winner_ref": 0.9,
+      "auc_nested_ws": 0.7333333333333334,
+      "inner_train_auc_ws": 0.6991963260619978,
+      "inner_choice": {
+        "bind": "bind_exp500",
+        "feat": "dai",
+        "weights": [
+          0.9,
+          0.09999999999999998
+        ]
+      },
+      "auc_nested_lr": 0.4666666666666667,
+      "inner_train_auc_lr": 0.748564867967853,
+      "inner_lr_features": [
+        "tcr_surface_change",
+        "bind_log50k",
+        "bind_exp500"
+      ]
+    },
+    {
+      "patient": "ott_5",
+      "n": 19,
+      "n_pos": 4,
+      "status": "computed",
+      "auc_binding_only": 0.7,
+      "auc_rl_v1_ref": 0.4833333333333334,
+      "auc_equal3_ref": 0.45,
+      "auc_sweep_winner_ref": 0.5666666666666667,
+      "auc_nested_ws": 0.55,
+      "inner_train_auc_ws": 0.7313432835820896,
+      "inner_choice": {
+        "bind": "bind_exp500",
+        "feat": "expression_score",
+        "weights": [
+          0.8,
+          0.19999999999999996
+        ]
+      },
+      "auc_nested_lr": 0.7333333333333334,
+      "inner_train_auc_lr": 0.666214382632293,
+      "inner_lr_features": [
+        "bind_exp500",
+        "bind_log50k",
+        "tcr_surface_change"
+      ]
+    },
+    {
+      "patient": "ott_6",
+      "n": 22,
+      "n_pos": 2,
+      "status": "computed",
+      "auc_binding_only": 0.75,
+      "auc_rl_v1_ref": 0.7000000000000001,
+      "auc_equal3_ref": 0.6499999999999999,
+      "auc_sweep_winner_ref": 0.825,
+      "auc_nested_ws": 0.7,
+      "inner_train_auc_ws": 0.662531017369727,
+      "inner_choice": {
+        "bind": "bind_exp500",
+        "feat": "expression_score",
+        "weights": [
+          0.7000000000000001,
+          0.29999999999999993
+        ]
+      },
+      "auc_nested_lr": 0.6000000000000001,
+      "inner_train_auc_lr": 0.7369727047146402,
+      "inner_lr_features": [
+        "tcr_surface_change",
+        "dai",
+        "bind_exp500"
+      ]
+    }
+  ],
+  "nested_cv_means": {
+    "binding_only": 0.6493686868686869,
+    "rl_v1_ref": 0.6401515151515152,
+    "equal3_ref": 0.6350589225589226,
+    "sweep_winner_ref": 0.725378787878788,
+    "nested_ws": 0.5752946127946128,
+    "nested_lr": 0.6034511784511785
+  },
+  "top5_strategy_scores": [
+    {
+      "strategy": "sweep_winner_ref",
+      "mean_auc": 0.725378787878788
+    },
+    {
+      "strategy": "binding_only",
+      "mean_auc": 0.6493686868686869
+    },
+    {
+      "strategy": "rl_v1_ref",
+      "mean_auc": 0.6401515151515152
+    },
+    {
+      "strategy": "equal3_ref",
+      "mean_auc": 0.6350589225589226
+    },
+    {
+      "strategy": "nested_lr",
+      "mean_auc": 0.6034511784511785
+    }
+  ],
+  "nested_train_test_gap": {
+    "weighted_sum": 0.12458665836222405,
+    "logistic": 0.10393366390588576
+  },
+  "inner_selected_configs": [
+    {
+      "bind": "bind_exp500",
+      "feat": "dai",
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ]
+    },
+    {
+      "bind": "bind_exp500",
+      "feat": "dai",
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ]
+    },
+    {
+      "bind": "bind_exp500",
+      "feat": "hamming_distance",
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ]
+    },
+    {
+      "bind": "bind_exp500",
+      "feat": "dai",
+      "weights": [
+        0.9,
+        0.09999999999999998
+      ]
+    },
+    {
+      "bind": "bind_exp500",
+      "feat": "expression_score",
+      "weights": [
+        0.8,
+        0.19999999999999996
+      ]
+    },
+    {
+      "bind": "bind_exp500",
+      "feat": "expression_score",
+      "weights": [
+        0.7000000000000001,
+        0.29999999999999993
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1575 @@
+{
+  "dataset": {
+    "n_mutations": 97,
+    "n_immunogenic": 15,
+    "n_patients": 6,
+    "patients": [
+      "ott_1",
+      "ott_2",
+      "ott_3",
+      "ott_4",
+      "ott_5",
+      "ott_6"
+    ]
+  },
+  "single_feature_results": {
+    "bind_log50k": {
+      "auc": 0.633739837398374,
+      "auc_inv": 0.36626016260162597,
+      "best_auc": 0.633739837398374,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.10167648071295056,
+      "immuno_mean": 0.725323185062861,
+      "non_immuno_mean": 0.6796815613858811
+    },
+    "presentation_score": {
+      "auc": 0.6357723577235772,
+      "auc_inv": 0.36422764227642274,
+      "best_auc": 0.6357723577235772,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.09665338772700302,
+      "immuno_mean": 0.7196370193681155,
+      "non_immuno_mean": 0.6721347211591279
+    },
+    "expression_score": {
+      "auc": 0.5284810126582278,
+      "auc_inv": 0.4715189873417721,
+      "best_auc": 0.5284810126582278,
+      "direction": "pos",
+      "n": 93,
+      "p_value": 0.7390600953676514,
+      "immuno_mean": 0.5221419855439016,
+      "non_immuno_mean": 0.48020700121018106
+    },
+    "self_dissimilarity": {
+      "auc": 0.4565040650406504,
+      "auc_inv": 0.5434959349593496,
+      "best_auc": 0.5434959349593496,
+      "direction": "neg",
+      "n": 97,
+      "p_value": 0.5969277699552298,
+      "immuno_mean": 0.3848721555555556,
+      "non_immuno_mean": 0.39025202235772355
+    },
+    "dai": {
+      "auc": 0.6051282051282052,
+      "auc_inv": 0.39487179487179486,
+      "best_auc": 0.6051282051282052,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.2523750151784173,
+      "immuno_mean": 0.5015210995103684,
+      "non_immuno_mean": 0.4037064783907836
+    },
+    "iedb_immuno": {
+      "auc": 0.5154471544715447,
+      "auc_inv": 0.48455284552845534,
+      "best_auc": 0.5154471544715447,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.8535477704864336,
+      "immuno_mean": -0.035383703703703695,
+      "non_immuno_mean": -0.037139566395663945
+    },
+    "iedb_immuno_diff": {
+      "auc": 0.46602564102564104,
+      "auc_inv": 0.5339743589743591,
+      "best_auc": 0.5339743589743591,
+      "direction": "neg",
+      "n": 77,
+      "p_value": 0.7107535207392647,
+      "immuno_mean": 0.004377777777777757,
+      "non_immuno_mean": 0.005122222222222209
+    },
+    "proteome_foreignness": {
+      "auc": 0.5146341463414634,
+      "auc_inv": 0.48536585365853663,
+      "best_auc": 0.5146341463414634,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.8589721940401714,
+      "immuno_mean": 0.2187407407407407,
+      "non_immuno_mean": 0.22419828364950312
+    },
+    "proteome_foreignness_diff": {
+      "auc": 0.5365384615384615,
+      "auc_inv": 0.4634615384615384,
+      "best_auc": 0.5365384615384615,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.6838631825578709,
+      "immuno_mean": 0.1067592592592592,
+      "non_immuno_mean": 0.10616809116809114
+    },
+    "tcr_hydrophobicity_mut": {
+      "auc": 0.6686991869918699,
+      "auc_inv": 0.3313008130081301,
+      "best_auc": 0.6686991869918699,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.0388865565013559,
+      "immuno_mean": 0.0257481481481482,
+      "non_immuno_mean": -0.5758976964769646
+    },
+    "tcr_hydrophobicity_diff": {
+      "auc": 0.457051282051282,
+      "auc_inv": 0.5429487179487179,
+      "best_auc": 0.5429487179487179,
+      "direction": "neg",
+      "n": 77,
+      "p_value": 0.6347761186471877,
+      "immuno_mean": 0.051944444444444425,
+      "non_immuno_mean": 0.12493162393162392
+    },
+    "tcr_hydrophobicity_abs_diff": {
+      "auc": 0.5391025641025642,
+      "auc_inv": 0.46089743589743587,
+      "best_auc": 0.5391025641025642,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.6658569994347558,
+      "immuno_mean": 0.2741666666666666,
+      "non_immuno_mean": 0.2415128205128205
+    },
+    "tcr_volume_mut": {
+      "auc": 0.6943089430894309,
+      "auc_inv": 0.30569105691056914,
+      "best_auc": 0.6943089430894309,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.01732863642508858,
+      "immuno_mean": 142.16858148148145,
+      "non_immuno_mean": 132.46605352303524
+    },
+    "tcr_volume_diff": {
+      "auc": 0.6134615384615385,
+      "auc_inv": 0.3865384615384615,
+      "best_auc": 0.6134615384615385,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.21108820931407823,
+      "immuno_mean": 4.28763888888889,
+      "non_immuno_mean": 2.7965726495726484
+    },
+    "tcr_volume_abs_diff": {
+      "auc": 0.648076923076923,
+      "auc_inv": 0.3519230769230769,
+      "best_auc": 0.648076923076923,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.1022002723119552,
+      "immuno_mean": 6.41680555555556,
+      "non_immuno_mean": 4.4463846153846145
+    },
+    "tcr_aromaticity_mut": {
+      "auc": 0.49268292682926834,
+      "auc_inv": 0.5073170731707317,
+      "best_auc": 0.5073170731707317,
+      "direction": "neg",
+      "n": 97,
+      "p_value": 0.9298100183550062,
+      "immuno_mean": 0.10048148148148145,
+      "non_immuno_mean": 0.10494579945799457
+    },
+    "tcr_aromaticity_diff": {
+      "auc": 0.5423076923076922,
+      "auc_inv": 0.45769230769230773,
+      "best_auc": 0.5423076923076922,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.5091217711565967,
+      "immuno_mean": 0.03333333333333332,
+      "non_immuno_mean": 0.02149572649572649
+    },
+    "tcr_charge_mut": {
+      "auc": 0.5796747967479675,
+      "auc_inv": 0.4203252032520325,
+      "best_auc": 0.5796747967479675,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.3262121801859462,
+      "immuno_mean": 0.08644444444444442,
+      "non_immuno_mean": 0.05606368563685637
+    },
+    "tcr_charge_diff": {
+      "auc": 0.6743589743589744,
+      "auc_inv": 0.3256410256410256,
+      "best_auc": 0.6743589743589744,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.016962672196256696,
+      "immuno_mean": 0.11222222222222222,
+      "non_immuno_mean": 0.013803418803418805
+    },
+    "tcr_charge_abs_diff": {
+      "auc": 0.5858974358974359,
+      "auc_inv": 0.4141025641025641,
+      "best_auc": 0.5858974358974359,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.24099258502196952,
+      "immuno_mean": 0.11222222222222222,
+      "non_immuno_mean": 0.054145299145299135
+    },
+    "tcr_surface_change": {
+      "auc": 0.6203252032520326,
+      "auc_inv": 0.3796747967479675,
+      "best_auc": 0.6203252032520326,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.12470156531232084,
+      "immuno_mean": 0.12666511421601243,
+      "non_immuno_mean": 0.08331502983193502
+    },
+    "anchor_quality": {
+      "auc": 0.5398373983739837,
+      "auc_inv": 0.4601626016260162,
+      "best_auc": 0.5398373983739837,
+      "direction": "pos",
+      "n": 97,
+      "p_value": 0.6092310123112263,
+      "immuno_mean": 0.6966666666666667,
+      "non_immuno_mean": 0.6597560975609755
+    },
+    "anchor_quality_diff": {
+      "auc": 0.5717948717948718,
+      "auc_inv": 0.4282051282051282,
+      "best_auc": 0.5717948717948718,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.2694056839163419,
+      "immuno_mean": 0.1625,
+      "non_immuno_mean": 0.09
+    },
+    "mut_at_tcr_contact": {
+      "auc": 0.5371794871794872,
+      "auc_inv": 0.46282051282051284,
+      "best_auc": 0.5371794871794872,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.6668266642715228,
+      "immuno_mean": 0.6652777777777777,
+      "non_immuno_mean": 0.582051282051282
+    },
+    "mut_position_centrality": {
+      "auc": 0.5641025641025641,
+      "auc_inv": 0.4358974358974359,
+      "best_auc": 0.5641025641025641,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.4813882423983964,
+      "immuno_mean": 0.46597222222222223,
+      "non_immuno_mean": 0.3998219373219373
+    },
+    "hamming_distance": {
+      "auc": 0.5365384615384615,
+      "auc_inv": 0.4634615384615384,
+      "best_auc": 0.5365384615384615,
+      "direction": "pos",
+      "n": 77,
+      "p_value": 0.6838631825578709,
+      "immuno_mean": 0.1067592592592592,
+      "non_immuno_mean": 0.10616809116809114
+    }
+  },
+  "hypotheses_tested": 21,
+  "cv_results": {
+    "H0_binding_only": {
+      "mean_auc": 0.6493686868686869,
+      "median_auc": 0.7,
+      "std_auc": 0.14349640542736405,
+      "in_sample_auc": 0.633739837398374,
+      "n_patients_computable": 6,
+      "rationale": "Baseline: binding affinity alone",
+      "features": [
+        [
+          "bind_log50k",
+          1.0,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.4583333333333333,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.4545454545454545,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.7,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.7,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.75,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H1_bind_plus_tcr_volume": {
+      "mean_auc": 0.7072811447811448,
+      "median_auc": 0.7204545454545455,
+      "std_auc": 0.10988557528804345,
+      "in_sample_auc": 0.6951219512195121,
+      "n_patients_computable": 6,
+      "rationale": "Binding + TCR surface volume",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777778,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.875,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6000000000000001,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6833333333333333,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.55,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H2_bind_plus_charge_diff": {
+      "mean_auc": 0.7188552188552189,
+      "median_auc": 0.75,
+      "std_auc": 0.21284202259231577,
+      "in_sample_auc": 0.6630081300813009,
+      "n_patients_computable": 6,
+      "rationale": "Binding + TCR charge change from mutation",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "tcr_charge_diff",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8888888888888888,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.5,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.4242424242424242,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8666666666666667,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6333333333333333,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 1.0,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H3_bind_plus_hydro": {
+      "mean_auc": 0.6559343434343433,
+      "median_auc": 0.6886363636363636,
+      "std_auc": 0.14999771492664812,
+      "in_sample_auc": 0.6601626016260163,
+      "n_patients_computable": 6,
+      "rationale": "Binding + TCR surface hydrophobicity",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "tcr_hydrophobicity_mut",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.5,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7272727272727272,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.65,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.425,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H4_bind_plus_surface_change": {
+      "mean_auc": 0.6298821548821549,
+      "median_auc": 0.6125,
+      "std_auc": 0.11070601339333062,
+      "in_sample_auc": 0.6455284552845528,
+      "n_patients_computable": 6,
+      "rationale": "Binding + composite TCR surface change",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "tcr_surface_change",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777778,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.5416666666666666,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.4848484848484848,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.55,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.75,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.675,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H5_bind_plus_iedb": {
+      "mean_auc": 0.6562289562289562,
+      "median_auc": 0.6499999999999999,
+      "std_auc": 0.13507014237716816,
+      "in_sample_auc": 0.6252032520325204,
+      "n_patients_computable": 6,
+      "rationale": "Binding + Calis TCR immunogenicity",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "iedb_immuno",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8888888888888888,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.5,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.5151515151515151,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.7333333333333334,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.7,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H6_bind_plus_iedb_diff": {
+      "mean_auc": 0.6341750841750842,
+      "median_auc": 0.6972222222222223,
+      "std_auc": 0.24184953389118946,
+      "in_sample_auc": 0.582520325203252,
+      "n_patients_computable": 6,
+      "rationale": "Binding + differential Calis immunogenicity",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "iedb_immuno_diff",
+          0.4,
+          true
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777779,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.25,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.3939393939393939,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8666666666666667,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6166666666666667,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.9,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H7_bind_plus_dai": {
+      "mean_auc": 0.6101430976430976,
+      "median_auc": 0.6984848484848485,
+      "std_auc": 0.21843898598960196,
+      "in_sample_auc": 0.6142276422764228,
+      "n_patients_computable": 6,
+      "rationale": "Binding + differential agretopicity",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "dai",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7222222222222223,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.125,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.6969696969696969,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.7,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6666666666666667,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.75,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H8_bind_plus_foreignness": {
+      "mean_auc": 0.5743686868686869,
+      "median_auc": 0.5375,
+      "std_auc": 0.20014171625641328,
+      "in_sample_auc": 0.5967479674796747,
+      "n_patients_computable": 6,
+      "rationale": "Binding + self-proteome foreignness",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "proteome_foreignness",
+          0.4,
+          true
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.5,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.4545454545454545,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.26666666666666666,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.8166666666666667,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.575,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H9_bind_plus_expression": {
+      "mean_auc": 0.6457070707070707,
+      "median_auc": 0.6916666666666667,
+      "std_auc": 0.11237402110961796,
+      "in_sample_auc": 0.6085365853658536,
+      "n_patients_computable": 6,
+      "rationale": "Binding + expression (original RL feature)",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "expression_score",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.5,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.7083333333333334,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.75,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.4833333333333334,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.675,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H10_bind_plus_anchor": {
+      "mean_auc": 0.6058501683501684,
+      "median_auc": 0.543939393939394,
+      "std_auc": 0.2026583154751622,
+      "in_sample_auc": 0.5947154471544716,
+      "n_patients_computable": 6,
+      "rationale": "Binding + anchor residue quality",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "anchor_quality",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8888888888888888,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.375,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.45454545454545453,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6333333333333333,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.43333333333333335,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.85,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H11_bind_plus_position": {
+      "mean_auc": 0.6281986531986531,
+      "median_auc": 0.6262626262626263,
+      "std_auc": 0.12024027015934359,
+      "in_sample_auc": 0.6020325203252033,
+      "n_patients_computable": 6,
+      "rationale": "Binding + mutation centrality in peptide",
+      "features": [
+        [
+          "bind_log50k",
+          0.6,
+          false
+        ],
+        [
+          "mut_position_centrality",
+          0.4,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.5555555555555556,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.4583333333333333,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.6969696969696969,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.5333333333333332,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.725,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H12_bind_vol_charge": {
+      "mean_auc": 0.717003367003367,
+      "median_auc": 0.7329545454545454,
+      "std_auc": 0.09835846879860029,
+      "in_sample_auc": 0.6398373983739837,
+      "n_patients_computable": 6,
+      "rationale": "Binding + two best TCR features",
+      "features": [
+        [
+          "bind_log50k",
+          0.5,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.25,
+          false
+        ],
+        [
+          "tcr_charge_diff",
+          0.25,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777778,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.7083333333333333,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8666666666666667,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6166666666666666,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.575,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H13_bind_vol_hydro": {
+      "mean_auc": 0.7405303030303031,
+      "median_auc": 0.759090909090909,
+      "std_auc": 0.12547106677677622,
+      "in_sample_auc": 0.7048780487804878,
+      "n_patients_computable": 6,
+      "rationale": "Binding + volume + hydrophobicity",
+      "features": [
+        [
+          "bind_log50k",
+          0.5,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.25,
+          false
+        ],
+        [
+          "tcr_hydrophobicity_mut",
+          0.25,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.9166666666666667,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.8181818181818181,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6000000000000001,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.7000000000000001,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.575,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H14_bind_plus_3tcr": {
+      "mean_auc": 0.7577020202020202,
+      "median_auc": 0.8106060606060606,
+      "std_auc": 0.1073963654568225,
+      "in_sample_auc": 0.6544715447154471,
+      "n_patients_computable": 6,
+      "rationale": "Binding + all three significant TCR features",
+      "features": [
+        [
+          "bind_log50k",
+          0.4,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.2,
+          false
+        ],
+        [
+          "tcr_charge_diff",
+          0.2,
+          false
+        ],
+        [
+          "tcr_hydrophobicity_mut",
+          0.2,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7878787878787878,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8666666666666667,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.65,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.575,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H15_tcr_only": {
+      "mean_auc": 0.7349747474747476,
+      "median_auc": 0.7424242424242424,
+      "std_auc": 0.10910179577646197,
+      "in_sample_auc": 0.6373983739837398,
+      "n_patients_computable": 6,
+      "rationale": "TCR features only (no binding)",
+      "features": [
+        [
+          "tcr_volume_mut",
+          0.33,
+          false
+        ],
+        [
+          "tcr_charge_diff",
+          0.33,
+          false
+        ],
+        [
+          "tcr_hydrophobicity_mut",
+          0.34,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.6666666666666666,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.8181818181818181,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8666666666666667,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.65,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.575,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H16_rl_v1_dynamic": {
+      "mean_auc": 0.6401515151515152,
+      "median_auc": 0.6833333333333333,
+      "std_auc": 0.10877391514446616,
+      "in_sample_auc": 0.5975609756097561,
+      "n_patients_computable": 6,
+      "rationale": "Original rl_v1 weights (renormalized to 3 features)",
+      "features": [
+        [
+          "bind_log50k",
+          0.5,
+          false
+        ],
+        [
+          "expression_score",
+          0.33,
+          false
+        ],
+        [
+          "self_dissimilarity",
+          0.17,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.5,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.6666666666666667,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.7333333333333334,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.4833333333333334,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.7000000000000001,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H17_bind_heavy_tcr_volume": {
+      "mean_auc": 0.7100589225589226,
+      "median_auc": 0.7287878787878788,
+      "std_auc": 0.1094549062690456,
+      "in_sample_auc": 0.7,
+      "n_patients_computable": 6,
+      "rationale": "Binding-heavy + TCR volume",
+      "features": [
+        [
+          "bind_log50k",
+          0.7,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.3,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777778,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.875,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6000000000000001,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.7,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.55,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H18_equal_bind_tcr_volume": {
+      "mean_auc": 0.7072811447811448,
+      "median_auc": 0.7204545454545455,
+      "std_auc": 0.10988557528804345,
+      "in_sample_auc": 0.6951219512195121,
+      "n_patients_computable": 6,
+      "rationale": "Equal binding + TCR volume",
+      "features": [
+        [
+          "bind_log50k",
+          0.5,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.5,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777778,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.875,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6000000000000001,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6833333333333333,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.55,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H19_tcr_volume_heavy": {
+      "mean_auc": 0.7072811447811448,
+      "median_auc": 0.7204545454545455,
+      "std_auc": 0.10988557528804345,
+      "in_sample_auc": 0.6959349593495935,
+      "n_patients_computable": 6,
+      "rationale": "TCR volume dominant",
+      "features": [
+        [
+          "bind_log50k",
+          0.3,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.7,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.7777777777777778,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.875,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7575757575757576,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.6000000000000001,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.6833333333333333,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.55,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    },
+    "H20_kitchen_sink": {
+      "mean_auc": 0.7535353535353536,
+      "median_auc": 0.8106060606060606,
+      "std_auc": 0.11464423973278275,
+      "in_sample_auc": 0.6487804878048781,
+      "n_patients_computable": 6,
+      "rationale": "Binding + expression + all TCR features",
+      "features": [
+        [
+          "bind_log50k",
+          0.3,
+          false
+        ],
+        [
+          "expression_score",
+          0.1,
+          false
+        ],
+        [
+          "tcr_volume_mut",
+          0.2,
+          false
+        ],
+        [
+          "tcr_charge_diff",
+          0.2,
+          false
+        ],
+        [
+          "tcr_hydrophobicity_mut",
+          0.2,
+          false
+        ]
+      ],
+      "per_patient": {
+        "ott_1": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 11,
+          "n_pos": 2
+        },
+        "ott_2": {
+          "auc": 0.8333333333333334,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 2
+        },
+        "ott_3": {
+          "auc": 0.7878787878787878,
+          "status": "computed",
+          "n": 14,
+          "n_pos": 3
+        },
+        "ott_4": {
+          "auc": 0.8666666666666667,
+          "status": "computed",
+          "n": 17,
+          "n_pos": 2
+        },
+        "ott_5": {
+          "auc": 0.65,
+          "status": "computed",
+          "n": 19,
+          "n_pos": 4
+        },
+        "ott_6": {
+          "auc": 0.55,
+          "status": "computed",
+          "n": 22,
+          "n_pos": 2
+        }
+      }
+    }
+  },
+  "baseline_auc": 0.6493686868686869,
+  "best_hypothesis": "H14_bind_plus_3tcr",
+  "best_auc": 0.7577020202020202,
+  "delta_over_baseline": 0.10833333333333328,
+  "paired_stats_best_vs_baseline": {
+    "patients": [
+      "ott_1",
+      "ott_2",
+      "ott_3",
+      "ott_4",
+      "ott_5",
+      "ott_6"
+    ],
+    "diffs": [
+      0.0,
+      0.37500000000000006,
+      0.33333333333333337,
+      0.16666666666666674,
+      -0.04999999999999993,
+      -0.17500000000000004
+    ],
+    "mean_diff": 0.10833333333333338,
+    "median_diff": 0.08333333333333337,
+    "ttest": {
+      "t": 1.2056347066469015,
+      "p": 0.2818952468768271
+    },
+    "wilcoxon": {
+      "W": 4.0,
+      "p": 0.4375
+    },
+    "bootstrap_ci95": [
+      -0.0472222222222222,
+      0.2638888888888889
+    ]
+  },
+  "interpretation": "STRONG"
+}

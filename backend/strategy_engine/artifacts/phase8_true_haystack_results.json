@@ -1,0 +1,68 @@
+{
+  "dataset": "ott_2017_full_mutanome_phase8",
+  "n_mutations": 11094,
+  "n_labeled": 83,
+  "n_positive": 13,
+  "binding_coverage": 6618,
+  "per_patient": [
+    {
+      "patient_id": "ott_1",
+      "n_total": 179,
+      "n_labeled": 11,
+      "n_positive": 2,
+      "binding_coverage": 120
+    },
+    {
+      "patient_id": "ott_2",
+      "n_total": 1887,
+      "n_labeled": 11,
+      "n_positive": 2,
+      "binding_coverage": 1373
+    },
+    {
+      "patient_id": "ott_3",
+      "n_total": 820,
+      "n_labeled": 14,
+      "n_positive": 3,
+      "binding_coverage": 558
+    },
+    {
+      "patient_id": "ott_4",
+      "n_total": 1997,
+      "n_labeled": 13,
+      "n_positive": 1,
+      "binding_coverage": 1487
+    },
+    {
+      "patient_id": "ott_5",
+      "n_total": 728,
+      "n_labeled": 16,
+      "n_positive": 4,
+      "binding_coverage": 479
+    },
+    {
+      "patient_id": "ott_6",
+      "n_total": 3920,
+      "n_labeled": 18,
+      "n_positive": 1,
+      "binding_coverage": 2601
+    }
+  ],
+  "labeled_auc": {
+    "binding_only": {
+      "auc": 0.7011,
+      "recall_at_10": 0.182,
+      "recall_at_20": 0.364
+    },
+    "rl_tcr_v1": {
+      "auc": 0.6133,
+      "recall_at_10": 0.091,
+      "recall_at_20": 0.364
+    },
+    "melanoma_ml_v1": {
+      "auc": 0.6849,
+      "recall_at_10": 0.364,
+      "recall_at_20": 0.636
+    }
+  }
+}
