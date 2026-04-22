@@ -403,6 +403,52 @@ This motivates the configurable platform and the paper's argument.
 ## CHANGELOG
 <!-- Append after every session. Format: DATE | AGENT | WHAT CHANGED -->
 
+2026-04-22 | Claude claude-sonnet-4-6 | Session 15: Fixes/investigations — Rojas TCR bug, Sahin binding, Phase 8 bootstrap
+  Changed: backend/strategy_engine/feature_factory.py (TCR `already` guard fix + mhcflurry fallback),
+           artifacts/rojas_2023_features.csv (regenerated — TCR features now 100% populated),
+           artifacts/phase8_bootstrap_recall.csv (new — 10k bootstrap iterations, near-ceiling),
+           AGENTS.md
+  Commits: e1bda7d (Rojas TCR fix), 22e562a (Phase 8 bootstrap CIs + Sahin investigation)
+
+  **Rojas TCR bug (resolved)**
+  feature_factory.py silently skipped TCR computation when mutant_peptide
+  was a 27-mer vaccine window. Fix: fall back to mhcflurry_best_peptide
+  for rows where mutant_peptide > 11aa. TCR features now 100% populated.
+  Phase 9 re-validated: binding_only AUC 0.6469, rl_tcr_v1 0.6543
+  (CIs fully overlap). binding_only confirmed for pancreatic.
+
+  **Sahin binding AUC = 0.477 (resolved — range compression, not a bug)**
+  Immunogenic peptides bind BETTER in Sahin (median 118.9 vs 188.6 nM).
+  AUC below random because 48.5% of ALL candidates are already <500nM —
+  binding has no discriminative power when the pre-screening threshold
+  is this permissive. All 9 HLA alleles in sahin_2017_features.csv are
+  MHCflurry-supported. Paper fix: one Methods sentence on range compression.
+
+  **Sahin HLA lookup gap (open — low priority)**
+  patient_hla_alleles.csv shows all 13 Sahin patients as NOT_AVAILABLE.
+  Sahin HLA data exists ONLY in sahin_2017_features.csv (final_hla_allele).
+  Risk: if pipeline reruns from scratch using the HLA lookup table,
+  Sahin gets wrong/missing alleles silently.
+  Fix needed before any pipeline rerun: populate patient_hla_alleles.csv
+  with Sahin HLA data from the features CSV or original paper supplementary.
+  NOT blocking for paper submission — data is correct in features CSV.
+
+  **Phase 8 bootstrap CIs (done — ceiling result)**
+  Labeled subset (70 rows, 5 patients) hits recall ceiling for all scorers.
+  Bootstrap CIs are near-zero variance — not suitable as paper headline.
+  Relegate to Supplementary. Primary Phase 8 metric remains per-patient
+  rank table from full mutanome (11,094 mutations).
+  Artifact: backend/strategy_engine/artifacts/phase8_bootstrap_recall.csv
+
+  ⚠️ DATA WARNING
+  sahin_2017_features.csv contains correct HLA alleles (final_hla_allele).
+  patient_hla_alleles.csv does NOT have Sahin HLA data.
+  Do not use the HLA lookup table as source of truth for Sahin patients.
+
+  Tests: 40/40 passing
+  Next: melanoma cross-dataset transfer bootstrap CIs (abstract numbers),
+        paper results update (Phase 9+10 findings), Müller NCI integration
+
 2026-04-22 | Claude claude-sonnet-4-6 | Session 14: Phase 10 GBM validation (Hilf 2019 + Keskin 2019)
   Changed: backend/strategy_engine/phase10_gbm_validation.py (new),
            artifacts/phase10_gbm_results.json,
