@@ -1,7 +1,12 @@
 # AGENTS.md — NeoResist-MD Project State
 # Single source of truth for all AI coding agents (Claude, Codex, Cursor, etc.)
 # READ THIS FIRST. UPDATE THIS LAST.
-# Last updated: 2026-04-21 (session 8) by Claude (claude-sonnet-4-6)
+# Last updated: 2026-04-24 (session 16) by Claude (claude-opus-4-7)
+#
+# ACTIVE WORK: NeoGuider pipeline integration (branch: neoguider-pipeline-integration).
+# Session 16 is mid-implementation. Start by reading the "SESSION 16 HANDOFF
+# (NEOGUIDER INTEGRATION)" block below — it has the architectural pivot, what's
+# done, what's next, and exact file-level continuation points for Codex.
 
 ## GOLDEN RULE
 Never break what works. The stable RL v1 engine in neoresist/
@@ -637,3 +642,48 @@ This motivates the configurable platform and the paper's argument.
 5. **Do not touch `neoresist/scoring.py` under any circumstances**
 6. Update the CHANGELOG and ACTIVE TASKS sections before ending the session
 7. Commit AGENTS.md: `git add AGENTS.md && git commit -m "docs: update AGENTS.md"`
+
+## SESSION 17 — NeoGuider Integration (April 2026)
+### Branch: neoguider-pipeline-integration (base: dash-ui-migration)
+
+### ARCHITECTURAL DECISION (FINAL — DO NOT REVISIT)
+NeoGuider is a strategy kind in the strategy registry, not a separate pipeline.
+The strategy dropdown in the Dash UI shows it alongside existing strategies.
+Everything scores to rl_priority. No new tabs, no UI disruption.
+
+### FILES CREATED THIS SESSION
+- neoresist/strategies/__init__.py         — plugin registry
+- neoresist/strategies/ml_model.py         — kind=ml_model handler
+- neoresist/strategies/neoguider_transform.py — aKDE→IR→CIR (from-scratch port)
+- neoresist/strategies/neoguider.py         — kind=neoguider handler
+- neoresist/strategies/neoguider_train.py   — training script
+- neoresist/strategies/validate_tfa_mean.py — TFA-mean vs NeoGuider paper
+- neoresist/strategies/tests/               — pytest suite
+- configs/strategies_extra/neoguider_v1.yaml — strategy definition
+
+### FILES MODIFIED
+- neoresist/strategy_registry.py — extended with kind+params, kind-dispatcher
+
+### NEOGUIDER PUBLISHED NUMBERS (DO NOT MODIFY — ground truth for benchmarking)
+- TESLA TFA-mean:    19.6  (Zhao et al. Figure 3, Genome Medicine 2026)
+- NCI-test top20#T: 15.4  (Zhao et al. Table 4, NeoRanking framework)
+- HiTIDE top20#T:   18.1  (Zhao et al. Table 4, NeoRanking framework)
+
+### NEXT SESSION PRIORITIES (if continuing)
+1. Run neoguider_train.py once Ott/NCI features are confirmed available
+2. Run validate_tfa_mean.py --dataset tesla to get NeoResist vs NeoGuider numbers
+3. Frameshift: test DHX40-like case end-to-end through score pipeline
+4. Borch 70-patient experiment (validation_papers/borch2024/ already downloaded)
+5. Merge to dash-ui-migration when all tests pass
+
+### KEY ARCHITECTURAL CONTRACTS
+- Each strategy handler: def score(df, strategy) -> pd.Series named 'rl_priority'
+- list_strategies() scans BOTH configs/scoring_profiles/ AND configs/strategies_extra/
+- Frameshift rows: is_frameshift=True, binding_nm=NaN, forced_tcr_scorer=True
+- neoguider_v1_model.pkl must exist before NeoGuider scorer gives real predictions
+  (graceful fallback to binding_nm rank if pkl missing)
+
+### WHAT DOES NOT CHANGE
+The strategy registry vision (one dropdown, all strategies, same output column).
+The two-stage biological framing. The DHX40/frameshift structural advantage.
+The fold-safe ML protocol. The Ott/Tretter/NCI results already computed.

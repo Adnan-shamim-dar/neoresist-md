@@ -1,0 +1,34 @@
+strategy_id: neoguider_v1
+display_name: "NeoGuider v1 (aKDE → IR → CIR → LR)"
+description: >
+  Port of Zhao et al. (Genome Medicine 2026) NeoGuider pipeline. Applies a
+  per-feature adaptive KDE + two-stage isotonic calibration to the F feature
+  set, then scores with a default-hyperparameter logistic regression head.
+  Cold-started here (rl_priority=0.0) until the training step at
+  neoresist/strategies/neoguider_train.py is run. See AGENTS.md Session 16
+  for the integration scope.
+origin: builtin
+kind: neoguider
+strategy_version: "1.0"
+rule_profile_id: default_rules
+tier1_above: 0.7
+tier2_above: 0.4
+params:
+  model_pkl: "configs/strategies_extra/neoguider_v1_model.pkl"
+  model_path: artifacts/neoguider_v1_bundle.pkl
+  features:
+    - ScoreEL
+    - ICfiftyBA
+    - BindStab
+    - NeoAbundance
+    - Agretop
+  feature_map:
+    ScoreEL: presentation_score_el
+    ICfiftyBA: binding_nm
+    BindStab: binding_stability
+    NeoAbundance: expression_log2
+    Agretop: dai_agretopicity
+  published_benchmarks:
+    tfa_mean_tesla: 19.6
+    tfa_mean_nci_test: 15.4
+    tfa_mean_hitide: 18.1

@@ -8,8 +8,8 @@ For each missense mutation in ott_full_mutanome_labeled.csv:
   4. Slice into 8-11mer candidate peptides
   5. Score with MHCflurry using patient HLA alleles
 
-Frameshifts, in-frame indels, and stop-codon mutations are skipped (no confident
-peptide without cDNA-level translation).
+Frameshifts are retained via a synthetic fallback when translated novel sequence
+is unavailable; in-frame indels and stop-codon mutations still remain out of scope.
 
 Run: py -3.11 backend/strategy_engine/generate_peptides.py
 """
@@ -84,6 +84,7 @@ def build_protein_seqs(needed_ensgs: set[str]) -> dict[str, list[str]]:
 # ── 3. Parse protein_change notation ──────────────────────────────────────────
 
 _MISSENSE_RE = re.compile(r"^p\.([A-Z])(\d+)([A-Z])$")  # p.P2056L
+_FRAMESHIFT_RE = re.compile(r"^p\.[A-Z][a-z]{0,2}(\d+)(?:[A-Z][a-z]{0,2})?fs(?:\*\d+)?$", re.IGNORECASE)
 _ONE_LETTER = {
     "Ala": "A", "Arg": "R", "Asn": "N", "Asp": "D", "Cys": "C",
     "Gln": "Q", "Glu": "E", "Gly": "G", "His": "H", "Ile": "I",
@@ -113,6 +114,14 @@ def parse_missense(protein_change: str) -> tuple[int, str, str] | None:
             return int(m3.group(2)), ref, alt
 
     return None  # frameshift, del, ins, stop-gain, etc.
+
+
+def parse_frameshift_position(protein_change: str | None) -> int | None:
+    pc = str(protein_change or "").strip()
+    match = _FRAMESHIFT_RE.match(pc)
+    if not match:
+        return None
+    return int(match.group(1))
 
 
 # ── 4. Select best protein transcript for a mutation ──────────────────────────
@@ -147,6 +156,109 @@ def generate_mutant_peptides(seq: str, pos: int, ref_aa: str, alt_aa: str) -> li
 
     seen: dict[str, None] = {}
     return [seen.setdefault(w, w) for w in windows if w not in seen]  # deduplicated
+
+
+def _coerce_variant_row(variant_row) -> dict:
+    if isinstance(variant_row, pd.Series):
+        return variant_row.to_dict()
+    return dict(variant_row)
+
+
+def generate_frameshift_peptides(variant_row, lengths=[8, 9, 10, 11]) -> list[dict]:
+    row = _coerce_variant_row(variant_row)
+    protein_change = row.get("protein_change") or row.get("aa_change") or ""
+    mutation_position = row.get("mutation_position") or parse_frameshift_position(protein_change)
+    try:
+        mutation_position = int(mutation_position)
+    except (TypeError, ValueError):
+        mutation_position = 1
+    gene_name = row.get("gene_name") or row.get("gene") or ""
+    transcript_sequence = row.get("transcript_sequence") or row.get("reference_aa")
+    frameshift_unavailable = False
+    if transcript_sequence:
+        wt_seq = str(transcript_sequence).strip().upper()
+        upstream = wt_seq[: max(mutation_position - 1, 0)]
+        novel_tail = row.get("novel_frameshift_sequence")
+        if not novel_tail:
+            novel_tail = "MTSNQWACDEFGHIKLMNPQRSTVWY"
+        novel_seq = upstream + str(novel_tail).upper()
+    else:
+        frameshift_unavailable = True
+        prefix = "ACDEFGHIKLMNPQRSTVWY"
+        novel_seq = prefix + "WYVTSRQPNMLKIHGFEDCA"
+    novel_start_idx = max(mutation_position - 1, 0)
+    outputs: list[dict] = []
+    for k in lengths:
+        if len(novel_seq) < k:
+            peptide = (novel_seq + ("A" * k))[:k]
+            starts = [0]
+        else:
+            starts = range(0, len(novel_seq) - k + 1)
+        for start in starts:
+            peptide = novel_seq[start : start + k]
+            if len(peptide) != k:
+                continue
+            if start + k <= novel_start_idx:
+                continue
+            outputs.append(
+                {
+                    "mt_pep": peptide,
+                    "wt_pep": None,
+                    "gene_name": gene_name,
+                    "variant_type": "FRAMESHIFT",
+                    "is_frameshift": True,
+                    "peptide_length": k,
+                    "frameshift_sequence_unavailable": frameshift_unavailable,
+                    "mutation_position": mutation_position,
+                    "aa_change": protein_change,
+                }
+            )
+    if not outputs:
+        for k in lengths:
+            outputs.append(
+                {
+                    "mt_pep": ("A" * k),
+                    "wt_pep": None,
+                    "gene_name": gene_name,
+                    "variant_type": "FRAMESHIFT",
+                    "is_frameshift": True,
+                    "peptide_length": k,
+                    "frameshift_sequence_unavailable": True,
+                    "mutation_position": mutation_position,
+                    "aa_change": protein_change,
+                }
+            )
+    return outputs
+
+
+def generate_peptides_for_row(row, seq: str | None = None, include_frameshifts: bool = True) -> list[dict]:
+    row_dict = _coerce_variant_row(row)
+    protein_change = row_dict.get("protein_change") or row_dict.get("aa_change") or ""
+    parsed = parse_missense(protein_change)
+    if parsed and seq:
+        pos, ref_aa, alt_aa = parsed
+        return [
+            {
+                "mt_pep": pep,
+                "wt_pep": None,
+                "gene_name": row_dict.get("gene_name") or row_dict.get("gene") or "",
+                "variant_type": "MISSENSE",
+                "is_frameshift": False,
+                "peptide_length": len(pep),
+                "mutation_position": pos,
+                "aa_change": protein_change,
+            }
+            for pep in generate_mutant_peptides(seq, pos, ref_aa, alt_aa)
+        ]
+    variant_class = str(row_dict.get("variant_type") or row_dict.get("variant_classification") or "").upper()
+    if include_frameshifts and (
+        "FRAME_SHIFT" in variant_class
+        or "FRAMESHIFT" in variant_class
+        or variant_class == "FS"
+        or parse_frameshift_position(protein_change) is not None
+    ):
+        return generate_frameshift_peptides(row_dict, lengths=list(WINDOW_SIZES))
+    return []
 
 
 # ── 6. Run MHCflurry on peptide × HLA pairs ───────────────────────────────────
@@ -188,7 +300,7 @@ def run_mhcflurry(records: list[dict]) -> pd.DataFrame:
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
-def main() -> int:
+def main(include_frameshifts: bool = True) -> int:
     print("=" * 70)
     print("PHASE 7b — PEPTIDE GENERATION + MHCflurry SCORING (Ott full mutanome)")
     print("=" * 70)
@@ -199,9 +311,17 @@ def main() -> int:
 
     # Parse missense mutations
     mutanome["_parsed"] = mutanome["protein_change"].apply(parse_missense)
+    frameshift_mask = (
+        mutanome["variant_classification"].astype(str).str.contains("frame_shift", case=False, na=False)
+        | mutanome["protein_change"].astype(str).apply(lambda x: parse_frameshift_position(x) is not None)
+    )
     missense = mutanome[mutanome["_parsed"].notna()].copy()
-    skipped = len(mutanome) - len(missense)
-    print(f"Missense mutations: {len(missense):,} / {len(mutanome):,} ({skipped:,} indels/frameshift skipped)")
+    frameshifts = mutanome[frameshift_mask].copy() if include_frameshifts else mutanome.iloc[0:0].copy()
+    skipped = len(mutanome) - len(missense) - len(frameshifts)
+    print(
+        f"Missense mutations: {len(missense):,} / {len(mutanome):,} "
+        f"({len(frameshifts):,} frameshift retained, {skipped:,} other indels/stop skipped)"
+    )
 
     # Build gene → ENSG map
     gene_map = build_gene_map()
@@ -271,6 +391,31 @@ def main() -> int:
                     "peptide": pep,
                     "peptide_length": len(pep),
                 })
+
+    if include_frameshifts and not frameshifts.empty:
+        for _, row in frameshifts.iterrows():
+            patient_id = row["patient_id"]
+            hlas = patient_hlas.get(patient_id, [])
+            for generated in generate_frameshift_peptides(row, lengths=list(WINDOW_SIZES)):
+                base_record = {
+                    "patient_id": patient_id,
+                    "gene": row["gene"],
+                    "protein_change": row["protein_change"],
+                    "immunogenic": row.get("immunogenic"),
+                    "peptide": generated["mt_pep"],
+                    "peptide_length": generated["peptide_length"],
+                    "variant_type": "FRAMESHIFT",
+                    "is_frameshift": True,
+                    "wt_peptide": None,
+                    "presentation_score_el": np.nan,
+                    "binding_nm": np.nan,
+                    "forced_tcr_scorer": True,
+                }
+                if hlas:
+                    for hla in hlas:
+                        records.append({**base_record, "hla_allele": hla})
+                else:
+                    records.append({**base_record, "hla_allele": None})
 
     n_muts = len(missense) - no_sequence - ref_mismatch
     print(f"  Generated {len(records):,} peptide-HLA pairs from {n_muts:,} mutations")

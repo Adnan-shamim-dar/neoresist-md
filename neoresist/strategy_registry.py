@@ -2,18 +2,30 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import yaml
 from pydantic import BaseModel, Field
 
 from neoresist.paths import audit_log_path, strategy_store_dir
 from neoresist.profiles import load_rule_profile, load_scoring_profile
 
 SAFE_WEIGHT_KEYS = ("expression_norm", "presentation", "ccf", "self_dissimilarity")
+
+# Strategy kinds. "weight_blend" is the legacy behavior (weighted sum of signals).
+# Additional kinds are dispatched to handlers under neoresist/strategies/.
+STRATEGY_KIND_WEIGHT_BLEND = "weight_blend"
+STRATEGY_KIND_ML_MODEL = "ml_model"
+STRATEGY_KIND_NEOGUIDER = "neoguider"
+KNOWN_STRATEGY_KINDS = (
+    STRATEGY_KIND_WEIGHT_BLEND,
+    STRATEGY_KIND_ML_MODEL,
+    STRATEGY_KIND_NEOGUIDER,
+)
 
 
 class StrategyDefinitionContract(BaseModel):
@@ -35,6 +47,8 @@ class StrategyDefinitionContract(BaseModel):
     tier1_above: float = Field(ge=0.0, le=1.0)
     tier2_above: float = Field(ge=0.0, le=1.0)
     weights: dict[str, float]
+    kind: str = STRATEGY_KIND_WEIGHT_BLEND
+    params: dict[str, Any] = Field(default_factory=dict)
 
 
 class AuditEventContract(BaseModel):
@@ -81,6 +95,8 @@ class ResolvedStrategy:
     escape_penalty_weight: float
     tier1_above: float
     tier2_above: float
+    kind: str = STRATEGY_KIND_WEIGHT_BLEND
+    params: dict[str, Any] = field(default_factory=dict)
 
 
 def _now_iso() -> str:
@@ -131,6 +147,47 @@ def strategy_from_profiles(scoring_profile_id: str, rule_profile_id: str = "defa
         escape_penalty_weight=float(sp.escape_penalty_weight),
         tier1_above=float(rp.tier1_above),
         tier2_above=float(rp.tier2_above),
+        kind=STRATEGY_KIND_WEIGHT_BLEND,
+        params={},
+    )
+
+
+def strategy_from_extra_yaml(path: Path, rule_profile_id: str = "default_rules") -> ResolvedStrategy:
+    """Load a non-weight-blend strategy definition from configs/strategies_extra/<id>.yaml.
+
+    Extra strategies declare a `kind` (ml_model, neoguider, ...) and kind-specific
+    `params`. The rule profile still governs tier thresholds so tiers remain comparable
+    across all strategies in the dropdown.
+    """
+    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    strategy_id = str(raw.get("strategy_id") or path.stem)
+    kind = str(raw.get("kind") or STRATEGY_KIND_WEIGHT_BLEND)
+    if kind not in KNOWN_STRATEGY_KINDS:
+        raise ValueError(f"Unknown strategy kind '{kind}' in {path}")
+    rp = load_rule_profile(str(raw.get("rule_profile_id") or rule_profile_id))
+    params = dict(raw.get("params") or {})
+    return ResolvedStrategy(
+        strategy_id=strategy_id,
+        display_name=str(raw.get("display_name") or strategy_id),
+        description=str(raw.get("description") or ""),
+        origin=str(raw.get("origin") or "builtin"),
+        parent_strategy_id=raw.get("parent_strategy_id"),
+        scoring_profile_id=strategy_id,
+        scoring_version=str(raw.get("strategy_version") or "1.0"),
+        rule_profile_id=rp.profile_id,
+        rule_version=rp.version,
+        strategy_version=str(raw.get("strategy_version") or f"1.0+{rp.version}"),
+        created_at=raw.get("created_at"),
+        last_modified=raw.get("last_modified"),
+        expression_tpm_cap=float(raw.get("expression_tpm_cap", 1000.0)),
+        blend_expression=float(raw.get("blend_expression", 0.0)),
+        blend_ccf=float(raw.get("blend_ccf", 0.0)),
+        weights=_normalize_weights(dict(raw.get("weights") or {})),
+        escape_penalty_weight=float(raw.get("escape_penalty_weight", 0.0)),
+        tier1_above=float(raw.get("tier1_above", rp.tier1_above)),
+        tier2_above=float(raw.get("tier2_above", rp.tier2_above)),
+        kind=kind,
+        params=params,
     )
 
 
@@ -157,12 +214,21 @@ def _strategy_to_contract(strategy: ResolvedStrategy) -> StrategyDefinitionContr
         tier1_above=strategy.tier1_above,
         tier2_above=strategy.tier2_above,
         weights=_normalize_weights(strategy.weights),
+        kind=strategy.kind,
+        params=dict(strategy.params or {}),
     )
 
 
 def _contract_to_strategy(contract: StrategyDefinitionContract) -> ResolvedStrategy:
-    sp = load_scoring_profile(contract.scoring_profile_id)
+    kind = contract.kind or STRATEGY_KIND_WEIGHT_BLEND
     rp = load_rule_profile(contract.rule_profile_id)
+    if kind == STRATEGY_KIND_WEIGHT_BLEND:
+        sp = load_scoring_profile(contract.scoring_profile_id)
+        scoring_version = sp.version
+    else:
+        # Non-weight-blend strategies don't map to a scoring_profile YAML; carry the
+        # strategy_version forward so the UI still shows a sensible version string.
+        scoring_version = contract.strategy_version
     return ResolvedStrategy(
         strategy_id=contract.strategy_id,
         display_name=contract.display_name,
@@ -170,7 +236,7 @@ def _contract_to_strategy(contract: StrategyDefinitionContract) -> ResolvedStrat
         origin=contract.origin,
         parent_strategy_id=contract.parent_strategy_id,
         scoring_profile_id=contract.scoring_profile_id,
-        scoring_version=sp.version,
+        scoring_version=scoring_version,
         rule_profile_id=contract.rule_profile_id,
         rule_version=rp.version,
         strategy_version=contract.strategy_version,
@@ -183,6 +249,8 @@ def _contract_to_strategy(contract: StrategyDefinitionContract) -> ResolvedStrat
         escape_penalty_weight=float(contract.escape_penalty_weight),
         tier1_above=float(contract.tier1_above),
         tier2_above=float(contract.tier2_above),
+        kind=kind,
+        params=dict(contract.params or {}),
     )
 
 
@@ -198,6 +266,17 @@ def list_strategies() -> list[ResolvedStrategy]:
     )
     items = [strategy_from_profiles(profile_id) for profile_id in builtin_ids]
     seen_ids = {item.strategy_id for item in items}
+    extra_dir = config_root / "strategies_extra"
+    if extra_dir.is_dir():
+        for path in sorted(extra_dir.glob("*.yaml")):
+            try:
+                item = strategy_from_extra_yaml(path)
+            except Exception:
+                continue
+            if item.strategy_id in seen_ids:
+                continue
+            items.append(item)
+            seen_ids.add(item.strategy_id)
     for path in sorted(strategy_store_dir().glob("*.json")):
         try:
             raw = json.loads(path.read_text(encoding="utf-8"))
@@ -243,6 +322,8 @@ def clone_strategy(source_id: str, *, display_name: str | None = None) -> Resolv
         escape_penalty_weight=src.escape_penalty_weight,
         tier1_above=src.tier1_above,
         tier2_above=src.tier2_above,
+        kind=src.kind,
+        params=dict(src.params or {}),
     )
 
 
@@ -356,6 +437,64 @@ def _blend_ccf(row: pd.Series, strategy: ResolvedStrategy) -> float:
 
 
 def score_candidates_for_strategy(df: pd.DataFrame, strategy: ResolvedStrategy) -> pd.DataFrame:
+    """Dispatch to the appropriate scoring implementation based on strategy.kind.
+
+    Every kind must return a DataFrame with at minimum: rl_priority, tier,
+    strategy_id, strategy_origin, scoring_profile, scoring_version, rule_profile,
+    candidate_key, coherence_score, coherence_reasons. This keeps the Dash UI
+    strategy-agnostic — any new kind drops in by registering a handler.
+    """
+    kind = getattr(strategy, "kind", STRATEGY_KIND_WEIGHT_BLEND)
+    if kind == STRATEGY_KIND_WEIGHT_BLEND:
+        return _score_weight_blend(df, strategy)
+    try:
+        from neoresist.strategies import get_kind_handler
+    except Exception:
+        # Fall back to weight_blend if the plug-in package is unavailable for any reason.
+        return _score_weight_blend(df, strategy)
+    handler = get_kind_handler(kind)
+    if handler is None:
+        return _score_weight_blend(df, strategy)
+    scored = handler(df, strategy)
+    # Guarantee the columns downstream UI code relies on.
+    scored = _ensure_scored_columns(scored, strategy)
+    return attach_coherence(scored, strategy)
+
+
+def _ensure_scored_columns(df: pd.DataFrame, strategy: ResolvedStrategy) -> pd.DataFrame:
+    out = df.copy()
+    if "rl_priority" not in out.columns:
+        out["rl_priority"] = 0.0
+    if "tier" not in out.columns:
+        tiers: list[int] = []
+        for val in out["rl_priority"].fillna(0.0).tolist():
+            score = max(0.0, min(1.0, float(val)))
+            if score > strategy.tier1_above:
+                tiers.append(1)
+            elif score >= strategy.tier2_above:
+                tiers.append(2)
+            else:
+                tiers.append(3)
+        out["tier"] = tiers
+    if "expression_norm" not in out.columns:
+        out["expression_norm"] = [
+            _blend_expression(row, strategy) for _, row in out.iterrows()
+        ] if not out.empty else []
+    if "strategy_ccf" not in out.columns:
+        out["strategy_ccf"] = [
+            _blend_ccf(row, strategy) for _, row in out.iterrows()
+        ] if not out.empty else []
+    out["strategy_id"] = strategy.strategy_id
+    out["strategy_origin"] = strategy.origin
+    out["scoring_profile"] = strategy.scoring_profile_id
+    out["scoring_version"] = strategy.scoring_version
+    out["rule_profile"] = strategy.rule_profile_id
+    if "candidate_key" not in out.columns and not out.empty:
+        out["candidate_key"] = out.apply(candidate_key_for_row, axis=1)
+    return out
+
+
+def _score_weight_blend(df: pd.DataFrame, strategy: ResolvedStrategy) -> pd.DataFrame:
     out = df.copy()
     if out.empty:
         for col in (
