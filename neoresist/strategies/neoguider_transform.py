@@ -199,11 +199,11 @@ def _safe_kde(values: np.ndarray, min_bandwidth: float) -> gaussian_kde | None:
 
 
 def build_feature_matrix(
-    frame, feature_order: list[str], feature_map: dict[str, str] | None = None
+    frame, feature_order: list[str], feature_map: dict[str, str] | None = None, *, missing_value: float = 0.0
 ) -> np.ndarray:
     """Pull feature columns out of a DataFrame and return a (n, k) float matrix.
 
-    Missing columns and non-numeric values coerce to 0.0. `feature_map` renames
+    Missing columns and non-numeric values coerce to `missing_value`. `feature_map` renames
     the NeoGuider-F names (ScoreEL, ICfiftyBA, ...) to candidate-table columns
     (presentation_score_el, binding_nm, ...) without needing to mutate either side.
     """
@@ -214,9 +214,9 @@ def build_feature_matrix(
     for name in feature_order:
         source = feature_map.get(name, name)
         if source in frame.columns:
-            series = pd.to_numeric(frame[source], errors="coerce").fillna(0.0)
+            series = pd.to_numeric(frame[source], errors="coerce").fillna(missing_value)
         else:
-            series = pd.Series([0.0] * len(frame), index=frame.index)
+            series = pd.Series([missing_value] * len(frame), index=frame.index)
         cols.append(series.to_numpy(dtype=float))
     if not cols:
         return np.zeros((len(frame), 0), dtype=float)

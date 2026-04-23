@@ -62,7 +62,7 @@ def score_neoguider(df: pd.DataFrame, strategy: "ResolvedStrategy") -> pd.DataFr
         out = _apply_frameshift_overrides(out)
         return out
 
-    X_raw = build_feature_matrix(df, feature_order, feature_map)
+    X_raw = build_feature_matrix(df, feature_order, feature_map, missing_value=np.nan)
     if X_raw.size == 0:
         out["rl_priority"] = _binding_fallback_scores(out)
         out = _apply_frameshift_overrides(out)
