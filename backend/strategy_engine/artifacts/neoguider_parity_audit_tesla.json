@@ -1,0 +1,126 @@
+{
+  "data_file": "C:\\Users\\rambe\\Documents\\neovax\\validation_papers\\tesla\\tesla_neoguider_fig3_sup3.csv",
+  "strategy_id": "neoguider_v1",
+  "n_rows": 530,
+  "n_patients": 5,
+  "n_immunogenic": 34,
+  "patient_ids": [
+    "TESLA_1",
+    "TESLA_12",
+    "TESLA_16",
+    "TESLA_2",
+    "TESLA_3"
+  ],
+  "canonical_feature_coverage": {
+    "presentation_score_el": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "binding_nm": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "binding_stability": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "expression_log2": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "dai_agretopicity": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    }
+  },
+  "raw_feature_coverage": {
+    "Score_EL": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "MT_BindAff": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "BindStab": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "Quantification": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    },
+    "Agretopicity": {
+      "present": true,
+      "non_na": 530,
+      "coverage_pct": 100.0
+    }
+  },
+  "metrics": {
+    "neoguider_v1": {
+      "score_col": "rl_priority",
+      "n_rows": 530,
+      "n_patients": 5,
+      "TFA_mean": 47.62476525967401,
+      "TTIF": 19.0,
+      "FR": 100.0,
+      "AUPRC": 23.874295779021995
+    },
+    "binding_rank_score": {
+      "score_col": "binding_rank_score",
+      "n_rows": 530,
+      "n_patients": 5,
+      "TFA_mean": 43.452996266245634,
+      "TTIF": 14.000000000000002,
+      "FR": 90.0,
+      "AUPRC": 26.358988798736917
+    },
+    "supplementary_predicted_probability": {
+      "score_col": "PredictedProbability",
+      "n_rows": 530,
+      "n_patients": 5,
+      "TFA_mean": 47.971779392039295,
+      "TTIF": 20.0,
+      "FR": 95.0,
+      "AUPRC": 28.915338176117857
+    }
+  },
+  "published_reference": {
+    "tesla_tfa_mean": 19.6
+  },
+  "full_universe_available": false,
+  "decision": {
+    "conclusion": "BENCHMARK_NOT_REPRODUCIBLE_WITHOUT_PIPELINE",
+    "reason": "NeoGuider published TFA-mean=19.6 was computed on full candidate universe from raw FASTQ via netMHCpan 4.1. Supplementary Data 3 contains only top-1000 pre-ranked output per patient. Direct numerical comparison to 19.6 requires running the full NeoGuider pipeline locally (BWA-MEM + UVC + netMHCpan + Kallisto). This is not reproduced here.",
+    "what_our_numbers_mean": "TFA-mean values in neoguider_variant_screen.json are valid for RELATIVE comparison of variants against each other on consistent inputs. They are not valid for claiming numerical superiority over published NeoGuider 19.6.",
+    "promotion_unblocked": true,
+    "promotion_criteria": "Promote variants that (1) beat neoguider_v1 on internal screen, (2) pass transfer test (train on NCI, test on Ott or vice versa), (3) have written biological rationale in YAML.",
+    "paper_framing": "Report TFA-mean on NeoResist's own full-universe datasets (Ott haystack, NCI neo-pep). Claim structural advantages: frameshift coverage, cancer-type specificity. Do not claim numerical superiority over NeoGuider 19.6 without full pipeline parity."
+  },
+  "faults": [
+    {
+      "severity": "medium",
+      "code": "TOP1000_FILTERED_INPUT",
+      "detail": "Source files are top1000 outputs; this may differ from full-candidate evaluation used in some comparisons."
+    },
+    {
+      "severity": "medium",
+      "code": "PUBLISHED_GAP_LARGE",
+      "detail": "Observed TFA gap vs published 19.6 is +28.025."
+    },
+    {
+      "severity": "medium",
+      "code": "METRIC_IMPLEMENTATION_LIMIT",
+      "detail": "AUPRC is computed via sklearn average_precision_score, while TESLA's original R uses PRROC over rank partitions; small numeric drift is expected."
+    }
+  ]
+}

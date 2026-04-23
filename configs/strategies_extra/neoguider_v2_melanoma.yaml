@@ -1,0 +1,30 @@
+strategy_id: neoguider_v2_melanoma
+display_name: "NeoGuider v2 Melanoma (TCR chemistry)"
+description: >
+  Internal-screen promoted variant prioritizing TCR-facing chemistry for
+  melanoma-like contexts where binding alone is insufficient.
+origin: builtin
+kind: neoguider
+strategy_version: "2.0"
+rule_profile_id: default_rules
+tier1_above: 0.7
+tier2_above: 0.4
+features:
+  - binding_log50k
+  - tcr_hydro_mean
+  - tcr_volume_mean
+  - tcr_charge_sum
+biological_rationale: >
+  TCR chemistry features discriminate melanoma neoantigens where high TMB means
+  binding alone is insufficient. Consistent with Ott Phase 8 result
+  (rltcr_v1 rank 1 for DHX40).
+screen_result:
+  internal_tfa_mean: 55.035
+  benchmark_note: "Internal screen only. Not comparable to NeoGuider 19.6."
+  beats_neoguider_v1_internal: true
+params:
+  features:
+    - binding_log50k
+    - tcr_hydro_mean
+    - tcr_volume_mean
+    - tcr_charge_sum

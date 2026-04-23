@@ -1,0 +1,29 @@
+strategy_id: neoguider_v2_tessla_adapted
+display_name: "NeoGuider v2 TESLA Adapted (bind+expr+calis)"
+description: >
+  Internal-screen promoted variant using binding, abundance, and Calis-style
+  recognition features to remain robust when Agretopicity is unavailable.
+origin: builtin
+kind: neoguider
+strategy_version: "2.0"
+rule_profile_id: default_rules
+tier1_above: 0.7
+tier2_above: 0.4
+features:
+  - binding_log50k
+  - expression_log2
+  - calis_simplified
+biological_rationale: >
+  ScoreEL + NeoAbundance + Calis simplified captures presentation + quantity +
+  TCR contact without Agretopicity, which has 0% coverage on non-NeoGuider
+  feature tables. Better generalization when Agretop is unavailable.
+screen_result:
+  internal_tfa_mean: 44.314
+  benchmark_note: "Internal screen only. Not comparable to NeoGuider 19.6."
+  beats_neoguider_v1_internal: false
+params:
+  features:
+    - binding_log50k
+    - expression_log2
+    - calis_simplified
+

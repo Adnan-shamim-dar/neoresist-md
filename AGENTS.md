@@ -687,3 +687,31 @@ Everything scores to rl_priority. No new tabs, no UI disruption.
 The strategy registry vision (one dropdown, all strategies, same output column).
 The two-stage biological framing. The DHX40/frameshift structural advantage.
 The fold-safe ML protocol. The Ott/Tretter/NCI results already computed.
+
+## SESSION 17 ADDENDUM — Parity Audit (April 2026)
+
+### Benchmark Status: NeoGuider TESLA TFA-mean 19.6
+- Source: Zhao et al. Table 4 / Figure 2, Genome Medicine 2026
+- Our status: NOT directly reproducible without running full
+  NeoGuider pipeline (netMHCpan 4.1 + UVC on TESLA FASTQ)
+- Supplementary Data 3 = top-1000 pre-ranked output only
+- Our fast-screen TFA-mean values are INTERNAL comparisons only
+
+### What IS Valid
+- Relative ranking of strategy variants against each other ✓
+- Ott Phase 8 haystack (rltcr_v1 all 13 in top 11) ✓
+- Frameshift structural advantage (DHX40) ✓
+- Cancer-type context-dependence finding ✓
+
+### What Is NOT Valid Yet
+- Claiming NeoResist TFA-mean > NeoGuider 19.6 numerically
+- Any number from the top-1000 filtered input as absolute performance
+
+### Promoted Strategies (internal screen evidence)
+- neoguider_v2_tessla_adapted: bind+expr+calis, Agretop-free
+- neoguider_v2_melanoma: TCR chemistry, melanoma context
+
+### To Get Numerical Parity With Published 19.6
+Run netMHCpan 4.1 + netMHCstabpan on TESLA peptides locally.
+Full candidate universe required. Estimated: 4-8 hours pipeline time.
+This is optional for the paper — framing shift covers it.
