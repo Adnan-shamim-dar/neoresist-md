@@ -224,7 +224,7 @@ We thank the authors of Ott 2017, Sahin 2017, Hilf 2019, and Rojas 2023 for shar
 
 ## Data availability
 
-All cohort data are from published supplementary materials. Borch/IMPROVE: github.com/SRHgroup/IMPROVE_paper. The autoresearch loop, evidence audit pipeline, and clinical platform are available at [REPOSITORY URL TBD] (NeoResist-MD v1.0). Processed feature tables for Ott 2017, Sahin 2017, Hilf 2019, and Rojas 2023 are provided as Supplementary Data.
+All cohort data are from published supplementary materials. Borch/IMPROVE: github.com/SRHgroup/IMPROVE_paper. The autoresearch loop, evidence audit pipeline, and clinical platform are available at github.com/Adnan-shamim-dar/neoresist-md (NeoResist-MD v1.0). Processed feature tables for Ott 2017, Sahin 2017, Hilf 2019, and Rojas 2023 are provided as Supplementary Data.
 
 ---
 

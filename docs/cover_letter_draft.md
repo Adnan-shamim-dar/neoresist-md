@@ -43,4 +43,4 @@ Sincerely,
 
 ---
 
-*Note: Repository URL TBD; will be included in the final submitted version.*
+*Repository: github.com/Adnan-shamim-dar/neoresist-md*
