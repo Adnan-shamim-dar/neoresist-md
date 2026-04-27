@@ -1,0 +1,33 @@
+max_rounds: 1
+stall_patience: 4
+promote_delta: 0.005
+substantial_delta: 0.015
+# ci_margin: minimum (candidate_ci_lo - baseline_ci_hi) required.
+# 0.0 = non-overlapping CIs (impossible on small neoantigen cohorts).
+# -0.05 = CIs may overlap by up to 0.05 — achievable at n~100.
+ci_margin: -0.05
+elite_bank_size: 10
+max_candidates_per_task: 16
+seed: 42
+daemon_sleep_seconds: 10.0
+require_transfer_support_when_available: true
+require_heldout_support_when_available: true
+overfit_auc_ceiling: 0.95
+seed_stability_runs: 3
+seed_stability_min_votes: 1
+seed_stability_strong_delta_bypass: 0.08
+pivot_patience: 2
+pivot_metric_epsilon: 0.005
+pivot_exploration_boost: 0.25
+pivot_family_penalty: 0.45
+pivot_elite_retention: 2
+transfer_floor: 0.0
+novelty_bonus: 0.03
+# Minimum number of contexts where promotion is required to advance phase.
+# 1 = any single context triggers phase advance (too aggressive).
+# 2 = at least two contexts must promote before advancing.
+min_contexts_for_phase_advance: 2
+datasets_manifest: autoresearch_datasets.yaml
+operators_manifest: autoresearch_operators.yaml
+tool_registry_manifest: autoresearch_tools.yaml
+dataset_capabilities_manifest: autoresearch_dataset_capabilities.yaml

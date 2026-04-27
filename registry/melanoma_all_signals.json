@@ -1,0 +1,53 @@
+{
+  "strategy_name": "melanoma_all_signals",
+  "display_name": "melanoma all-signal mix",
+  "version": "1.0",
+  "status": "held_out_validated",
+  "cancer_context": "melanoma",
+  "discovery_dataset": "ott_2017",
+  "validation_dataset": "sahin_2017",
+  "strategy_origin": "discovered_training_only",
+  "family": "hybrid",
+  "discovery_kind": "bounded_grid_search",
+  "components": [
+    {"feature": "presentation_score", "weight": 0.40, "direction": "desc"},
+    {"feature": "expression_log2",    "weight": 0.20, "direction": "desc"},
+    {"feature": "tcr_volume_mean",    "weight": 0.20, "direction": "desc"},
+    {"feature": "aliphatic_index",    "weight": 0.20, "direction": "desc"}
+  ],
+  "held_out_results": {
+    "mean_patient_auc": 0.5754,
+    "ci_lo": 0.511,
+    "ci_hi": 0.630,
+    "delta_vs_binding_only": 0.1052,
+    "permutation_p": 0.011,
+    "n_permutations": 10000,
+    "binding_only_auc": 0.4702,
+    "cohort": "sahin_2017",
+    "n_patients": 13,
+    "n_peptides": 165,
+    "n_immunogenic": 109
+  },
+  "discovery_results": {
+    "mean_patient_auc": 0.7783,
+    "cohort": "ott_2017",
+    "n_patients": 13,
+    "n_peptides": 97,
+    "n_immunogenic": 15
+  },
+  "ablation": {
+    "tcr_volume_mean_removed_auc": 0.490,
+    "aliphatic_index_removed_auc": 0.534,
+    "expression_log2_removed_auc": 0.586,
+    "presentation_score_removed_auc": 0.578
+  },
+  "feature_requirements": [
+    "presentation_score (NetMHCpan EL rank transformed)",
+    "expression_log2 (RNA-seq TPM, log2(TPM+1))",
+    "tcr_volume_mean (ICERFIRE 1.0a, mean van der Waals volume at TCR contact positions)",
+    "aliphatic_index (Ikai 1980 formula)"
+  ],
+  "prespecification_note": "Strategy fixed from Ott 2017 discovery run before Sahin 2017 was accessed. See study_audit.txt.",
+  "source_file": "backend/strategy_engine/gbm_hilf_keskin_directional.py",
+  "paper_reference": "docs/paper_draft_v3.md"
+}

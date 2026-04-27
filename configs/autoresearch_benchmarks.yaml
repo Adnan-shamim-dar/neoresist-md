@@ -1,0 +1,33 @@
+external_benchmarks:
+  - id: borch_improve
+    display_name: Borch 2024 / IMPROVE
+    source_file: validation/papers/borch2024/data/03_data_for_CV/IMPROVE/03_3_final_peptide_features_Partition_for_CV.txt
+    result_file: backend/strategy_engine/artifacts/borch2024_external_validation.json
+    summary_file: backend/strategy_engine/artifacts/borch2024_external_validation_summary.csv
+    design: External validation only. Fixed feature rankings and fixed blends; no model training and no fitted feature selection.
+    policy:
+      role: support_only
+      can_train: false
+      can_promote: false
+      can_filter_elite_bank: false
+      can_influence_search: false
+      can_change_leakage_policy: false
+    notes:
+      - external breadth only
+      - fixed feature rankings and blends
+  - id: harbst2022_bladder
+    display_name: Harbst 2022 bladder slice
+    source_file: backend/strategy_engine/artifacts/harbst2022_bladder_features.csv
+    result_file: backend/strategy_engine/artifacts/harbst2022_bladder_autoresearch.json
+    summary_file: backend/strategy_engine/artifacts/harbst2022_bladder_autoresearch_summary.csv
+    design: Curated bladder subset from the Borch/IMPROVE source family. Support-only heterogeneity analysis; not independent validation.
+    policy:
+      role: support_only
+      can_train: false
+      can_promote: false
+      can_filter_elite_bank: false
+      can_influence_search: false
+      can_change_leakage_policy: false
+    notes:
+      - bladder-specific support-only slice
+      - curated from the same Borch/IMPROVE family

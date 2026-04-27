@@ -1,0 +1,113 @@
+tool_providers:
+  - tool_id: netmhcpan41
+    family: binding
+    display_name: NetMHCpan 4.1 adapter
+    required_modalities: [hla, peptide]
+    outputs: [bind_log50k, binding_sigmoid, presentation_score]
+    role: discovery
+    enabled_from_phase: 1
+    notes:
+      - binding is the primary discovery signal
+      - presentation_score is treated as a derived downstream support feature
+  - tool_id: netmhcpanexp
+    family: expression
+    display_name: NetMHCpanExp 1.0
+    required_modalities: [expression, peptide]
+    outputs: [presentation_score, expression_log2, expression_zscore]
+    role: discovery
+    enabled_from_phase: 1
+    notes:
+      - expression-based support for mixed cohorts
+  - tool_id: netmhcstabpan
+    family: stability
+    display_name: NetMHCstabpan 1.0
+    required_modalities: [hla, peptide]
+    outputs: [binding_stability]
+    role: discovery
+    enabled_from_phase: 2
+    notes:
+      - stability is a secondary discriminant
+  - tool_id: icefire
+    family: recognition
+    display_name: ICERFIRE 1.0a
+    required_modalities: [tcr, hla, peptide]
+    outputs: [tcr_volume_mean, tcr_charge_diff, tcr_hydro_mean, self_dissimilarity]
+    role: discovery
+    enabled_from_phase: 3
+    notes:
+      - recognition-side proposals only
+      - kept optional if unavailable at runtime
+
+tool_stack_templates:
+  - template_id: toolstack_binding
+    family: toolstack_binding
+    display_name: Binding tool stack
+    required_tools: [netmhcpan41]
+    required_modalities: [hla, peptide]
+    enabled_from_phase: 1
+    base_weight: 1.25
+    min_candidates: 2
+    max_candidates: 4
+    feature_sets:
+      - [bind_log50k, binding_sigmoid]
+      - [bind_log50k, presentation_score]
+      - [bind_log50k, binding_stability]
+    notes:
+      - use binding outputs as the core candidate family
+  - template_id: toolstack_expression
+    family: toolstack_expression
+    display_name: Expression tool stack
+    required_tools: [netmhcpanexp]
+    required_modalities: [expression]
+    enabled_from_phase: 1
+    base_weight: 1.05
+    min_candidates: 1
+    max_candidates: 3
+    feature_sets:
+      - [presentation_score, expression_log2]
+      - [presentation_score, expression_zscore]
+      - [bind_log50k, expression_log2]
+    notes:
+      - useful when expression is genuinely present
+  - template_id: toolstack_stability
+    family: toolstack_stability
+    display_name: Stability tool stack
+    required_tools: [netmhcstabpan]
+    required_modalities: [hla, peptide]
+    enabled_from_phase: 2
+    base_weight: 0.95
+    min_candidates: 1
+    max_candidates: 2
+    feature_sets:
+      - [binding_stability, bind_log50k]
+      - [binding_stability, presentation_score]
+    notes:
+      - secondary signal, strongest where stability is measurable
+  - template_id: toolstack_recognition
+    family: toolstack_recognition
+    display_name: Recognition tool stack
+    required_tools: [icefire]
+    required_modalities: [tcr]
+    enabled_from_phase: 3
+    base_weight: 0.75
+    min_candidates: 0
+    max_candidates: 2
+    feature_sets:
+      - [tcr_volume_mean, tcr_charge_diff, tcr_hydro_mean, self_dissimilarity]
+      - [tcr_volume_mean, calis_simplified, presentation_score, bind_log50k]
+    notes:
+      - optional late-phase recognition proposals
+  - template_id: toolstack_hybrid
+    family: toolstack_hybrid
+    display_name: Hybrid tool stack
+    required_tools: [netmhcpan41, netmhcpanexp]
+    required_modalities: [hla, peptide, expression]
+    enabled_from_phase: 2
+    base_weight: 1.1
+    min_candidates: 1
+    max_candidates: 3
+    feature_sets:
+      - [bind_log50k, presentation_score, expression_log2, self_dissimilarity]
+      - [bind_log50k, binding_sigmoid, expression_zscore, calis_simplified]
+    notes:
+      - hybrid stack for mixed or multi-signal datasets

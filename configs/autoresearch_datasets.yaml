@@ -1,0 +1,75 @@
+feature_pools:
+  1:
+    - bind_log50k
+    - presentation_score
+    - expression_log2
+    - self_dissimilarity
+    - tcr_volume_mean
+    - tcr_charge_diff
+    - calis_simplified
+  2:
+    - bind_log50k
+    - presentation_score
+    - expression_log2
+    - self_dissimilarity
+    - tcr_volume_mean
+    - tcr_charge_diff
+    - calis_simplified
+    - bind_x_expr
+    - bind_x_tcr_volume
+    - bind_x_calis
+    - bind_x_self_dissimilarity
+    - presentation_x_tcr_volume
+    - expression_x_tcr_volume
+    - binding_sigmoid
+    - expression_zscore
+    - tcr_hydro_mean
+    - tcr_volume_diff
+    - tcr_hydro_diff
+    - binding_stability
+  3:
+    - bind_log50k
+    - presentation_score
+    - expression_log2
+    - self_dissimilarity
+    - tcr_volume_mean
+    - tcr_charge_diff
+    - calis_simplified
+    - bind_x_expr
+    - bind_x_tcr_volume
+    - bind_x_calis
+    - bind_x_self_dissimilarity
+    - presentation_x_tcr_volume
+    - expression_x_tcr_volume
+    - binding_sigmoid
+    - expression_zscore
+    - tcr_hydro_mean
+    - tcr_volume_diff
+    - tcr_hydro_diff
+    - binding_stability
+    # Phase-3-only: three-way products and rank composites for deeper search.
+    - bind_x_expr_x_tcr
+    - presentation_x_self_dissimilarity
+    - tcr_composite
+    - sequence_composite
+phase_datasets:
+  1:
+    - ott_2017
+    - sahin_2017
+    - hilf_2019
+    - rojas_2023
+    - tesla_2020
+  2:
+    - ott_2017
+    - sahin_2017
+    - hilf_2019
+    - rojas_2023
+    - tesla_2020
+    - muller_nci
+  3:
+    - ott_2017
+    - sahin_2017
+    - hilf_2019
+    - rojas_2023
+    - tesla_2020
+    - muller_nci
