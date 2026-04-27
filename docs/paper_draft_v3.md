@@ -157,20 +157,7 @@ NeoResist-MD demonstrates that cancer-type-specific neoantigen ranking strategie
 
 ## Abbreviations
 
-| Abbreviation | Definition |
-|---|---|
-| MHC | Major histocompatibility complex |
-| HLA | Human leukocyte antigen |
-| AUC | Area under the curve |
-| ROC | Receiver operating characteristic |
-| TCR | T-cell receptor |
-| ELISpot | Enzyme-linked immunospot |
-| IC₅₀ | Half-maximal inhibitory concentration |
-| GBM | Glioblastoma multiforme |
-| PDAC | Pancreatic ductal adenocarcinoma |
-| CI | Confidence interval |
-| TPM | Transcripts per million |
-| CV | Cross-validation |
+MHC: Major histocompatibility complex; HLA: Human leukocyte antigen; AUC: Area under the curve; ROC: Receiver operating characteristic; TCR: T-cell receptor; ELISpot: Enzyme-linked immunospot; IC₅₀: Half-maximal inhibitory concentration; GBM: Glioblastoma multiforme; PDAC: Pancreatic ductal adenocarcinoma; CI: Confidence interval; TPM: Transcripts per million; CV: Cross-validation.
 
 ---
 
@@ -212,13 +199,13 @@ We thank the authors of Ott 2017, Sahin 2017, Hilf 2019, and Rojas 2023 for shar
 
 ## Authors' contributions
 
-[TBD]
+A.S.D. conceived the study, designed the autoresearch framework, performed all computational analyses, interpreted the results, and wrote the manuscript in full.
 
 ---
 
 ## Funding
 
-[TBD]
+The author received no external funding for this research.
 
 ---
 
@@ -377,3 +364,6 @@ All cohort data are from published supplementary materials. Borch/IMPROVE: githu
 
 **Figure 3. External corroboration and cancer-type specificity.**
 (A) Borch/IMPROVE melanoma (23 patients). bind+HydroCore achieves AUC 0.660 vs PRIME 2.0 0.609 (p = 0.067; directional). (B) Cancer-type specificity: bind+HydroCore numerically exceeds PRIME on melanoma (+0.051) but underperforms on bladder (−0.046).
+
+**Figure 4. Bidirectional cross-cancer transfer failure.**
+Heatmap showing mean patient AUC when each specialist strategy is applied to its home context (diagonal) versus the other cancer type's context (off-diagonal). Each specialist scores at or below the binding-only baseline when applied out-of-context, demonstrating bidirectional context-dependence.
