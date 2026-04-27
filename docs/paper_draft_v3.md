@@ -234,6 +234,8 @@ All cohort data are from published supplementary materials. Borch/IMPROVE: githu
 
 **Competing interests:** The author declares no competing financial or personal interests that could have influenced the work reported in this paper. NeoResist-MD exists as a research software tool under active development; it has no commercial deployment, generates no revenue, and is released as open-source. This research received no external funding from any public, commercial, or not-for-profit funding agency.
 
+**Use of AI tools:** The author used an AI language model (Perplexity AI, powered by Claude Sonnet) to assist with manuscript drafting, structural editing, and reference formatting. All scientific content, analytical decisions, data interpretation, and conclusions are the sole responsibility of the author. No AI tool was used to generate, modify, or fabricate research data.
+
 ---
 
 ## References
