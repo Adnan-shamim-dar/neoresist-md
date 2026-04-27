@@ -1,0 +1,31 @@
+\begin{table}
+\caption{All hypotheses.}
+\label{tab:supp_hyp}
+\begin{tabular}{lllrrrrr}
+\toprule
+Name & Rationale & Features\_Weights & LOPO\_AUC & Median & Std & InSample\_AUC & Overfitting\_Gap \\
+\midrule
+H14\_bind\_plus\_3tcr & Binding + all three significant TCR features & bind\_log50k:0.4; tcr\_volume\_mut:0.2; tcr\_charge\_diff:0.2; tcr\_hydrophobicity\_mut:0.2 & 0.757702 & 0.810606 & 0.107396 & 0.654472 & -0.103230 \\
+H20\_kitchen\_sink & Binding + expression + all TCR features & bind\_log50k:0.3; expression\_score:0.1; tcr\_volume\_mut:0.2; tcr\_charge\_diff:0.2; tcr\_hydrophobicity\_mut:0.2 & 0.753535 & 0.810606 & 0.114644 & 0.648780 & -0.104755 \\
+H13\_bind\_vol\_hydro & Binding + volume + hydrophobicity & bind\_log50k:0.5; tcr\_volume\_mut:0.25; tcr\_hydrophobicity\_mut:0.25 & 0.740530 & 0.759091 & 0.125471 & 0.704878 & -0.035652 \\
+H15\_tcr\_only & TCR features only (no binding) & tcr\_volume\_mut:0.33; tcr\_charge\_diff:0.33; tcr\_hydrophobicity\_mut:0.34 & 0.734975 & 0.742424 & 0.109102 & 0.637398 & -0.097576 \\
+H2\_bind\_plus\_charge\_diff & Binding + TCR charge change from mutation & bind\_log50k:0.6; tcr\_charge\_diff:0.4 & 0.718855 & 0.750000 & 0.212842 & 0.663008 & -0.055847 \\
+H12\_bind\_vol\_charge & Binding + two best TCR features & bind\_log50k:0.5; tcr\_volume\_mut:0.25; tcr\_charge\_diff:0.25 & 0.717003 & 0.732955 & 0.098358 & 0.639837 & -0.077166 \\
+H17\_bind\_heavy\_tcr\_volume & Binding-heavy + TCR volume & bind\_log50k:0.7; tcr\_volume\_mut:0.3 & 0.710059 & 0.728788 & 0.109455 & 0.700000 & -0.010059 \\
+H18\_equal\_bind\_tcr\_volume & Equal binding + TCR volume & bind\_log50k:0.5; tcr\_volume\_mut:0.5 & 0.707281 & 0.720455 & 0.109886 & 0.695122 & -0.012159 \\
+H1\_bind\_plus\_tcr\_volume & Binding + TCR surface volume & bind\_log50k:0.6; tcr\_volume\_mut:0.4 & 0.707281 & 0.720455 & 0.109886 & 0.695122 & -0.012159 \\
+H19\_tcr\_volume\_heavy & TCR volume dominant & bind\_log50k:0.3; tcr\_volume\_mut:0.7 & 0.707281 & 0.720455 & 0.109886 & 0.695935 & -0.011346 \\
+H5\_bind\_plus\_iedb & Binding + Calis TCR immunogenicity & bind\_log50k:0.6; iedb\_immuno:0.4 & 0.656229 & 0.650000 & 0.135070 & 0.625203 & -0.031026 \\
+H3\_bind\_plus\_hydro & Binding + TCR surface hydrophobicity & bind\_log50k:0.6; tcr\_hydrophobicity\_mut:0.4 & 0.655934 & 0.688636 & 0.149998 & 0.660163 & 0.004228 \\
+H0\_binding\_only & Baseline: binding affinity alone & bind\_log50k:1.0 & 0.649369 & 0.700000 & 0.143496 & 0.633740 & -0.015629 \\
+H9\_bind\_plus\_expression & Binding + expression (original RL feature) & bind\_log50k:0.6; expression\_score:0.4 & 0.645707 & 0.691667 & 0.112374 & 0.608537 & -0.037170 \\
+H16\_rl\_v1\_dynamic & Original rl\_v1 weights (renormalized to 3 features) & bind\_log50k:0.5; expression\_score:0.33; self\_dissimilarity:0.17 & 0.640152 & 0.683333 & 0.108774 & 0.597561 & -0.042591 \\
+H6\_bind\_plus\_iedb\_diff & Binding + differential Calis immunogenicity & bind\_log50k:0.6; iedb\_immuno\_diff:0.4(inv) & 0.634175 & 0.697222 & 0.241850 & 0.582520 & -0.051655 \\
+H4\_bind\_plus\_surface\_change & Binding + composite TCR surface change & bind\_log50k:0.6; tcr\_surface\_change:0.4 & 0.629882 & 0.612500 & 0.110706 & 0.645528 & 0.015646 \\
+H11\_bind\_plus\_position & Binding + mutation centrality in peptide & bind\_log50k:0.6; mut\_position\_centrality:0.4 & 0.628199 & 0.626263 & 0.120240 & 0.602033 & -0.026166 \\
+H7\_bind\_plus\_dai & Binding + differential agretopicity & bind\_log50k:0.6; dai:0.4 & 0.610143 & 0.698485 & 0.218439 & 0.614228 & 0.004085 \\
+H10\_bind\_plus\_anchor & Binding + anchor residue quality & bind\_log50k:0.6; anchor\_quality:0.4 & 0.605850 & 0.543939 & 0.202658 & 0.594715 & -0.011135 \\
+H8\_bind\_plus\_foreignness & Binding + self-proteome foreignness & bind\_log50k:0.6; proteome\_foreignness:0.4(inv) & 0.574369 & 0.537500 & 0.200142 & 0.596748 & 0.022379 \\
+\bottomrule
+\end{tabular}
+\end{table}

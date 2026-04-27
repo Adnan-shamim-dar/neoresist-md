@@ -1,0 +1,36 @@
+\begin{table}
+\caption{Single feature comparison.}
+\label{tab:features}
+\begin{tabular}{llrrlrr}
+\toprule
+Feature & Category & AUC & p-value & Direction & Immuno Mean & Non-Immuno Mean \\
+\midrule
+tcr\_volume\_mut & tcr & 0.694309 & 0.017329 & pos & 142.168581 & 132.466054 \\
+tcr\_charge\_diff & tcr & 0.674359 & 0.016963 & pos & 0.112222 & 0.013803 \\
+tcr\_hydrophobicity\_mut & tcr & 0.668699 & 0.038887 & pos & 0.025748 & -0.575898 \\
+tcr\_volume\_abs\_diff & tcr & 0.648077 & 0.102200 & pos & 6.416806 & 4.446385 \\
+presentation\_score & binding & 0.635772 & 0.096653 & pos & 0.719637 & 0.672135 \\
+bind\_log50k & binding & 0.633740 & 0.101676 & pos & 0.725323 & 0.679682 \\
+tcr\_surface\_change & tcr & 0.620325 & 0.124702 & pos & 0.126665 & 0.083315 \\
+tcr\_volume\_diff & tcr & 0.613462 & 0.211088 & pos & 4.287639 & 2.796573 \\
+dai & binding\_related & 0.605128 & 0.252375 & pos & 0.501521 & 0.403706 \\
+tcr\_charge\_abs\_diff & tcr & 0.585897 & 0.240993 & pos & 0.112222 & 0.054145 \\
+tcr\_charge\_mut & tcr & 0.579675 & 0.326212 & pos & 0.086444 & 0.056064 \\
+anchor\_quality\_diff & binding\_related & 0.571795 & 0.269406 & pos & 0.162500 & 0.090000 \\
+mut\_position\_centrality & position & 0.564103 & 0.481388 & pos & 0.465972 & 0.399822 \\
+self\_dissimilarity & original\_dissimilarity & 0.543496 & 0.596928 & neg & 0.384872 & 0.390252 \\
+tcr\_hydrophobicity\_diff & tcr & 0.542949 & 0.634776 & neg & 0.051944 & 0.124932 \\
+tcr\_aromaticity\_diff & tcr & 0.542308 & 0.509122 & pos & 0.033333 & 0.021496 \\
+anchor\_quality & binding\_related & 0.539837 & 0.609231 & pos & 0.696667 & 0.659756 \\
+tcr\_hydrophobicity\_abs\_diff & tcr & 0.539103 & 0.665857 & pos & 0.274167 & 0.241513 \\
+mut\_at\_tcr\_contact & position & 0.537179 & 0.666827 & pos & 0.665278 & 0.582051 \\
+proteome\_foreignness\_diff & foreignness & 0.536538 & 0.683863 & pos & 0.106759 & 0.106168 \\
+hamming\_distance & original\_dissimilarity & 0.536538 & 0.683863 & pos & 0.106759 & 0.106168 \\
+iedb\_immuno\_diff & tcr & 0.533974 & 0.710754 & neg & 0.004378 & 0.005122 \\
+expression\_score & expression & 0.528481 & 0.739060 & pos & 0.522142 & 0.480207 \\
+iedb\_immuno & tcr & 0.515447 & 0.853548 & pos & -0.035384 & -0.037140 \\
+proteome\_foreignness & foreignness & 0.514634 & 0.858972 & pos & 0.218741 & 0.224198 \\
+tcr\_aromaticity\_mut & tcr & 0.507317 & 0.929810 & neg & 0.100481 & 0.104946 \\
+\bottomrule
+\end{tabular}
+\end{table}

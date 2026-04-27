@@ -1,6 +1,75 @@
-# neovax
+# NeoResist-MD
 
-Monorepo for neoantigen tooling (NeoResist-MD Dash UI, NeoVax backend, ResistanceLoop qualification).
+**A systematic framework for cancer-type-specific neoantigen ranking strategy discovery.**
+
+NeoResist-MD discovers interpretable, cancer-type-specific neoantigen ranking strategies from immunogenicity data using an automated search loop, validates them on held-out cohorts with full provenance logging, and deploys them through a clinical prioritisation platform. The first validated output is a melanoma-specific strategy that improves mean patient AUC from 0.470 to 0.575 on an independent held-out cohort (p = 0.011), with TCR contact volume as the dominant discriminating feature.
+
+**Methodology reference:** [docs/paper_draft_v3.md](docs/paper_draft_v3.md)
+
+---
+
+## Quick Start
+
+```bash
+pip install -r requirements.txt
+python scripts/generate_figures.py         # reproduce all 4 paper figures
+python scripts/borch_significance_test.py  # reproduce Borch p-value
+```
+
+---
+
+## Repository Structure
+
+```
+registry/                    # Validated strategy specifications (JSON)
+  melanoma_all_signals.json  # Held-out validated melanoma specialist
+docs/
+  paper_draft_v3.md          # Current manuscript
+  paper_journey.md           # Decision log for collaborators / AI agents
+  cover_letter_draft.md      # Submission cover letter
+data/
+  README_data.txt            # Dataset attribution and sources
+backend/strategy_engine/
+  autoresearch_loop.py       # Main search engine
+  paper_evidence.py          # Evaluation pipeline
+scripts/
+  generate_figures.py        # Reproduce paper figures 1–4
+  borch_significance_test.py # Reproduce Borch significance test
+study_audit.txt              # Evidence provenance and pre-specification log
+```
+
+---
+
+## Key Results
+
+| Result | Value | Status |
+|---|---|---|
+| Melanoma held-out AUC | 0.575 (delta +0.105, p=0.011) | **Validated** |
+| TCR contact volume ablation | −0.086 AUC on removal | **Validated** |
+| Borch melanoma vs PRIME 2.0 | 0.660 vs 0.609 (p=0.067) | Corroborating |
+| Bidirectional transfer failure | Melanoma → GBM: 0.411 vs binding ~0.628 | Provisional |
+
+---
+
+## Validated Strategy
+
+See [`registry/melanoma_all_signals.json`](registry/melanoma_all_signals.json) for the full specification, weights, and provenance.
+
+---
+
+## Evidence Audit
+
+See [`study_audit.txt`](study_audit.txt) for the timeline demonstrating that held-out Sahin 2017 was accessed after the strategy was fixed on Ott 2017.
+
+---
+
+## Data Attribution
+
+See [`data/README_data.txt`](data/README_data.txt). All cohorts are from published supplementary materials; no new patient data were collected.
+
+---
+
+*Previously: monorepo for neoantigen tooling (NeoResist-MD Dash UI, NeoVax backend, ResistanceLoop qualification).*
 
 ## NeoResist-MD Dash (`app.py`)
 

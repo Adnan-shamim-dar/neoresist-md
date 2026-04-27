@@ -1,0 +1,14 @@
+\begin{table}
+\caption{Results summary.}
+\label{tab:results}
+\begin{tabular}{llrll}
+\toprule
+Scoring Strategy & Features & LOPO AUC & Delta & 95\% CI \\
+\midrule
+Binding only & MHC affinity & 0.649400 & ref & [0.498, 0.754] \\
+H14 (proposed) & MHC aff + TCR vol + TCR chg + TCR hyd & 0.757700 & +0.1083 & [0.516, 0.776] \\
+rl\_v1 (theory) & MHC aff + expr + dissim & 0.640200 & -0.0092 & [0.423, 0.753] \\
+TCR only (H15) & TCR volume + charge + hydrophobicity & 0.735000 & +0.0856 & [0.505, 0.758] \\
+\bottomrule
+\end{tabular}
+\end{table}

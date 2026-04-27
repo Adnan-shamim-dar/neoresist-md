@@ -22,6 +22,34 @@ data/final/*.parquet
 code_only.zip
 everything-claude-code/
 
+# Internal planning / handoff documents (not for public repo)
+HANDOFF_v7.json
+NeoResist_NeoGuider_Playbook_v3.pdf
+AGENTS.md
+CLAUDE.md
+.claudeignore
+.claude/
+.tmp_neoranking/
+everything-claude-code/
+
+# Dev scratch files
+phase2_single_feature_benchmark.py
+phase3_binding_comparison.py
+phase4_version_d_diagnostic.py
+phase4_xgb_and_lr_comparison.py
+phase5_tesla_validation.py
+batch_cohort_runner.py
+build_cohort_bundle.py
+build_proof_table.py
+check_purity.py
+compute_missing_peptide_features.py
+data_leakage_audit.py
+resolve_blosum62_features.py
+sanity_check_new_features.py
+manual_purity.csv
+cases_manifest.csv
+app_streamlit_backup.py
+
 # Large generated CSVs (reproducible from scripts)
 backend/strategy_engine/artifacts/ott_fullmutanome_peptides_scored.csv
 backend/strategy_engine/artifacts/nci_full_mutanome.csv
