@@ -4,6 +4,12 @@ NeoResist-MD — Dataset Sources and Attribution
 All datasets used in this study are derived from published supplementary
 materials. No new patient data were collected.
 
+Status note (November 2026): an internal audit found that the cohort listed
+below as held-out (sahin_2017) was present in the search loop's active
+dataset list and was read many times during the search, not once at final
+evaluation. No cleanly sealed held-out cohort exists in this project at
+present. See the status note at the top of README.md.
+
 ------------------------------------------------------------------------
 DATASETS
 ------------------------------------------------------------------------
@@ -14,13 +20,17 @@ DATASETS
    DOI: 10.1038/nature22991
    Usage: Strategy discovery (n=13 patients, 97 peptides, 15 immunogenic)
 
-2. Sahin 2017 (melanoma — HELD-OUT VALIDATION cohort)
+2. Sahin 2017 (melanoma — intended as held-out; NOT held out in practice)
    Source: Sahin U, et al. Personalised RNA mutanome vaccines mobilise
            poly-specific therapeutic immunity against cancer.
            Nature 2017;547:222-226.
    DOI: 10.1038/nature23003
-   Usage: Single-access held-out evaluation (n=13 patients, 165 peptides,
-          109 immunogenic). Accessed once after strategy was fixed.
+   Usage: n=13 patients, 165 peptides, 109 immunogenic.
+          RETRACTED (November 2026): this entry previously read
+          "Single-access held-out evaluation ... Accessed once after
+          strategy was fixed." That statement was false. The cohort was
+          read inside the search loop many times, so the melanoma result
+          is exploratory only, not held-out validation.
 
 3. Hilf 2019 (GBM — provisional)
    Source: Hilf N, et al. Actively personalised vaccination trial for
