@@ -171,7 +171,7 @@ def fig1_framework() -> None:
         (1.0, 2.5, "Discovery\ncohort\n(e.g. Ott 2017)", BLUE),
         (3.5, 2.5, "Autoresearch\nloop\n(222 iterations,\n>30,000 pairs)", BLUE),
         (6.0, 2.5, "Candidate\nstrategies\n(ranked by\ndiscovery AUC)", BLUE),
-        (8.5, 2.5, "Held-out\nvalidation\n(e.g. Sahin 2017)\naccessed ONCE", GREEN),
+        (8.5, 2.5, "Evaluation\ncohort\n(e.g. Sahin 2017)\nNOT sealed\nfrom the search", GREEN),
     ]
     for x, y, label, colour in boxes:
         rect = mpatches.FancyBboxPatch((x - 0.8, y - 0.9), 1.6, 1.8,
@@ -187,7 +187,7 @@ def fig1_framework() -> None:
 
     # Bottom note
     ax.text(5, 0.4,
-            "Top strategy fixed before held-out access  ·  Promoted strategies crystallised to registry  ·  Full provenance logged",
+            "Intended design; audit found the evaluation cohorts were read during the search  ·  Promoted strategies crystallised to registry  ·  Full provenance logged",
             ha="center", fontsize=9, style="italic", color="grey")
 
     plt.tight_layout()

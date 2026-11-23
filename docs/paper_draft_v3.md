@@ -90,6 +90,8 @@ PRIME scores used as published [10]. Binding rank derived from RankEL_4.1. Hydro
 
 For provisional GBM evaluation, Hilf 2019 served as the discovery cohort. Keskin 2019 was pre-specified as the directional transfer check before the Hilf discovery run was initiated; it was accessed once, after the gbm_bind_seq_60_40 strategy was fixed from Hilf performance alone. No held-out validation cohort with sufficient structure for promotion was available; the Keskin result is therefore reported as provisional transfer evidence only.
 
+> **Correction (November 2026) — the access claim for Keskin 2019 does not hold.** The earlier text stated that Keskin 2019 was pre-specified as a directional transfer check and accessed once, after `gbm_bind_seq_60_40` was fixed on Hilf 2019 alone. An audit of the strategy-engine artifacts found that the cohort was read repeatedly from April to July 2026 — including being pooled with Hilf into the leave-one-patient-out training set of the two-stage model, where it also influenced feature selection — two days before the directional evaluation was run. A second strategy, `melanoma_all_signals`, was scored on the cohort and that result is reported in this paper (Table 6). The dataset registry records Keskin with `held_out_blind: False`. **The Keskin transfer figure is therefore exploratory, not a pre-specified directional test**, and Table 6's description of the strategy's home context as "Hilf/Keskin" is the accurate one.
+
 ### Clinical platform
 
 The NeoResist-MD platform implements an end-to-end workflow: mutation table upload → candidate generation → strategy scoring → tiered prioritisation output, with resume-safe case workflows, persistent storage with audit logging, and strategy dispatch from the per-cancer registry. Platform source code is included in the repository under `/platform`; a deployable release will be made available upon acceptance.
@@ -372,7 +374,7 @@ All cohort data are from published supplementary materials. Borch/IMPROVE: githu
 ## Figure Legends
 
 **Figure 1. NeoResist-MD framework.**
-(A) Discovery-validation design. Each cancer context has a designated discovery cohort and, where available, a held-out validation cohort accessed once at final evaluation. Promoted strategies are crystallised into the registry with provenance. (B) Autoresearch loop history showing exploration pressure and family weight adaptation across 222 rounds.
+(A) Discovery-evaluation design as originally intended. Each cancer context has a designated discovery cohort and, where available, a separate evaluation cohort. **Correction (November 2026): the evaluation cohorts were not in fact sealed from the search** (see the corrections in Methods), so panel A describes the intended design, not the design as executed, and the evaluation results are exploratory. Promoted strategies are crystallised into the registry with provenance. (B) Autoresearch loop history showing exploration pressure and family weight adaptation across 222 rounds.
 
 **Figure 2. Melanoma strategy discovery and ablation.**
 (A) Mean patient AUC on held-out Sahin 2017. Horizontal line: binding-only baseline (0.470). melanoma_all_signals: 0.575 (delta +0.105; *p* = 0.011). Error bars: 95% bootstrap CI. (B) Feature ablation. TCR contact volume is the dominant component (−0.086 on removal).
